@@ -1,4 +1,4 @@
-import { requestPost } from "../helpers/NetworkUtils";
+import { requestPost, requestGet, requestPatch } from "../helpers/NetworkUtils";
 import {
   END_POINT,
 } from "../constants/DefaultValue";
