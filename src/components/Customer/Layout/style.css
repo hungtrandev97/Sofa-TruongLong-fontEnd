@@ -1,0 +1,15 @@
+.HeaderConsumer {
+}
+
+.HeaderConsumer__user {
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  height: 30px;
+  color: black;
+}
+
+.HeaderConsumer__Nav {
+  height: 80px;
+}

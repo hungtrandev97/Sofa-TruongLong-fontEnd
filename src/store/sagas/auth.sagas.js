@@ -28,10 +28,10 @@ function* loginWithPassword({ payload }) {
   }
 }
 
-export function* watchLoginUser() {
+export function* watchLogoutUser() {
   yield takeEvery(LOGIN_USER, loginWithPassword);
 }
 
 export default function* rootSage() {
-  yield all([fork(watchLoginUser), fork(watchLogoutUser)]);
+  yield all([fork(watchLogoutUser)]);
 }

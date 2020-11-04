@@ -1,68 +1,100 @@
-import React from 'react';
-import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import {
+  withRouter,
+  Switch,
+  Route,
+  Redirect,
+  BrowserRouter as Router,
+} from "react-router-dom";
+import history from "./history";
+import { ROLE, ACCESS_TOKEN_KEY } from "./constants/DefaultValue";
+import ErrorView from "./views/404/404";
+import AdminView from "./views/admin/index";
+import AuthView from "./views/auth/index";
+import ConsumerView from "./views/consumer/index";
 
-import Base from './components/Layout/Base';
-import BasePage from './components/Layout/BasePage';
-// import BaseHorizontal from './components/Layout/BaseHorizontal';
+const auth = {
+  isAuthenticated: false,
+};
 
-import SingleView from './components/SingleView/SingleView';
-import SubMenu from './components/SubMenu/SubMenu';
+const PrivateRoute = ({ component: Component, roles, loginUser, path }) => (
+  <Route
+    path={path}
+    render={(props) => {
+      if (auth.isAuthenticated) {
+        if (roles && roles.indexOf(loginUser.role) === -1) {
+          return <Redirect to={{ pathname: "/" }} />;
+        }
+        return <Component />;
+      }
+      return (
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+      );
+    }}
+  />
+);
+PrivateRoute.propTypes = {
+  roles: PropTypes.arrayOf(PropTypes.number),
+  component: PropTypes.elementType.isRequired,
+  loginUser: PropTypes.shape({
+    role: PropTypes.number,
+  }),
+  location: PropTypes.shape({}),
+  path: PropTypes.string,
+};
+PrivateRoute.defaultProps = {
+  roles: [],
+  loginUser: {},
+  location: {},
+  path: "",
+};
 
-// List of routes that uses the page layout
-// listed here to Switch between layouts
-// depending on the current pathname
-const listofPages = [
-    /* See full project for reference */
-];
+const Routes = (props) => {
+  const { loginUser } = props;
 
-const Routes = ({ location }) => {
-    const currentKey = location.pathname.split('/')[1] || '/';
-    const timeout = { enter: 500, exit: 500 };
+  auth.isAuthenticated =
+    loginUser &&
+    localStorage.getItem(ACCESS_TOKEN_KEY) &&
+    loginUser.accessToken === localStorage.getItem(ACCESS_TOKEN_KEY);
+    return (
+      <Router history={history}>
+        <Switch>
+          <PrivateRoute
+            path="/consumer"
+            roles={[ROLE.PATIENT]}
+            loginUser={loginUser}
+            component={ConsumerView}
+          />
+          <PrivateRoute
+            path="/admin"
+            roles={[ROLE.ADMIN]}
+            loginUser={loginUser}
+            component={AdminView}
+          />
+          <Route path="/" exact component={ConsumerView} />
+          <Route path="/auth" component={AuthView} />
+          <Route path="/error" component={ErrorView} />
+          <Redirect to="/error" />
+        </Switch>
+      </Router>
+    );
+  };
 
-    // Animations supported
-    //      'rag-fadeIn'
-    //      'rag-fadeInUp'
-    //      'rag-fadeInDown'
-    //      'rag-fadeInRight'
-    //      'rag-fadeInLeft'
-    //      'rag-fadeInUpBig'
-    //      'rag-fadeInDownBig'
-    //      'rag-fadeInRightBig'
-    //      'rag-fadeInLeftBig'
-    //      'rag-zoomBackDown'
-    const animationName = 'rag-fadeIn'
+Routes.propTypes = {
+  loginUser: PropTypes.shape({
+    accessToken: PropTypes.string,
+  }),
+};
+Routes.defaultProps = {
+  loginUser: {},
+};
+const mapStateToProps = ({ authRedux }) => {
+  const { loginUser } = authRedux;
+  return { loginUser };
+};
 
-    if(listofPages.indexOf(location.pathname) > -1) {
-        return (
-            // Page Layout component wrapper
-            <BasePage>
-                <Switch location={location}>
-                    {/* See full project for reference */}
-                </Switch>
-            </BasePage>
-        )
-    }
-    else {
-        return (
-            // Layout component wrapper
-            // Use <BaseHorizontal> to change layout
-            <Base>
-              <TransitionGroup>
-                <CSSTransition key={currentKey} timeout={timeout} classNames={animationName} exit={false}>
-                    <div>
-                        <Switch location={location}>
-                            <Route path="/singleview" component={SingleView}/>
-                            <Route path="/submenu" component={SubMenu}/>
+const mapActionsToProps = {};
 
-                            <Redirect to="/singleview"/>
-                        </Switch>
-                    </div>
-                </CSSTransition>
-              </TransitionGroup>
-            </Base>
-        )
-    }
-}
-
-export default withRouter(Routes);
+export default connect(mapStateToProps, mapActionsToProps)(withRouter(Routes));

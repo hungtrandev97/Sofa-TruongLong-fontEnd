@@ -10,6 +10,5 @@ export const DATEFORMAT = "DD/MM/YYYY";
 
 export const ROLE = {
   ADMIN: 1,
-  HCP: 2,
-  PATIENT: 3,
+  PATIENT: 2,
 };
