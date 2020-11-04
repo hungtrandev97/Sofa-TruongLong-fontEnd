@@ -73,7 +73,7 @@ const Routes = (props) => {
             loginUser={loginUser}
             component={AdminView}
           />
-          <Route path="/" exact component={ConsumerView} />
+          <Route exact path="/" component={ConsumerView} />
           <Route path="/auth" component={AuthView} />
           <Route path="/error" component={ErrorView} />
           <Redirect to="/error" />
