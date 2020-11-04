@@ -75,6 +75,7 @@ const Routes = (props) => {
           />
           <Route exact path="/" component={ConsumerView} />
           <Route path="/auth" component={AuthView} />
+          <Route path="/adminn" component={AdminView} />
           <Route path="/error" component={ErrorView} />
           <Redirect to="/error" />
         </Switch>
