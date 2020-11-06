@@ -1,0 +1,33 @@
+.InlineCheckbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.InlineCheckbox:checked {
+  border-radius: 3px;
+  border: solid 2px #009fe3;
+  background-color: #009fe3;
+}
+
+.InlineCheckbox:disabled {
+  color: #b8b8b8;
+  cursor: auto;
+}
+
+.InlineCheckbox > label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+
+.InlineCheckbox > label:before {
+  content: "";
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: sub;
+  width: 21px;
+  height: 21px;
+  border-radius: 3px;
+  border: solid 2px #c9d2e0;
+  background-color: #ffffff;
+}

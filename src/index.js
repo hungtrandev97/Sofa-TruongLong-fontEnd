@@ -6,6 +6,8 @@ import * as serviceWorker from "./serviceWorker";
 
 import App from "./App";
 
+// import './i18n';
+
 import configureStore from "./store/store";
 
 const store = configureStore();

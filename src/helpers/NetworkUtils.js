@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ACCESS_TOKEN_KEY } from "../constants/DefaultValue";
+import { ACCESS_TOKEN_KEY } from "../constants/DefaultValues";
 // import configureStore from "../store/store";
 // import { logoutUser } from "../store/actions/auth.actions";
 

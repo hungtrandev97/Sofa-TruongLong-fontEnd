@@ -1,0 +1,11 @@
+.LabelLine__Title {
+  font-size: 36px;
+  color: #000000;
+}
+
+.LabelLine_Bottom {
+  width: 83px;
+  height: 5px;
+  background-color: #009fe3;
+  border-radius: 30px;
+}

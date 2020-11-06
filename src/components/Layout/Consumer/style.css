@@ -1,0 +1,69 @@
+.HeaderConsumer {
+  background-color: #f5f5f5;
+}
+
+.HeaderConsumer__account {
+  background: #e4e5e7;
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.HeaderConsumer__account__content {
+  width: 1188px;
+  min-width: 1188px;
+  margin: 0 auto;
+  text-align: right;
+  color: #333333;
+  font-weight: bold;
+}
+
+.HeaderConsumer__nav {
+  display: flex;
+  max-width: 1440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.HeaderConsumer__nav > div {
+  flex-grow: 1;
+}
+
+.HeaderConsumer__nav__card {
+  height: 50px;
+  border-radius: 10px 0 0px 10px;
+}
+
+.HeaderConsumer__nav__numberPhone__content {
+  height: 50px;
+  text-align: center;
+}
+
+.HeaderConsumer__nav__numberPhone__content > img {
+  height: 100%;
+}
+
+.HeaderConsumer__nav__numberPhone__content__text {
+  height: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.HeaderConsumer__nav__card_content__text {
+  display: flex;
+}
+
+.HeaderConsumer__nav__card_content__CartText {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  line-height: 1;
+  padding-left: 15px;
+}

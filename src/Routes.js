@@ -9,11 +9,12 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 import history from "./history";
-import { ROLE, ACCESS_TOKEN_KEY } from "./constants/DefaultValue";
+import { ROLE, ACCESS_TOKEN_KEY } from "./constants/DefaultValues";
 import ErrorView from "./views/404/404";
 import AdminView from "./views/admin/index";
 import AuthView from "./views/auth/index";
-import ConsumerView from "./views/consumer/index";
+import MainView from "./views/index";
+import DashboardView from "./views/dashboard/index";
 
 const auth = {
   isAuthenticated: false,
@@ -58,23 +59,25 @@ const Routes = (props) => {
     loginUser &&
     localStorage.getItem(ACCESS_TOKEN_KEY) &&
     loginUser.accessToken === localStorage.getItem(ACCESS_TOKEN_KEY);
-    return (
-      <Router history={history}>
-        <Switch>
-          <PrivateRoute
-            path="/admin"
-            roles={[ROLE.ADMIN]}
-            loginUser={loginUser}
-            component={AdminView}
-          />
-          <Route exact path="/" component={ConsumerView} />
-          <Route path="/auth" component={AuthView} />
-          <Route path="/error" component={ErrorView} />
-          <Redirect to="/error" />
-        </Switch>
-      </Router>
-    );
-  };
+
+  return (
+    <Router history={history}>
+      <Switch>
+        <PrivateRoute
+          path="/admin"
+          roles={[ROLE.ADMIN]}
+          loginUser={loginUser}
+          component={AdminView}
+        />
+        <Route path="/" exact component={MainView} />
+        <Route path="/auth" component={AuthView} />
+        <Route path="/trang-chu" component={DashboardView} />
+        <Route path="/error" component={ErrorView} />
+        <Redirect to="/error" />
+      </Switch>
+    </Router>
+  );
+};
 
 Routes.propTypes = {
   loginUser: PropTypes.shape({

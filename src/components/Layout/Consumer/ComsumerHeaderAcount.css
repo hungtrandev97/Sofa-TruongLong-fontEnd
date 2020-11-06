@@ -1,0 +1,35 @@
+.ConsumerHeaderAcount .ConsumerHeaderAcount__avatar {
+  width: 30px;
+  height: 30px;
+  border: solid 1px #ffffff;
+  background-color: #e2f6ff;
+  border-radius: 100%;
+}
+
+.ConsumerHeaderAcount__dropdownToggle {
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.ConsumerHeaderAcount__dropdownItem {
+  cursor: pointer;
+  height: 50px;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #ff7a7a;
+}
+
+.ConsumerHeaderAcount__dropdownItem:hover {
+  color: #ff7a7a !important;
+    background: #009fe336 !important;
+}
+.ConsumerHeaderAcount__dropdownItem:focus {
+  color: #ff7a7a !important;
+  background: #009fe336 !important;
+}

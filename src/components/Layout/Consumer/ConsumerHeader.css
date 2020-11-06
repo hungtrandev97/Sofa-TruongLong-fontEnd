@@ -1,0 +1,84 @@
+.consumerHeader {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  background-image: linear-gradient(to top, #00cdf3, #009fe3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 125px;
+}
+
+.consumerHeader__LogoImage {
+  width: 190px;
+  height: 29px;
+}
+
+.consumerHeader__avatar {
+  width: 30px;
+  height: 30px;
+  border: solid 1px #ffffff;
+  background-color: #e2f6ff;
+  border-radius: 100%;
+}
+
+.consumerHeader__dropdownToggle {
+  font-size: 16px;
+  color: #fff !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.consumerHeader__dropdownItemLogout {
+  cursor: pointer;
+  height: 50px;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #ff7a7a !important;
+}
+
+.consumerHeader__dropdownItemLogout:hover {
+  color: #ff7a7a !important;
+  background: #009fe336 !important;
+}
+
+.consumerHeader__dropdownItemLogout:focus {
+  color: #ff7a7a !important;
+  background: #009fe336 !important;
+}
+
+.consumerHeader__dropdownItemProfile {
+  cursor: pointer;
+  height: 50px;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  background: #ffff;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.consumerHeader__dropdownItemProfile:hover {
+  background: #009fe336 !important;
+}
+
+@media (max-width: 568px) {
+  .consumerHeader {
+    padding: 0 25px;
+  }
+}
+@media (max-width: 375px) {
+  .consumerHeader {
+    padding: 0 5px;
+  }
+}
+@media (max-width: 320px) {
+  .consumerHeader {
+    padding: 0;
+  }
+}

@@ -24,6 +24,7 @@
 @import "app/layout/offsidebar";
 @import "app/layout/user-block";
 @import "app/layout/settings";
+@import "app/layout/user-login";
 // Common
 @import "app/common/typo";
 @import "app/common/bootstrap-reset";
@@ -35,7 +36,29 @@
 @import "app/common/dropdown-extra";
 @import "app/common/half-float";
 @import "app/common/animate";
-@import "app/common/slim-scroll";
 @import "app/common/inputs";
 @import "app/common/utils";
 @import "app/common/print";
+@import "app/common/toast";
+
+// font-family
+
+@font-face {
+  font-family: Bariol;
+  src: url("/fonts/Bariol.ttf");
+}
+
+@font-face {
+  font-family: Bariol_Bold;
+  src: url("/fonts/Bariol_Bold.otf");
+}
+
+@font-face {
+  font-family: blog_script;
+  src: url("/fonts/blog_script.ttf");
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url("/fonts/Avenir-Medium.ttf");
+}

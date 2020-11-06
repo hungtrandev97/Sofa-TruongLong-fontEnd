@@ -1,0 +1,25 @@
+{
+  "dashboard": {
+    "WELCOME": "Welcome to Angle !"
+  },
+  "exportpdf": {},
+  "topbar": {
+    "search": {
+      "PLACEHOLDER": "Type and hit enter.."
+    }
+  },
+  "sidebar": {
+    "WELCOME": "Welcome",
+    "heading": {
+      "HEADER": "Main Navigation"
+    },
+    "nav": {
+      "SINGLEVIEW": "Single View",
+      "menu": {
+        "MENU": "Menu",
+        "SUBMENU": "Sub Menu"
+      },
+      "DEMO_EXPORT_PDF": "Demo Export Pdf"
+    }
+  }
+}

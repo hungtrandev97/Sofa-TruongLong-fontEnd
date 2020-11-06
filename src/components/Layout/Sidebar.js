@@ -5,7 +5,7 @@ import { Collapse, Badge } from "reactstrap";
 import SidebarRun from "./Sidebar.run";
 
 import { Menu, AdminMenu } from "../../Menu";
-import { ROLE } from "../../constants/DefaultValue";
+import { ROLE } from "../../constants/DefaultValues";
 
 /** Component to display headings on sidebar */
 const SidebarItemHeader = ({ item }) => (
@@ -121,7 +121,6 @@ class Sidebar extends Component {
       menu = AdminMenu;
     }
     const { match } = this.props;
-    console.log(match)
     return (
       <aside className="aside-container">
         {/* START Sidebar (left) */}

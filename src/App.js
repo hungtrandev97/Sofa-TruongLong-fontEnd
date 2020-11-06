@@ -1,46 +1,33 @@
-/*!
- *
- * Angle - Bootstrap Admin Template
- *
- * Version: 4.0
- * Author: @themicon_co
- * Website: http://themicon.co
- * License: https://wrapbootstrap.com/help/licenses
- *
- */
+/* eslint-disable react/prefer-stateless-function */
 
-import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import $ from 'jquery';
+import React, { Component } from "react";
+import { BrowserRouter } from "react-router-dom";
 
 // App Routes
-import Routes from './Routes';
+import Routes from "./Routes";
 
 // Vendor dependencies
 import "./Vendor";
 // Application Styles
-import './styles/bootstrap.scss';
-import './styles/app.scss'
-
-// Disable warning "Synchronous XMLHttpRequest on the main thread is deprecated.."
-$.ajaxPrefilter(o => o.async = true);
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/bootstrap.scss";
+import "./styles/app.scss";
 
 class App extends Component {
   render() {
-
-    // specify base href from env varible 'WP_BASE_HREF'
+    // specify base href from env varible 'PUBLIC_URL'
     // use only if application isn't served from the root
     // for development it is forced to root only
-    /* global WP_BASE_HREF */
-    const basename = process.env.NODE_ENV === 'development' ? '/' : (WP_BASE_HREF || '/');
+    const basename =
+      process.env.NODE_ENV === "development"
+        ? "/"
+        : process.env.PUBLIC_URL || "/";
 
     return (
-        <BrowserRouter basename={basename}>
-            <Routes />
-        </BrowserRouter>
+      <BrowserRouter basename={basename}>
+        <Routes />
+      </BrowserRouter>
     );
-
   }
 }
 

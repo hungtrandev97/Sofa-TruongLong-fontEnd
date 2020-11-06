@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { Route, withRouter, Switch, Redirect } from "react-router-dom";
-import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
-import Dashboard from "./dashboard/index"
+import { withRouter, Switch, Redirect } from "react-router-dom";
+import BaseAdmin from "../../components/Layout/admin/BaseAdmin";
 
 function Admin(props) {
   const { location, match } = props;
@@ -24,10 +23,8 @@ function Admin(props) {
               <Redirect
                 exact
                 from={`${match.url}`}
-                to={`${match.url}`}
+                to={`${match.url}/consumers`}
               />
-              <Route path={`${match.url}/dasboard`} component={Dashboard} />
-              <Redirect to="/error" />
             </Switch>
           </div>
         </CSSTransition>

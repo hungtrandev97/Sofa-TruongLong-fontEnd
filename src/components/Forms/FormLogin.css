@@ -1,0 +1,25 @@
+.FormLogin {
+  width: 100%;
+}
+
+.FormLogin .FormLogin__Form {
+  margin-bottom: 30px;
+}
+
+.FormLogin .FormLogin__Form .form-group:last-of-type {
+  margin-bottom: 30px;
+}
+
+.FormLogin .FormLogin__Form .form-group {
+  margin-bottom: 35px;
+}
+
+.FormLogin .FormLogin__Form .form-group > label {
+  color: #000000;
+}
+
+.FormLogin .FormLogin__Form .form-group .forgot-pwd {
+  margin-bottom: 0rem;
+  color: #008cd1;
+  cursor: pointer;
+}

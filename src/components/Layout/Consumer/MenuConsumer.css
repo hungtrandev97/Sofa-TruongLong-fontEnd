@@ -1,0 +1,159 @@
+.consumersMenu__MenuHeaderLink > ul > li:hover {
+  border-bottom: 5px solid #ffff !important;
+  opacity: 1 !important;
+}
+
+.consumersMenu__Menu {
+  background-color: #343434;
+}
+
+.consumersMenu__Menu__Nav__Category {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  color: #fff;
+  background-color: #eb1c23;
+  padding: 0 15px;
+  font-weight: bold;
+}
+
+.consumersMenu__Menu__Nav {
+  display: flex;
+  align-items: center;
+  height: 55px;
+  max-width: 1440px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.consumersMenu__Siguplogin {
+  text-align: right;
+  padding-top: 20px;
+  font-size: inherit;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffff;
+}
+
+.consumersMenu__MenuHeaderLogoResponsive {
+  display: none;
+}
+
+.consumersMenu__Siguplogin > a {
+  font-size: 16px;
+  font-family: Avenir;
+  color: #ffff;
+  font-weight: normal;
+}
+
+.consumersMenu__Siguplogin > a:hover {
+  font-size: 16px;
+  font-family: Avenir;
+  color: #ffff;
+  text-decoration: none;
+}
+
+.consumersMenu__Siguplogin > span {
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: 1vw;
+}
+
+.consumersMenu__MenuHeader {
+}
+
+.consumersMenu__MenuHeader > span {
+  color: white;
+  display: inline-block;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.5em;
+  font-size: 3em;
+}
+
+#menu-button-check {
+  display: none;
+}
+
+label[for="menu-button-check"]:nth-of-type(1) {
+  display: none;
+}
+
+.consumersMenu__MenuHeaderLink > ul > li > a {
+  color: #fff;
+  font-size: 16px;
+  font-family: Avenir;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.consumersMenu__MenuHeaderLinkActive {
+  border-bottom: 5px solid #ffff !important;
+  opacity: 1 !important;
+}
+
+.consumersMenu__MenuHeaderLink > ul > li > a:hover {
+  color: #fff !important;
+  background: none !important;
+  text-decoration: none !important;
+}
+
+.educationalHeader__Siguplogin > a:hover {
+  color: #fff !important;
+  background: none !important;
+  text-decoration: none !important;
+}
+
+.educationalFooter__Button:hover {
+  color: #fff;
+  background-color: #3e8e41;
+}
+
+.consumersMenu__SiguploginMobile {
+  position: absolute;
+  bottom: 2%;
+  text-align: center;
+  width: 100%;
+  font-family: Bariol_Bold;
+  display: none;
+  color: #0091ff;
+}
+
+.consumersMenu__SiguploginMobile > span {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 1vw;
+  }
+
+  .consumersMenu__MenuHeader {
+    box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .consumersMenu__MenuHeaderLink {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .consumersMenu__MenuHeaderLink > ul {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    color: white;
+    margin: 0 !important;
+  }
+
+  .consumersMenu__MenuHeaderLink > ul > li {
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 30px;
+    border-bottom: 5px solid #ccb61500;
+  }
+}

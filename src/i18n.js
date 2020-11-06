@@ -1,25 +1,35 @@
 import i18n from 'i18next';
-import Backend from 'i18next-xhr-backend';
+import Backend from 'i18next-http-backend';
+import { initReactI18next } from 'react-i18next';
 // import LanguageDetector from 'i18next-browser-languagedetector';
-import { reactI18nextModule } from 'react-i18next';
+
+// import translationEN from '../public/locales/en/translation.json';
+// import translationES from '../public/locales/es/translation.json';
+
+// const resources = {
+//   en: {
+//     translation: translationEN,
+//   },
+//   es: {
+//     translation: translationES,
+//   }
+// };
 
 i18n
-    .use(Backend)
-    // .use(LanguageDetector)
-    .use(reactI18nextModule)
-    .init({
-        fallbackLng: 'en',
-        backend: {
-            loadPath: 'locales/{{lng}}/{{ns}}.json',
-        },
-        // have a common namespace used around the full app
-        ns: ['translations'],
-        defaultNS: 'translations',
-        debug: false,
-        react: {
-            wait: true
-        }
-    });
+  .use(Backend)
+  // .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    // resources,
+    fallbackLng: 'en',
+    debug: true,
 
+    interpolation: {
+      escapeValue: false, // not needed for react as it escapes by default
+    },
+    // react: {
+    //   useSuspense: false
+    // }
+  });
 
 export default i18n;

@@ -1,0 +1,1 @@
+this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {"GothamBold.ttf":"","GothamBookItalic.ttf":"","Gotham-BoldIta.otf":"","blog_script.ttf":""};

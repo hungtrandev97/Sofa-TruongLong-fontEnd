@@ -12,7 +12,7 @@ $pink: #f532e5;
 $yellow: #fad732;
 $green: #37bc9b;
 
-$primary: #5d9cec;
+$primary: #009fe3;
 $secondary: #fff;
 $success: #27c24c;
 $info: #23b7e5;
@@ -134,7 +134,7 @@ $theme-colors: (
 // Body
 
 $body-bg: #fff;
-$body-color: #656565;
+$body-color: #000;
 
 $border-radius: 0.25rem;
 $border-radius-lg: 0.375rem;
@@ -163,12 +163,12 @@ $input-btn-padding-x-sm: 0.625rem;
 $input-btn-padding-y-lg: 0.625rem;
 $input-btn-padding-x-lg: 1.25rem;
 
-$input-height: 2.1875rem; // 35px
+$input-height: 50px;
 
 // Forms
 
 $input-disabled-bg: $gray-lighter;
-$input-border-color: $gray;
+$input-border-color: #c9d2e0;
 $input-focus-border-color: #66afe9;
 $input-placeholder-color: #b7bac9;
 
