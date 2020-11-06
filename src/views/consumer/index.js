@@ -2,17 +2,17 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router";
 import { PropTypes } from "prop-types";
 import HeaderView from '../../components/Consumer/Layout/Header'
-import DashboardView from "../consumer/Dashboard/index";
+import DashboardView from "./Dashboard/index";
+import listProfile from "./Produce/ListProfile";
 
 function Home({ match }) {
   return (
-    <HeaderView>
-      <Switch>
-        <Route exact path={`${match.url}/`} component={DashboardView} />
-        <Redirect to="/error" />
-      </Switch>
-    </HeaderView>
-    
+    <Switch>
+      <HeaderView />
+      <Route exact path={`${match.url}/`} component={DashboardView} />
+      <Route path={`${match.url}/trang-chu`} component={listProfile} />
+      <Redirect to="/error" />
+    </Switch>
   );
 }
 
@@ -24,7 +24,7 @@ Home.propTypes = {
 
 Home.defaultProps = {
   match: {
-    url: "",
+    url: "/trang-chu",
   },
 };
 

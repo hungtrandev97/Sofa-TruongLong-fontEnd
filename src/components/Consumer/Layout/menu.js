@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Dasboard() {
+export default function menu() {
   return (
     <div>
-      âcssdcsdc
+      âcscas
     </div>
   )
 }
