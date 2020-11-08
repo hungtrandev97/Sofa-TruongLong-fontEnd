@@ -1,13 +1,11 @@
 import React from "react";
-import Introduce from "../../components/Consumer/Introduce"
+import Introduce from "./Introduce";
 
 export default function HomePage() {
-  return(
+  return (
     <div className="HomePage">
       <Introduce />
-      <div>
-        ádkaskdlas
-      </div>
+      <div>ádkaskdlas</div>
     </div>
-  )
+  );
 }
