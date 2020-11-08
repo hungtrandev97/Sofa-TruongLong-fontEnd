@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { withRouter, Switch, Redirect } from "react-router-dom";
-import BaseAdmin from "../../components/Layout/admin/BaseAdmin";
+import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
 
 function Admin(props) {
   const { location, match } = props;

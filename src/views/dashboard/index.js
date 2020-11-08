@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router";
 import { PropTypes } from "prop-types";
-import BaseConsumer from "../../components/Layout/consumer/BaseConsumer";
+import BaseConsumer from "../../components/Layout/Consumer/BaseConsumer";
 import HomePage from "../../components/Consumer/HomePage";
 
 function Home({ location, match }) {

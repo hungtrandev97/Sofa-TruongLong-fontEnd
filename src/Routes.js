@@ -11,7 +11,7 @@ import {
 import history from "./history";
 import { ROLE, ACCESS_TOKEN_KEY } from "./constants/DefaultValues";
 import ErrorView from "./views/404/404";
-import AdminView from "./views/admin/index";
+import AdminView from "./views/Admin/index";
 import AuthView from "./views/auth/index";
 import MainView from "./views/index";
 import DashboardView from "./views/dashboard/index";

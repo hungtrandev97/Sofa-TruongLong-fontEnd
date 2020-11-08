@@ -2,8 +2,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ConsumerHeader from "../../components/Layout/consumer/ConsumerHeader";
-import ConsumerFooter from "../../components/Layout/consumer/ConsumerFooter";
+import ConsumerHeader from "../../components/Layout/Consumer/ConsumerHeader";
+import ConsumerFooter from "../../components/Layout/Consumer/ConsumerFooter";
 import { ROLE } from "../../constants/DefaultValues";
 import "./404.css";
 
