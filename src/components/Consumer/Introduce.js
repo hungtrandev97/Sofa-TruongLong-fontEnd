@@ -6,7 +6,7 @@ import { GiCutDiamond } from "react-icons/gi";
 import IntroduceContent from "./IntroduceContent";
 import "./Introduce.css";
 
-function Introduce() {
+const Introduce = () => {
   return (
     <div className="Introduce screen__Wep">
       <Row className="Introduce__content">
@@ -41,6 +41,6 @@ function Introduce() {
       </Row>
     </div>
   );
-}
+};
 
 export default Introduce;
