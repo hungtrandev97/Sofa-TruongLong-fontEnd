@@ -8,24 +8,21 @@
   height: 30px;
   align-items: center;
   justify-content: flex-end;
+  font-size: 12px;
 }
 
 .HeaderConsumer__account__content {
-  width: 1188px;
-  min-width: 1188px;
-  margin: 0 auto;
   text-align: right;
   color: #333333;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .HeaderConsumer__nav {
   display: flex;
-  max-width: 1440px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
   margin-top: 10px;
-  padding: 0 20px;
+  height: 70px;
+  align-items: center;
 }
 
 .HeaderConsumer__nav > div {
@@ -57,13 +54,17 @@
 }
 
 .HeaderConsumer__nav__card_content__text {
+  cursor: pointer;
+  float: right;
   display: flex;
+  text-align: right;
 }
 
 .HeaderConsumer__nav__card_content__CartText {
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
   line-height: 1;
-  padding-left: 15px;
+  padding-left: 13px;
+  font-size: 13px;
+  padding-top: 6px;
 }

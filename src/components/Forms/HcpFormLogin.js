@@ -24,7 +24,7 @@ import {
 import "./HcpFormLogin.css";
 
 const loginSchema = Yup.object().shape({
-  email: Yup.string().email().required(),
+  userName: Yup.string().required(),
   password: Yup.string().required().min(6).max(20),
 });
 
@@ -71,24 +71,26 @@ class HcpFormLogin extends React.Component {
               errorlogin={errorLogin.toString()}
             >
               <FormGroup>
-                <Label for="email" className="font-ob-bold">
-                  Email Address
+                <Label for="userName" className="font-ob-bold">
+                  UserName
                 </Label>
                 <Field
                   className="form-control"
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="userName"
                   placeholder="e.g. john@abc.com"
                   autoComplete="email"
                 />
-                {errors.email && touched.email ? (
-                  <div className="invalid-feedback d-block">{errors.email}</div>
+                {errors.userName && touched.userName ? (
+                  <div className="invalid-feedback d-block">
+                    {errors.userName}
+                  </div>
                 ) : null}
               </FormGroup>
               <FormGroup>
                 <div className="d-flex align-items-center justify-content-between">
                   <Label for="password" className="font-ob-bold">
-                    Enter Password
+                    Password
                   </Label>
                   <div className="forgot-pwd">Forgot Password?</div>
                 </div>

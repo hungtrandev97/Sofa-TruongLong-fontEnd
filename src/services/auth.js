@@ -1,11 +1,13 @@
 import { requestPost } from "../helpers/NetworkUtils";
 import { END_POINT } from "../constants/DefaultValues";
 
-export const apiLogin = async (user) => {
+export const apiLogin = async ({ userName, password }) => {
   const response = await requestPost({
-    fullUrl: `${END_POINT}/auth/login`,
-    params: { email: user.email, password: user.password, role: user.role },
-    bearerToken: null,
+    fullUrl: `${END_POINT}/v1/auth/loginCustomer`,
+    params: {
+      userName,
+      password,
+    },
   });
 
   if (response.statusCode === 200) {

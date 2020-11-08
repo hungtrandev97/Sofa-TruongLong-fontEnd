@@ -1,0 +1,51 @@
+.UserLogin {
+  height: 100vh;
+  background-color: #f5f9ff;
+}
+.UserLogin .UserLogin__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 93px;
+  padding: 0 34px;
+}
+.UserLogin .UserLogin__header .UserLogin__header__ToggleHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-right: 48px;
+}
+.UserLogin .UserLogin__FormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100% - 93px);
+  padding-bottom: 93px;
+  padding: 0 240px;
+}
+
+@media (max-width: 1242px) {
+  .UserLogin .UserLogin__FormContainer {
+    padding: 0 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .UserLogin .UserLogin__header .UserLogin__header__ToggleHeader {
+    padding-right: 0.5rem;
+  }
+  .UserLogin .UserLogin__header {
+    padding: 0;
+  }
+  .UserLogin .UserLogin__FormContainer {
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  .UserLogin .UserLogin__FormContainer {
+    padding: 0 40px;
+  }
+}

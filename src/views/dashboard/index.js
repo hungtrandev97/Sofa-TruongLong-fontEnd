@@ -9,6 +9,7 @@ function Home({ location, match }) {
     <BaseConsumer location={location} match={match}>
       <Switch>
         <Route exact path={`${match.url}/`} component={HomePage} />
+
         <Redirect to="/error" />
       </Switch>
     </BaseConsumer>

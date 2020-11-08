@@ -22,8 +22,6 @@ function* loginWithPassword({ payload }) {
         history.push("/admin");
       } else if (userRole === ROLE.PATIENT) {
         history.push("/consumer");
-      } else if (userRole === ROLE.HCP) {
-        history.push("/hcp");
       } else {
         history.push("/");
       }

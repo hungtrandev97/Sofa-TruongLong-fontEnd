@@ -1,0 +1,23 @@
+.BackToHome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.BackToHome__styledText {
+  color: #009fe3;
+}
+
+.BackToHome__Link {
+  font-weight: normal !important;
+}
+.BackToHome__Link:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 425px) {
+  .BackToHome__styledText {
+    display: none;
+  }
+}

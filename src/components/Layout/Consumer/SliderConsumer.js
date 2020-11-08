@@ -17,13 +17,6 @@ const slides = [
 const SliderConsumer = () => {
   return (
     <div className="SliderConsumer">
-      <div className="SliderConsumer__Menu">
-        <div>ascascasca</div>
-        <div>ascascasca</div>
-        <div>ascascasca</div>
-        <div>ascascasca</div>
-        <div>ascascasca</div>
-      </div>
       <div className="SliderConsumer_Slider p-0 m-0 d-none d-md-block">
         <LoginSwiper slides={slides} />
       </div>

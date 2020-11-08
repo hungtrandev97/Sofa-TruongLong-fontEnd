@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { BsJustify } from "react-icons/bs";
 
 import "./MenuConsumer.css";
 
@@ -14,48 +13,12 @@ class HomeMenu extends Component {
     this.state = { iconMenu: "≡" };
   }
 
-  handleCheckboxChange = (e) => {
-    if (e.target.checked) {
-      this.setState({
-        iconMenu: "x",
-      });
-
-      this.styleIconMenu = {
-        fontSize: "2rem",
-        fontFamily: "revert",
-        color: "#414a56",
-        float: "right",
-        marginRight: "10%",
-      };
-
-      this.iconHidden = {
-        zIndex: 1,
-      };
-    } else {
-      this.setState({
-        iconMenu: "≡",
-      });
-
-      this.styleIconMenu = {};
-
-      this.iconHidden = {
-        zIndex: 1000,
-      };
-    }
-  };
-
   render() {
     const { activeLink } = this.props;
     return (
       <div className="consumersMenu">
         <div className="consumersMenu__Menu">
-          <div className="consumersMenu__Menu__Nav">
-            <div className="consumersMenu__Menu__Nav__Category">
-              <BsJustify size="1.5rem" />
-              <span style={{ paddingLeft: "15px", lineHeight: "1" }}>
-                Danh Mục Sản Phẩm
-              </span>
-            </div>
+          <div className="consumersMenu__Menu__Nav screen__Wep">
             <div className="consumersMenu__MenuHeader">
               <Link to="/home/">
                 <span>
@@ -73,26 +36,13 @@ class HomeMenu extends Component {
                   />
                 </span>
               </Link>
-
-              <input
-                type="checkbox"
-                name="consumersMenu__Menu"
-                onChange={(e) => this.handleCheckboxChange(e)}
-                id="menu-button-check"
-              />
-              <label style={this.iconHidden} htmlFor="menu-button-check">
-                ≡
-              </label>
               <div className="consumersMenu__MenuHeaderLink">
-                <label style={this.styleIconMenu} htmlFor="menu-button-check">
-                  {this.state.iconMenu}
-                </label>
                 <ul>
                   <li
                     className={` ${
                       activeLink === "Home"
                         ? "consumersMenu__MenuHeaderLinkActive"
-                        : ""
+                        : "consumersMenu__MenuHeaderLinkActive"
                     }`}
                     style={{ marginLeft: "0px" }}
                   >
@@ -151,13 +101,9 @@ class HomeMenu extends Component {
 
 HomeMenu.propTypes = {
   activeLink: PropTypes.string,
-  authToggleHcpConsumer: PropTypes.func,
-  authConsumerChangeView: PropTypes.func,
 };
 HomeMenu.defaultProps = {
   activeLink: "",
-  authToggleHcpConsumer: () => {},
-  authConsumerChangeView: () => {},
 };
 
 const mapStateToProps = () => {

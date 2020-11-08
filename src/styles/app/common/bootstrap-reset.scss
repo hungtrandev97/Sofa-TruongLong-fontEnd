@@ -21,6 +21,37 @@ a {
   }
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1920px) {
+  .screen__Wep {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .screen__Wep {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .screen__Wep {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+.screen__Wep {
+  padding: 0 15px;
+}
+
 hr {
   border-top: 1px solid $gray-light;
 }

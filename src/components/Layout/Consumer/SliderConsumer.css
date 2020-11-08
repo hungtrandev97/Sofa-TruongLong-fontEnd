@@ -1,10 +1,7 @@
 .SliderConsumer {
   display: flex;
   align-items: center;
-  height: 500px;
-  max-width: 1440px;
-  padding: 0 20px;
-  margin: 0 auto;
+  height: 100%;
 }
 
 .SliderConsumer__Menu {
