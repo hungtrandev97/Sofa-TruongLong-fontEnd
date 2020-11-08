@@ -1,0 +1,64 @@
+.errorPage {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.errorPage__content {
+  width: 100%;
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.errorPage__content__image {
+  width: 155px;
+  height: 117px;
+  margin-right: 4%;
+}
+
+.errorPage__content__Title {
+  color: #009fe3;
+  font-family: blog_script;
+  font-size: 28px;
+  padding-top: 24px;
+}
+
+.errorPage__content__descript {
+  max-width: 507px;
+  text-align: center;
+  padding-bottom: 10px;
+  line-height: 1.6;
+}
+
+.errorPage__content__descript__btn {
+  color: black;
+  font-size: 18px;
+  font-family: Bariol_Bold;
+  border: none;
+  background: none;
+}
+
+.errorPage__content__btnBack {
+  color: #ffff;
+  background: #009fe3;
+  width: 155px;
+  height: 42px;
+  border: none;
+}
+
+.errorPage__btnBack {
+  color: #009fe3;
+  font-family: Bariol_Bold;
+  font-size: 18px;
+  border-bottom: 1px solid;
+}
+
+.errorPage__btnBack:hover {
+  color: #009fe3;
+  font-size: 18px;
+  text-decoration: none !important;
+}

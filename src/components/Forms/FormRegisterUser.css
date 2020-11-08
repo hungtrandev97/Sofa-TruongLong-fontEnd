@@ -1,0 +1,80 @@
+.FormRegisterUser__Container {
+  width: 100%;
+}
+
+.FormRegisterUser__ButtonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.FormRegisterUser__StyledAgree {
+  color: #009fe3;
+  font-family: Bariol_Bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* // https://codepen.io/Vestride/pen/dABHx */
+.FormRegisterUser__StyledCheckbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.FormRegisterUser__StyledCheckbox+label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+
+.FormRegisterUser__StyledCheckbox+label:before {
+  content: "";
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: sub;
+  width: 21px;
+  height: 21px;
+  border-radius: 3px;
+  border: solid 2px #c9d2e0;
+  background-color: #ffffff;
+}
+
+/* Box checked */
+.FormRegisterUser__StyledCheckbox:checked+label:before {
+  border-radius: 3px;
+  border: solid 2px #009fe3;
+  background-color: #009fe3;
+}
+
+/* Box checked */
+.FormRegisterUser__StyledCheckbox:checked+label:before {
+  border-radius: 3px;
+  border: solid 2px #009fe3;
+  background-color: #009fe3;
+}
+
+/* Disabled state label. */
+.FormRegisterUser__StyledCheckbox:disabled+label {
+  color: #b8b8b8;
+  cursor: auto;
+}
+
+/* Disabled box. */
+.FormRegisterUser__StyledCheckbox:disabled+label:before {
+  box-shadow: none;
+  background: #ddd;
+}
+
+/* Checkmark. Could be replaced with an image */
+.FormRegisterUser__StyledCheckbox:checked+label:after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 12px;
+  background: white;
+  width: 2px;
+  height: 2px;
+  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white,
+    4px -6px 0 white, 4px -8px 0 white;
+  transform: rotate(45deg);
+}

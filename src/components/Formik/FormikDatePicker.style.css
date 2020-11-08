@@ -1,0 +1,194 @@
+/* input date picker */
+.FormikDatePicker {
+  display: block;
+  width: 100%;
+
+  background-color: #fff;
+  background-clip: padding-box;
+
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.FormikDatePicker .react-date-picker__wrapper {
+  height: 50px;
+  border: 1px solid #c9d2e0;
+  border-radius: 0.25rem;
+}
+.FormikDatePicker .react-date-picker__inputGroup {
+  padding: 0.375rem 1rem;
+}
+.FormikDatePicker
+  .react-date-picker__inputGroup
+  .react-date-picker__inputGroup__input,
+.react-date-picker__inputGroup__leadingZero,
+.react-date-picker__inputGroup__divider  {
+  font-size: 1rem;
+  line-height: 1.52857;
+  color: #495057;
+  font-family: Bariol;
+}
+
+.FormikDatePicker .react-date-picker__inputGroup__input:invalid {
+  background: transparent;
+}
+/* Calendar */
+.FormikDatePicker__Calendar {
+  border-radius: 3px;
+  box-shadow: 0 2px 10px 0 rgba(0, 66, 104, 0.16);
+  background-color: #ffffff;
+  border: none;
+  margin-top: 6px;
+  font-family: Bariol;
+  padding: 20px;
+}
+/* Days */
+.FormikDatePicker__Calendar
+  .react-calendar__month-view__weekdays
+  .react-calendar__month-view__weekdays__weekday
+  abbr {
+  text-decoration: none;
+  cursor: default;
+  font-family: Bariol_Bold;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #9da6b4;
+  text-transform: initial;
+}
+.FormikDatePicker__Calendar .react-calendar__month-view__days {
+  align-items: center;
+}
+.FormikDatePicker__Calendar
+  .react-calendar__month-view__days
+  .react-calendar__tile {
+  padding: 0.75rem 0.35rem;
+}
+
+.FormikDatePicker__Calendar
+  .react-calendar__month-view__days
+  .react-calendar__tile.react-calendar__month-view__days__day
+  abbr {
+  color: #000000;
+  font-family: Bariol_Bold;
+}
+/* Week days */
+.FormikDatePicker__Calendar
+  .react-calendar__month-view__weekdays
+  .react-calendar__month-view__weekdays__weekday
+  abbr[aria-label="Saturday"] {
+  color: #009fe3;
+}
+.FormikDatePicker__Calendar
+  .react-calendar__month-view__weekdays
+  .react-calendar__month-view__weekdays__weekday
+  abbr[aria-label="Sunday"] {
+  color: #009fe3;
+}
+.FormikDatePicker__Calendar
+  .react-calendar__month-view__days
+  .react-calendar__tile:not(:disabled).react-calendar__month-view__days__day.react-calendar__month-view__days__day--weekend
+  abbr {
+  color: #009fe3;
+}
+
+/* Disabled days */
+.FormikDatePicker__Calendar
+  .react-calendar__month-view__days
+  .react-calendar__tile:disabled
+  abbr {
+  color: #9da6b4;
+}
+.FormikDatePicker__Calendar
+  .react-calendar__month-view__days
+  .react-calendar__tile:disabled {
+  background-color: white;
+}
+/* Now day */
+.FormikDatePicker__Calendar .react-calendar__tile--now {
+  background-color: white;
+}
+
+/* Active */
+.FormikDatePicker__Calendar .react-calendar__tile--active {
+  background-color: transparent;
+}
+.FormikDatePicker__Calendar .react-calendar__tile--active abbr {
+  color: white !important;
+  text-decoration: none;
+  width: 32px;
+  height: 32px;
+  background-color: #009fe3;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hover */
+.FormikDatePicker__Calendar .react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus abbr {
+  background-color: transparent;
+}
+.FormikDatePicker__Calendar .react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background-color: transparent;
+}
+.FormikDatePicker__Calendar .react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: transparent;
+}
+.FormikDatePicker__Calendar .react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus abbr {
+}
+
+/* Navigation */
+.FormikDatePicker__Calendar
+  .react-calendar__navigation
+  .react-calendar__navigation__prev-button {
+  order: 1;
+}
+.FormikDatePicker__Calendar
+  .react-calendar__navigation
+  .react-calendar__navigation__prev2-button {
+  order: 2;
+}
+.FormikDatePicker__Calendar
+  .react-calendar__navigation
+  .react-calendar__navigation__label {
+  order: 3;
+}
+.FormikDatePicker__Calendar
+  .react-calendar__navigation
+  .react-calendar__navigation__next2-button {
+  order: 4;
+}
+.FormikDatePicker__Calendar
+  .react-calendar__navigation
+  .react-calendar__navigation__next-button {
+  order: 5;
+}
+
+/* Navigation hover */
+.FormikDatePicker__Calendar .react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: transparent;
+}
+
+.FormikDatePicker__Calendar
+  .react-calendar__navigation
+  button:enabled
+  img:hover,
+img:focus {
+  background-color: #ecf6ff;
+  border-radius: 100%;
+}
+/* Navigation disabled */
+.FormikDatePicker__Calendar .react-calendar__navigation button[disabled] {
+  background-color: transparent;
+}
+.FormikDatePicker__Calendar .react-calendar__navigation button[disabled] img {
+  filter: grayscale(1);
+}

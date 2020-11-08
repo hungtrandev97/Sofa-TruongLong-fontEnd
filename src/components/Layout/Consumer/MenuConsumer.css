@@ -1,0 +1,172 @@
+.consumersMenu__MenuHeaderLink > ul > li:hover {
+  opacity: 1 !important;
+  background: #fa3e3f;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.consumersMenu__MenuHeaderLinkActive {
+  background: #fa3e3f;
+  border-radius: 2px;
+}
+
+.consumersMenu__Menu {
+  background-image: linear-gradient(to left, #2d2d2d, #585757);
+}
+
+.consumersMenu__Menu__Nav {
+  display: flex;
+  align-items: center;
+  height: 43px;
+}
+
+.consumersMenu__Siguplogin {
+  text-align: right;
+  padding-top: 20px;
+  font-size: inherit;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffff;
+}
+
+.consumersMenu__MenuHeaderLogoResponsive {
+  display: none;
+}
+
+.consumersMenu__Siguplogin > a {
+  font-size: 16px;
+  font-family: Avenir;
+  color: #ffff;
+  font-weight: normal;
+}
+
+.consumersMenu__Siguplogin > a:hover {
+  font-size: 16px;
+  font-family: Avenir;
+  color: #ffff;
+  text-decoration: none;
+}
+
+.consumersMenu__Siguplogin > span {
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: 1vw;
+}
+
+.consumersMenu__MenuHeader > span {
+  color: white;
+  display: inline-block;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.5em;
+  font-size: 3em;
+}
+
+.consumersMenu__MenuHeaderLink > ul > li > a {
+  color: #fff;
+  font-size: 13px;
+  font-weight: normal;
+  text-transform: uppercase;
+  padding: 0 20px;
+}
+
+.consumersMenu__MenuHeaderLinkActive {
+  opacity: 1 !important;
+}
+
+.consumersMenu__MenuHeaderLink > ul > li > a:hover {
+  color: #fff !important;
+  background: none !important;
+  text-decoration: none !important;
+}
+
+.educationalHeader__Siguplogin > a:hover {
+  color: #fff !important;
+  background: none !important;
+  text-decoration: none !important;
+}
+
+.educationalFooter__Button:hover {
+  color: #fff;
+  background-color: #3e8e41;
+}
+
+.consumersMenu__SiguploginMobile {
+  position: absolute;
+  bottom: 2%;
+  text-align: center;
+  width: 100%;
+  font-family: Bariol_Bold;
+  display: none;
+  color: #0091ff;
+}
+
+.consumersMenu__SiguploginMobile > span {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 1vw;
+  }
+
+  .consumersMenu__MenuHeader {
+    box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .consumersMenu__MenuHeaderLink {
+    display: inline-block;
+  }
+
+  .consumersMenu__MenuHeaderLink > ul {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    color: white;
+    margin: 0 !important;
+  }
+
+  .consumersMenu__MenuHeaderLink > ul > li {
+    display: inline-block;
+    margin-left: 30px;
+    height: 43px;
+    line-height: 2;
+    display: inline-block;
+  }
+}
+
+/* 
+search */
+
+#custom-HeaderConsumer__nav__search__input {
+  width: 100%;
+}
+
+.HeaderConsumer__nav__search__input__search {
+  width: 100%;
+  padding: 0 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #666;
+  width: 100%;
+  height: 32px;
+  float: left;
+  overflow: hidden;
+  background: 0 0;
+  border: solid 1px #dbdbdb;
+  outline: none;
+}
+
+#HeaderConsumer__nav__search__input button {
+  border: 0;
+  background: none;
+  padding: 2px 5px;
+  position: absolute;
+  right: 19px;
+  margin-bottom: 0;
+  top: -5px;
+  border-radius: 3px;
+}
