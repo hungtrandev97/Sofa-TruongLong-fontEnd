@@ -1,0 +1,28 @@
+.HeaderProduct {
+  background-color: white;
+  display: flex;
+  border-bottom: 2px solid rgb(250, 62, 63);
+}
+.HeaderProduct__title {
+  background-color: rgb(250, 62, 63);
+  color: white;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  font-weight: bold;
+}
+.HeaderProduct__link {
+  margin-left: auto;
+  color: rgb(250, 62, 63);
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 13px;
+}
+.HeaderProduct__link > a {
+  color: rgb(250, 62, 63);
+}
