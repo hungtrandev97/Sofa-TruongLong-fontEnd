@@ -142,6 +142,10 @@ search */
   border-radius: 3px;
 }
 
+.HeaderConsumer__nav__MenuLeftMobile {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .HeaderConsumer__nav__numberPhone {
     padding: 15px !important;
@@ -181,5 +185,23 @@ search */
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  .HeaderConsumer__nav__MenuLeftMobile {
+    display: block;
+  }
+  .consumersMenu {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .HeaderConsumer__nav__card_content__CartText {
+    display: none !important;
+  }
+}
+@media (max-width: 360px) {
+  .HeaderConsumer__nav__numberPhone {
+    padding: 0px !important;
+    max-width: 14% !important;
+  }
 }

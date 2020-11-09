@@ -72,3 +72,12 @@
   font-size: 13px;
   padding-top: 6px;
 }
+
+@media (max-width: 768px) {
+  .HeaderConsumer__nav__logo {
+    text-align: center;
+  }
+  .HeaderConsumer__nav {
+    height: 100px;
+  }
+}

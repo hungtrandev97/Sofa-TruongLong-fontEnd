@@ -17,7 +17,7 @@ const slides = [
 const SliderConsumer = () => {
   return (
     <div className="SliderConsumer">
-      <div className="SliderConsumer_Slider p-0 m-0 d-none d-md-block">
+      <div className="SliderConsumer_Slider p-0 m-0">
         <LoginSwiper slides={slides} />
       </div>
     </div>

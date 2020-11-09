@@ -18,11 +18,24 @@ export default function Header() {
         </Link>
       </div>
       <Row className="HeaderConsumer__nav screen__Wep">
-        <Col md={3} className="HeaderConsumer__nav__logo">
-          {" "}
+        <Col lg={3} md={3} sm={12} className="HeaderConsumer__nav__logo">
           logo
         </Col>
-        <Col md={6} className="HeaderConsumer__nav__search">
+        <Col
+          md={0}
+          sm={1}
+          xs={1}
+          className="HeaderConsumer__nav__MenuLeftMobile"
+        >
+          -
+        </Col>
+        <Col
+          lg={6}
+          md={6}
+          sm={8}
+          xs={9}
+          className="HeaderConsumer__nav__search m-0 p-0"
+        >
           <form id="HeaderConsumer__nav__search__input">
             <div>
               <input
@@ -36,7 +49,13 @@ export default function Header() {
             </div>
           </form>
         </Col>
-        <Col md={3} className="HeaderConsumer__nav__numberPhone">
+        <Col
+          lg={3}
+          md={3}
+          sm={3}
+          xs={2}
+          className="HeaderConsumer__nav__numberPhone"
+        >
           <div className="HeaderConsumer__nav__card_content">
             <div className="HeaderConsumer__nav__card_content__text">
               <div className="HeaderConsumer__nav__card_content__icon">
