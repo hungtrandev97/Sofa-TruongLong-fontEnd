@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col } from "reactstrap";
 import "./HomeContent.css";
 import { CgChevronRight } from "react-icons/cg";
+import ItemProduct from "./Layout/ItemProduct";
 
 const HomeContent = () => {
   return (
@@ -18,19 +19,53 @@ const HomeContent = () => {
 
       <div className="HomeContent__product__new">
         <Row>
-          <Col md={3}>
-            <div className="ItemProduct">
-              <div className="ItemProduct__Content">
-                <img
-                  src="/img/product/imageProduct.jpg"
-                  style={{ width: "100%", height: "200px" }}
-                  alt="product"
-                />
-              </div>
-              <div>title</div>
-              <div>gia</div>
-              <div>gio hang</div>
-            </div>
+          <Col lg={3} md={4} ms={6} xs={6}>
+            <ItemProduct
+              title="Bàn Ghế ăn"
+              SouceProduct="M15"
+              price="5.000.000"
+              pricePromotional="4.000.000"
+            />
+          </Col>
+          <Col lg={3} md={4} ms={6} xs={6}>
+            <ItemProduct
+              title="Bàn Ghế ăn"
+              SouceProduct="M15"
+              price="5.000.000"
+              pricePromotional="4.000.000"
+            />
+          </Col>
+          <Col lg={3} md={4} ms={6} xs={6}>
+            <ItemProduct
+              title="Bàn Ghế ăn"
+              SouceProduct="M15"
+              price="5.000.000"
+              pricePromotional="4.000.000"
+            />
+          </Col>
+          <Col lg={3} md={4} ms={6} xs={6}>
+            <ItemProduct
+              title="Bàn Ghế ăn"
+              SouceProduct="M15"
+              price="5.000.000"
+              pricePromotional="4.000.000"
+            />
+          </Col>
+          <Col lg={3} md={4} ms={6} xs={6}>
+            <ItemProduct
+              title="Bàn Ghế ăn"
+              SouceProduct="M15"
+              price="5.000.000"
+              pricePromotional="4.000.000"
+            />
+          </Col>
+          <Col lg={3} md={4} ms={6} xs={6}>
+            <ItemProduct
+              title="Bàn Ghế ăn"
+              SouceProduct="M15"
+              price="5.000.000"
+              pricePromotional="4.000.000"
+            />
           </Col>
         </Row>
       </div>

@@ -1,19 +1,20 @@
 .HomeContent__header {
   background-color: white;
   display: flex;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid rgb(250, 62, 63);
 }
 .HomeContent__header__Right {
   margin-left: auto;
-  color: red;
+  color: rgb(250, 62, 63);
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  font-size: 13px;
 }
 .HomeContent__header__Left {
-  background-color: red;
+  background-color: rgb(250, 62, 63);
   color: white;
   font-size: 15px;
   display: flex;
@@ -25,17 +26,4 @@
 
 .HomeContent__product__new {
   padding-top: 25px;
-}
-
-/* product */
-
-.ItemProduct {
-  padding: 0 2px;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.16);
-  margin-right: 2%;
-  border-radius: 5px;
-}
-
-.ItemProduct__Content > img {
 }
