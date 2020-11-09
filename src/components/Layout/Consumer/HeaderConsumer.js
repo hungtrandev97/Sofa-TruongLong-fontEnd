@@ -36,7 +36,7 @@ export default function Header() {
             </div>
           </form>
         </Col>
-        <Col md={3} className="HeaderConsumer__nav__numberPhone p-0">
+        <Col md={3} className="HeaderConsumer__nav__numberPhone">
           <div className="HeaderConsumer__nav__card_content">
             <div className="HeaderConsumer__nav__card_content__text">
               <div className="HeaderConsumer__nav__card_content__icon">
