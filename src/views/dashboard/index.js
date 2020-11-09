@@ -3,10 +3,12 @@ import { Route, Switch, Redirect } from "react-router";
 import { PropTypes } from "prop-types";
 import BaseConsumer from "../../components/Layout/Consumer/BaseConsumer";
 import HomePage from "../../components/Consumer/HomePage";
+import ChatBox from "../../components/Consumer/Layout/ChatBox";
 
 function Home({ location, match }) {
   return (
     <BaseConsumer location={location} match={match}>
+      <ChatBox />
       <Switch>
         <Route exact path={`${match.url}/`} component={HomePage} />
 
