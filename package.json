@@ -57,6 +57,7 @@
     "query-string": "^6.13.6",
     "react": "17.0.1",
     "react-bootstrap": "1.4.0",
+    "react-bootstrap-sidebar": "0.0.1",
     "react-chartjs-2": "^2.10.0",
     "react-circular-progressbar": "^2.0.3",
     "react-color": "2.18.1",

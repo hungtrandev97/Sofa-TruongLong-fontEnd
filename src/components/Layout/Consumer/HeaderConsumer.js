@@ -4,6 +4,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import MenuConsumer from "./MenuConsumer";
+import SideNavPage from "../../Consumer/Layout/MenuMobile";
 import "./style.css";
 
 export default function Header() {
@@ -23,17 +24,17 @@ export default function Header() {
         </Col>
         <Col
           md={0}
-          sm={1}
-          xs={1}
+          sm={2}
+          xs={2}
           className="HeaderConsumer__nav__MenuLeftMobile"
         >
-          -
+          <SideNavPage />
         </Col>
         <Col
           lg={6}
           md={6}
-          sm={8}
-          xs={9}
+          sm={7}
+          xs={8}
           className="HeaderConsumer__nav__search m-0 p-0"
         >
           <form id="HeaderConsumer__nav__search__input">
