@@ -12,13 +12,28 @@ function Consulting() {
       </div>
       <Row className="Consulting__Header__img">
         <Col lg={6} md={6} sm={12}>
-          <img src="/img/default/tuvan.png" width="100%" height="200px" />
+          <img
+            src="/img/default/tuvan.png"
+            width="100%"
+            height="200px"
+            alt="tuvan"
+          />
         </Col>
         <Col lg={3} md={3} sm={12}>
-          <img src="/img/default/iloveu.png" width="100%" height="200px" />
+          <img
+            src="/img/default/iloveu.png"
+            width="100%"
+            height="200px"
+            alt="iloveu"
+          />
         </Col>
         <Col lg={3} md={3} sm={12}>
-          <img src="/img/default/tuvan1.png" width="100%" height="200px" />
+          <img
+            src="/img/default/tuvan1.png"
+            width="100%"
+            height="200px"
+            alt="tuvan1"
+          />
         </Col>
       </Row>
       <div className="Consulting__Header__Content">
