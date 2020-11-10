@@ -60,6 +60,9 @@ export default function Header() {
             <div className="HeaderConsumer__nav__card_content__text">
               <div className="HeaderConsumer__nav__card_content__icon">
                 <TiShoppingCart color="#fa3e3f" size="2rem" />
+                <div className="SpanMobile">
+                  <span style={{ color: "#fffff" }}>15</span>
+                </div>
               </div>
               <div className="HeaderConsumer__nav__card_content__CartText">
                 Giỏ Hàng

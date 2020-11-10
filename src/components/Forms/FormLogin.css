@@ -23,3 +23,10 @@
   color: #008cd1;
   cursor: pointer;
 }
+
+.FormLogin__Form .FormGroup .Label {
+  font-size: 20px;
+}
+.FormLogin__Form .FormGroup .Field {
+  font-size: 10px;
+}

@@ -3,7 +3,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import { AiOutlineCaretRight } from "react-icons/ai";
 
 import "./MenuConsumer.css";
 
@@ -66,10 +68,48 @@ class HomeMenu extends Component {
                   >
                     <Link to="/home/educational/">Sản Phẩm</Link>
                     <ul className="sub-menu">
-                      <li>aaa</li>
-                      <li>bbb</li>
-                      <li>ccc</li>
-                      <li>ddd</li>
+                      <Row className="screen__Wep sub-menuCategory">
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Ghế
+                        </Col>
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Bàn
+                        </Col>
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Bàn Ăn
+                        </Col>
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Ghế sofa Cao Cấp
+                        </Col>
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Ghế
+                        </Col>
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Bàn
+                        </Col>
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Bàn Ăn
+                        </Col>
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Ghế sofa Cao Cấp
+                        </Col>
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Bàn Ăn
+                        </Col>
+                        <Col md={3}>
+                          <AiOutlineCaretRight />
+                          Ghế sofa Cao Cấp
+                        </Col>
+                      </Row>
                     </ul>
                   </li>
                   <li

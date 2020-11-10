@@ -6,12 +6,11 @@ import * as Yup from "yup";
 import LabelLine from "../Labels/LabelLine";
 import LabelLink from "../Labels/LabelLink";
 import { loginUser } from "../../store/actions/auth.actions";
-import Alert from "../Alert/Alert";
 import "./FormLogin.css";
 
 const loginSchema = Yup.object().shape({
-  userName: Yup.string().required(),
-  password: Yup.string().required().min(6).max(20),
+  userName: Yup.string().required("Tên đăng nhập không được rỗng"),
+  password: Yup.string().required("Mật khẩu không được rỗng").min(6).max(20),
 });
 
 const FormLogin = () => {
@@ -52,13 +51,13 @@ const FormLogin = () => {
           >
             <FormGroup>
               <Label for="userName" className="font-ob-bold">
-                UserName
+                Tên Đăng Nhập
               </Label>
               <Field
                 className="form-control"
                 type="text"
                 name="userName"
-                placeholder="Nhập userName"
+                placeholder="Nhập Tên Tài Khoản"
                 autoComplete="userName"
               />
               {errors.userName && touched.userName ? (
@@ -70,9 +69,8 @@ const FormLogin = () => {
             <FormGroup>
               <div className="d-flex align-items-center justify-content-between">
                 <Label for="password" className="font-ob-bold">
-                  Enter Password
+                  Nhập Mật Khẩu
                 </Label>
-                <div className="forgot-pwd">Forgot Password?</div>
               </div>
               <Field
                 className="form-control"
@@ -88,14 +86,14 @@ const FormLogin = () => {
               ) : null}
             </FormGroup>
             <Button type="submit" color="primary">
-              <span className="ml-50 font-ob-bold">Sign in</span>
+              <span className="ml-50 font-ob-bold">Đăng Nhập</span>
             </Button>
           </Form>
         )}
       </Formik>
       <LabelLink
-        normalSentence="No account yet?"
-        linkSentence="Create a new account now."
+        normalSentence="Chưa có tài khoản?"
+        linkSentence="Tạo mới tài khoản ngay bây giờ."
         onLinkClick={() => {
           // authConsumerChangeView(AUTH_CONSUMER_VIEWS.REGISTER);
         }}
