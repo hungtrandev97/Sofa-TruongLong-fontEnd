@@ -205,3 +205,29 @@ search */
     max-width: 14% !important;
   }
 }
+
+/* -------------- */
+.MenuMenu > li {
+  display: inline-block;
+  position: relative;
+}
+.MenuMenu > li > link {
+  display: flex;
+}
+.sub-menu {
+  visibility: hidden;
+  position: absolute;
+  opacity: inherit;
+  list-style: none;
+  background: #fff;
+  width: 100%;
+}
+.MenuMenu > li:hover .sub-menu {
+  visibility: visible;
+  opacity: 1;
+  width: 100%;
+  color: #2d2d2d;
+}
+.MenuMenu > li:hover .sub-menu li {
+  text-align: center;
+}

@@ -1,0 +1,20 @@
+.Consulting {
+  border-radius: inherit;
+  height: 700px;
+  background: #80808008;
+}
+.Consulting__Header {
+  color: rgb(250, 62, 63);
+  text-align: center;
+}
+.Consulting__Header__Content > h4 {
+  color: rgb(250, 62, 63);
+  text-align: center;
+  padding-top: 15px;
+}
+.Consulting__Header__Content > b {
+  font-size: 16px;
+}
+.Consulting__Header__Content > p {
+  font-size: 16px;
+}

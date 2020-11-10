@@ -37,7 +37,7 @@ class HomeMenu extends Component {
                 </span>
               </Link>
               <div className="consumersMenu__MenuHeaderLink">
-                <ul>
+                <ul className="MenuMenu">
                   <li
                     className={` ${
                       activeLink === "Home"
@@ -65,6 +65,12 @@ class HomeMenu extends Component {
                     }`}
                   >
                     <Link to="/home/educational/">Sản Phẩm</Link>
+                    <ul className="sub-menu">
+                      <li>aaa</li>
+                      <li>bbb</li>
+                      <li>ccc</li>
+                      <li>ddd</li>
+                    </ul>
                   </li>
                   <li
                     className={` ${
