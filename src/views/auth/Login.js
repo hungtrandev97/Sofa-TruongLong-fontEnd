@@ -12,11 +12,6 @@ function UserLogin() {
         <Col sm={12} className="p-0 m-0">
           <div className="UserLogin__header">
             <BackToHome text="Home Page" />
-            <div className="UserLogin__header__ToggleHeader">
-              <div>Consumer</div>
-              <div style={{ color: "#9da4af" }}>|</div>
-              <div>Health Care professional</div>
-            </div>
           </div>
           <div className="UserLogin__FormContainer">
             <FormLogin />

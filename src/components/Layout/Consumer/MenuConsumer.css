@@ -216,11 +216,33 @@ search */
 }
 .sub-menu {
   visibility: hidden;
-  position: absolute;
   opacity: inherit;
   list-style: none;
   background: #fff;
   width: 100%;
+  color: black;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  margin-top: 7px;
+  padding: 10px 0;
+}
+
+.sub-menuCategory > div {
+  font-weight: bold;
+  font-size: 15px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px #f8f8f8;
+  padding: 15px 0;
+}
+
+.sub-menuCategory > div:hover {
+  font-size: 16px;
+  color: #fa3e3f;
+  background: #eef0ef;
 }
 .MenuMenu > li:hover .sub-menu {
   visibility: visible;
