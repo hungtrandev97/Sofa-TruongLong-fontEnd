@@ -146,6 +146,23 @@ search */
   display: none;
 }
 
+.HeaderConsumer__account > button {
+  border: none;
+  background: none;
+  padding: 0;
+  padding-right: 15px;
+}
+
+.modal {
+  background: #000000b8;
+}
+
+.modal-dialog {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
 @media (max-width: 1024px) {
   .HeaderConsumer__nav__numberPhone {
     padding: 15px !important;

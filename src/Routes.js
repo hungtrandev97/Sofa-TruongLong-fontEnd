@@ -6,14 +6,12 @@ import {
   Switch,
   Route,
   Redirect,
-  Router,
   BrowserRouter,
 } from "react-router-dom";
 import history from "./history";
 import { ROLE, ACCESS_TOKEN_KEY } from "./constants/DefaultValues";
 import ErrorView from "./views/404/404";
 import AdminView from "./views/Admin/index";
-import AuthView from "./views/auth/index";
 import MainView from "./views/index";
 import DashboardView from "./views/dashboard/index";
 
@@ -77,7 +75,6 @@ const Routes = (props) => {
           component={AdminView}
         />
         <Route path="/" exact component={MainView} />
-        <Route path="/auth" component={AuthView} />
         <Route path="/trang-chu" component={DashboardView} />
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />

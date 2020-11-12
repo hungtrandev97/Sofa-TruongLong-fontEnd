@@ -1,4 +1,5 @@
 export const LOGIN_USER = "LOGIN_USER";
+export const REGISTER_USER = "REGISTER_USER";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAILED = "LOGIN_USER_FAILED";
 export const LOGOUT_USER = "LOGOUT_USER";
@@ -9,6 +10,11 @@ export const AUTH_RESET_STATUS_LOGIN = "AUTH_RESET_STATUS_LOGIN";
 
 export const loginUser = (user) => ({
   type: LOGIN_USER,
+  payload: { user },
+});
+
+export const register = (user) => ({
+  type: REGISTER_USER,
   payload: { user },
 });
 

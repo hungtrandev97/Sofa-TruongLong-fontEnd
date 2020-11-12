@@ -53,3 +53,8 @@ export const RACE_OPTS = [
   { label: "Vietnamese", value: "Vietnamese" },
   { label: "Others", value: "Others" },
 ];
+
+export const FromAcount = {
+  LOGIN: 1,
+  REGISTER: 2,
+};

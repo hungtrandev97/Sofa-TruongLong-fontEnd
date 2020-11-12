@@ -24,8 +24,9 @@ export const apiLogin = async ({ userName, password }) => {
 };
 
 export const apiRegister = async (user) => {
+  console.log(user);
   const response = await requestPost({
-    fullUrl: `${END_POINT}/auth/register`,
+    fullUrl: `${END_POINT}/v1/auth/register`,
     params: user,
     bearerToken: null,
   });

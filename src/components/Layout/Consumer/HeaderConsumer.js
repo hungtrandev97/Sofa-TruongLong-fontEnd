@@ -1,22 +1,47 @@
-import React from "react";
-import { Row, Col } from "reactstrap";
+import React, { useState } from "react";
+import { Row, Col, Modal, ModalBody, ModalHeader } from "reactstrap";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Link } from "react-router-dom";
 import MenuConsumer from "./MenuConsumer";
 import SideNavPage from "../../Consumer/Layout/MenuMobile";
+import FormLogin from "../../Forms/Login";
+import Register from "../../Forms/Register";
+import { FromAcount } from "../../../constants/DefaultValues";
 import "./style.css";
 
 export default function Header() {
+  const [modal, setModal] = useState(false);
+  const [typeAcount, setTypeAcount] = useState(FromAcount.LOGIN);
+  const toggle = () => setModal(!modal);
+  const ChangeIsModal = (ismodal, type) => {
+    toggle(true);
+    setTypeAcount(type);
+  };
   return (
     <div className="HeaderConsumer">
+      <div className="HeaderConsumer__Modal">
+        <Modal isOpen={modal} toggle={toggle}>
+          <ModalHeader toggle={toggle}>
+            {typeAcount === FromAcount.LOGIN ? "ĐĂNG NHẬP" : "Đăng Ký"}
+          </ModalHeader>
+          <ModalBody>
+            {typeAcount === FromAcount.LOGIN ? <FormLogin /> : <Register />}
+          </ModalBody>
+        </Modal>
+      </div>
       <div className="HeaderConsumer__account">
-        <Link
-          to="/auth/login"
-          className="HeaderConsumer__account__content screen__Wep"
+        <button
+          onClick={() => ChangeIsModal(true, FromAcount.LOGIN)}
+          type="button"
         >
-          Tài Khoản
-        </Link>
+          Đăng Nhập
+        </button>
+        <button
+          onClick={() => ChangeIsModal(true, FromAcount.REGISTER)}
+          type="button"
+        >
+          Đăng Ký
+        </button>
       </div>
       <Row className="HeaderConsumer__nav screen__Wep">
         <Col lg={3} md={3} sm={12} className="HeaderConsumer__nav__logo">
