@@ -84,15 +84,13 @@ const MenuMobile = () => {
             </div>
           </div>
         </div>
-        <div
+        <button
+          type="button"
           className="MenuMobile__icon__Bg"
-          onKeyPress=""
           onClick={() => showMenu()}
-          role="button"
-          tabIndex="0"
         >
           .
-        </div>
+        </button>
       </div>
     </div>
   );
