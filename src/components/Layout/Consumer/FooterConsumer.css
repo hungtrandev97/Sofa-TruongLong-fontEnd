@@ -1,0 +1,7 @@
+.FooterCosumer {
+  background-color: #585757;
+  color: #ffffff;
+}
+.FooterCosumer__content {
+  display: flex;
+}

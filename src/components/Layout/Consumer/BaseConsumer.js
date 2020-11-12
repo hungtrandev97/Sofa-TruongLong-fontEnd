@@ -9,7 +9,7 @@ import NotFoundPage from "../../../views/404/404";
 
 function BaseConsumer({ children, location, match }) {
   const reportMatch = matchPath(location.pathname, {
-    path: "/hcp/report/:memberId/:sampleId",
+    path: "/",
     exact: true,
     strict: false,
   });

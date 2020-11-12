@@ -51,6 +51,19 @@
   color: white;
   height: 70px;
   width: 100%;
+  display: flex;
+  padding: 15px 10px 0px 10px;
+}
+.MenuMobile__LoginLoguot__icon {
+  padding-right: 20px;
+}
+.MenuMobile__LoginLoguot__Login {
+  padding: 5px 30px 0 0;
+  color: bisque;
+}
+.MenuMobile__LoginLoguot__Register {
+  padding: 5px 30px 0 0;
+  color: bisque;
 }
 
 .MenuMobile__Content_UlMenuleft__Data {
@@ -64,8 +77,29 @@
   font-size: 14px;
   border-bottom: 1px solid #f8f8f8;
 }
-..MenuMobile__Content_UlMenuleft__Product {
+.MenuMobile__Content_UlMenuleft__Data > div:hover {
+  background-color: rgb(243, 243, 243);
+}
+.MenuMobile__Content_UlMenuleft__Home {
+  display: flex;
+}
+.MenuMobile__Content_UlMenuleft__Home > span {
+  padding: 4px 0px 0px 10px;
+}
+.MenuMobile__Content_UlMenuleft__About > span {
+  padding: 5px 0px 0px 10px;
+}
+.MenuMobile__Content_UlMenuleft__Product__span {
+  padding: 5px 0px 0px 10px;
+}
+.MenuMobile__Content_UlMenuleft__Product__icon {
   float: right;
+}
+.MenuMobile__Content_UlMenuleft__Contact > span {
+  padding: 5px 0px 0px 10px;
+}
+.MenuMobile__Content_UlMenuleft__ProductUL > li:hover {
+  background-color: rgb(220, 218, 218);
 }
 .MenuMobile__Content_UlMenuleft__ProductUL {
   list-style: none;
@@ -75,6 +109,7 @@
 }
 .MenuMobile__Content_UlMenuleft__ProductUL > li {
   padding: 10px 0;
+  display: flex;
 }
 
 .MenuMobile__Content_UlMenuleft__ProductUL > li > a {

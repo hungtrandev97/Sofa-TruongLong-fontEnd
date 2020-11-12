@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { BiMenu, BiCaretDown } from "react-icons/bi";
-import { CgCloseO } from "react-icons/cg";
-
+import {
+  BiMenu,
+  BiCaretDown,
+  BiChevronRight,
+  BiPhoneCall,
+} from "react-icons/bi";
+import { CgCloseO, TiShoppingCart } from "react-icons/cg";
+import { FaHome, FaMicrophoneAlt } from "react-icons/fa";
+import { BsPeopleCircle } from "react-icons/bs";
+import { GiShoppingCart } from "react-icons/gi";
 import "./MenuMobile.css";
 
 const MenuMobile = () => {
@@ -28,38 +35,52 @@ const MenuMobile = () => {
               />
             </div>
             <div className="MenuMobile__Content_UlMenuleft__LoginLoguot">
-              <a>ICON</a>
-              <a>Đăng Nhập</a>
-              <a>Đăng Ký</a>
+              <div className="MenuMobile__LoginLoguot__icon">
+                <BsPeopleCircle size="2rem" color="rgb(250, 62, 63)" />
+              </div>
+              <div className="MenuMobile__LoginLoguot__Login">Đăng Nhập</div>
+              <div className="MenuMobile__LoginLoguot__Register">Đăng Ký</div>
             </div>
           </div>
 
           <div className="MenuMobile__Content_UlMenuleft__Data">
             <div className="MenuMobile__Content_UlMenuleft__Home">
-              Trang Chủ
+              <FaHome size="1.3rem" color="rgb(250, 62, 63)" />
+              <span>Trang Chủ</span>
             </div>
             <div className="MenuMobile__Content_UlMenuleft__About">
-              Giới Thiệu
+              <FaMicrophoneAlt size="1.2rem" color="rgb(250, 62, 63)" />
+              <span>Giới Thiệu</span>
             </div>
             <div className="MenuMobile__Content_UlMenuleft__Product">
               <div>
-                <span>Sản Phẩm </span>
-                <span>
+                <GiShoppingCart size="1.2rem" color="rgb(250, 62, 63)" />
+                <span className="MenuMobile__Content_UlMenuleft__Product__span">
+                  Sản Phẩm
+                </span>
+                <span className="MenuMobile__Content_UlMenuleft__Product__icon">
                   <BiCaretDown size="1rem" />
                 </span>
               </div>
 
               <ul className="MenuMobile__Content_UlMenuleft__ProductUL">
                 <li>
+                  <BiChevronRight size="1rem" />
                   <a href="#">Page 1</a>
                 </li>
                 <li>
+                  <BiChevronRight size="1rem" />
                   <a href="#">Page 2</a>
                 </li>
                 <li>
+                  <BiChevronRight size="1rem" />
                   <a href="#">Page 3</a>
                 </li>
               </ul>
+            </div>
+            <div className="MenuMobile__Content_UlMenuleft__Contact">
+              <BiPhoneCall size="1.2rem" color="rgb(250, 62, 63)" />
+              <span>Liên Hệ</span>
             </div>
           </div>
         </div>
