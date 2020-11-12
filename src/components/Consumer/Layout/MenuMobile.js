@@ -5,7 +5,7 @@ import {
   BiChevronRight,
   BiPhoneCall,
 } from "react-icons/bi";
-import { CgCloseO, TiShoppingCart } from "react-icons/cg";
+import { CgCloseO } from "react-icons/cg";
 import { FaHome, FaMicrophoneAlt } from "react-icons/fa";
 import { BsPeopleCircle } from "react-icons/bs";
 import { GiShoppingCart } from "react-icons/gi";

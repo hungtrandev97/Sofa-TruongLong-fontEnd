@@ -15,6 +15,7 @@
   left: 0;
   z-index: 1;
   height: 100vh;
+  top: 0;
 }
 
 .MenuMobile__Content_UlMenuleft {
@@ -39,6 +40,7 @@
   background-color: transparent;
   top: 0;
   z-index: 2;
+  border: none;
 }
 /* -------- */
 .MenuMobile__Content_UlMenuleft__Icon {
