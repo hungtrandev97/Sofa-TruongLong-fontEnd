@@ -1,13 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  withRouter,
-  Switch,
-  Route,
-  Redirect,
-  BrowserRouter as Router,
-} from "react-router-dom";
+import { withRouter, Switch, Route, Redirect, Router } from "react-router-dom";
 import history from "./history";
 import { ROLE, ACCESS_TOKEN_KEY } from "./constants/DefaultValues";
 import ErrorView from "./views/404/404";
