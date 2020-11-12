@@ -3,8 +3,8 @@ import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 import LabelLine from "../Labels/LabelLine";
-import LabelLink from "../Labels/LabelLink";
 import { loginUser } from "../../store/actions/auth.actions";
 import "./FormLogin.css";
 
@@ -91,12 +91,9 @@ const FormLogin = () => {
           </Form>
         )}
       </Formik>
-      <LabelLink
-        normalSentence="Chưa có tài khoản?"
-        linkSentence="Tạo mới tài khoản ngay bây giờ."
-        onLinkClick={() => {
-          // authConsumerChangeView(AUTH_CONSUMER_VIEWS.REGISTER);
-        }}
+      <div>
+        <Link to="/auth/dang-ky"> dang ky</Link>
+      </div>
       />
     </div>
   );

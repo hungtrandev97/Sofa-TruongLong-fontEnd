@@ -1,12 +1,11 @@
 import React from "react";
 import "./ResgisterUser.css";
-import FormRegisterUser from "../../components/Forms/FormRegisterUser";
+import FormRegister from "../../components/Forms/FromRegister";
 
 function RegisterUser() {
   return (
     <div>
-      <div>aaaaaaaaaaaaaaaaaa</div>
-      <FormRegisterUser />
+      <FormRegister />
     </div>
   );
 }

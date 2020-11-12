@@ -1,7 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withRouter, Switch, Route, Redirect, Router } from "react-router-dom";
+import {
+  withRouter,
+  Switch,
+  Route,
+  Redirect,
+  Router,
+  BrowserRouter,
+} from "react-router-dom";
 import history from "./history";
 import { ROLE, ACCESS_TOKEN_KEY } from "./constants/DefaultValues";
 import ErrorView from "./views/404/404";
@@ -55,7 +62,7 @@ const Routes = (props) => {
     loginUser.accessToken === localStorage.getItem(ACCESS_TOKEN_KEY);
 
   return (
-    <Router history={history}>
+    <BrowserRouter history={history}>
       <Switch>
         <PrivateRoute
           path="/consumer"
@@ -75,7 +82,7 @@ const Routes = (props) => {
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 };
 

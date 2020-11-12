@@ -20,9 +20,6 @@ import { authRegisterSuccess } from "../../store/actions/auth.actions";
 import { authConsumerChangeView } from "../../store/actions/authtoggle.actions";
 import { apiRegister } from "../../services/auth";
 
-import { AUTH_CONSUMER_VIEWS } from "../../constants/DefaultValues";
-import { USER_EMAIL_EXIST } from "../../constants/ErrorCode";
-
 import "./FormRegisterUser.css";
 
 const registerSchema = Yup.object()

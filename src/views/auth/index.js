@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect, Switch, Route } from "react-router-dom";
 import LoginPage from "./Login";
+import RegisterPage from "./RegisterUser";
 
 import { ACCESS_TOKEN_KEY } from "../../constants/DefaultValues";
 
@@ -20,7 +21,8 @@ class AuthView extends Component {
     return (
       <Switch>
         <Route exact path={`${match.url}/login`} component={LoginPage} />
-        <Redirect from="/" to={`${match.url}/login`} />
+        <Route path={`${match.url}/dang-ky`} component={RegisterPage} />
+        <Redirect to={`${match.url}/login`} />
       </Switch>
     );
   }
