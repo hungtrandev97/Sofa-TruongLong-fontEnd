@@ -5,11 +5,12 @@ import {
   BiChevronRight,
   BiPhoneCall,
 } from "react-icons/bi";
-import { CgCloseO, TiShoppingCart } from "react-icons/cg";
+import { CgCloseO } from "react-icons/cg";
 import { FaHome, FaMicrophoneAlt } from "react-icons/fa";
 import { BsPeopleCircle } from "react-icons/bs";
 import { GiShoppingCart } from "react-icons/gi";
 import "./MenuMobile.css";
+import { Link } from "react-router-dom";
 
 const MenuMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,15 +67,15 @@ const MenuMobile = () => {
               <ul className="MenuMobile__Content_UlMenuleft__ProductUL">
                 <li>
                   <BiChevronRight size="1rem" />
-                  <a href="#">Page 1</a>
+                  <Link to="/">Page 1</Link>
                 </li>
                 <li>
                   <BiChevronRight size="1rem" />
-                  <a href="#">Page 2</a>
+                  <Link to="/">Page 2</Link>
                 </li>
                 <li>
                   <BiChevronRight size="1rem" />
-                  <a href="#">Page 3</a>
+                  <Link to="/">Page 3</Link>
                 </li>
               </ul>
             </div>
