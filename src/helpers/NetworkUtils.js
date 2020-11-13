@@ -5,8 +5,8 @@ import { ACCESS_TOKEN_KEY } from "../constants/DefaultValues";
 
 const requestHttp = async ({ method, fullUrl, params, bearerToken }) => {
   const headers = {
-    // Accept: "application/json",
-    // "Content-Type": "application/json",
+    Accept: "application/json",
+    "Content-Type": "application/json",
     // "Access-Control-Allow-Origin": "*",
     // "Access-Control-Allow-Credentials": true,
   };

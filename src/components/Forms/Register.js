@@ -2,34 +2,44 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
+// import { useSelector, useDispatch } from "react-redux";
+// import { register } from "../../store/actions/actions";
+import Select, { Option, ReactSelectProps } from "react-select";
 import { apiRegister } from "../../services/auth";
+import { NotifySuccess, NotifyError } from "../Notify/Toast";
 import "./AcountUser.css";
 
 const loginSchema = Yup.object().shape({
   userName: Yup.string().required("Tên đăng nhập không được rỗng"),
   password: Yup.string().required("Mật khẩu không được rỗng").min(6).max(20),
-  email: Yup.string().email().required(),
-  gender: Yup.number().required(),
-  address: Yup.string().required(),
-  numberPhone: Yup.number().required(),
+  email: Yup.string().email().required("Email không được rỗng"),
+  gender: Yup.number().required("Giới tính không được rỗng"),
+  address: Yup.string().required("Địa chỉ không được rỗng"),
+  numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
 });
+
 export default function Register() {
+  // const dispatch = useDispatch();
+  // const { loginUser } = useSelector((state) => state.authRedux);
+  // const { firstName, lastName, email } = loginUser;
+
+  // const [isSubmitting, setSubmitting] = useState(false);
   const onFinalSubmit = async (value) => {
     const req = await apiRegister(value);
     if (req.status) {
-      console.log("true");
+      NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
     } else {
-      console.log("flase");
+      NotifyError("Đăng Ký Tài Khoản", "Đăng Ký Không Thành Công");
     }
   };
   return (
     <Formik
       initialValues={{
-        userName: "hungtrandev97",
-        password: "123456",
-        email: "hungtrandev97@gmail.com.vn",
-        gender: 1,
-        address: "duong quang ham - go vap",
+        userName: "",
+        password: "",
+        email: "",
+        gender: "",
+        address: "",
         numberPhone: "",
       }}
       validationSchema={loginSchema}
@@ -47,6 +57,9 @@ export default function Register() {
             <Label for="userName" className="font-ob-bold">
               Tên Đăng Nhập
             </Label>
+            {errors.userName && touched.userName ? (
+              <div className="invalid-feedback d-block">{errors.userName}</div>
+            ) : null}
             <Field
               className="form-control"
               type="text"
@@ -54,16 +67,14 @@ export default function Register() {
               placeholder="Nhập Tên Tài Khoản"
               autoComplete="userName"
             />
-            {errors.userName && touched.userName ? (
-              <div className="invalid-feedback d-block">{errors.userName}</div>
-            ) : null}
           </FormGroup>
           <FormGroup>
-            <div className="d-flex align-items-center justify-content-between">
-              <Label for="password" className="font-ob-bold">
-                Nhập Mật Khẩu
-              </Label>
-            </div>
+            <Label for="password" className="font-ob-bold">
+              Nhập Mật Khẩu
+            </Label>
+            {errors.password && touched.password ? (
+              <div className="invalid-feedback d-block">{errors.password}</div>
+            ) : null}
             <Field
               className="form-control"
               type="password"
@@ -71,14 +82,14 @@ export default function Register() {
               placeholder="**********"
               autoComplete="current-password"
             />
-            {errors.password && touched.password ? (
-              <div className="invalid-feedback d-block">{errors.password}</div>
-            ) : null}
           </FormGroup>
           <FormGroup>
             <Label for="email" className="font-ob-bold">
               Email
             </Label>
+            {errors.email && touched.email ? (
+              <div className="invalid-feedback d-block">{errors.email}</div>
+            ) : null}
             <Field
               className="form-control"
               type="email"
@@ -86,14 +97,14 @@ export default function Register() {
               placeholder="Nhập Tên Tài Khoản"
               autoComplete="email"
             />
-            {errors.email && touched.email ? (
-              <div className="invalid-feedback d-block">{errors.userName}</div>
-            ) : null}
           </FormGroup>
           <FormGroup>
             <Label for="gender" className="font-ob-bold">
               Giới Tính
             </Label>
+            {errors.gender && touched.gender ? (
+              <div className="invalid-feedback d-block">{errors.gender}</div>
+            ) : null}
             <Field
               className="form-control"
               type="number"
@@ -101,14 +112,14 @@ export default function Register() {
               placeholder="Nhập Tên Tài Khoản"
               autoComplete="gender"
             />
-            {errors.gender && touched.gender ? (
-              <div className="invalid-feedback d-block">{errors.userName}</div>
-            ) : null}
           </FormGroup>
           <FormGroup>
             <Label for="address" className="font-ob-bold">
               Địa Chỉ
             </Label>
+            {errors.address && touched.address ? (
+              <div className="invalid-feedback d-block">{errors.address}</div>
+            ) : null}
             <Field
               className="form-control"
               type="text"
@@ -116,14 +127,16 @@ export default function Register() {
               placeholder="Nhập Tên Tài Khoản"
               autoComplete="address"
             />
-            {errors.address && touched.address ? (
-              <div className="invalid-feedback d-block">{errors.userName}</div>
-            ) : null}
           </FormGroup>
           <FormGroup>
             <Label for="numberPhone" className="font-ob-bold">
               Số Điện Thoại
             </Label>
+            {errors.numberPhone && touched.numberPhone ? (
+              <div className="invalid-feedback d-block">
+                {errors.numberPhone}
+              </div>
+            ) : null}
             <Field
               className="form-control"
               type="text"
@@ -131,9 +144,6 @@ export default function Register() {
               placeholder="Nhập Tên Tài Khoản"
               autoComplete="numberPhone"
             />
-            {errors.numberPhone && touched.numberPhone ? (
-              <div className="invalid-feedback d-block">{errors.userName}</div>
-            ) : null}
           </FormGroup>
           <Button type="submit" color="primary">
             <span className="ml-50 font-ob-bold">Đăng Ký</span>

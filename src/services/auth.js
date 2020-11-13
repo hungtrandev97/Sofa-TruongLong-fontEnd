@@ -24,13 +24,12 @@ export const apiLogin = async ({ userName, password }) => {
 };
 
 export const apiRegister = async (user) => {
-  console.log(user);
   const response = await requestPost({
     fullUrl: `${END_POINT}/v1/auth/register`,
     params: user,
     bearerToken: null,
   });
-  if (response.statusCode === 200) {
+  if (response.statusCode === 201) {
     const { body } = response;
     return {
       status: true,
