@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { withRouter, Switch, Redirect } from "react-router-dom";
+import { withRouter, Switch, Redirect, Route } from "react-router-dom";
+import CategoryPage from "../../components/Admin/CategoryPage";
+import hcp from "../../components/Admin/hcp";
 import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
 
 function Admin(props) {
@@ -20,11 +22,13 @@ function Admin(props) {
         >
           <div>
             <Switch location={location}>
-              <Redirect
+              <Route
                 exact
-                from={`${match.url}`}
-                to={`${match.url}/consumers`}
+                path={`${match.url}/categoryPage`}
+                component={CategoryPage}
               />
+              <Route exact path={`${match.url}/hcp`} component={hcp} />
+              <Redirect to="/error" />
             </Switch>
           </div>
         </CSSTransition>
@@ -47,7 +51,7 @@ Admin.defaultProps = {
     url: "/admin",
   },
   location: {
-    pathname: "/admin/dashboard",
+    pathname: "/admin",
   },
 };
 

@@ -37,7 +37,7 @@ const ConsumerMenu = [
   },
   {
     name: "Consumers",
-    path: "consumers",
+    path: "CategoryPage",
   },
   {
     name: "HealthCare",
@@ -51,15 +51,32 @@ const ConsumerMenu = [
 
 const AdminMenu = [
   {
-    heading: "Users",
-  },
-  {
-    name: "Consumers",
-    path: "consumers",
+    name: "Danh Mục Sản Phẩm",
+    path: "categoryPage",
     icon: "icon-people",
   },
   {
-    name: "Health Care",
+    name: "Sản Phẩm",
+    path: "hcp",
+    icon: "icon-user-female",
+  },
+  {
+    name: "Đơn Hàng",
+    path: "hcp",
+    icon: "icon-user-female",
+  },
+  {
+    name: "Quản Lý Sản Phẩm",
+    path: "hcp",
+    icon: "icon-user-female",
+  },
+  {
+    name: "Danh Mục Thành Viên",
+    path: "hcp",
+    icon: "icon-user-female",
+  },
+  {
+    name: "Tài Khoản",
     path: "hcp",
     icon: "icon-user-female",
   },

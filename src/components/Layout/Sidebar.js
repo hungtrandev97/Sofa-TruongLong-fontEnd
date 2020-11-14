@@ -24,7 +24,7 @@ const SidebarItem = ({ item, isActive, match }) => (
         </Badge>
       )}
       {item.icon && <em className={item.icon} />}
-      <span>{item.name}</span>
+      <span style={{ fontSize: "15px" }}>{item.name}</span>
     </Link>
   </li>
 );
