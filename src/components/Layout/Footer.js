@@ -7,7 +7,7 @@ function Footer() {
       <span>
         &copy;&nbsp;
         {year}
-        &nbsp;-&nbsp;SwagSoft
+        &nbsp;-&nbsp;SOFA TRƯỜNG LONG
       </span>
     </footer>
   );

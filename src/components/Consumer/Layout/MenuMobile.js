@@ -4,12 +4,19 @@ import {
   BiCaretDown,
   BiChevronRight,
   BiPhoneCall,
+  BiLogIn,
 } from "react-icons/bi";
 import { CgCloseO } from "react-icons/cg";
 import { FaHome, FaShoppingCart } from "react-icons/fa";
 import { BsPeopleCircle, BsPersonLinesFill } from "react-icons/bs";
-import "./MenuMobile.css";
 import { Link } from "react-router-dom";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { FromAcount } from "../../../constants/DefaultValues";
+import FormLogin from "../../Forms/Login";
+import Register from "../../Forms/Register";
+import { logoutUser } from "../../../store/actions/actions";
+import "./MenuMobile.css";
 
 const MenuMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +28,19 @@ const MenuMobile = () => {
   const OpenListProduct = () => {
     setIsOpenListProduct(!isOpenListProduct);
   };
+
+  const [modal, setModal] = useState(false);
+  const [typeAcount, setTypeAcount] = useState(FromAcount.LOGIN);
+  const toggle = () => setModal(!modal);
+  const ChangeIsModal = (ismodal, type) => {
+    toggle(true);
+    setTypeAcount(type);
+  };
+  const dispatch = useDispatch();
+  const logoutAcout = () => {
+    dispatch(logoutUser());
+  };
+  const { loginUser } = useSelector((state) => state.authRedux);
   return (
     <div className="MenuMobile">
       <div className="MenuMobile__icon">
@@ -40,11 +60,53 @@ const MenuMobile = () => {
               />
             </div>
             <div className="MenuMobile__Content_UlMenuleft__LoginLoguot">
-              <div className="MenuMobile__LoginLoguot__icon">
-                <BsPeopleCircle size="2rem" color="rgb(250, 62, 63)" />
+              <div className="HeaderConsumer__Modal">
+                <Modal isOpen={modal} toggle={toggle}>
+                  <ModalHeader toggle={toggle}>
+                    {typeAcount === FromAcount.LOGIN ? "ĐĂNG NHẬP" : "Đăng Ký"}
+                  </ModalHeader>
+                  <ModalBody>
+                    {typeAcount === FromAcount.LOGIN ? (
+                      <FormLogin />
+                    ) : (
+                      <Register />
+                    )}
+                  </ModalBody>
+                </Modal>
               </div>
-              <div className="MenuMobile__LoginLoguot__Login">Đăng Nhập</div>
-              <div className="MenuMobile__LoginLoguot__Register">Đăng Ký</div>
+              <div className="MenuMobile__LoginLoguot__icon">
+                <BsPeopleCircle size="2rem" color="#ffff" />
+              </div>
+              {loginUser === null ? (
+                <div className="MenuMobile__Acount">
+                  <button
+                    type="button"
+                    onClick={() => ChangeIsModal(true, FromAcount.LOGIN)}
+                  >
+                    Đăng Nhập
+                  </button>
+                  <button
+                    onClick={() => ChangeIsModal(true, FromAcount.REGISTER)}
+                    type="button"
+                  >
+                    Đăng Ký
+                  </button>
+                </div>
+              ) : (
+                <div className="MenuLeft__accountSuccess">
+                  Xin Chào :
+                  <span
+                    style={{
+                      padding: "0 5px",
+                      color: "009fe3",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {" "}
+                    {loginUser.userName}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -94,6 +156,17 @@ const MenuMobile = () => {
               <BiPhoneCall size="1.2rem" color="rgb(250, 62, 63)" />
               <span>Liên Hệ</span>
             </div>
+            {loginUser === null ? (
+              ""
+            ) : (
+              <div className="MenuLetf__AcountLogout">
+                <BiLogIn color="rgb(250, 62, 63)" size="1rem" />
+                <button type="button" style={{}} onClick={() => logoutAcout()}>
+                  {" "}
+                  Đăng Xuất
+                </button>
+              </div>
+            )}
           </div>
         </div>
         <button

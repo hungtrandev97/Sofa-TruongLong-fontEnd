@@ -24,16 +24,16 @@ class Header extends Component {
     return (
       <header className="topnavbar-wrapper">
         {/* START Top Navbar */}
-        <nav className="navbar topnavbar">
+        <nav className="navbar topnavbar" style={{ background: "#585757" }}>
           {/* START navbar header */}
           <div className="navbar-header">
             <a className="navbar-brand" href="#/">
               <div className="brand-logo">
                 <img
                   height={45}
-                  width={200}
+                  width={130}
                   className="img-fluid"
-                  src="/img/logo_horizontal.png"
+                  src="/img/default/logotruonglong.png"
                   alt="App Logo"
                 />
               </div>
@@ -41,7 +41,7 @@ class Header extends Component {
                 <img
                   width={45}
                   height={45}
-                  src="/img/logo_vertical.png"
+                  src="/img/default/logotruonglong.png"
                   alt="App Logo"
                 />
               </div>

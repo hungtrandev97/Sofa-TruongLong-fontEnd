@@ -35,12 +35,12 @@ export default function Register() {
     <div className="AcountForm">
       <Formik
         initialValues={{
-          userName: "HieuPhan",
-          password: "123456",
-          email: "pvth3081999@gmail.com",
-          gender: "1",
-          address: "Duong Quang Ham - Go Vap",
-          numberPhone: "0977789004",
+          userName: "",
+          password: "",
+          email: "",
+          gender: "",
+          address: "",
+          numberPhone: "",
         }}
         validationSchema={loginSchema}
         onSubmit={(values) => {

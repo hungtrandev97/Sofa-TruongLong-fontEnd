@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
 import { login } from "../../store/actions/actions";
@@ -11,6 +11,8 @@ const loginSchema = Yup.object().shape({
   password: Yup.string().required("Mật khẩu không được rỗng").min(6).max(20),
 });
 export default function Login() {
+  const { errorLogin } = useSelector((state) => state.authRedux);
+  console.log(errorLogin, "abc");
   const dispatch = useDispatch();
   const onFinalSubmit = (value) => {
     dispatch(login(value));
@@ -32,6 +34,14 @@ export default function Login() {
           // style={{ marginTop: `${errorLogin ? "24px" : "53px"}` }}
           noValidate
         >
+          {errorLogin ? (
+            <div className="invalid-feedback d-block AcountErrorSever">
+              Tài Khoản Hoặc Mật Khẩu Không Đúng
+            </div>
+          ) : (
+            ""
+          )}
+
           <FormGroup>
             <Label for="userName" className="font-ob-bold AcountLabel">
               Tên Đăng Nhập

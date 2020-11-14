@@ -124,3 +124,34 @@
 .MenuMobile__Content_UlMenuleft__Product__icon {
   padding-left: 10px;
 }
+.MenuMobile__Acount > button {
+  border: none;
+  background: none;
+  padding: 0;
+  padding-right: 15px;
+  padding-top: 5px;
+  color: #ffffff;
+}
+.MenuLeft__accountSuccess {
+  border: none;
+  background: none;
+  color: #ffffff;
+  font-size: 14px;
+  padding-top: 8px;
+}
+.MenuLetf__AcountLogout > button {
+  padding: 0 5px;
+  color: #000;
+  font-weight: bold;
+  line-height: 2;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.MenuLetf__AcountLogout {
+  position: fixed;
+  bottom: 0;
+  width: 320px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
