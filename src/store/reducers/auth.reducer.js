@@ -1,6 +1,7 @@
 import { ACCESS_TOKEN_KEY } from "../../constants/DefaultValues";
 import {
   LOGIN_USER,
+  RELOAD_LOGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILED,
   LOGOUT_USER,
@@ -30,10 +31,14 @@ const INIT_STATE = {
 const authReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case LOGIN_USER:
-      console.log(action.payload, "admin");
       return {
         ...state,
         loadingLogin: true,
+        errorLogin: false,
+      };
+    case RELOAD_LOGIN:
+      return {
+        ...state,
         errorLogin: false,
       };
 

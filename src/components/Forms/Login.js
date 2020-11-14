@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
-import { login } from "../../store/actions/actions";
+import { login, reloadLogin } from "../../store/actions/actions";
 import "./AcountUser.css";
 
 const loginSchema = Yup.object().shape({
@@ -11,9 +11,13 @@ const loginSchema = Yup.object().shape({
   password: Yup.string().required("Mật khẩu không được rỗng").min(6).max(20),
 });
 export default function Login() {
-  const { errorLogin } = useSelector((state) => state.authRedux);
-  console.log(errorLogin, "abc");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(reloadLogin());
+  }, []);
+
+  const { errorLogin } = useSelector((state) => state.authRedux);
   const onFinalSubmit = (value) => {
     dispatch(login(value));
   };
