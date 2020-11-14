@@ -76,7 +76,7 @@ class Header extends Component {
           <ul className="navbar-nav flex-row">
             <UncontrolledDropdown tag="li" className="nav-item">
               <DropdownToggle tag="a" className="nav-link">
-                <div className="d-sm-flex d-none">
+                <div className="d-sm-flex d-none" style={{ cursor: "pointer" }}>
                   <span className="text-bold">Admin</span>
                   <ChevronDown className="ml-2" />
                 </div>
