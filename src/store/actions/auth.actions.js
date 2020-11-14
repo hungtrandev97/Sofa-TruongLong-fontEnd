@@ -8,6 +8,10 @@ export const LOGOUT_USER_FAILED = "LOGOUT_USER_FAILED";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const AUTH_RESET_STATUS_LOGIN = "AUTH_RESET_STATUS_LOGIN";
 
+export const login = ({ userName, password }) => ({
+  type: LOGIN_USER,
+  payload: { userName, password },
+});
 export const loginUserSuccess = (user, token) => ({
   type: LOGIN_USER_SUCCESS,
   payload: { user, token },

@@ -1,7 +1,9 @@
 import React from "react";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
+import { login } from "../../store/actions/actions";
 import "./AcountUser.css";
 
 const loginSchema = Yup.object().shape({
@@ -9,8 +11,9 @@ const loginSchema = Yup.object().shape({
   password: Yup.string().required("Mật khẩu không được rỗng").min(6).max(20),
 });
 export default function Login() {
+  const dispatch = useDispatch();
   const onFinalSubmit = (value) => {
-    console.log(value);
+    dispatch(login(value));
   };
   return (
     <Formik

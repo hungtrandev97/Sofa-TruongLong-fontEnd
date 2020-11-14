@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Modal, ModalBody, ModalHeader } from "reactstrap";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -9,11 +9,12 @@ import SideNavPage from "../../Consumer/Layout/MenuMobile";
 import FormLogin from "../../Forms/Login";
 import Register from "../../Forms/Register";
 import { FromAcount } from "../../../constants/DefaultValues";
+import { logoutUser } from "../../../store/actions/actions";
 import "./style.css";
 
 export default function Header() {
+  const dispatch = useDispatch();
   const { loginUser } = useSelector((state) => state.authRedux);
-  const { userName } = loginUser;
   const [modal, setModal] = useState(false);
   const [typeAcount, setTypeAcount] = useState(FromAcount.LOGIN);
   const toggle = () => setModal(!modal);
@@ -22,7 +23,7 @@ export default function Header() {
     setTypeAcount(type);
   };
   const logoutAcout = () => {
-    console.log("check");
+    dispatch(logoutUser());
   };
   return (
     <div className="HeaderConsumer">
@@ -36,7 +37,7 @@ export default function Header() {
           </ModalBody>
         </Modal>
       </div>
-      {userName === undefined ? (
+      {loginUser === null ? (
         <div className="HeaderConsumer__account">
           <button
             onClick={() => ChangeIsModal(true, FromAcount.LOGIN)}
@@ -59,7 +60,7 @@ export default function Header() {
               style={{ padding: "0 5px", color: "009fe3", fontWeight: "bold" }}
             >
               {" "}
-              {userName}
+              {loginUser.userName}
             </span>
           </div>
           <div>

@@ -12,16 +12,18 @@ import {
 } from "../actions/actions";
 import { apiLogin } from "../../services/auth";
 
-function* loginWithPassword({ payload }) {
+function* loginWithPassword(payload) {
+  console.log(payload, "check");
   try {
-    const response = yield call(apiLogin, payload.user);
+    const response = yield call(apiLogin, payload);
+    console.log(response, "reacascs");
     if (response.status) {
       yield put(loginUserSuccess(response.data.user, response.data.token));
       const userRole = response.data.user.role;
       if (userRole === ROLE.ADMIN) {
         history.push("/admin");
       } else if (userRole === ROLE.PATIENT) {
-        history.push("/consumer");
+        history.push("/");
       } else {
         history.push("/");
       }

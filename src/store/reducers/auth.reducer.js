@@ -11,6 +11,14 @@ import {
 const INIT_STATE = {
   loginUser: {
     accessToken: "",
+    role: "",
+    userId: "",
+    email: "",
+    userName: "",
+    gender: "",
+    address: "",
+    numberPhone: "",
+    numberPoint: "",
   },
   loadingLogin: false,
   errorLogin: false,
@@ -22,6 +30,7 @@ const INIT_STATE = {
 const authReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case LOGIN_USER:
+      console.log(action.payload, "admin");
       return {
         ...state,
         loadingLogin: true,
