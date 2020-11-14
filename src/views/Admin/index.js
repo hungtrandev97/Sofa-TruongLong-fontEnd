@@ -28,7 +28,6 @@ function Admin(props) {
                 component={CategoryPage}
               />
               <Route exact path={`${match.url}/hcp`} component={hcp} />
-              <Redirect to="/error" />
             </Switch>
           </div>
         </CSSTransition>

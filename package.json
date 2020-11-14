@@ -62,6 +62,7 @@
     "react-circular-progressbar": "^2.0.3",
     "react-color": "2.18.1",
     "react-data-table-component": "^6.11.5",
+    "react-data-table-component-extensions": "^1.5.0",
     "react-date-picker": "^8.0.3",
     "react-dom": "17.0.1",
     "react-feather": "^2.0.8",
