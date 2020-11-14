@@ -4,7 +4,6 @@ import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
 // import { useSelector, useDispatch } from "react-redux";
 // import { register } from "../../store/actions/actions";
-import Select, { Option, ReactSelectProps } from "react-select";
 import { apiRegister } from "../../services/auth";
 import { NotifySuccess, NotifyError } from "../Notify/Toast";
 import "./AcountUser.css";
@@ -33,123 +32,135 @@ export default function Register() {
     }
   };
   return (
-    <Formik
-      initialValues={{
-        userName: "",
-        password: "",
-        email: "",
-        gender: "",
-        address: "",
-        numberPhone: "",
-      }}
-      validationSchema={loginSchema}
-      onSubmit={(values) => {
-        onFinalSubmit(values);
-      }}
-    >
-      {({ errors, touched }) => (
-        <Form
-          className="FormLogin__Form"
-          // style={{ marginTop: `${errorLogin ? "24px" : "53px"}` }}
-          noValidate
-        >
-          <FormGroup>
-            <Label for="userName" className="font-ob-bold">
-              Tên Đăng Nhập
-            </Label>
-            {errors.userName && touched.userName ? (
-              <div className="invalid-feedback d-block">{errors.userName}</div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="text"
-              name="userName"
-              placeholder="Nhập Tên Tài Khoản"
-              autoComplete="userName"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="password" className="font-ob-bold">
-              Nhập Mật Khẩu
-            </Label>
-            {errors.password && touched.password ? (
-              <div className="invalid-feedback d-block">{errors.password}</div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="password"
-              name="password"
-              placeholder="**********"
-              autoComplete="current-password"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="email" className="font-ob-bold">
-              Email
-            </Label>
-            {errors.email && touched.email ? (
-              <div className="invalid-feedback d-block">{errors.email}</div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="email"
-              name="email"
-              placeholder="Nhập Tên Tài Khoản"
-              autoComplete="email"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="gender" className="font-ob-bold">
-              Giới Tính
-            </Label>
-            {errors.gender && touched.gender ? (
-              <div className="invalid-feedback d-block">{errors.gender}</div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="number"
-              name="gender"
-              placeholder="Nhập Tên Tài Khoản"
-              autoComplete="gender"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="address" className="font-ob-bold">
-              Địa Chỉ
-            </Label>
-            {errors.address && touched.address ? (
-              <div className="invalid-feedback d-block">{errors.address}</div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="text"
-              name="address"
-              placeholder="Nhập Tên Tài Khoản"
-              autoComplete="address"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="numberPhone" className="font-ob-bold">
-              Số Điện Thoại
-            </Label>
-            {errors.numberPhone && touched.numberPhone ? (
-              <div className="invalid-feedback d-block">
-                {errors.numberPhone}
-              </div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="text"
-              name="numberPhone"
-              placeholder="Nhập Tên Tài Khoản"
-              autoComplete="numberPhone"
-            />
-          </FormGroup>
-          <Button type="submit" color="primary">
-            <span className="ml-50 font-ob-bold">Đăng Ký</span>
-          </Button>
-        </Form>
-      )}
-    </Formik>
+    <div className="AcountForm">
+      <Formik
+        initialValues={{
+          userName: "",
+          password: "",
+          email: "",
+          gender: "",
+          address: "",
+          numberPhone: "",
+        }}
+        validationSchema={loginSchema}
+        onSubmit={(values) => {
+          onFinalSubmit(values);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form
+            className="FormLogin__Form"
+            // style={{ marginTop: `${errorLogin ? "24px" : "53px"}` }}
+            noValidate
+          >
+            <FormGroup>
+              <Label for="userName" className="font-ob-bold AcountLabel">
+                Tên Đăng Nhập
+              </Label>
+              {errors.userName && touched.userName ? (
+                <div className="invalid-feedback d-block  AcountError">
+                  {errors.userName}
+                </div>
+              ) : null}
+              <Field
+                className="form-control AcountInput"
+                type="text"
+                name="userName"
+                placeholder="Nhập Tên Tài Khoản"
+                autoComplete="userName"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="password" className="font-ob-bold AcountLabel">
+                Nhập Mật Khẩu
+              </Label>
+              {errors.password && touched.password ? (
+                <div className="invalid-feedback d-block  AcountError">
+                  {errors.password}
+                </div>
+              ) : null}
+              <Field
+                className="form-control AcountInput"
+                type="password"
+                name="password"
+                placeholder="**********"
+                autoComplete="current-password"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="email" className="font-ob-bold AcountLabel">
+                Email
+              </Label>
+              {errors.email && touched.email ? (
+                <div className="invalid-feedback d-block  AcountError">
+                  {errors.email}
+                </div>
+              ) : null}
+              <Field
+                className="form-control AcountInput"
+                type="email"
+                name="email"
+                placeholder="Nhập Tên Tài Khoản"
+                autoComplete="email"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="gender" className="font-ob-bold AcountLabel">
+                Giới Tính
+              </Label>
+              {errors.gender && touched.gender ? (
+                <div className="invalid-feedback d-block  AcountError">
+                  {errors.gender}
+                </div>
+              ) : null}
+              <Field
+                className="form-control AcountInput"
+                type="number"
+                name="gender"
+                placeholder="Nhập Tên Tài Khoản"
+                autoComplete="gender"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="address" className="font-ob-bold AcountLabel">
+                Địa Chỉ
+              </Label>
+              {errors.address && touched.address ? (
+                <div className="invalid-feedback d-block  AcountError">
+                  {errors.address}
+                </div>
+              ) : null}
+              <Field
+                className="form-control AcountInput"
+                type="text"
+                name="address"
+                placeholder="Nhập Tên Tài Khoản"
+                autoComplete="address"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="numberPhone" className="font-ob-bold AcountLabel">
+                Số Điện Thoại
+              </Label>
+              {errors.numberPhone && touched.numberPhone ? (
+                <div className="invalid-feedback d-block  AcountError">
+                  {errors.numberPhone}
+                </div>
+              ) : null}
+              <Field
+                className="form-control AcountInput"
+                type="text"
+                name="numberPhone"
+                placeholder="Nhập Tên Tài Khoản"
+                autoComplete="numberPhone"
+              />
+            </FormGroup>
+            <Button type="submit" color="primary" className="AcountButton">
+              <span className="ml-50 font-ob-bold">Đăng Ký</span>
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 }

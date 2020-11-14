@@ -1,0 +1,19 @@
+.AcountLabel {
+  font-size: 14px;
+}
+.AcountInput {
+  font-size: 14px !important;
+  height: 35px !important;
+}
+.AcountError {
+  font-size: 12px !important;
+  padding-bottom: 15px;
+}
+.AcountButton {
+  height: 35px !important;
+  font-size: 14px !important;
+}
+.AcountForm {
+  height: 40vh;
+  overflow: scroll;
+}

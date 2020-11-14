@@ -30,38 +30,42 @@ export default function Login() {
           noValidate
         >
           <FormGroup>
-            <Label for="userName" className="font-ob-bold">
+            <Label for="userName" className="font-ob-bold AcountLabel">
               Tên Đăng Nhập
             </Label>
+            {errors.userName && touched.userName ? (
+              <div className="invalid-feedback d-block AcountError">
+                {errors.userName}
+              </div>
+            ) : null}
             <Field
-              className="form-control"
+              className="form-control AcountInput"
               type="text"
               name="userName"
               placeholder="Nhập Tên Tài Khoản"
               autoComplete="userName"
             />
-            {errors.userName && touched.userName ? (
-              <div className="invalid-feedback d-block">{errors.userName}</div>
-            ) : null}
           </FormGroup>
           <FormGroup>
-            <div className="d-flex align-items-center justify-content-between">
-              <Label for="password" className="font-ob-bold">
+            <div className="d-flex align-items-center justify-content-between AcountLabel">
+              <Label for="password" className="font-ob-bold AcountLabel">
                 Nhập Mật Khẩu
               </Label>
             </div>
+            {errors.password && touched.password ? (
+              <div className="invalid-feedback d-block AcountError">
+                {errors.password}
+              </div>
+            ) : null}
             <Field
-              className="form-control"
+              className="form-control AcountInput"
               type="password"
               name="password"
               placeholder="**********"
               autoComplete="current-password"
             />
-            {errors.password && touched.password ? (
-              <div className="invalid-feedback d-block">{errors.password}</div>
-            ) : null}
           </FormGroup>
-          <Button type="submit" color="primary">
+          <Button type="submit" color="primary" className="AcountButton">
             <span className="ml-50 font-ob-bold">Đăng Nhập</span>
           </Button>
         </Form>

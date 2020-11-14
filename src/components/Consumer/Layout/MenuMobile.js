@@ -6,16 +6,20 @@ import {
   BiPhoneCall,
 } from "react-icons/bi";
 import { CgCloseO } from "react-icons/cg";
-import { FaHome, FaMicrophoneAlt } from "react-icons/fa";
-import { BsPeopleCircle } from "react-icons/bs";
-import { GiShoppingCart } from "react-icons/gi";
+import { FaHome, FaShoppingCart } from "react-icons/fa";
+import { BsPeopleCircle, BsPersonLinesFill } from "react-icons/bs";
 import "./MenuMobile.css";
 import { Link } from "react-router-dom";
 
 const MenuMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenListProduct, setIsOpenListProduct] = useState(false);
   const showMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const OpenListProduct = () => {
+    setIsOpenListProduct(!isOpenListProduct);
   };
   return (
     <div className="MenuMobile">
@@ -50,21 +54,28 @@ const MenuMobile = () => {
               <span>Trang Chủ</span>
             </div>
             <div className="MenuMobile__Content_UlMenuleft__About">
-              <FaMicrophoneAlt size="1.2rem" color="rgb(250, 62, 63)" />
+              <BsPersonLinesFill size="1.2rem" color="rgb(250, 62, 63)" />
               <span>Giới Thiệu</span>
             </div>
             <div className="MenuMobile__Content_UlMenuleft__Product">
-              <div>
-                <GiShoppingCart size="1.2rem" color="rgb(250, 62, 63)" />
+              <button
+                type="button"
+                className="m-0 p-0"
+                onClick={() => OpenListProduct()}
+              >
+                <FaShoppingCart size="1.2rem" color="rgb(250, 62, 63)" />
                 <span className="MenuMobile__Content_UlMenuleft__Product__span">
-                  Sản Phẩm
+                  Danh Mục Sản Phẩm
                 </span>
                 <span className="MenuMobile__Content_UlMenuleft__Product__icon">
                   <BiCaretDown size="1rem" />
                 </span>
-              </div>
+              </button>
 
-              <ul className="MenuMobile__Content_UlMenuleft__ProductUL">
+              <ul
+                className="MenuMobile__Content_UlMenuleft__ProductUL"
+                style={{ display: `${isOpenListProduct ? "block" : "none"}` }}
+              >
                 <li>
                   <BiChevronRight size="1rem" />
                   <Link to="/">Page 1</Link>

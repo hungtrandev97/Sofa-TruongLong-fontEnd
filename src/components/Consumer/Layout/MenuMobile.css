@@ -117,3 +117,10 @@
 .MenuMobile__Content_UlMenuleft__ProductUL > li > a {
   color: black;
 }
+.MenuMobile__Content_UlMenuleft__Product > button {
+  border: none;
+  background: none;
+}
+.MenuMobile__Content_UlMenuleft__Product__icon {
+  padding-left: 10px;
+}
