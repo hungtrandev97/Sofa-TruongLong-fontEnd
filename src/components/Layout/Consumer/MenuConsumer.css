@@ -153,6 +153,16 @@ search */
   padding-right: 15px;
 }
 
+.HeaderConsumer__accountSuccess {
+  background: #e4e5e7;
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 0 15px;
+}
+
 .modal {
   background: #000000b8;
 }

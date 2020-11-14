@@ -2,10 +2,11 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
-// import { useSelector, useDispatch } from "react-redux";
-// import { register } from "../../store/actions/actions";
+import { useDispatch } from "react-redux";
+import { registerSuccess } from "../../store/actions/actions";
 import { apiRegister } from "../../services/auth";
-import { NotifySuccess, NotifyError } from "../Notify/Toast";
+import { NotifySuccess, NotifyWarning } from "../Notify/Toast";
+import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import "./AcountUser.css";
 
 const loginSchema = Yup.object().shape({
@@ -18,17 +19,16 @@ const loginSchema = Yup.object().shape({
 });
 
 export default function Register() {
-  // const dispatch = useDispatch();
-  // const { loginUser } = useSelector((state) => state.authRedux);
-  // const { firstName, lastName, email } = loginUser;
-
-  // const [isSubmitting, setSubmitting] = useState(false);
+  const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
     const req = await apiRegister(value);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
+      dispatch(registerSuccess(req.data));
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
     } else {
-      NotifyError("Đăng Ký Tài Khoản", "Đăng Ký Không Thành Công");
+      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
     }
   };
   return (

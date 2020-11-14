@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Row, Col, Modal, ModalBody, ModalHeader } from "reactstrap";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { BiLogIn } from "react-icons/bi";
 import MenuConsumer from "./MenuConsumer";
 import SideNavPage from "../../Consumer/Layout/MenuMobile";
 import FormLogin from "../../Forms/Login";
@@ -11,12 +12,17 @@ import { FromAcount } from "../../../constants/DefaultValues";
 import "./style.css";
 
 export default function Header() {
+  const { loginUser } = useSelector((state) => state.authRedux);
+  const { userName } = loginUser;
   const [modal, setModal] = useState(false);
   const [typeAcount, setTypeAcount] = useState(FromAcount.LOGIN);
   const toggle = () => setModal(!modal);
   const ChangeIsModal = (ismodal, type) => {
     toggle(true);
     setTypeAcount(type);
+  };
+  const logoutAcout = () => {
+    console.log("check");
   };
   return (
     <div className="HeaderConsumer">
@@ -30,20 +36,54 @@ export default function Header() {
           </ModalBody>
         </Modal>
       </div>
-      <div className="HeaderConsumer__account">
-        <button
-          onClick={() => ChangeIsModal(true, FromAcount.LOGIN)}
-          type="button"
-        >
-          Đăng Nhập
-        </button>
-        <button
-          onClick={() => ChangeIsModal(true, FromAcount.REGISTER)}
-          type="button"
-        >
-          Đăng Ký
-        </button>
-      </div>
+      {userName === undefined ? (
+        <div className="HeaderConsumer__account">
+          <button
+            onClick={() => ChangeIsModal(true, FromAcount.LOGIN)}
+            type="button"
+          >
+            Đăng Nhập
+          </button>
+          <button
+            onClick={() => ChangeIsModal(true, FromAcount.REGISTER)}
+            type="button"
+          >
+            Đăng Ký
+          </button>
+        </div>
+      ) : (
+        <div className="HeaderConsumer__accountSuccess">
+          <div>
+            Xin Chào :
+            <span
+              style={{ padding: "0 5px", color: "009fe3", fontWeight: "bold" }}
+            >
+              {" "}
+              {userName}
+            </span>
+          </div>
+          <div>
+            <BiLogIn color="rgb(250, 62, 63)" size="1rem" />
+            <button
+              type="button"
+              style={{
+                padding: "0 5px",
+                color: "rgb(250, 62, 63)",
+                fontWeight: "bold",
+                lineHeight: 2,
+                cursor: "pointer",
+                border: "none",
+                background: "none",
+              }}
+              onClick={() => logoutAcout()}
+            >
+              {" "}
+              Đăng Xuất
+            </button>
+          </div>
+        </div>
+      )}
+
       <Row className="HeaderConsumer__nav screen__Wep">
         <Col lg={3} md={3} sm={12} className="HeaderConsumer__nav__logo">
           logo

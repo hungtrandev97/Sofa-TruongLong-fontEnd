@@ -1,4 +1,3 @@
-import { fromPairs } from "lodash";
 import React from "react";
 import { toast } from "react-toastify";
 import "./Toast.css";
