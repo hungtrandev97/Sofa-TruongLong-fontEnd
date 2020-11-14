@@ -117,3 +117,6 @@
     top: -4px;
   }
 }
+.HeaderConsumer__nav__logo > img {
+  font-size: 14px;
+}

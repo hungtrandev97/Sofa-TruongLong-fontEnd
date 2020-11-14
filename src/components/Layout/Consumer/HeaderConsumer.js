@@ -46,8 +46,16 @@ export default function Header() {
       </div>
       <Row className="HeaderConsumer__nav screen__Wep">
         <Col lg={3} md={3} sm={12} className="HeaderConsumer__nav__logo">
-          logo
+          <div>
+            <img
+              src="/img/default/logotruonglong.png"
+              alt="logo"
+              width="100px"
+              height="100%"
+            />
+          </div>
         </Col>
+
         <Col
           md={0}
           sm={2}

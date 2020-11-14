@@ -5,6 +5,7 @@
 .FooterCosumer__content {
   display: flex;
 }
-.FooterCosumer__content__left {
+
+.FooterCosumer__content__Content {
   width: 100%;
 }

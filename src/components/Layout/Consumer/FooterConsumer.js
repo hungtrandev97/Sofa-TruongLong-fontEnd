@@ -15,7 +15,12 @@ function FooterConsumer() {
           >
             <span>Liên Hệ</span>
           </Col>
-          <Col lg={4} md={4} sm={12}>
+          <Col
+            lg={4}
+            md={4}
+            sm={12}
+            className="FooterCosumer__content__Content__Left"
+          >
             Chính Sách
           </Col>
           <Col lg={4} md={4} sm={12}>
