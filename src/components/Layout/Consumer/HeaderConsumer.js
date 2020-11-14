@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Modal, ModalBody, ModalHeader } from "reactstrap";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineSearch } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import MenuConsumer from "./MenuConsumer";
 import SideNavPage from "../../Consumer/Layout/MenuMobile";
 import FormLogin from "../../Forms/Login";

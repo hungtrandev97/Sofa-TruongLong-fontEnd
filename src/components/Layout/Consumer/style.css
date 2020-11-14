@@ -83,6 +83,7 @@
     height: 100px;
   }
 }
+
 @media (max-width: 576px) {
   .SpanMobile {
     display: inline;
