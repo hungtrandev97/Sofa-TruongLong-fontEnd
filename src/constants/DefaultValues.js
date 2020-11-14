@@ -58,3 +58,10 @@ export const FromAcount = {
   LOGIN: 1,
   REGISTER: 2,
 };
+
+// notify
+export const TYPE_NOTIFY = {
+  SUCCESS: 1,
+  WARNING: 2,
+  ERROR: 3,
+};

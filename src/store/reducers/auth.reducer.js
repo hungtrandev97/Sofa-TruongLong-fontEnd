@@ -4,7 +4,7 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILED,
   LOGOUT_USER,
-  AUTH_REGISTER_SUCCESS,
+  REGISTER_SUCCESS,
   AUTH_RESET_STATUS_LOGIN,
 } from "../actions/actions";
 
@@ -29,17 +29,20 @@ const authReducer = (state = INIT_STATE, action) => {
       };
 
     case LOGIN_USER_SUCCESS: {
-      const { user } = action.payload;
+      const { user, token } = action.payload;
       localStorage.setItem(ACCESS_TOKEN_KEY, action.payload.token.accessToken);
       return {
         ...state,
         loginUser: {
-          accessToken: action.payload.token.accessToken,
+          accessToken: token.accessToken,
           role: user.role,
           userId: user.id,
           email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
+          userName: user.userName,
+          gender: user.gender,
+          address: user.address,
+          numberPhone: user.numberPhone,
+          numberPoint: user.numberPoint,
         },
         loadingLogin: false,
         errorLogin: false,
@@ -52,7 +55,7 @@ const authReducer = (state = INIT_STATE, action) => {
       return { ...state, loginUser: null };
     }
 
-    case AUTH_REGISTER_SUCCESS: {
+    case REGISTER_SUCCESS: {
       const { user, token } = action.payload;
       localStorage.setItem(ACCESS_TOKEN_KEY, token.accessToken);
       return {
@@ -62,8 +65,11 @@ const authReducer = (state = INIT_STATE, action) => {
           role: user.role,
           userId: user.id,
           email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
+          userName: user.userName,
+          gender: user.gender,
+          address: user.address,
+          numberPhone: user.numberPhone,
+          numberPoint: user.numberPoint,
         },
       };
     }
