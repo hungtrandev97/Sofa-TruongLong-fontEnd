@@ -1,13 +1,10 @@
 import { requestPost } from "../helpers/NetworkUtils";
 import { END_POINT, TYPE_NOTIFY } from "../constants/DefaultValues";
 
-export const apiLogin = async ({ userName, password }) => {
+export const apiLogin = async (user) => {
   const response = await requestPost({
     fullUrl: `${END_POINT}/v1/auth/loginCustomer`,
-    params: {
-      userName,
-      password,
-    },
+    params: user,
   });
 
   if (response.statusCode === 200) {
