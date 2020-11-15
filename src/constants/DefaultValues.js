@@ -65,3 +65,8 @@ export const TYPE_NOTIFY = {
   WARNING: 2,
   ERROR: 3,
 };
+
+export const FromCategory = {
+  CREATE: 1,
+  EDIT: 2,
+};

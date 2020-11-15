@@ -18,7 +18,6 @@ function* loginWithPassword({ payload }) {
     if (response.status) {
       yield put(loginUserSuccess(response.data.user, response.data.token));
       const userRole = response.data.user.role;
-      console.log(userRole);
       if (userRole === ROLE.ADMIN) {
         history.push("/admin/consumers");
       } else if (userRole === ROLE.PATIENT) {
