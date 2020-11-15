@@ -18,6 +18,9 @@ function CategoryPage() {
   const tableData = {
     columns,
     data,
+    filterPlaceholder: "Tìm kiếm",
+    export: false,
+    print: false,
   };
   return (
     <div className="Category">
@@ -49,6 +52,7 @@ function CategoryPage() {
               selectableRowsVosystemOnly
               selectableRowsNoSelectAll
               defaultSortField="id"
+              paginationComponentOptions={{ noRowsPerPage: true }}
             />
           </DataTableExtensions>
         </CardBody>
