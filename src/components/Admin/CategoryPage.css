@@ -7,11 +7,12 @@
   float: right;
   padding-right: 10px;
 }
-
+.data-table-extensions {
+  padding: 0px;
+}
 .data-table-extensions > .data-table-extensions-filter {
   display: flex;
   align-items: center;
-  float: right;
   border: 1px solid #8080803d;
   border-radius: 10px;
   padding-left: 15px;

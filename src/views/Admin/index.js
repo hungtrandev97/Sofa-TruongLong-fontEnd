@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { withRouter, Switch, Redirect, Route } from "react-router-dom";
 import CategoryPage from "../../components/Admin/CategoryPage";
+import ProductPage from "../../components/Admin/ProductPage";
 import hcp from "../../components/Admin/hcp";
 import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
 
@@ -26,6 +27,11 @@ function Admin(props) {
                 exact
                 path={`${match.url}/categoryPage`}
                 component={CategoryPage}
+              />
+              <Route
+                exact
+                path={`${match.url}/productPage`}
+                component={ProductPage}
               />
               <Route exact path={`${match.url}/hcp`} component={hcp} />
             </Switch>

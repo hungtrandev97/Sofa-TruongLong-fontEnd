@@ -70,3 +70,7 @@ export const FromCategory = {
   CREATE: 1,
   EDIT: 2,
 };
+export const FromProduct = {
+  CREATE: 1,
+  EDIT: 2,
+};

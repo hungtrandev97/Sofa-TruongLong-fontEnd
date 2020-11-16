@@ -57,7 +57,7 @@ const AdminMenu = [
   },
   {
     name: "Sản Phẩm",
-    path: "hcp",
+    path: "productPage",
     icon: "icon-user-female",
   },
   {

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import DataTable from "react-data-table-component";
+import DataTableExtensions from "react-data-table-component-extensions";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,50 +11,44 @@ import {
   ModalBody,
   ModalHeader,
 } from "reactstrap";
-import { useSelector } from "react-redux";
-import DataTable from "react-data-table-component";
-import DataTableExtensions from "react-data-table-component-extensions";
-import { Categorycolumns } from "./Columndata";
-import { PAGE_SIZE, FromCategory } from "../../constants/DefaultValues";
-import "react-data-table-component-extensions/dist/index.css";
-import FormCreateCategory from "./FormCreateCategory";
-import FormEditCategory from "./FormEditCategory";
-import "./CategoryPage.css";
+import { PAGE_SIZE, FromProduct } from "../../constants/DefaultValues";
+import FormEditProduct from "./FormEditProduct";
+import FormCreateProduct from "./FormCreateProduct";
+import "./Product.css";
 
-function CategoryPage() {
-  const { dataCategory } = useSelector((state) => state.categoryRedux);
+export default function ProductPage() {
   const tableData = {
-    columns: Categorycolumns,
-    data: dataCategory,
-    filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
   };
   const [modal, setModal] = useState(false);
-  const [typeCategory, setTypeCategory] = useState(FromCategory.CREATE);
+  const [typeProduct, setTypeProduct] = useState(FromProduct.CREATE);
   const toggle = () => setModal(!modal);
   const ChangeIsModal = (ismodal, type) => {
     toggle(true);
-    setTypeCategory(type);
+    setTypeProduct(type);
   };
   return (
-    <div className="Category">
-      <div className="Category__Header">
+    <div className="Product" style={{ padding: "20px" }}>
+      <div className="Product__Header">
         <Breadcrumb>
-          <BreadcrumbItem>home</BreadcrumbItem>
-          <BreadcrumbItem active>List</BreadcrumbItem>
+          <BreadcrumbItem>Danh Sách Sản Phẩm</BreadcrumbItem>
         </Breadcrumb>
       </div>
-      <div className="Category__Modal">
-        <Modal isOpen={modal} toggle={toggle}>
+      <div className="Product__Modal">
+        <Modal
+          isOpen={modal}
+          toggle={toggle}
+          // style={{ overflow: "scroll", height: "500px" }}
+        >
           <ModalHeader toggle={toggle}>
-            {typeCategory === FromCategory.CREATE ? "THÊM MỚI" : "CHỈNH SỬA"}
+            {typeProduct === FromProduct.CREATE ? "THÊM MỚI" : "CHỈNH SỬA"}
           </ModalHeader>
           <ModalBody>
-            {typeCategory === FromCategory.CREATE ? (
-              <FormCreateCategory />
+            {typeProduct === FromProduct.CREATE ? (
+              <FormCreateProduct />
             ) : (
-              <FormEditCategory />
+              <FormEditProduct />
             )}
           </ModalBody>
         </Modal>
@@ -64,7 +60,7 @@ function CategoryPage() {
         >
           <button
             type="button"
-            onClick={() => ChangeIsModal(true, FromCategory.CREATE)}
+            onClick={() => ChangeIsModal(true, FromProduct.CREATE)}
           >
             <span className="align-middle">Thêm Mới</span>
           </button>
@@ -74,8 +70,6 @@ function CategoryPage() {
           <DataTableExtensions {...tableData}>
             <DataTable
               noHeader
-              columns={Categorycolumns}
-              data={dataCategory}
               pagination
               // paginationServer
               paginationPerPage={PAGE_SIZE}
@@ -93,4 +87,3 @@ function CategoryPage() {
     </div>
   );
 }
-export default CategoryPage;
