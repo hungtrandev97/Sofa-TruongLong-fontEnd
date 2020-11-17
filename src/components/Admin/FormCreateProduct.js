@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
 import * as Yup from "yup";
+import CKEditor from "ckeditor4-react";
 import { useDispatch } from "react-redux";
 import { apiCreateProduct } from "../../services/product";
 import { NotifySuccess, NotifyError, NotifyWarning } from "../Notify/Toast";
+import { ReactSelect } from "../Forms/select/select";
 import { createProductSuccess } from "../../store/actions/actions";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 
@@ -16,14 +18,18 @@ const createProductSchema = Yup.object().shape({
   // product_image: Yup.object().required("Bắt buộc phải có hình ảnh"),
   product_price: Yup.number().required("Bắt buộc phải có giá sản phẩm"),
   product_price_sale: Yup.number().required(""),
-  product_new: Yup.boolean().required(true),
-  product_size: Yup.string().required("hãy chọn kích thước"),
+  product_new: Yup.number().required(),
 });
+
 function FormCreateProduct() {
+  const [dataTextarea, setDataTextarea] = useState(
+    `const data: '<p>React is really <em>nice</em>!</p>'`
+  );
+  const [categoryValue, setCategoryValue] = useState(1);
+  const [productNewValue, setproductNewValue] = useState(1);
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
     const req = await apiCreateProduct(value);
-    console.log(req, "req");
     if (req.status) {
       NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
       dispatch(createProductSuccess(req.data));
@@ -32,6 +38,10 @@ function FormCreateProduct() {
     } else {
       NotifyError("Thêm Sản Phẩm", `${req.message}`);
     }
+  };
+  const ChangeTextarea = (changeEvent) => {
+    console.log(changeEvent.editor.getData(), "changeEvent");
+    setDataTextarea(changeEvent.editor.getData());
   };
   return (
     <Formik
@@ -44,34 +54,34 @@ function FormCreateProduct() {
         product_price: "",
         product_price_sale: "",
         product_new: "",
-        product_size: "",
       }}
       validationSchema={createProductSchema}
       onSubmit={(values) => {
-        console.log(values);
         onFinalSubmit(values);
       }}
     >
       {({ errors, touched }) => (
         <Form>
           <FormGroup>
-            <Label for="_category" className="font-ob-bold">
-              Tên Danh Mục Sản Phẩm
-            </Label>
-            {errors._category && touched._category ? (
-              <div className="invalid-feedback d-block">{errors._category}</div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="text"
-              name="_category"
-              placeholder="Nhập Tên Danh Mục"
-              autoComplete="category"
+            <ReactSelect
+              label="Tên Danh Mục Sản Phẩm"
+              options={[
+                { value: 1, label: "Female" },
+                { value: 2, label: "Male" },
+                { value: 3, label: "Female" },
+              ]}
+              nameSelect="_category"
+              optionsPlaceholder="Select Gender"
+              isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setCategoryValue(selectedOpt.value);
+              }}
+              selectedValue={categoryValue}
             />
           </FormGroup>
           <FormGroup>
             <Label for="product_title" className="font-ob-bold">
-              Thêm Sản Phẩm
+              Tên Sản Phẩm
             </Label>
             {errors.product_title && touched.product_title ? (
               <div className="invalid-feedback d-block">
@@ -97,7 +107,7 @@ function FormCreateProduct() {
             ) : null}
             <Field
               className="form-control"
-              type="text"
+              type="number"
               name="product_code"
               placeholder="Nhập Mã Sản Phẩm"
               autoComplete="productCode"
@@ -112,17 +122,33 @@ function FormCreateProduct() {
                 {errors.product_discript}
               </div>
             ) : null}
+            <div>
+              <CKEditor
+                data={dataTextarea}
+                onChange={(value) => ChangeTextarea(value)}
+              />
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <Label for="product_image" className="font-ob-bold">
+              Thêm Hình Chính Sản Phẩm
+            </Label>
+            {errors.product_image && touched.product_image ? (
+              <div className="invalid-feedback d-block">
+                {errors.product_image}
+              </div>
+            ) : null}
             <Field
               className="form-control"
               type="text"
-              name="product_discript"
-              placeholder="Nhập Mô Tả Sản Phẩm"
-              autoComplete="productDiscript"
+              name="product_image"
+              placeholder="Thêm Hình"
+              autoComplete="productImage"
             />
           </FormGroup>
           <FormGroup>
             <Label for="product_image" className="font-ob-bold">
-              Thêm Hình Sản Phẩm
+              Thêm Hình Phụ Sản Phẩm
             </Label>
             {errors.product_image && touched.product_image ? (
               <div className="invalid-feedback d-block">
@@ -148,7 +174,7 @@ function FormCreateProduct() {
             ) : null}
             <Field
               className="form-control"
-              type="text"
+              type="number"
               name="product_price"
               placeholder="Thêm Giá"
               autoComplete="productPrice"
@@ -165,44 +191,26 @@ function FormCreateProduct() {
             ) : null}
             <Field
               className="form-control"
-              type="text"
+              type="number"
               name="product_price_sale"
               placeholder="Thêm Giá Khuyến Mãi"
               autoComplete="productPriceSale"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="product_new" className="font-ob-bold">
-              Sản Phẩm Mới
-            </Label>
-            {errors.product_new && touched.product_new ? (
-              <div className="invalid-feedback d-block">
-                {errors.product_new}
-              </div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="text"
-              name="product_new"
-              placeholder="Thêm Sản Phẩm Mới"
-              autoComplete="productNew"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="product_size" className="font-ob-bold">
-              Kích Thước
-            </Label>
-            {errors.product_size && touched.product_size ? (
-              <div className="invalid-feedback d-block">
-                {errors.product_size}
-              </div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="text"
-              name="product_size"
-              placeholder="Thêm Kích Thước"
-              autoComplete="productSize"
+            <ReactSelect
+              label="Sản Phẩm Mới"
+              options={[
+                { value: 1, label: "Có" },
+                { value: 2, label: "Không" },
+              ]}
+              nameSelect="ProductNew"
+              optionsPlaceholder="Sản phẩm mới"
+              isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setproductNewValue(selectedOpt.value);
+              }}
+              selectedValue={productNewValue}
             />
           </FormGroup>
           <Button type="submit" color="primary" className="Create__Button">
