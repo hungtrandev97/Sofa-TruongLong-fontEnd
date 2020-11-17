@@ -3,7 +3,7 @@ import { END_POINT, TYPE_NOTIFY } from "../constants/DefaultValues";
 
 export const apiLogin = async (user) => {
   const response = await requestPost({
-    fullUrl: `${END_POINT}/v1/auth/loginCustomer`,
+    fullUrl: `${END_POINT}/v1/auth/loginAcount`,
     params: user,
   });
 
