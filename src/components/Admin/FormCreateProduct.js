@@ -182,7 +182,7 @@ function FormCreateProduct() {
             ) : null}
             <Field
               className="form-control"
-              type="text"
+              type="checkbox"
               name="product_new"
               placeholder="Thêm Sản Phẩm Mới"
               autoComplete="productNew"

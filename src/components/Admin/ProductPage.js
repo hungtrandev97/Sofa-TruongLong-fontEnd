@@ -29,8 +29,15 @@ export default function ProductPage() {
     setTypeProduct(type);
   };
   return (
-    <div className="Product" style={{ padding: "20px" }}>
-      <div className="Product__Header">
+    <div className="Product">
+      <div
+        className="Product__Header"
+        style={{
+          paddingTop: "10px",
+          background: "#80808026",
+          fontSize: "15px",
+        }}
+      >
         <Breadcrumb>
           <BreadcrumbItem>Danh Sách Sản Phẩm</BreadcrumbItem>
         </Breadcrumb>
