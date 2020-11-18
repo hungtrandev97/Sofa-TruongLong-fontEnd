@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,10 +9,11 @@ import {
   ModalBody,
   ModalHeader,
 } from "reactstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { Categorycolumns } from "./Columndata";
+import { getAllCategory } from "../../store/actions/actions";
 import { PAGE_SIZE, FromCategory } from "../../constants/DefaultValues";
 import "react-data-table-component-extensions/dist/index.css";
 import FormCreateCategory from "./FormCreateCategory";
@@ -20,6 +21,10 @@ import FormEditCategory from "./FormEditCategory";
 import "./CategoryPage.css";
 
 function CategoryPage() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllCategory());
+  }, []);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
   const tableData = {
     columns: Categorycolumns,

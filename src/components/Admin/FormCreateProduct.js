@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
+import { useSelector, useDispatch } from "react-redux";
 import { Button, FormGroup, Label } from "reactstrap";
 import * as Yup from "yup";
 import CKEditor from "ckeditor4-react";
-import { useDispatch } from "react-redux";
 import { apiCreateProduct } from "../../services/product";
 import { NotifySuccess, NotifyError, NotifyWarning } from "../Notify/Toast";
 import { ReactSelect } from "../Forms/select/select";
@@ -22,6 +22,7 @@ const createProductSchema = Yup.object().shape({
 });
 
 function FormCreateProduct() {
+  const { dataCategory } = useSelector((state) => state.categoryRedux);
   const [dataTextarea, setDataTextarea] = useState(
     `const data: '<p>React is really <em>nice</em>!</p>'`
   );
@@ -65,11 +66,7 @@ function FormCreateProduct() {
           <FormGroup>
             <ReactSelect
               label="Tên Danh Mục Sản Phẩm"
-              options={[
-                { value: 1, label: "Female" },
-                { value: 2, label: "Male" },
-                { value: 3, label: "Female" },
-              ]}
+              options={dataCategory}
               nameSelect="_category"
               optionsPlaceholder="Select Gender"
               isClearable={false}

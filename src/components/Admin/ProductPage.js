@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import {
@@ -17,6 +18,8 @@ import FormCreateProduct from "./FormCreateProduct";
 import "./Product.css";
 
 export default function ProductPage() {
+  // const dispatch = useDispatch();
+
   const tableData = {
     export: false,
     print: false,
