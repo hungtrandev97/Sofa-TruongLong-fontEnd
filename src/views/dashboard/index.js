@@ -11,7 +11,6 @@ function Home({ location, match }) {
       <ChatBox />
       <Switch>
         <Route exact path={`${match.url}/`} component={HomePage} />
-
         <Redirect to="/error" />
       </Switch>
     </BaseConsumer>

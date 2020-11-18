@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-underscore-dangle */
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, FormGroup, Label } from "reactstrap";
@@ -11,26 +12,48 @@ import { createProductSuccess } from "../../store/actions/actions";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 
 const createProductSchema = Yup.object().shape({
-  _category: Yup.string().required("Tên Danh Mục Không Được Rỗng"),
   product_title: Yup.string().required("Tên Sản Phẩm Không Được Rỗng"),
   product_code: Yup.number().required("Mã Sản Phẩm Không Được Rỗng"),
-  product_discript: Yup.string().required("Mô Tả Không Được Rỗng"),
-  // product_image: Yup.object().required("Bắt buộc phải có hình ảnh"),
   product_price: Yup.number().required("Bắt buộc phải có giá sản phẩm"),
   product_price_sale: Yup.number().required(""),
-  product_new: Yup.number().required(),
 });
 
 function FormCreateProduct() {
   const { dataCategory } = useSelector((state) => state.categoryRedux);
+  const [categoryValue, setCategoryValue] = useState("");
+  const [productNewValue, setproductNewValue] = useState(1);
   const [dataTextarea, setDataTextarea] = useState(
     `const data: '<p>React is really <em>nice</em>!</p>'`
   );
-  const [categoryValue, setCategoryValue] = useState(1);
-  const [productNewValue, setproductNewValue] = useState(1);
+
+  const dataCategoryDefault = [];
+  const dataConcat = [];
+  // const children = [];
+  dataCategory.forEach((item) => {
+    dataCategoryDefault.push({
+      value: `${item._id}`,
+      label: `${item.category_title}`,
+    });
+  });
+  useEffect(() => {
+    setCategoryValue(dataCategory[0]._id);
+  }, []);
+
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
-    const req = await apiCreateProduct(value);
+    console.log(value);
+    const concatData = {
+      _category: categoryValue,
+      product_new: productNewValue,
+      product_discript: dataTextarea,
+      product_title: value.product_title,
+      product_code: value.product_code,
+      product_imageMain: "abc.png",
+      product_image: ["abc.png", "pngc.png"],
+      product_price: value.product_price,
+      product_price_sale: value.product_price_sale,
+    };
+    const req = await apiCreateProduct(concatData);
     if (req.status) {
       NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
       dispatch(createProductSuccess(req.data));
@@ -41,20 +64,16 @@ function FormCreateProduct() {
     }
   };
   const ChangeTextarea = (changeEvent) => {
-    console.log(changeEvent.editor.getData(), "changeEvent");
     setDataTextarea(changeEvent.editor.getData());
   };
   return (
     <Formik
       initialValues={{
-        _category: "",
-        product_title: "",
-        product_code: "",
-        product_discript: "",
-        product_image: "",
-        product_price: "",
-        product_price_sale: "",
-        product_new: "",
+        product_title: "hungaaaa",
+        product_code: "123",
+        product_image: "21312.png",
+        product_price: "123123",
+        product_price_sale: "11111",
       }}
       validationSchema={createProductSchema}
       onSubmit={(values) => {
@@ -66,7 +85,7 @@ function FormCreateProduct() {
           <FormGroup>
             <ReactSelect
               label="Tên Danh Mục Sản Phẩm"
-              options={dataCategory}
+              options={dataCategoryDefault}
               nameSelect="_category"
               optionsPlaceholder="Select Gender"
               isClearable={false}

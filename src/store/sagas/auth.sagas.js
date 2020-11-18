@@ -19,11 +19,11 @@ function* loginWithPassword({ payload }) {
       yield put(loginUserSuccess(response.data.user, response.data.token));
       const userRole = response.data.user.role;
       if (userRole === ROLE.ADMIN) {
-        history.push("/admin/categoryPage");
-      } else if (userRole === ROLE.PATIENT) {
-        history.push("/trang-chu");
-      } else {
         history.push("/admin");
+      } else if (userRole === ROLE.PATIENT) {
+        history.push("/");
+      } else {
+        history.push("/");
       }
     } else {
       yield put(loginUserFailed());

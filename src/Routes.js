@@ -6,7 +6,7 @@ import {
   Switch,
   Route,
   Redirect,
-  BrowserRouter,
+  BrowserRouter as Router,
 } from "react-router-dom";
 import history from "./history";
 import { ROLE, ACCESS_TOKEN_KEY } from "./constants/DefaultValues";
@@ -61,11 +61,11 @@ const Routes = (props) => {
     loginUser.accessToken === localStorage.getItem(ACCESS_TOKEN_KEY);
 
   return (
-    <BrowserRouter history={history}>
+    <Router history={history}>
       <Switch>
         <PrivateRoute
           path="/consumer"
-          roles={[ROLE.ADMIN]}
+          roles={[ROLE.PATIENT]}
           loginUser={loginUser}
           component={DashboardView}
         />
@@ -81,7 +81,7 @@ const Routes = (props) => {
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 
