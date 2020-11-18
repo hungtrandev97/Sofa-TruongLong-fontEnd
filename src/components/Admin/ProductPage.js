@@ -16,6 +16,7 @@ import { PAGE_SIZE, FromProduct } from "../../constants/DefaultValues";
 import FormEditProduct from "./FormEditProduct";
 import FormCreateProduct from "./FormCreateProduct";
 import "./Product.css";
+import { Link } from "react-router-dom";
 
 export default function ProductPage() {
   // const dispatch = useDispatch();
@@ -68,12 +69,9 @@ export default function ProductPage() {
           className="Button__add"
           style={{ padding: "0px 40px 0px 0px" }}
         >
-          <button
-            type="button"
-            onClick={() => ChangeIsModal(true, FromProduct.CREATE)}
-          >
+          <Link to="/admin/createProduct" className="Product__LinkNew">
             <span className="align-middle">Thêm Mới</span>
-          </button>
+          </Link>
         </CardHeader>
         <CardBody>
           {/* <div>Get Data Has Error</div> */}

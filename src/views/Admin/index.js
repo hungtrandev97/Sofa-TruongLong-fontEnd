@@ -6,6 +6,7 @@ import CategoryPage from "../../components/Admin/CategoryPage";
 import ProductPage from "../../components/Admin/ProductPage";
 import hcp from "../../components/Admin/hcp";
 import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
+import CreateProduct from "../../components/Admin/CreateProduct";
 
 function Admin(props) {
   const { location, match } = props;
@@ -28,6 +29,11 @@ function Admin(props) {
                 exact
                 path={`${match.url}/productPage`}
                 component={ProductPage}
+              />
+              <Route
+                exact
+                path={`${match.url}/createProduct`}
+                component={CreateProduct}
               />
               <Route exact path={`${match.url}/hcp`} component={hcp} />
             </Switch>
