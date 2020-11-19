@@ -1,5 +1,5 @@
 // Modernizr
-import "./modernizr";
+// import "./modernizr";
 // Whirl
 // import "whirl/dist/whirl.css";
 // // Font Awesome
@@ -10,4 +10,4 @@ import "./modernizr";
 // // Animate.CSS
 // import "animate.css/animate.min.css";
 // Simple line icons
-import "simple-line-icons/css/simple-line-icons.css";
+// import "simple-line-icons/css/simple-line-icons.css";

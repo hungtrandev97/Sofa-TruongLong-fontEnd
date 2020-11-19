@@ -1,5 +1,9 @@
 .HeaderConsumer {
   background-color: #f5f5f5;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  top: 0;
 }
 
 .HeaderConsumer__account {
@@ -67,4 +71,52 @@
   padding-left: 13px;
   font-size: 13px;
   padding-top: 6px;
+}
+.SpanMobile {
+  display: none;
+}
+@media (max-width: 768px) {
+  .HeaderConsumer__nav__logo {
+    text-align: center;
+  }
+  .HeaderConsumer__nav {
+    height: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .SpanMobile {
+    display: inline;
+    position: absolute;
+    color: #fff;
+    background-color: rgb(250, 62, 63);
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    top: 10px;
+  }
+  .SpanMobile > span {
+    text-align: center;
+    font-size: 10px;
+    /* line-height: 0; */
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: end;
+    align-items: center;
+    color: #fff;
+  }
+}
+@media (max-width: 360px) {
+  .SpanMobile {
+    right: -4px;
+    top: -4px;
+  }
+}
+.HeaderConsumer__nav__logo > img {
+  font-size: 14px;
 }

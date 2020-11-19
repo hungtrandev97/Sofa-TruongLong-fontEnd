@@ -121,6 +121,8 @@ $tablet-landscape: 1025px;
   .sidebar:not(.show-scrollbar) {
     margin-right: -$scrollbar-wd;
     overflow-y: scroll;
+    padding-top: 30px;
+    background: whitesmoke;
   }
 }
 

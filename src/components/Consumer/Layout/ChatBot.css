@@ -1,0 +1,20 @@
+.chatbox {
+  position: fixed;
+  bottom: 30px;
+  z-index: 998;
+  right: 30px;
+}
+
+.chatbox_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbox_content_link {
+  width: 40px;
+  padding: 10px 0;
+}
+
+.chatbox_content_link > img {
+  width: 100%;
+}

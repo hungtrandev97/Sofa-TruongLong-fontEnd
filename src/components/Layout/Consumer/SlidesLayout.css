@@ -10,7 +10,7 @@
 }
 
 .swiper-wrapper {
-  height: 800px !important;
+  height: 800px;
 }
 
 .swiper-slide {
@@ -92,5 +92,15 @@
 @media (min-width: 768px) {
   .LoginSwiper__introText_LongText {
     width: 320px;
+  }
+}
+@media (max-width: 768px) {
+  .swiper-wrapper {
+    height: 350px;
+  }
+}
+@media (max-width: 426px) {
+  .swiper-wrapper {
+    height: 250px;
   }
 }

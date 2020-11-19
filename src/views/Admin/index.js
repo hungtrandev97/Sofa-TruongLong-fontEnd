@@ -1,8 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { withRouter, Switch, Redirect } from "react-router-dom";
+import { withRouter, Switch, Route } from "react-router-dom";
+import CategoryPage from "../../components/Admin/CategoryPage";
+import ProductPage from "../../components/Admin/ProductPage";
+import hcp from "../../components/Admin/hcp";
 import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
+import CreateProduct from "../../components/Admin/CreateProduct";
+import OderPage from "../../components/Admin/OderPage";
+import AdminAccountManagement from "../../components/Admin/AdminAccountManagement";
+import Statistical from "../../components/Admin/Statistical";
+import SettingAdmin from "../../components/Admin/SettingAdmin";
 
 function Admin(props) {
   const { location, match } = props;
@@ -20,10 +28,29 @@ function Admin(props) {
         >
           <div>
             <Switch location={location}>
-              <Redirect
-                exact
-                from={`${match.url}`}
-                to={`${match.url}/consumers`}
+              <Route path={`${match.url}`} exact component={CategoryPage} />
+              <Route path={`${match.url}/category`} component={CategoryPage} />
+              <Route
+                path={`${match.url}/productPage`}
+                component={ProductPage}
+              />
+              <Route
+                path={`${match.url}/createProduct`}
+                component={CreateProduct}
+              />
+              <Route path={`${match.url}/OderPage`} component={OderPage} />
+              <Route
+                path={`${match.url}/AdminAccountManagement`}
+                component={AdminAccountManagement}
+              />
+              <Route
+                path={`${match.url}/Statistical`}
+                component={Statistical}
+              />
+
+              <Route
+                path={`${match.url}/SettingAdmin`}
+                component={SettingAdmin}
               />
             </Switch>
           </div>
@@ -47,7 +74,7 @@ Admin.defaultProps = {
     url: "/admin",
   },
   location: {
-    pathname: "/admin/dashboard",
+    pathname: "/admin",
   },
 };
 

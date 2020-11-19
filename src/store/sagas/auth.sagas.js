@@ -1,6 +1,7 @@
 import { all, fork, call, put, takeEvery } from "redux-saga/effects";
 import history from "../../history";
 import { ROLE } from "../../constants/DefaultValues";
+import { apiLogin } from "../../services/auth";
 
 import {
   LOGIN_USER,
@@ -10,18 +11,17 @@ import {
   logoutUserSuccess,
   logoutUserFailed,
 } from "../actions/actions";
-import { apiLogin } from "../../services/auth";
 
 function* loginWithPassword({ payload }) {
   try {
-    const response = yield call(apiLogin, payload.user);
+    const response = yield call(apiLogin, payload);
     if (response.status) {
       yield put(loginUserSuccess(response.data.user, response.data.token));
       const userRole = response.data.user.role;
       if (userRole === ROLE.ADMIN) {
         history.push("/admin");
       } else if (userRole === ROLE.PATIENT) {
-        history.push("/consumer");
+        history.push("/trang-chu");
       } else {
         history.push("/");
       }

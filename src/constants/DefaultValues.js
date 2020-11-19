@@ -53,3 +53,24 @@ export const RACE_OPTS = [
   { label: "Vietnamese", value: "Vietnamese" },
   { label: "Others", value: "Others" },
 ];
+
+export const FromAcount = {
+  LOGIN: 1,
+  REGISTER: 2,
+};
+
+// notify
+export const TYPE_NOTIFY = {
+  SUCCESS: 1,
+  WARNING: 2,
+  ERROR: 3,
+};
+
+export const FromCategory = {
+  CREATE: 1,
+  EDIT: 2,
+};
+export const FromProduct = {
+  CREATE: 1,
+  EDIT: 2,
+};

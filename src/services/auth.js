@@ -1,13 +1,10 @@
 import { requestPost } from "../helpers/NetworkUtils";
-import { END_POINT } from "../constants/DefaultValues";
+import { END_POINT, TYPE_NOTIFY } from "../constants/DefaultValues";
 
-export const apiLogin = async ({ userName, password }) => {
+export const apiLogin = async (user) => {
   const response = await requestPost({
-    fullUrl: `${END_POINT}/v1/auth/loginCustomer`,
-    params: {
-      userName,
-      password,
-    },
+    fullUrl: `${END_POINT}/v1/auth/loginAcount`,
+    params: user,
   });
 
   if (response.statusCode === 200) {
@@ -25,7 +22,7 @@ export const apiLogin = async ({ userName, password }) => {
 
 export const apiRegister = async (user) => {
   const response = await requestPost({
-    fullUrl: `${END_POINT}/auth/register`,
+    fullUrl: `${END_POINT}/v1/auth/register`,
     params: user,
     bearerToken: null,
   });
@@ -33,12 +30,21 @@ export const apiRegister = async (user) => {
     const { body } = response;
     return {
       status: true,
+      type: TYPE_NOTIFY.SUCCESS,
       data: body,
+    };
+  }
+  if (response.statusCode === 250) {
+    return {
+      status: false,
+      type: TYPE_NOTIFY.WARNING,
+      message: response.body.message,
     };
   }
   return {
     status: false,
-    msg: "",
+    type: TYPE_NOTIFY.ERROR,
+    message: "Email đã tồn tại",
     data: response,
   };
 };
