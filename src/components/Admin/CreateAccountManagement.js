@@ -1,8 +1,8 @@
 import React from "react";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import FormCreateProduct from "./FormCreateProduct";
+import FromCreateAccountManagement from "./FromCreateAccountManagement";
 
-export default function CreateProduct() {
+export default function CreateAccountManagement() {
   return (
     <div>
       <div
@@ -14,11 +14,11 @@ export default function CreateProduct() {
       >
         <Breadcrumb>
           <BreadcrumbItem>Admin</BreadcrumbItem>
-          <BreadcrumbItem active>Thêm Mới Sản Phẩm</BreadcrumbItem>
+          <BreadcrumbItem active>Thêm Mới Tài Khoản</BreadcrumbItem>
         </Breadcrumb>
       </div>
       <div style={{ padding: "30px 130px 30px 130px" }}>
-        <FormCreateProduct />
+        <FromCreateAccountManagement />
       </div>
     </div>
   );

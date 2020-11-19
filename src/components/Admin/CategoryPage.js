@@ -45,8 +45,8 @@ function CategoryPage() {
     <div className="Category">
       <div className="Category__Header">
         <Breadcrumb>
-          <BreadcrumbItem>home</BreadcrumbItem>
-          <BreadcrumbItem active>List</BreadcrumbItem>
+          <BreadcrumbItem>Admin</BreadcrumbItem>
+          <BreadcrumbItem active>Danh Mục Sản Phẩm</BreadcrumbItem>
         </Breadcrumb>
       </div>
       <div className="Category__Modal">

@@ -36,7 +36,8 @@ export default function AdminAccountManagement() {
         }}
       >
         <Breadcrumb>
-          <BreadcrumbItem>Quản Lý Tài Khoản Admin</BreadcrumbItem>
+          <BreadcrumbItem>Admin</BreadcrumbItem>
+          <BreadcrumbItem active>Quản Lý Tài Khoản</BreadcrumbItem>
         </Breadcrumb>
       </div>
       <Card>
@@ -44,7 +45,10 @@ export default function AdminAccountManagement() {
           className="Button__add"
           style={{ padding: "0px 40px 0px 0px" }}
         >
-          <Link to="/admin/FromCreateAccountManagement">
+          <Link
+            to="/admin/CreateAccountManagement"
+            className="AccountManagement__LinkNew"
+          >
             <span className="align-middle">Thêm Mới</span>
           </Link>
         </CardHeader>
