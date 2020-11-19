@@ -28,35 +28,27 @@ function Admin(props) {
         >
           <div>
             <Switch location={location}>
-              <Route exact path={`${match.url}`} component={CategoryPage} />
               <Route
+                path={`${match.url}category`}
                 exact
-                path={`${match.url}/productPage`}
-                component={ProductPage}
+                component={CategoryPage}
               />
+              <Route path={`${match.url}productPage`} component={ProductPage} />
               <Route
-                exact
-                path={`${match.url}/createProduct`}
+                path={`${match.url}createProduct`}
                 component={CreateProduct}
               />
+              <Route path={`${match.url}/OderPage`} component={OderPage} />
               <Route
-                exact
-                path={`${match.url}/OderPage`}
-                component={OderPage}
-              />
-              <Route
-                exact
                 path={`${match.url}/AdminAccountManagement`}
                 component={AdminAccountManagement}
               />
               <Route
-                exact
                 path={`${match.url}/Statistical`}
                 component={Statistical}
               />
 
               <Route
-                exact
                 path={`${match.url}/SettingAdmin`}
                 component={SettingAdmin}
               />

@@ -64,12 +64,6 @@ const Routes = (props) => {
     <Router history={history}>
       <Switch>
         <PrivateRoute
-          path="/consumer"
-          roles={[ROLE.PATIENT]}
-          loginUser={loginUser}
-          component={DashboardView}
-        />
-        <PrivateRoute
           path="/admin"
           roles={[ROLE.ADMIN]}
           loginUser={loginUser}

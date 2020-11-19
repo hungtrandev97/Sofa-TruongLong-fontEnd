@@ -1,5 +1,4 @@
 /* eslint-disable react/prefer-stateless-function */
-
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 
