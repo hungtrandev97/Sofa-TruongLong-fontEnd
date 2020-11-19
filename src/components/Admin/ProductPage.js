@@ -34,7 +34,6 @@ export default function ProductPage() {
     export: false,
     print: false,
   };
-  console.log(dataProductList, "dataProductList");
   return (
     <div className="Product">
       <div

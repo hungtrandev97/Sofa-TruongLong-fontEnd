@@ -52,13 +52,13 @@ const ConsumerMenu = [
 const AdminMenu = [
   {
     name: "Danh Mục Sản Phẩm",
-    path: "/category",
-    icon: "icon-people",
+    path: "category",
+    icon: "",
   },
   {
     name: "Sản Phẩm",
     path: "productPage",
-    icon: "icon-user-female",
+    icon: "",
   },
   {
     name: "Đơn Hàng",

@@ -28,14 +28,14 @@ function Admin(props) {
         >
           <div>
             <Switch location={location}>
+              <Route path={`${match.url}`} exact component={CategoryPage} />
+              <Route path={`${match.url}/category`} component={CategoryPage} />
               <Route
-                path={`${match.url}category`}
-                exact
-                component={CategoryPage}
+                path={`${match.url}/productPage`}
+                component={ProductPage}
               />
-              <Route path={`${match.url}productPage`} component={ProductPage} />
               <Route
-                path={`${match.url}createProduct`}
+                path={`${match.url}/createProduct`}
                 component={CreateProduct}
               />
               <Route path={`${match.url}/OderPage`} component={OderPage} />
