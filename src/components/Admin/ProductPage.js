@@ -122,7 +122,8 @@ export default function ProductPage() {
         }}
       >
         <Breadcrumb>
-          <BreadcrumbItem>Danh Sách Sản Phẩm</BreadcrumbItem>
+          <BreadcrumbItem>Admin</BreadcrumbItem>
+          <BreadcrumbItem active>Danh Sách Sản Phẩm</BreadcrumbItem>
         </Breadcrumb>
       </div>
       <Card>
