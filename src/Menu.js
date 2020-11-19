@@ -62,23 +62,23 @@ const AdminMenu = [
   },
   {
     name: "Đơn Hàng",
-    path: "hcp",
-    icon: "icon-user-female",
+    path: "OderPage",
+    icon: "",
   },
   {
-    name: "Quản Lý Sản Phẩm",
-    path: "hcp",
-    icon: "icon-user-female",
+    name: "Quản Lý Tài Khoản Admin",
+    path: "AdminAccountManagement",
+    icon: "",
   },
   {
-    name: "Danh Mục Thành Viên",
-    path: "hcp",
-    icon: "icon-user-female",
+    name: "Thống Kê",
+    path: "Statistical",
+    icon: "",
   },
   {
-    name: "Tài Khoản",
-    path: "hcp",
-    icon: "icon-user-female",
+    name: "Cài Đặt",
+    path: "SettingAdmin",
+    icon: "",
   },
 ];
 

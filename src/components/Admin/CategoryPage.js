@@ -26,6 +26,7 @@ function CategoryPage() {
     dispatch(getAllCategory());
   }, []);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
+  console.log(dataCategory, "da");
   const tableData = {
     columns: Categorycolumns,
     data: dataCategory,

@@ -7,6 +7,10 @@ import ProductPage from "../../components/Admin/ProductPage";
 import hcp from "../../components/Admin/hcp";
 import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
 import CreateProduct from "../../components/Admin/CreateProduct";
+import OderPage from "../../components/Admin/OderPage";
+import AdminAccountManagement from "../../components/Admin/AdminAccountManagement";
+import Statistical from "../../components/Admin/Statistical";
+import SettingAdmin from "../../components/Admin/SettingAdmin";
 
 function Admin(props) {
   const { location, match } = props;
@@ -35,7 +39,27 @@ function Admin(props) {
                 path={`${match.url}/createProduct`}
                 component={CreateProduct}
               />
-              <Route exact path={`${match.url}/hcp`} component={hcp} />
+              <Route
+                exact
+                path={`${match.url}/OderPage`}
+                component={OderPage}
+              />
+              <Route
+                exact
+                path={`${match.url}/AdminAccountManagement`}
+                component={AdminAccountManagement}
+              />
+              <Route
+                exact
+                path={`${match.url}/Statistical`}
+                component={Statistical}
+              />
+
+              <Route
+                exact
+                path={`${match.url}/SettingAdmin`}
+                component={SettingAdmin}
+              />
             </Switch>
           </div>
         </CSSTransition>

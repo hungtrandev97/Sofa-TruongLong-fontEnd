@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import {
@@ -8,30 +7,34 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Modal,
-  ModalBody,
-  ModalHeader,
 } from "reactstrap";
-import { PAGE_SIZE, FromProduct } from "../../constants/DefaultValues";
-import FormEditProduct from "./FormEditProduct";
-import FormCreateProduct from "./FormCreateProduct";
-import "./Product.css";
 import { Link } from "react-router-dom";
+import { PAGE_SIZE } from "../../constants/DefaultValues";
+import { apiGetAllProduct } from "../../services/product";
+import { Productcolumns } from "./Columndata";
+import "./Product.css";
 
 export default function ProductPage() {
-  // const dispatch = useDispatch();
+  const [dataProductList, setDataProductList] = useState();
+  const callApi = async () => {
+    const req = await apiGetAllProduct();
+    if (req.status) {
+      setDataProductList(req.data.data);
+    }
+  };
+
+  useEffect(() => {
+    callApi();
+  }, []);
 
   const tableData = {
+    columns: Productcolumns,
+    data: dataProductList,
+    filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
   };
-  const [modal, setModal] = useState(false);
-  const [typeProduct, setTypeProduct] = useState(FromProduct.CREATE);
-  const toggle = () => setModal(!modal);
-  const ChangeIsModal = (ismodal, type) => {
-    toggle(true);
-    setTypeProduct(type);
-  };
+  console.log(dataProductList, "dataProductList");
   return (
     <div className="Product">
       <div
@@ -46,24 +49,6 @@ export default function ProductPage() {
           <BreadcrumbItem>Danh Sách Sản Phẩm</BreadcrumbItem>
         </Breadcrumb>
       </div>
-      <div className="Product__Modal">
-        <Modal
-          isOpen={modal}
-          toggle={toggle}
-          // style={{ overflow: "scroll", height: "500px" }}
-        >
-          <ModalHeader toggle={toggle}>
-            {typeProduct === FromProduct.CREATE ? "THÊM MỚI" : "CHỈNH SỬA"}
-          </ModalHeader>
-          <ModalBody>
-            {typeProduct === FromProduct.CREATE ? (
-              <FormCreateProduct />
-            ) : (
-              <FormEditProduct />
-            )}
-          </ModalBody>
-        </Modal>
-      </div>
       <Card>
         <CardHeader
           className="Button__add"
@@ -74,12 +59,12 @@ export default function ProductPage() {
           </Link>
         </CardHeader>
         <CardBody>
-          {/* <div>Get Data Has Error</div> */}
           <DataTableExtensions {...tableData}>
             <DataTable
               noHeader
               pagination
-              // paginationServer
+              columns={Productcolumns}
+              data={dataProductList}
               paginationPerPage={PAGE_SIZE}
               highlightOnHover
               noDataComponent="Danh mục rỗng"

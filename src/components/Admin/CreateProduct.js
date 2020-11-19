@@ -10,7 +10,7 @@ export default function CreateProduct() {
           <BreadcrumbItem>Thêm Mới Sản Phẩm</BreadcrumbItem>
         </Breadcrumb>
       </div>
-      <div style={{ padding: "20px 100px 20px 100px" }}>
+      <div style={{ padding: "30px 130px 30px 130px" }}>
         <FormCreateProduct />
       </div>
     </div>

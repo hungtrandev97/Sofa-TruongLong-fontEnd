@@ -25,7 +25,6 @@ function* CreateCategory({ payload }) {
 function* GetAllCategory() {
   try {
     const response = yield call(apiGetAllCategory);
-    console.log(response, "check");
     if (response.status) {
       yield put(getAllCategorySuccess(response.data));
     } else {
