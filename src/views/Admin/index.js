@@ -11,6 +11,7 @@ import OderPage from "../../components/Admin/OderPage";
 import AdminAccountManagement from "../../components/Admin/AdminAccountManagement";
 import Statistical from "../../components/Admin/Statistical";
 import SettingAdmin from "../../components/Admin/SettingAdmin";
+import FromCreateAccountManagement from "../../components/Admin/FromCreateAccountManagement";
 
 function Admin(props) {
   const { location, match } = props;
@@ -42,6 +43,10 @@ function Admin(props) {
               <Route
                 path={`${match.url}/AdminAccountManagement`}
                 component={AdminAccountManagement}
+              />
+              <Route
+                path={`${match.url}/FromCreateAccountManagement`}
+                component={FromCreateAccountManagement}
               />
               <Route
                 path={`${match.url}/Statistical`}

@@ -142,3 +142,35 @@ export const DataOder = [
     date_create: "11-19-2020",
   },
 ];
+
+export const AdminAccountManagementColumns = [
+  {
+    name: "STT",
+    selector: "serial",
+    sortable: false,
+    center: true,
+    wrap: true,
+    width: "50px",
+  },
+  {
+    name: "Tên Tài Khoản",
+    selector: "AdminAccounr_title",
+    sortable: true,
+  },
+  {
+    name: "Mật Khẩu",
+    selector: "PassWord",
+    sortable: true,
+  },
+];
+
+export const AdminAccountManagementData = [
+  {
+    AdminAccounr_title: "KhanhHung97",
+    PassWord: "******",
+  },
+  {
+    AdminAccounr_title: "HieuPhan",
+    PassWord: "******",
+  },
+];

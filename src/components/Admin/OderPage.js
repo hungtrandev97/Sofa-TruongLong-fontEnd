@@ -7,11 +7,11 @@ import {
   Card,
   CardHeader,
 } from "reactstrap";
-import "./OderPage.css";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
 import { Odercolumns, DataOder } from "./Columndata";
+import "./OderPage.css";
 
 export default function OderPage() {
   const tableData = {
