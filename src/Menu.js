@@ -52,7 +52,7 @@ const ConsumerMenu = [
 const AdminMenu = [
   {
     name: "Danh Mục Sản Phẩm",
-    path: "",
+    path: "/category",
     icon: "icon-people",
   },
   {

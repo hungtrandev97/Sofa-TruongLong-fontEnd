@@ -24,18 +24,17 @@ function Admin(props) {
         >
           <div>
             <Switch location={location}>
-              <Route exact path={`${match.url}`} component={CategoryPage} />
               <Route
+                path={`${match.url}category`}
                 exact
-                path={`${match.url}/productPage`}
-                component={ProductPage}
+                component={CategoryPage}
               />
+              <Route path={`${match.url}productPage`} component={ProductPage} />
               <Route
-                exact
-                path={`${match.url}/createProduct`}
+                path={`${match.url}createProduct`}
                 component={CreateProduct}
               />
-              <Route exact path={`${match.url}/hcp`} component={hcp} />
+              <Route path={`${match.url}hcp`} component={hcp} />
             </Switch>
           </div>
         </CSSTransition>

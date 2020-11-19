@@ -124,7 +124,7 @@ const HomeContent = () => {
           )}
           <div className="HomeContent__product__new">
             <Row>
-              {ListProduct.map((itemproduct) => (
+              {ListProduct.forEach((itemproduct) => (
                 <>
                   {item.id === itemproduct.idCategory ? (
                     <Col lg={3} md={4} ms={6} xs={6}>

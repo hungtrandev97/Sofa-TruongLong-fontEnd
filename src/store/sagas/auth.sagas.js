@@ -1,6 +1,7 @@
 import { all, fork, call, put, takeEvery } from "redux-saga/effects";
 import history from "../../history";
 import { ROLE } from "../../constants/DefaultValues";
+import { apiLogin } from "../../services/auth";
 
 import {
   LOGIN_USER,
@@ -10,7 +11,6 @@ import {
   logoutUserSuccess,
   logoutUserFailed,
 } from "../actions/actions";
-import { apiLogin } from "../../services/auth";
 
 function* loginWithPassword({ payload }) {
   try {
@@ -21,7 +21,7 @@ function* loginWithPassword({ payload }) {
       if (userRole === ROLE.ADMIN) {
         history.push("/admin");
       } else if (userRole === ROLE.PATIENT) {
-        history.push("/");
+        history.push("/trang-chu");
       } else {
         history.push("/");
       }
