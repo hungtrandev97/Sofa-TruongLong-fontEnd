@@ -4,7 +4,6 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { withRouter, Switch, Route } from "react-router-dom";
 import CategoryPage from "../../components/Admin/CategoryPage";
 import ProductPage from "../../components/Admin/ProductPage";
-import hcp from "../../components/Admin/hcp";
 import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
 import CreateProduct from "../../components/Admin/CreateProduct";
 import OderPage from "../../components/Admin/OderPage";

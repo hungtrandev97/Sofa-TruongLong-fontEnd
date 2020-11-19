@@ -7,18 +7,60 @@ import {
   CardBody,
   Modal,
   ModalBody,
+  Badge,
   ModalHeader,
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
+import memoizeOne from "memoize-one";
 import DataTableExtensions from "react-data-table-component-extensions";
-import { Categorycolumns } from "./Columndata";
-import { getAllCategory } from "../../store/actions/actions";
+import moment from "moment";
+import Loader from "../Loaders/Loader";
 import { PAGE_SIZE, FromCategory } from "../../constants/DefaultValues";
+import { getAllCategory } from "../../store/actions/actions";
 import "react-data-table-component-extensions/dist/index.css";
 import FormCreateCategory from "./FormCreateCategory";
 import FormEditCategory from "./FormEditCategory";
 import "./CategoryPage.css";
+
+const columns = memoizeOne((currentPage) => [
+  {
+    name: "S/N",
+    selector: "serial",
+    sortable: false,
+    center: true,
+    wrap: true,
+    width: "50px",
+    // format: (row) => (currentPage - 1) * PAGE_SIZE + (row.serial + 1),
+  },
+  {
+    name: "Tên Danh Mục",
+    selector: "category_title",
+    sortable: true,
+    center: true,
+    wrap: true,
+  },
+  {
+    name: "Thời Gian Tạo Danh Mục",
+    selector: "date_create",
+    sortable: false,
+    center: true,
+    wrap: true,
+    format: (row) => moment(row.date_create).format("DD-MM-DD hh:ss"),
+  },
+  {
+    name: "Sửa",
+    selector: "isDeleted",
+    sortable: false,
+    center: true,
+    wrap: true,
+    format: (row) => (
+      <Badge color={`${row.isDeleted ? "danger" : "success"}`}>
+        {`${row.isDeleted ? "Deleted" : "Actived"}`}
+      </Badge>
+    ),
+  },
+]);
 
 function CategoryPage() {
   const dispatch = useDispatch();
@@ -26,14 +68,17 @@ function CategoryPage() {
     dispatch(getAllCategory());
   }, []);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
-  console.log(dataCategory, "da");
+
+  const currentPage = 1;
+
   const tableData = {
-    columns: Categorycolumns,
+    columns: columns(currentPage),
     data: dataCategory,
     filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
   };
+
   const [modal, setModal] = useState(false);
   const [typeCategory, setTypeCategory] = useState(FromCategory.CREATE);
   const toggle = () => setModal(!modal);
@@ -80,18 +125,17 @@ function CategoryPage() {
           <DataTableExtensions {...tableData}>
             <DataTable
               noHeader
-              columns={Categorycolumns}
+              columns={columns(currentPage)}
               data={dataCategory}
               pagination
-              // paginationServer
               paginationPerPage={PAGE_SIZE}
+              paginationDefaultPage={currentPage}
+              progressComponent={
+                <Loader styles={{ textAlign: "center", margin: "50px auto" }} />
+              }
               highlightOnHover
               noDataComponent="Danh mục rỗng"
-              pointerOnHover
-              selectableRowsVosystemOnly
-              selectableRowsNoSelectAll
               defaultSortField="id"
-              paginationComponentOptions={{ noRowsPerPage: true }}
             />
           </DataTableExtensions>
         </CardBody>
