@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { withRouter, Switch, Route } from "react-router-dom";
+import { withRouter, Switch, Route, Redirect } from "react-router-dom";
 import CategoryPage from "../../components/Admin/CategoryPage";
 import ProductPage from "../../components/Admin/ProductPage";
 import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
@@ -12,8 +12,7 @@ import Statistical from "../../components/Admin/Statistical";
 import SettingAdmin from "../../components/Admin/SettingAdmin";
 import CreateAccountManagement from "../../components/Admin/CreateAccountManagement";
 
-function Admin(props) {
-  const { location, match } = props;
+function Admin({ location, match }) {
   const currentKey = location.pathname.split("/")[1] || "/";
   const timeout = { enter: 500, exit: 500 };
   const animationName = "rag-fadeIn";
@@ -28,7 +27,11 @@ function Admin(props) {
         >
           <div>
             <Switch location={location}>
-              <Route path={`${match.url}`} exact component={CategoryPage} />
+              <Redirect
+                exact
+                from={`${match.url}`}
+                to={`${match.url}/category`}
+              />
               <Route path={`${match.url}/category`} component={CategoryPage} />
               <Route
                 path={`${match.url}/productPage`}
@@ -36,6 +39,10 @@ function Admin(props) {
               />
               <Route
                 path={`${match.url}/createProduct`}
+                component={CreateProduct}
+              />
+              <Route
+                path={`${match.url}/editProduct/:idProduct`}
                 component={CreateProduct}
               />
               <Route path={`${match.url}/OderPage`} component={OderPage} />
@@ -56,6 +63,7 @@ function Admin(props) {
                 path={`${match.url}/SettingAdmin`}
                 component={SettingAdmin}
               />
+              <Redirect to="/error" />
             </Switch>
           </div>
         </CSSTransition>
@@ -78,7 +86,7 @@ Admin.defaultProps = {
     url: "/admin",
   },
   location: {
-    pathname: "/admin",
+    pathname: "/admin/category",
   },
 };
 

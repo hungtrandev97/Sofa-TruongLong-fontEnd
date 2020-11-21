@@ -14,7 +14,6 @@ import memoizeOne from "memoize-one";
 import moment from "moment";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
 import { apiGetAllProduct } from "../../services/product";
-import { Productcolumns } from "./Columndata";
 import "./Product.css";
 
 const columns = memoizeOne((currentPage) => [
@@ -75,6 +74,7 @@ const columns = memoizeOne((currentPage) => [
     name: "Sản Phẩm Mới",
     selector: "product_new",
     sortable: true,
+    format: (row) => <>{row.product_new === 1 ? "Có" : "Không"}</>,
   },
   {
     name: "Sửa",
@@ -82,11 +82,17 @@ const columns = memoizeOne((currentPage) => [
     sortable: false,
     center: true,
     wrap: true,
-    format: (row) => (
-      <Badge color={`${row.isDeleted ? "danger" : "success"}`}>
-        {`${row.isDeleted ? "Deleted" : "Actived"}`}
-      </Badge>
-    ),
+    width: "80px",
+    format: (row) => <Link to={`/admin/editProduct/${row._id}`}>Sửa</Link>,
+  },
+  {
+    name: "xóa",
+    selector: "isDeleted",
+    sortable: false,
+    center: true,
+    wrap: true,
+    width: "80px",
+    cell: (row) => {},
   },
 ]);
 
@@ -98,6 +104,10 @@ export default function ProductPage() {
     if (req.status) {
       setDataProductList(req.data.data);
     }
+  };
+
+  const RemoveProduct = () => {
+    alert("remove");
   };
 
   useEffect(() => {

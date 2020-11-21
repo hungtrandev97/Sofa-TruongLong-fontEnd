@@ -31,6 +31,7 @@ function FormCreateProduct() {
   const [productImage, setProductImage] = useState("");
   const productImages = [];
   const productImagesIndex = [];
+  const concatImageToArray = [];
 
   const getUploadParams = () => {
     return { url: "https://httpbin.org/post" };
@@ -59,10 +60,10 @@ function FormCreateProduct() {
 
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
-    const urlimageIndexFirbase = await productImages.map((item) => {
+    const urlimageIndexFirbase = productImages.map(async (item) => {
       if (item.meta.status === "done") {
-        const urlimageIndex = UploadImagevIEW(item.file);
-        return urlimageIndex;
+        const urlimageIndex = await UploadImagevIEW(item.file);
+        concatImageToArray.push(urlimageIndex);
       }
     });
     const urlImageFirebase = await UploadImagevIEW(productImage);
@@ -73,7 +74,7 @@ function FormCreateProduct() {
       product_title: value.product_title,
       product_code: value.product_code,
       product_imageMain: urlImageFirebase,
-      product_image: [urlimageIndexFirbase],
+      product_image: concatImageToArray,
       product_price: value.product_price,
       product_price_sale: value.product_price_sale,
     };
