@@ -57,7 +57,7 @@ function FormCreateProduct() {
   });
   useEffect(() => {
     setCategoryValue(dataCategory[0]._id);
-  }, []);
+  }, [dataCategory]);
 
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {

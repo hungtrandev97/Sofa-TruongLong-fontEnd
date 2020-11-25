@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 
 import {
@@ -9,7 +10,6 @@ import {
 } from "reactstrap";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
-import memoizeOne from "memoize-one";
 import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -58,7 +58,7 @@ export default function OderPage() {
       center: true,
       wrap: true,
       width: "80px",
-      format: (row) => (
+      format: () => (
         <Link to="/">
           <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
         </Link>
@@ -71,7 +71,7 @@ export default function OderPage() {
       center: true,
       wrap: true,
       width: "80px",
-      cell: (row) => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
+      cell: () => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
     },
   ];
   const tableData = {
