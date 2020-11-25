@@ -10,16 +10,58 @@ import {
   CardBody,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { PAGE_SIZE } from "../../constants/DefaultValues";
-import {
-  AdminAccountManagementColumns,
-  AdminAccountManagementData,
-} from "./Columndata";
+import { AdminAccountManagementData } from "./Columndata";
 import "./AdminAccountManagement.css";
+import memoizeOne from "memoize-one";
+import { AiOutlineEdit } from "react-icons/ai";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { PAGE_SIZE } from "../../constants/DefaultValues";
 
 export default function AdminAccountManagement() {
+  const columns = memoizeOne(() => [
+    {
+      name: "STT",
+      selector: "serial",
+      sortable: false,
+      center: true,
+      wrap: true,
+      width: "50px",
+    },
+    {
+      name: "Tên Tài Khoản",
+      selector: "AdminAccounr_title",
+      sortable: true,
+    },
+    {
+      name: "Mật Khẩu",
+      selector: "PassWord",
+      sortable: true,
+    },
+    {
+      name: "Sửa",
+      selector: "isDeleted",
+      sortable: false,
+      center: true,
+      wrap: true,
+      width: "80px",
+      format: (row) => (
+        <Link>
+          <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
+        </Link>
+      ),
+    },
+    {
+      name: "xóa",
+      selector: "isDeleted",
+      sortable: false,
+      center: true,
+      wrap: true,
+      width: "80px",
+      cell: (row) => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
+    },
+  ]);
   const tableData = {
-    columns: AdminAccountManagementColumns,
+    columns: columns(),
     data: AdminAccountManagementData,
     filterPlaceholder: "Tìm kiếm",
     export: false,
@@ -57,7 +99,7 @@ export default function AdminAccountManagement() {
             <DataTable
               noHeader
               pagination
-              columns={AdminAccountManagementColumns}
+              columns={columns}
               data={AdminAccountManagementData}
               paginationPerPage={PAGE_SIZE}
               highlightOnHover
