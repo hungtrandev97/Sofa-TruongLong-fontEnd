@@ -18,7 +18,7 @@ import { DataOder } from "./Columndata";
 import "./OderPage.css";
 
 export default function OderPage() {
-  const columns = memoizeOne(() => [
+  const columns = () => [
     {
       name: "STT",
       selector: "serial",
@@ -59,7 +59,7 @@ export default function OderPage() {
       wrap: true,
       width: "80px",
       format: (row) => (
-        <Link>
+        <Link to="/">
           <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
         </Link>
       ),
@@ -73,7 +73,7 @@ export default function OderPage() {
       width: "80px",
       cell: (row) => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
     },
-  ]);
+  ];
   const tableData = {
     columns: columns(),
     data: DataOder,
@@ -98,7 +98,7 @@ export default function OderPage() {
           {/* <div>Get Data Has Error</div> */}
           <DataTableExtensions {...tableData}>
             <DataTable
-              columns={columns}
+              columns={columns()}
               data={DataOder}
               noHeader
               pagination

@@ -26,9 +26,6 @@ import FormEditCategory from "./FormEditCategory";
 import "./CategoryPage.css";
 
 function CategoryPage() {
-<<<<<<< HEAD
-  const columns = () => [
-=======
   const [modal, setModal] = useState(false);
   const [typeCategory, setTypeCategory] = useState(FromCategory.CREATE);
   const [removeCategory, setRemoveCategory] = useState(false);
@@ -37,7 +34,7 @@ function CategoryPage() {
     setRemoveCategory(!removeCategory);
   };
   const toggleRemove = () => setRemoveCategory(!removeCategory);
-  const columns = memoizeOne((currentPage) => [
+  const columns = () => [
     {
       name: "S/N",
       selector: "serial",
@@ -47,7 +44,6 @@ function CategoryPage() {
       width: "50px",
       // format: (row) => (currentPage - 1) * PAGE_SIZE + (row.serial + 1),
     },
->>>>>>> 6895ebe9119d7eb3b45819f371f62568dbe266d8
     {
       name: "Tên Danh Mục",
       selector: "category_title",
@@ -126,7 +122,7 @@ function CategoryPage() {
       <div className="Delete__Category__Modal">
         <Modal isOpen={removeCategory} toggle={toggleRemove}>
           <ModalHeader>Bạn Có Chắc Muốn Xóa ?</ModalHeader>
-          <ModalBody toggle={toggleRemove}>
+          <ModalBody>
             <Button type="submit" style={{ margin: "0 20px" }}>
               Có
             </Button>

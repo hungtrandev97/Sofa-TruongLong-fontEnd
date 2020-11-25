@@ -155,7 +155,7 @@ export default function ProductPage() {
       <div className="Delete__Product__Modal">
         <Modal isOpen={removeProduct} toggle={toggleRemove}>
           <ModalHeader>Bạn Có Chắc Chán Muốn Xóa ? </ModalHeader>
-          <ModalBody toggle={toggleRemove}>
+          <ModalBody>
             <Button type="submit" style={{ margin: "0 20px" }}>
               Có
             </Button>
