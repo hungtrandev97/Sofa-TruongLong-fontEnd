@@ -27,7 +27,7 @@ function FormCreateProduct() {
   const [isLoading, setIsLoading] = useState(false);
   const [productNewValue, setproductNewValue] = useState(1);
   const [dataTextarea, setDataTextarea] = useState(
-    `const data: '<p>React is really <em>nice</em>!</p>'`
+    `const data: '<p>Nội dung</p>'`
   );
   const [productImage, setProductImage] = useState("");
 
@@ -62,11 +62,10 @@ function FormCreateProduct() {
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
     setIsLoading(true);
-    productImages.forEach(async (item) => {
-      if (item.meta.status === "done") {
-        const urlimageIndex = await UploadImagevIEW(item.file);
-        await concatImageToArray.push(urlimageIndex);
-      }
+    const uploadImages = productImages.forEach(async (item) => {
+      const urlimageIndex = await UploadImagevIEW(item.file);
+      console.log(urlimageIndex, "===========");
+      concatImageToArray.push(urlimageIndex);
     });
     const urlImageFirebase = await UploadImagevIEW(productImage);
     const concatData = {
@@ -80,6 +79,8 @@ function FormCreateProduct() {
       product_price: value.product_price,
       product_price_sale: value.product_price_sale,
     };
+    console.log(concatData, "concatData");
+    console.log(uploadImages, "concatImageToArray");
     if (urlImageFirebase !== "" && concatImageToArray !== "") {
       const req = await apiCreateProduct(concatData);
       setIsLoading(false);
@@ -131,7 +132,7 @@ function FormCreateProduct() {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages}
-              maxFiles={4}
+              maxFiles={3}
               accept="image/*,audio/*,video/*"
             />
           </FormGroup>

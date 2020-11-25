@@ -58,10 +58,37 @@ export default function ProductPage() {
       ),
     },
     {
-      name: "Hình Ảnh Phụ",
+      name: "Hình Ảnh Phụ 1",
       selector: "product_image",
       sortable: true,
       width: "150px",
+      cell: (row) => (
+        <>
+          <img src={`${row.product_image[0]}`} alt="" width="100" />
+        </>
+      ),
+    },
+    {
+      name: "Hình Ảnh Phụ 2",
+      selector: "product_image",
+      sortable: true,
+      width: "150px",
+      cell: (row) => (
+        <>
+          <img src={`${row.product_image[1]}`} alt="" width="100" />
+        </>
+      ),
+    },
+    {
+      name: "Hình Ảnh Phụ 3",
+      selector: "product_image",
+      sortable: true,
+      width: "150px",
+      cell: (row) => (
+        <>
+          <img src={`${row.product_image[2]}`} alt="" width="100" />
+        </>
+      ),
     },
     {
       name: "Giá Sản Phẩm",
@@ -116,6 +143,7 @@ export default function ProductPage() {
   };
   const callApi = async () => {
     const req = await apiGetAllProduct();
+    console.log(req);
     if (req.status) {
       setDataProductList(req.data.data);
     }
