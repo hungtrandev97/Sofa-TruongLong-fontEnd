@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Breadcrumb,
@@ -7,7 +7,12 @@ import {
   CardBody,
   Card,
   CardHeader,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Button,
 } from "reactstrap";
+
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { Link } from "react-router-dom";
@@ -18,6 +23,7 @@ import { DataOder } from "./Columndata";
 import "./OderPage.css";
 
 export default function OderPage() {
+  const [removeOder, setRemoveOder] = useState(false);
   const columns = () => [
     {
       name: "STT",
@@ -58,8 +64,8 @@ export default function OderPage() {
       center: true,
       wrap: true,
       width: "80px",
-      format: () => (
-        <Link to="/">
+      format: (row) => (
+        <Link to={`/admin/EditOder/${row._id}`}>
           <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
         </Link>
       ),
@@ -71,9 +77,20 @@ export default function OderPage() {
       center: true,
       wrap: true,
       width: "80px",
-      cell: () => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
+      cell: (row) => (
+        <RiDeleteBin6Line
+          // eslint-disable-next-line no-use-before-define
+          onClick={() => removeItem(row._id)}
+          size="1rem"
+          color="rgb(250, 62, 63)"
+        />
+      ),
     },
   ];
+  const removeItem = (id) => {
+    console.log(id);
+    setRemoveOder(true);
+  };
   const tableData = {
     columns: columns(),
     data: DataOder,
@@ -81,8 +98,27 @@ export default function OderPage() {
     export: false,
     print: false,
   };
+  const toggleRemove = () => setRemoveOder(!removeOder);
   return (
     <div className="OderPage">
+      <div className="Delete__Oder__Modal">
+        <Modal isOpen={removeOder} toggle={toggleRemove}>
+          <ModalHeader>Bạn Có Chắc Chán Muốn Xóa ? </ModalHeader>
+          <ModalBody className="Delete__Oder__Modal__Body">
+            <Button type="submit" color="primary" style={{ margin: "0 20px" }}>
+              Có
+            </Button>
+            <Button
+              onClick={() => toggleRemove()}
+              type="submit"
+              style={{ margin: "0 20px" }}
+              color="primary"
+            >
+              Không
+            </Button>
+          </ModalBody>
+        </Modal>
+      </div>
       <div className="OderPage__Header">
         <Breadcrumb>
           <BreadcrumbItem>Admin</BreadcrumbItem>

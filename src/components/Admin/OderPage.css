@@ -3,3 +3,10 @@
   background: #80808026;
   font-size: 15px;
 }
+.Delete__Oder__Modal__Body > button {
+  font-size: 15px;
+  float: right;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}
