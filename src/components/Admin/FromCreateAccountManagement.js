@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { Button, FormGroup, Label } from "reactstrap";
+import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { apiRegister } from "../../services/auth";
@@ -18,9 +18,12 @@ const createAccountSchema = Yup.object().shape({
 });
 
 export default function FromCreateAccountManagement() {
+  const [isLoading, setIsLoading] = useState("");
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
+    setIsLoading(true);
     const req = await apiRegister(value);
+    setIsLoading(false);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
       dispatch(registerSuccess(req.data));
@@ -141,7 +144,13 @@ export default function FromCreateAccountManagement() {
               autoComplete="numberPhone"
             />
           </FormGroup>
-          <Button type="submit" color="primary" className="Account__Button">
+          <Button
+            disabled={isLoading}
+            type="submit"
+            color="primary"
+            className="Account__Button"
+          >
+            {isLoading ? <Spinner size="sm" color="light" /> : ""}
             <span className="ml-50 font-ob-bold"> Tạo Mới </span>
           </Button>
         </Form>

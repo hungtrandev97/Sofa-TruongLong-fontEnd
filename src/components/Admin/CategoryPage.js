@@ -8,6 +8,7 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
+  Button,
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
@@ -26,6 +27,14 @@ import FormEditCategory from "./FormEditCategory";
 import "./CategoryPage.css";
 
 function CategoryPage() {
+  const [modal, setModal] = useState(false);
+  const [typeCategory, setTypeCategory] = useState(FromCategory.CREATE);
+  const [removeCategory, setRemoveCategory] = useState(false);
+  const toggle = () => {
+    setModal(!modal);
+    setRemoveCategory(!removeCategory);
+  };
+  const toggleRemove = () => setRemoveCategory(!removeCategory);
   const columns = memoizeOne((currentPage) => [
     {
       name: "S/N",
@@ -82,7 +91,7 @@ function CategoryPage() {
   ]);
 
   const submit = (id) => {
-    alert(id);
+    setRemoveCategory(true);
   };
 
   const dispatch = useDispatch();
@@ -101,12 +110,10 @@ function CategoryPage() {
     print: false,
   };
 
-  const [modal, setModal] = useState(false);
-  const [typeCategory, setTypeCategory] = useState(FromCategory.CREATE);
-  const toggle = () => setModal(!modal);
   const ChangeIsModal = (ismodal, type) => {
     toggle(true);
     setTypeCategory(type);
+    setRemoveCategory(type);
   };
   return (
     <div className="Category">
@@ -115,6 +122,23 @@ function CategoryPage() {
           <BreadcrumbItem>Admin</BreadcrumbItem>
           <BreadcrumbItem active>Danh Mục Sản Phẩm</BreadcrumbItem>
         </Breadcrumb>
+      </div>
+      <div className="Delete__Category__Modal">
+        <Modal isOpen={removeCategory} toggle={toggleRemove}>
+          <ModalHeader>Bạn Có Chắc Muốn Xóa ?</ModalHeader>
+          <ModalBody toggle={toggleRemove}>
+            <Button type="submit" style={{ margin: "0 20px" }}>
+              Có
+            </Button>
+            <Button
+              onClick={() => toggleRemove()}
+              type="submit"
+              style={{ margin: "0 20px" }}
+            >
+              Không
+            </Button>
+          </ModalBody>
+        </Modal>
       </div>
       <div className="Category__Modal">
         <Modal isOpen={modal} toggle={toggle}>
