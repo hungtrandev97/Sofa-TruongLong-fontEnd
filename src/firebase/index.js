@@ -2,17 +2,14 @@ import firebase from "firebase/app";
 import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCRl8CWaDRsPx1VVufz-DHTjwlPWBaMxl4",
-  authDomain: "sofa-truong-long.firebaseapp.com",
-  databaseURL: "https://sofa-truong-long.firebaseio.com",
-  projectId: "sofa-truong-long",
-  storageBucket: "sofa-truong-long.appspot.com",
-  messagingSenderId: "1029593328094",
-  appId: "1:1029593328094:web:4dc91b1d9272540caf554f",
-  measurementId: "G-TP4RHHWDC3",
+  apiKey: "AIzaSyCdJWu33WZPoRzUiej-cjlxqZfSQNM0wt4",
+  authDomain: "fir-react-image-65f96.firebaseapp.com",
+  databaseURL: "https://fir-react-image-65f96.firebaseio.com",
+  projectId: "fir-react-image-65f96",
+  storageBucket: "fir-react-image-65f96.appspot.com",
+  messagingSenderId: "463222753762",
+  appId: "1:463222753762:web:4c9c524056cc2e833391bb",
 };
 firebase.initializeApp(firebaseConfig);
 
-const storage = firebase.storage();
-
-export { storage, firebase as default };
+export default firebase;

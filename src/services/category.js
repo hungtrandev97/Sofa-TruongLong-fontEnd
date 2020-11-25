@@ -1,10 +1,15 @@
 import { requestGet, requestPost } from "../helpers/NetworkUtils";
-import { END_POINT, TYPE_NOTIFY } from "../constants/DefaultValues";
+import {
+  END_POINT,
+  TYPE_NOTIFY,
+  ACCESS_TOKEN_KEY,
+} from "../constants/DefaultValues";
 
 export const apiCreateCategory = async (data) => {
   const response = await requestPost({
     fullUrl: `${END_POINT}/v1/categoryRoutes/CreateCategory`,
     params: data,
+    bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
     const { body } = response;

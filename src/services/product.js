@@ -38,7 +38,6 @@ export const apiGetAllProduct = async () => {
   const response = await requestGet({
     fullUrl: `${END_POINT}/v1/ProductRoutes/GetAllProduct`,
   });
-  console.log(response, "check");
   if (response.statusCode === 200) {
     const { body } = response;
     return {

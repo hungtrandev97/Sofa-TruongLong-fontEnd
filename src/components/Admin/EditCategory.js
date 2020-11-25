@@ -1,8 +1,8 @@
 import React from "react";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import FormCreateProduct from "./FormCreateProduct";
+import FormEditCategory from "./FormEditCategory";
 
-export default function CreateProduct() {
+export default function EditCategory() {
   return (
     <div>
       <div
@@ -14,11 +14,11 @@ export default function CreateProduct() {
       >
         <Breadcrumb>
           <BreadcrumbItem>Admin</BreadcrumbItem>
-          <BreadcrumbItem active>Thêm Mới Sản Phẩm</BreadcrumbItem>
+          <BreadcrumbItem active>Chỉnh Sửa Danh Mục</BreadcrumbItem>
         </Breadcrumb>
       </div>
       <div style={{ padding: "30px 130px 30px 130px" }}>
-        <FormCreateProduct />
+        <FormEditCategory />
       </div>
     </div>
   );

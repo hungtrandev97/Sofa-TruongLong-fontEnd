@@ -1,11 +1,14 @@
-import { storage } from "../../firebase/index";
+import firebase from "../../firebase/index";
 
-function UploadImage(image) {
-  storage.ref(`images/product_${image.name}`).put(image);
-  const UrlImage = storage
-    .ref("images")
-    .child(`product_${image.name}`)
+async function UploadImage(file) {
+  const now = Date.now();
+  const image = `product_${now}${file.name}`;
+  const bucketName = "images";
+  await firebase.storage().ref(`${bucketName}/${image}`).put(file);
+  const storageRefImage = await firebase.storage().ref();
+  const spaceRef = await storageRefImage
+    .child(`${bucketName}/${image}`)
     .getDownloadURL();
-  return UrlImage;
+  return spaceRef;
 }
 export default UploadImage;

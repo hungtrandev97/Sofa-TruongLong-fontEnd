@@ -14,7 +14,6 @@ import ErrorView from "./views/404/404";
 import AdminView from "./views/Admin/index";
 import MainView from "./views/index";
 import DashboardView from "./views/dashboard/index";
-import UploadImage from "./components/firebase/index";
 
 const auth = {
   isAuthenticated: false,
@@ -71,7 +70,6 @@ const Routes = (props) => {
         />
         <Route path="/" exact component={MainView} />
         <Route path="/trang-chu" component={DashboardView} />
-        <Route path="/test-upload" component={UploadImage} />
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />
       </Switch>
