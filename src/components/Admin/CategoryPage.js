@@ -77,6 +77,7 @@ function CategoryPage() {
           onClick={() => submit(row._id)}
           size="1rem"
           color="rgb(250, 62, 63)"
+          style={{ cursor: "pointer" }}
         />
       ),
     },
