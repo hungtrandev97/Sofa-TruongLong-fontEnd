@@ -1,5 +1,4 @@
 import { all, fork, call, put, takeEvery } from "redux-saga/effects";
-import history from "../../history";
 import { ROLE } from "../../constants/DefaultValues";
 import { apiLogin } from "../../services/auth";
 
@@ -19,11 +18,11 @@ function* loginWithPassword({ payload }) {
       yield put(loginUserSuccess(response.data.user, response.data.token));
       const userRole = response.data.user.role;
       if (userRole === ROLE.ADMIN) {
-        history.push("/admin");
+        window.location.href = "/admin";
       } else if (userRole === ROLE.PATIENT) {
-        history.push("/trang-chu");
+        window.location.href = "/trang-chu";
       } else {
-        history.push("/");
+        window.location.href = "/";
       }
     } else {
       yield put(loginUserFailed());

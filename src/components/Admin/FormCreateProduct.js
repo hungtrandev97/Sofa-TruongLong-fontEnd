@@ -29,8 +29,8 @@ function FormCreateProduct() {
     `const data: '<p>React is really <em>nice</em>!</p>'`
   );
   const [productImage, setProductImage] = useState("");
+
   const productImages = [];
-  const productImagesIndex = [];
   const concatImageToArray = [];
 
   const getUploadParams = () => {
@@ -60,10 +60,10 @@ function FormCreateProduct() {
 
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
-    const urlimageIndexFirbase = productImages.map(async (item) => {
+    const urlimageIndexFirbase = productImages.forEach(async (item) => {
       if (item.meta.status === "done") {
         const urlimageIndex = await UploadImagevIEW(item.file);
-        concatImageToArray.push(urlimageIndex);
+        await concatImageToArray.push(urlimageIndex);
       }
     });
     const urlImageFirebase = await UploadImagevIEW(productImage);
@@ -78,8 +78,7 @@ function FormCreateProduct() {
       product_price: value.product_price,
       product_price_sale: value.product_price_sale,
     };
-    console.log(concatData, "concatData");
-    if (urlImageFirebase && urlimageIndexFirbase) {
+    if (urlImageFirebase !== "" && concatImageToArray !== "") {
       const req = await apiCreateProduct(concatData);
       if (req.status) {
         NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
