@@ -11,7 +11,6 @@ import {
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
-import memoizeOne from "memoize-one";
 import DataTableExtensions from "react-data-table-component-extensions";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -26,16 +25,7 @@ import FormEditCategory from "./FormEditCategory";
 import "./CategoryPage.css";
 
 function CategoryPage() {
-  const columns = memoizeOne((currentPage) => [
-    {
-      name: "S/N",
-      selector: "serial",
-      sortable: false,
-      center: true,
-      wrap: true,
-      width: "50px",
-      // format: (row) => (currentPage - 1) * PAGE_SIZE + (row.serial + 1),
-    },
+  const columns = () => [
     {
       name: "Tên Danh Mục",
       selector: "category_title",
@@ -79,7 +69,7 @@ function CategoryPage() {
         />
       ),
     },
-  ]);
+  ];
 
   const submit = (id) => {
     alert(id);
@@ -90,11 +80,8 @@ function CategoryPage() {
     dispatch(getAllCategory());
   }, []);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
-
-  const currentPage = 1;
-
   const tableData = {
-    columns: columns(currentPage),
+    columns: columns(),
     data: dataCategory,
     filterPlaceholder: "Tìm kiếm",
     export: false,
@@ -147,11 +134,10 @@ function CategoryPage() {
           <DataTableExtensions {...tableData}>
             <DataTable
               noHeader
-              columns={columns(currentPage)}
+              columns={columns()}
               data={dataCategory}
               pagination
               paginationPerPage={PAGE_SIZE}
-              paginationDefaultPage={currentPage}
               progressComponent={
                 <Loader styles={{ textAlign: "center", margin: "50px auto" }} />
               }
