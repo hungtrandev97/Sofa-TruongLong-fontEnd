@@ -15,7 +15,7 @@ export default function Login() {
 
   useEffect(() => {
     dispatch(reloadLogin());
-  }, []);
+  }, [dispatch]);
 
   const { errorLogin } = useSelector((state) => state.authRedux);
   const onFinalSubmit = (value) => {

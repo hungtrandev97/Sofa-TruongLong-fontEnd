@@ -1,3 +1,6 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from "react";
 import {
   Breadcrumb,
@@ -18,16 +21,15 @@ import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Loader from "../Loaders/Loader";
-import { PAGE_SIZE, FromCategory } from "../../constants/DefaultValues";
+import { PAGE_SIZE } from "../../constants/DefaultValues";
 import { getAllCategory } from "../../store/actions/actions";
 import "react-data-table-component-extensions/dist/index.css";
 import FormCreateCategory from "./FormCreateCategory";
-import FormEditCategory from "./FormEditCategory";
 import "./CategoryPage.css";
 
 function CategoryPage() {
+  const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
-  const [typeCategory, setTypeCategory] = useState(FromCategory.CREATE);
   const [removeCategory, setRemoveCategory] = useState(false);
   const toggle = () => {
     setModal(!modal);
@@ -35,15 +37,6 @@ function CategoryPage() {
   };
   const toggleRemove = () => setRemoveCategory(!removeCategory);
   const columns = () => [
-    {
-      name: "S/N",
-      selector: "serial",
-      sortable: false,
-      center: true,
-      wrap: true,
-      width: "50px",
-      // format: (row) => (currentPage - 1) * PAGE_SIZE + (row.serial + 1),
-    },
     {
       name: "Tên Danh Mục",
       selector: "category_title",
@@ -90,13 +83,12 @@ function CategoryPage() {
   ];
 
   const submit = (id) => {
+    console.log(id);
     setRemoveCategory(true);
   };
-
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCategory());
-  }, []);
+  }, [dispatch]);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
   const tableData = {
     columns: columns(),
@@ -106,9 +98,8 @@ function CategoryPage() {
     print: false,
   };
 
-  const ChangeIsModal = (ismodal, type) => {
+  const ChangeIsModal = (type) => {
     toggle(true);
-    setTypeCategory(type);
     setRemoveCategory(type);
   };
   return (
@@ -139,15 +130,9 @@ function CategoryPage() {
       </div>
       <div className="Category__Modal">
         <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>
-            {typeCategory === FromCategory.CREATE ? "THÊM MỚI" : "CHỈNH SỬA"}
-          </ModalHeader>
+          <ModalHeader toggle={toggle}>THÊM MỚI</ModalHeader>
           <ModalBody>
-            {typeCategory === FromCategory.CREATE ? (
-              <FormCreateCategory />
-            ) : (
-              <FormEditCategory />
-            )}
+            <FormCreateCategory />
           </ModalBody>
         </Modal>
       </div>
@@ -156,10 +141,7 @@ function CategoryPage() {
           className="Button__add"
           style={{ padding: "0px 40px 0px 0px" }}
         >
-          <button
-            type="button"
-            onClick={() => ChangeIsModal(true, FromCategory.CREATE)}
-          >
+          <button type="button" onClick={() => ChangeIsModal(true)}>
             <span className="align-middle">Thêm Mới</span>
           </button>
         </CardHeader>

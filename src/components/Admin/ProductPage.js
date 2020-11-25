@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
@@ -13,7 +15,6 @@ import {
   Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import memoizeOne from "memoize-one";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
@@ -22,24 +23,13 @@ import "./Product.css";
 
 export default function ProductPage() {
   const [dataProductList, setDataProductList] = useState();
-  const [modal] = useState(false);
   const [removeProduct, setRemoveProduct] = useState(false);
-  const columns = memoizeOne((currentPage) => [
-    {
-      name: "S/N",
-      selector: "serial",
-      sortable: false,
-      center: true,
-      wrap: true,
-      width: "50px",
-      // format: (row) => (currentPage - 1) * PAGE_SIZE + (row.serial + 1),
-    },
+  const columns = () => [
     {
       name: "Tên Danh Mục Sản Phẩm",
       selector: "category_title",
       sortable: true,
       width: "200px",
-      // eslint-disable-next-line no-underscore-dangle
       format: (row) => row._category.category_title,
     },
     {
@@ -112,14 +102,16 @@ export default function ProductPage() {
       width: "80px",
       cell: (row) => (
         <RiDeleteBin6Line
+          // eslint-disable-next-line no-use-before-define
           onClick={() => removeItem(row._id)}
           size="1rem"
           color="rgb(250, 62, 63)"
         />
       ),
     },
-  ]);
+  ];
   const removeItem = (id) => {
+    console.log(id);
     setRemoveProduct(true);
   };
   const callApi = async () => {
@@ -132,23 +124,15 @@ export default function ProductPage() {
   useEffect(() => {
     callApi();
   }, []);
-  const currentPage = 1;
   const tableData = {
-    columns: columns(currentPage),
+    columns: columns(),
     data: dataProductList,
     filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
   };
 
-  const toggle = () => {
-    setRemoveProduct(!removeProduct);
-  };
   const toggleRemove = () => setRemoveProduct(!removeProduct);
-  const ChangIsModal = (ismodal, type) => {
-    toggle(true);
-    setRemoveProduct(type);
-  };
 
   return (
     <div className="Product">
@@ -197,10 +181,9 @@ export default function ProductPage() {
             <DataTable
               noHeader
               pagination
-              columns={columns(currentPage)}
+              columns={columns()}
               data={dataProductList}
               paginationPerPage={PAGE_SIZE}
-              paginationDefaultPage={currentPage}
               highlightOnHover
               noDataComponent="Danh mục rỗng"
               pointerOnHover

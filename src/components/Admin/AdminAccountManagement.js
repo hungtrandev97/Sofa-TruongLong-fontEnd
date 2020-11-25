@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 
 import DataTable from "react-data-table-component";
@@ -10,23 +11,14 @@ import {
   CardBody,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { AdminAccountManagementData } from "./Columndata";
 import "./AdminAccountManagement.css";
-import memoizeOne from "memoize-one";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { AdminAccountManagementData } from "./Columndata";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
 
 export default function AdminAccountManagement() {
-  const columns = memoizeOne(() => [
-    {
-      name: "STT",
-      selector: "serial",
-      sortable: false,
-      center: true,
-      wrap: true,
-      width: "50px",
-    },
+  const columns = () => [
     {
       name: "Tên Tài Khoản",
       selector: "AdminAccounr_title",
@@ -44,8 +36,8 @@ export default function AdminAccountManagement() {
       center: true,
       wrap: true,
       width: "80px",
-      format: (row) => (
-        <Link>
+      format: () => (
+        <Link to="/">
           <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
         </Link>
       ),
@@ -57,9 +49,9 @@ export default function AdminAccountManagement() {
       center: true,
       wrap: true,
       width: "80px",
-      cell: (row) => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
+      cell: () => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
     },
-  ]);
+  ];
   const tableData = {
     columns: columns(),
     data: AdminAccountManagementData,
@@ -99,7 +91,7 @@ export default function AdminAccountManagement() {
             <DataTable
               noHeader
               pagination
-              columns={columns}
+              columns={columns()}
               data={AdminAccountManagementData}
               paginationPerPage={PAGE_SIZE}
               highlightOnHover
