@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, FormGroup, Label } from "reactstrap";
+import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
 import CKEditor from "ckeditor4-react";
 import Dropzone from "react-dropzone-uploader";
@@ -24,6 +24,7 @@ const createProductSchema = Yup.object().shape({
 function FormCreateProduct() {
   const { dataCategory } = useSelector((state) => state.categoryRedux);
   const [categoryValue, setCategoryValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [productNewValue, setproductNewValue] = useState(1);
   const [dataTextarea, setDataTextarea] = useState(
     `const data: '<p>React is really <em>nice</em>!</p>'`
@@ -60,7 +61,8 @@ function FormCreateProduct() {
 
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
-    const urlimageIndexFirbase = productImages.forEach(async (item) => {
+    setIsLoading(true);
+    productImages.forEach(async (item) => {
       if (item.meta.status === "done") {
         const urlimageIndex = await UploadImagevIEW(item.file);
         await concatImageToArray.push(urlimageIndex);
@@ -80,6 +82,7 @@ function FormCreateProduct() {
     };
     if (urlImageFirebase !== "" && concatImageToArray !== "") {
       const req = await apiCreateProduct(concatData);
+      setIsLoading(false);
       if (req.status) {
         NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
         dispatch(createProductSuccess(req.data));
@@ -245,7 +248,13 @@ function FormCreateProduct() {
               selectedValue={productNewValue}
             />
           </FormGroup>
-          <Button type="submit" color="primary" className="Create__Button">
+          <Button
+            disabled={isLoading}
+            type="submit"
+            color="primary"
+            className="Create__Button"
+          >
+            {isLoading ? <Spinner size="sm" color="light" /> : ""}
             <span className="ml-50 font-ob-bold"> Tạo Mới </span>
           </Button>
         </Form>

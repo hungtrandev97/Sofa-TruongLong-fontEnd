@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { Button, FormGroup, Label } from "reactstrap";
+import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { createCategorySuccess } from "../../store/actions/actions";
@@ -12,9 +12,12 @@ const createCategorySchema = Yup.object().shape({
   category_title: Yup.string().required("Tên Danh Mục Không Được Rỗng"),
 });
 function FormCreateCategory() {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
+    setIsLoading(true);
     const req = await apiCreateCategory(value);
+    setIsLoading(false);
     if (req.status) {
       NotifySuccess("Tạo Thư Mục", "Thêm Thư Mục Thành Công");
       dispatch(createCategorySuccess(req.data));
@@ -24,6 +27,7 @@ function FormCreateCategory() {
       NotifyError("Tạo Thư Mục", `${req.message}`);
     }
   };
+
   return (
     <Formik
       initialValues={{
@@ -53,7 +57,13 @@ function FormCreateCategory() {
               autoComplete="categoryTille"
             />
           </FormGroup>
-          <Button type="submit" color="primary" className="Create__Button">
+          <Button
+            disabled={isLoading}
+            type="submit"
+            color="primary"
+            className="Create__Button"
+          >
+            {isLoading ? <Spinner size="sm" color="light" /> : ""}
             <span className="ml-50 font-ob-bold"> Tạo Mới </span>
           </Button>
         </Form>

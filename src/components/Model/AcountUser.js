@@ -6,7 +6,6 @@ import { bool, func, string } from "prop-types";
 import FormLogin from "../Forms/Login";
 
 function AcountUserModel({ modal, toggle, type }) {
-  console.log(toggle, modal);
   const externalCloseBtn = (
     <div
       role="button"
