@@ -7,7 +7,6 @@ import {
   CardBody,
   Modal,
   ModalBody,
-  Badge,
   ModalHeader,
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,12 +14,17 @@ import DataTable from "react-data-table-component";
 import memoizeOne from "memoize-one";
 import DataTableExtensions from "react-data-table-component-extensions";
 import moment from "moment";
+import { Link } from "react-router-dom";
+import { AiOutlineEdit } from "react-icons/ai";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import Loader from "../Loaders/Loader";
 import { PAGE_SIZE, FromCategory } from "../../constants/DefaultValues";
 import { getAllCategory } from "../../store/actions/actions";
 import "react-data-table-component-extensions/dist/index.css";
 import FormCreateCategory from "./FormCreateCategory";
 import FormEditCategory from "./FormEditCategory";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import "./CategoryPage.css";
 
 const columns = memoizeOne((currentPage) => [
@@ -54,11 +58,21 @@ const columns = memoizeOne((currentPage) => [
     sortable: false,
     center: true,
     wrap: true,
+    width: "80px",
     format: (row) => (
-      <Badge color={`${row.isDeleted ? "danger" : "success"}`}>
-        {`${row.isDeleted ? "Deleted" : "Actived"}`}
-      </Badge>
+      <Link to={`/admin/editCategory/${row._id}`}>
+        <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
+      </Link>
     ),
+  },
+  {
+    name: "xóa",
+    selector: "isDeleted",
+    sortable: false,
+    center: true,
+    wrap: true,
+    width: "80px",
+    cell: (row) => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
   },
 ]);
 

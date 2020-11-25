@@ -7,11 +7,9 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Badge,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import memoizeOne from "memoize-one";
-import moment from "moment";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
 import { apiGetAllProduct } from "../../services/product";
 import "./Product.css";
@@ -98,7 +96,6 @@ const columns = memoizeOne((currentPage) => [
 
 export default function ProductPage() {
   const [dataProductList, setDataProductList] = useState();
-  console.log(dataProductList);
   const callApi = async () => {
     const req = await apiGetAllProduct();
     if (req.status) {

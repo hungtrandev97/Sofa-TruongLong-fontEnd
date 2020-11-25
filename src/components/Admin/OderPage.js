@@ -9,13 +9,73 @@ import {
 } from "reactstrap";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
+import memoizeOne from "memoize-one";
+import { Link } from "react-router-dom";
+import { AiOutlineEdit } from "react-icons/ai";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
-import { Odercolumns, DataOder } from "./Columndata";
+import { DataOder } from "./Columndata";
 import "./OderPage.css";
 
 export default function OderPage() {
+  const columns = memoizeOne(() => [
+    {
+      name: "STT",
+      selector: "serial",
+      sortable: false,
+      center: true,
+      wrap: true,
+      width: "50px",
+    },
+    {
+      name: "Tên Danh Mục",
+      selector: "category_title",
+      sortable: true,
+    },
+    {
+      name: "Tên Sản Phẩm",
+      selector: "product_title",
+      sortable: true,
+    },
+    {
+      name: "Thời Gian Tạo Đơn Hàng",
+      selector: "date_create",
+      sortable: true,
+    },
+    {
+      name: "Địa Chỉ Khách Hàng",
+      selector: "address_customer",
+      sortable: true,
+    },
+    {
+      name: "Chức Năng",
+      sortable: true,
+    },
+    {
+      name: "Sửa",
+      selector: "isDeleted",
+      sortable: false,
+      center: true,
+      wrap: true,
+      width: "80px",
+      format: (row) => (
+        <Link>
+          <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
+        </Link>
+      ),
+    },
+    {
+      name: "xóa",
+      selector: "isDeleted",
+      sortable: false,
+      center: true,
+      wrap: true,
+      width: "80px",
+      cell: (row) => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
+    },
+  ]);
   const tableData = {
-    columns: Odercolumns,
+    columns: columns(),
     data: DataOder,
     filterPlaceholder: "Tìm kiếm",
     export: false,
@@ -38,7 +98,7 @@ export default function OderPage() {
           {/* <div>Get Data Has Error</div> */}
           <DataTableExtensions {...tableData}>
             <DataTable
-              columns={Odercolumns}
+              columns={columns}
               data={DataOder}
               noHeader
               pagination
