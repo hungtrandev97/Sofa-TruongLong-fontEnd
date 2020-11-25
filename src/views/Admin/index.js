@@ -11,7 +11,7 @@ import AdminAccountManagement from "../../components/Admin/AdminAccountManagemen
 import Statistical from "../../components/Admin/Statistical";
 import SettingAdmin from "../../components/Admin/SettingAdmin";
 import CreateAccountManagement from "../../components/Admin/CreateAccountManagement";
-import FormEditProduct from "../../components/Admin/FormEditProduct";
+import EditProduct from "../../components/Admin/EditProduct";
 import EditCategory from "../../components/Admin/EditCategory";
 
 function Admin({ location, match }) {
@@ -49,7 +49,7 @@ function Admin({ location, match }) {
               />
               <Route
                 path={`${match.url}/editProduct/:idProduct`}
-                component={FormEditProduct}
+                component={EditProduct}
               />
               <Route path={`${match.url}/OderPage`} component={OderPage} />
               <Route

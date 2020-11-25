@@ -122,14 +122,15 @@ function CategoryPage() {
       <div className="Delete__Category__Modal">
         <Modal isOpen={removeCategory} toggle={toggleRemove}>
           <ModalHeader>Bạn Có Chắc Muốn Xóa ?</ModalHeader>
-          <ModalBody>
-            <Button type="submit" style={{ margin: "0 20px" }}>
+          <ModalBody className="Delete__Category__Modal__Body">
+            <Button type="submit" color="primary" style={{ margin: "0 20px" }}>
               Có
             </Button>
             <Button
               onClick={() => toggleRemove()}
               type="submit"
               style={{ margin: "0 20px" }}
+              color="primary"
             >
               Không
             </Button>
