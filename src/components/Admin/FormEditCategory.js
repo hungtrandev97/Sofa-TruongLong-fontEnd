@@ -1,16 +1,34 @@
 import React from "react";
+import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
+import { apiEditCategory } from "../../services/category";
+import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
+import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 
-export default function FormEditCategory() {
+const createCategorySchema = Yup.object().shape({
+  category_title: Yup.string().required("Danh Mục Không Được Rỗng"),
+});
+export default function FormEditCategory({ match }) {
+  const idCategoryUrl = match.params.idCategory;
+  const onFinalSubmit = async (value) => {
+    const req = await apiEditCategory(value, idCategoryUrl);
+    if (req.status) {
+      NotifySuccess("Chỉnh Sửa Danh Mục", "Chỉnh Sửa Thành Công");
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      NotifyWarning("Chỉnh Sửa Danh Mục", `${req.message}`);
+    } else {
+      NotifyError("Chỉnh Sửa Danh Mục", `${req.message}`);
+    }
+  };
   return (
     <Formik
       initialValues={{
         category_title: "",
       }}
-      // validationSchema={createCategorySchema}
+      validationSchema={createCategorySchema}
       onSubmit={(values) => {
-        // onFinalSubmit(values);
+        onFinalSubmit(values);
       }}
     >
       {({ errors, touched }) => (

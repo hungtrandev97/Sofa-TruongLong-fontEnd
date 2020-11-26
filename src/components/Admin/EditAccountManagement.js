@@ -1,8 +1,8 @@
 import React from "react";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import FormEditCategory from "./FormEditCategory";
+import FormEditAccount from "./FormEditAccount";
 
-export default function EditCategory({ match }) {
+export default function EditAccountManagement() {
   return (
     <div>
       <div
@@ -14,11 +14,11 @@ export default function EditCategory({ match }) {
       >
         <Breadcrumb>
           <BreadcrumbItem>Admin</BreadcrumbItem>
-          <BreadcrumbItem active>Chỉnh Sửa Danh Mục</BreadcrumbItem>
+          <BreadcrumbItem active>Chỉnh Sửa Tài Khoản</BreadcrumbItem>
         </Breadcrumb>
       </div>
       <div style={{ padding: "30px 130px 30px 130px" }}>
-        <FormEditCategory match={match} />
+        <FormEditAccount />
       </div>
     </div>
   );

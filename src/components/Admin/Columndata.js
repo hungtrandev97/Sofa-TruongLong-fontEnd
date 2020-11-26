@@ -23,9 +23,17 @@ export const AdminAccountManagementData = [
   {
     AdminAccounr_title: "KhanhHung97",
     PassWord: "******",
+    Gender: "Nam",
+    Email: "Khanhhung@gmail.com",
+    Phone: "0123654789",
+    Address: "12 Gò Vấp",
   },
   {
     AdminAccounr_title: "HieuPhan",
     PassWord: "******",
+    Gender: "Nam",
+    Email: "HieuPhan@gmail.com",
+    Phone: "0987456123",
+    Address: "14 Gò Vấp",
   },
 ];

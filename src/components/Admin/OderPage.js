@@ -66,7 +66,7 @@ export default function OderPage() {
       width: "80px",
       format: (row) => (
         <Link to={`/admin/EditOder/${row._id}`}>
-          <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
+          <AiOutlineEdit size="1rem" color="#23b7e5" />
         </Link>
       ),
     },
@@ -82,7 +82,7 @@ export default function OderPage() {
           // eslint-disable-next-line no-use-before-define
           onClick={() => removeItem(row._id)}
           size="1rem"
-          color="rgb(250, 62, 63)"
+          color="#23b7e5"
         />
       ),
     },

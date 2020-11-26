@@ -18,7 +18,7 @@ function FooterConsumer() {
           <Col lg={6} md={6} sm={12} className="FooterCosumer__Left">
             <div className="FooterCosumer_Left_Header">
               <div className="FooterCosumer_Left_Header_Icon">
-                <RiContactsLine size="1rem" color="rgb(250, 62, 63)" />
+                <RiContactsLine size="1rem" color="#23b7e5" />
               </div>
               <div className="FooterCosumer_Left_Header_span">
                 <h1>LIÊN HỆ</h1>
@@ -27,7 +27,7 @@ function FooterConsumer() {
             <div className="FooterCosumer_left_Content">
               <h1> SOFA TRƯỜNG LONG</h1>
               <div className="FooterCosumer_left_Content_Address">
-                <ImHome3 size="0.8rem" color="rgb(250, 62, 63)" />
+                <ImHome3 size="0.8rem" color="#23b7e5" />
                 <span>
                   Địa Chỉ: 289/36 Nguyễn Thị Tú, P.Bình Hưng Hòa B, Q.Bình Tân,
                   TPHCM
@@ -35,21 +35,21 @@ function FooterConsumer() {
               </div>
               <div className="FooterCosumer_left_Content_Phone">
                 <Col>
-                  <ImPhone size="0.8rem" color="rgb(250, 62, 63)" />
+                  <ImPhone size="0.8rem" color="#23b7e5" />
                   <span> 0966 484 484 </span>
                 </Col>
                 <Col>
-                  <MdPhoneIphone size="0.8rem" color="rgb(250, 62, 63)" />
+                  <MdPhoneIphone size="0.8rem" color="#23b7e5" />
                   <span> 0762 607 636 </span>
                 </Col>
               </div>
               <div className="FooterCosumer_left_Content_Email">
                 <Col>
-                  <CgMail size="1rem" color="rgb(250, 62, 63)" />
+                  <CgMail size="1rem" color="#23b7e5" />
                   <span> @xuongsofa.truonglong </span>
                 </Col>
                 <Col>
-                  <SiInternetexplorer size="0.8rem" color="rgb(250, 62, 63)" />
+                  <SiInternetexplorer size="0.8rem" color="#23b7e5" />
                   <span> Sofatruonglong.com </span>
                 </Col>
               </div>
@@ -58,7 +58,7 @@ function FooterConsumer() {
           <Col lg={3} md={3} sm={12} className="FooterCosumer__center">
             <div className="FooterCosumer__center__header">
               <div>
-                <BsCheckBox size="1rem" color="rgb(250, 62, 63)" />
+                <BsCheckBox size="1rem" color="#23b7e5" />
               </div>
               <div className="FooterCosumer_Center_Header_span">
                 <h1>CHÍNH SÁCH</h1>
@@ -84,29 +84,29 @@ function FooterConsumer() {
               </a>
             </div>
             <div className="FooterCosumer__center__Tutorial">
-              <RiArrowRightSFill size="1.3rem" color="rgb(250, 62, 63)" />
+              <RiArrowRightSFill size="1.3rem" color="#23b7e5" />
               <span> Hướng dẫn đặt hàng</span>
             </div>
             <div className="FooterCosumer__center__Tutorial">
-              <RiArrowRightSFill size="1.3rem" color="rgb(250, 62, 63)" />
+              <RiArrowRightSFill size="1.3rem" color="#23b7e5" />
               <span> Chính Sách Vẫn Chuyển</span>
             </div>
           </Col>
           <Col lg={3} md={3} sm={12} className="FooterCosumer__right">
             <div className="FooterCosumer_Right_Header">
               <div className="FooterCosumer_Right_Header_Icon">
-                <BiWrench size="1rem" color="rgb(250, 62, 63)" />
+                <BiWrench size="1rem" color="#23b7e5" />
               </div>
               <div className="FooterCosumer_Right_Header_span">
                 <h1>BẢO TRÌ</h1>
               </div>
             </div>
             <div className="FooterCosumer__center__Tutorial">
-              <RiArrowRightSFill size="1.3rem" color="rgb(250, 62, 63)" />
+              <RiArrowRightSFill size="1.3rem" color="#23b7e5" />
               <span> Vệ Sinh SOFA</span>
             </div>
             <div className="FooterCosumer__center__Tutorial">
-              <RiArrowRightSFill size="1.3rem" color="rgb(250, 62, 63)" />
+              <RiArrowRightSFill size="1.3rem" color="#23b7e5" />
               <span> Sửa Chữa SOFA</span>
             </div>
           </Col>

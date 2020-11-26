@@ -17,11 +17,14 @@ import {
 import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { PAGE_SIZE } from "../../constants/DefaultValues";
-import { apiGetAllProduct } from "../../services/product";
+import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
+import { apiGetAllProduct, apiDeleteProduct } from "../../services/product";
+import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
+
 import "./Product.css";
 
 export default function ProductPage() {
+  const [idProduct, setIdProduct] = useState();
   const [dataProductList, setDataProductList] = useState();
   const [removeProduct, setRemoveProduct] = useState(false);
   const columns = () => [
@@ -116,7 +119,7 @@ export default function ProductPage() {
       width: "80px",
       format: (row) => (
         <Link to={`/admin/editProduct/${row._id}`}>
-          <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
+          <AiOutlineEdit size="1rem" color="#23b7e5" />
         </Link>
       ),
     },
@@ -129,21 +132,19 @@ export default function ProductPage() {
       width: "80px",
       cell: (row) => (
         <RiDeleteBin6Line
-          // eslint-disable-next-line no-use-before-define
           onClick={() => removeItem(row._id)}
           size="1rem"
-          color="rgb(250, 62, 63)"
+          color="#23b7e5"
         />
       ),
     },
   ];
   const removeItem = (id) => {
-    console.log(id);
     setRemoveProduct(true);
+    setIdProduct(id);
   };
   const callApi = async () => {
     const req = await apiGetAllProduct();
-    console.log(req);
     if (req.status) {
       setDataProductList(req.data.data);
     }
@@ -161,6 +162,17 @@ export default function ProductPage() {
   };
 
   const toggleRemove = () => setRemoveProduct(!removeProduct);
+  const DeleteProduct = async () => {
+    const req = await apiDeleteProduct(idProduct);
+    console.log(req, "req");
+    if (req.status) {
+      NotifySuccess("Xoa Sản Phẩm", "Xóa Sản Phẩm Thành Công");
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      NotifyWarning("Xóa Sản Phẩm", `${req.message}`);
+    } else {
+      NotifyError("Xóa Sản Phẩm", `${req.message}`);
+    }
+  };
 
   return (
     <div className="Product">
@@ -168,7 +180,12 @@ export default function ProductPage() {
         <Modal isOpen={removeProduct} toggle={toggleRemove}>
           <ModalHeader>Bạn Có Chắc Chán Muốn Xóa ? </ModalHeader>
           <ModalBody className="Delete__Product__Modal__Body">
-            <Button type="submit" color="primary" style={{ margin: "0 20px" }}>
+            <Button
+              onClick={() => DeleteProduct()}
+              type="submit"
+              color="primary"
+              style={{ margin: "0 20px" }}
+            >
               Có
             </Button>
             <Button

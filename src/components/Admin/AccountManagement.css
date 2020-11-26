@@ -16,3 +16,10 @@
 .AccountManagement__LinkNew > span {
   font-size: 14px;
 }
+.Delete__Account__Modal__Body > button {
+  font-size: 15px;
+  float: right;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}

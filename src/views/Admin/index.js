@@ -7,13 +7,14 @@ import ProductPage from "../../components/Admin/ProductPage";
 import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
 import CreateProduct from "../../components/Admin/CreateProduct";
 import OderPage from "../../components/Admin/OderPage";
-import AdminAccountManagement from "../../components/Admin/AdminAccountManagement";
+import AccountManagement from "../../components/Admin/AccountManagement";
 import Statistical from "../../components/Admin/Statistical";
 import SettingAdmin from "../../components/Admin/SettingAdmin";
 import CreateAccountManagement from "../../components/Admin/CreateAccountManagement";
 import EditProduct from "../../components/Admin/EditProduct";
 import EditCategory from "../../components/Admin/EditCategory";
 import EditOder from "../../components/Admin/EditOder";
+import EditAccountManagement from "../../components/Admin/EditAccountManagement";
 
 function Admin({ location, match }) {
   const currentKey = location.pathname.split("/")[1] || "/";
@@ -37,7 +38,7 @@ function Admin({ location, match }) {
               />
               <Route path={`${match.url}/category`} component={CategoryPage} />
               <Route
-                path={`${match.url}/editCategory/:idProduct`}
+                path={`${match.url}/editCategory/:idCategory`}
                 component={EditCategory}
               />
               <Route
@@ -55,12 +56,16 @@ function Admin({ location, match }) {
               <Route path={`${match.url}/OderPage`} component={OderPage} />
               <Route path={`${match.url}/EditOder`} component={EditOder} />
               <Route
-                path={`${match.url}/AdminAccountManagement`}
-                component={AdminAccountManagement}
+                path={`${match.url}/AccountManagement`}
+                component={AccountManagement}
               />
               <Route
                 path={`${match.url}/CreateAccountManagement`}
                 component={CreateAccountManagement}
+              />
+              <Route
+                path={`${match.url}/EditAccountManagement`}
+                component={EditAccountManagement}
               />
               <Route
                 path={`${match.url}/Statistical`}

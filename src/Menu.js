@@ -67,7 +67,7 @@ const AdminMenu = [
   },
   {
     name: "Quản Lý Tài Khoản Admin",
-    path: "AdminAccountManagement",
+    path: "AccountManagement",
     icon: "",
   },
   {

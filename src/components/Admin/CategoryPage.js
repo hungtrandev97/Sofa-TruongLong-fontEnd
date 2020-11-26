@@ -21,15 +21,18 @@ import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Loader from "../Loaders/Loader";
-import { PAGE_SIZE } from "../../constants/DefaultValues";
+import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { getAllCategory } from "../../store/actions/actions";
 import "react-data-table-component-extensions/dist/index.css";
 import FormCreateCategory from "./FormCreateCategory";
+import { apiDeleteCategory } from "../../services/category";
+import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 import "./CategoryPage.css";
 
 function CategoryPage() {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
+  const [idCategory, setIdCategory] = useState("");
   const [removeCategory, setRemoveCategory] = useState(false);
   const toggle = () => {
     setModal(!modal);
@@ -61,7 +64,7 @@ function CategoryPage() {
       width: "80px",
       format: (row) => (
         <Link to={`/admin/editCategory/${row._id}`}>
-          <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
+          <AiOutlineEdit size="1rem" color="#23b7e5" />
         </Link>
       ),
     },
@@ -76,7 +79,7 @@ function CategoryPage() {
         <RiDeleteBin6Line
           onClick={() => submit(row._id)}
           size="1rem"
-          color="rgb(250, 62, 63)"
+          color="#23b7e5"
           style={{ cursor: "pointer" }}
         />
       ),
@@ -84,8 +87,8 @@ function CategoryPage() {
   ];
 
   const submit = (id) => {
-    console.log(id);
     setRemoveCategory(true);
+    setIdCategory(id);
   };
   useEffect(() => {
     dispatch(getAllCategory());
@@ -98,7 +101,16 @@ function CategoryPage() {
     export: false,
     print: false,
   };
-
+  const DeleteCategory = async () => {
+    const req = await apiDeleteCategory(idCategory);
+    if (req.status) {
+      NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      NotifyWarning("Xóa Danh Mục", `${req.message}`);
+    } else {
+      NotifyError("Xóa Danh Mục", `${req.message}`);
+    }
+  };
   const ChangeIsModal = (type) => {
     toggle(true);
     setRemoveCategory(type);
@@ -115,7 +127,12 @@ function CategoryPage() {
         <Modal isOpen={removeCategory} toggle={toggleRemove}>
           <ModalHeader>Bạn Có Chắc Muốn Xóa ?</ModalHeader>
           <ModalBody className="Delete__Category__Modal__Body">
-            <Button type="submit" color="primary" style={{ margin: "0 20px" }}>
+            <Button
+              onClick={() => DeleteCategory()}
+              type="submit"
+              color="primary"
+              style={{ margin: "0 20px" }}
+            >
               Có
             </Button>
             <Button

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
+import React, { useState } from "react";
 
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
@@ -9,15 +9,20 @@ import {
   Card,
   CardHeader,
   CardBody,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import "./AdminAccountManagement.css";
+import "./AccountManagement.css";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AdminAccountManagementData } from "./Columndata";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
 
-export default function AdminAccountManagement() {
+export default function AccountManagement() {
+  const [removeAccount, setRemoveAccount] = useState(false);
   const columns = () => [
     {
       name: "Tên Tài Khoản",
@@ -30,15 +35,35 @@ export default function AdminAccountManagement() {
       sortable: true,
     },
     {
+      name: "Giới Tính",
+      selector: "Gender",
+      sortable: true,
+    },
+    {
+      name: "Gmail",
+      selector: "Email",
+      sortable: true,
+    },
+    {
+      name: "Số Điện Thoại",
+      selector: "Phone",
+      sortable: true,
+    },
+    {
+      name: "Địa Chỉ",
+      selector: "Address",
+      sortable: true,
+    },
+    {
       name: "Sửa",
       selector: "isDeleted",
       sortable: false,
       center: true,
       wrap: true,
       width: "80px",
-      format: () => (
-        <Link to="/">
-          <AiOutlineEdit size="1rem" color="rgb(250, 62, 63)" />
+      format: (row) => (
+        <Link to={`/admin/EditAccountManagement/${row._id}`}>
+          <AiOutlineEdit size="1rem" color="#23b7e5" />
         </Link>
       ),
     },
@@ -49,9 +74,20 @@ export default function AdminAccountManagement() {
       center: true,
       wrap: true,
       width: "80px",
-      cell: () => <RiDeleteBin6Line size="1rem" color="rgb(250, 62, 63)" />,
+      cell: (row) => (
+        <RiDeleteBin6Line
+          // eslint-disable-next-line no-use-before-define
+          onClick={() => removeItem(row._id)}
+          size="1rem"
+          color="#23b7e5"
+        />
+      ),
     },
   ];
+  const removeItem = (id) => {
+    console.log(id);
+    setRemoveAccount(true);
+  };
   const tableData = {
     columns: columns(),
     data: AdminAccountManagementData,
@@ -59,8 +95,27 @@ export default function AdminAccountManagement() {
     export: false,
     print: false,
   };
+  const toggleRemove = () => setRemoveAccount(!removeAccount);
   return (
     <div className="AdminAccountManagement">
+      <div className="Delete__Account__Modal">
+        <Modal isOpen={removeAccount} toggle={toggleRemove}>
+          <ModalHeader>Bạn Có Chắc Chán Muốn Xóa ? </ModalHeader>
+          <ModalBody className="Delete__Account__Modal__Body">
+            <Button type="submit" color="primary" style={{ margin: "0 20px" }}>
+              Có
+            </Button>
+            <Button
+              onClick={() => toggleRemove()}
+              type="submit"
+              style={{ margin: "0 20px" }}
+              color="primary"
+            >
+              Không
+            </Button>
+          </ModalBody>
+        </Modal>
+      </div>
       <div
         className="AccountManagement_Header"
         style={{
