@@ -124,10 +124,10 @@ const HomeContent = () => {
           )}
           <div className="HomeContent__product__new">
             <Row>
-              {ListProduct.forEach((itemproduct) => (
-                <>
-                  {item.id === itemproduct.idCategory ? (
-                    <Col lg={3} md={4} ms={6} xs={6}>
+              {ListProduct.map((itemproduct, index) => {
+                if (item.id === itemproduct.idCategory) {
+                  return (
+                    <Col key={index} lg={3} md={4} ms={6} xs={6}>
                       <ItemProduct
                         title="Bàn Ghế ăn"
                         SouceProduct="M15"
@@ -135,11 +135,9 @@ const HomeContent = () => {
                         pricePromotional="4.000.000"
                       />
                     </Col>
-                  ) : (
-                    ""
-                  )}
-                </>
-              ))}
+                  );
+                }
+              })}
             </Row>
           </div>
         </div>
