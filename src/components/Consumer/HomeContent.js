@@ -134,11 +134,11 @@ const HomeContent = () => {
     <div className="HomeContent screen__Wep">
       {dataCategory.map((item, index) => (
         <div className="HomeContent_nav" key={index}>
-          {/* {item.checkProduct ? ( */}
-          <HeaderProduct title={item.category_title} link={item.url} />
-          {/* ) : (
+          {item.checkProduct ? (
+            <HeaderProduct title={item.category_title} link={item.url} />
+          ) : (
             ""
-          )} */}
+          )}
           <div className="HomeContent__product__new">
             <Row>
               {dataProduct.map((itemproduct, index) => {

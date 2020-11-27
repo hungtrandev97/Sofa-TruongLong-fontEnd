@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
 import { useDispatch } from "react-redux";
+import { ReactSelect } from "../Forms/select/select";
 import { createCategorySuccess } from "../../store/actions/actions";
 import { apiEditCategory } from "../../services/category";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
@@ -12,10 +13,15 @@ const eidtCategorySchema = Yup.object().shape({
   category_title: Yup.string().required("Danh Mục Không Được Rỗng"),
 });
 export default function FormEditCategory({ match }) {
+  const [checkProduct, setCheckProduct] = useState(2);
   const dispatch = useDispatch();
   const idCategoryUrl = match.params.idCategory;
   const onFinalSubmit = async (value) => {
-    const req = await apiEditCategory(value, idCategoryUrl);
+    const concatData = {
+      category_title: value.category_title,
+      checkProduct,
+    };
+    const req = await apiEditCategory(concatData, idCategoryUrl);
     if (req.status) {
       NotifySuccess("Chỉnh Sửa Danh Mục", "Chỉnh Sửa Thành Công");
       dispatch(createCategorySuccess(req.data));
@@ -52,6 +58,22 @@ export default function FormEditCategory({ match }) {
               name="category_title"
               placeholder="Nhập Tên Danh Mục"
               autoComplete="categoryTille"
+            />
+          </FormGroup>
+          <FormGroup>
+            <ReactSelect
+              label="Hiện thị trên trang chủ"
+              options={[
+                { value: 1, label: "Có" },
+                { value: 2, label: "Không" },
+              ]}
+              nameSelect="checkProduct"
+              optionsPlaceholder="Hiện thị trên trang chủ"
+              isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setCheckProduct(selectedOpt.value);
+              }}
+              selectedValue={checkProduct}
             />
           </FormGroup>
           <Button type="submit" color="primary" className="Create__Button">

@@ -4,6 +4,7 @@ import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { createCategorySuccess } from "../../store/actions/actions";
+import { ReactSelect } from "../Forms/select/select";
 import { NotifySuccess, NotifyError, NotifyWarning } from "../Notify/Toast";
 import { apiCreateCategory } from "../../services/category";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
@@ -13,10 +14,15 @@ const createCategorySchema = Yup.object().shape({
 });
 function FormCreateCategory() {
   const [isLoading, setIsLoading] = useState(false);
+  const [checkProduct, setCheckProduct] = useState(2);
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
+    const concatData = {
+      category_title: value.category_title,
+      checkProduct,
+    };
     setIsLoading(true);
-    const req = await apiCreateCategory(value);
+    const req = await apiCreateCategory(concatData);
     setIsLoading(false);
     if (req.status) {
       NotifySuccess("Tạo Thư Mục", "Thêm Thư Mục Thành Công");
@@ -55,6 +61,22 @@ function FormCreateCategory() {
               name="category_title"
               placeholder="Nhập Tên Danh Mục"
               autoComplete="categoryTille"
+            />
+          </FormGroup>
+          <FormGroup>
+            <ReactSelect
+              label="Hiện thị trên trang chủ"
+              options={[
+                { value: 1, label: "Có" },
+                { value: 2, label: "Không" },
+              ]}
+              nameSelect="checkProduct"
+              optionsPlaceholder="Hiện thị trên trang chủ"
+              isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setCheckProduct(selectedOpt.value);
+              }}
+              selectedValue={checkProduct}
             />
           </FormGroup>
           <Button

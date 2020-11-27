@@ -60,6 +60,12 @@ function CategoryPage() {
       format: (row) => moment(row.date_create).format("DD-MM-DD hh:ss"),
     },
     {
+      name: "Hiện thị danh mục trang chủ",
+      selector: "checkProduct",
+      sortable: true,
+      format: (row) => <>{row.checkProduct === 1 ? "Có" : "Không"}</>,
+    },
+    {
       name: "Sửa",
       selector: "isDeleted",
       sortable: false,

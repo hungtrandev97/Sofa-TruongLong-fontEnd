@@ -79,8 +79,6 @@ function FormCreateProduct() {
       product_price: value.product_price,
       product_price_sale: value.product_price_sale,
     };
-    console.log(concatData, "concatData");
-    console.log(uploadImages, "concatImageToArray");
     if (urlImageFirebase !== "" && concatImageToArray !== "") {
       const req = await apiCreateProduct(concatData);
       setIsLoading(false);
