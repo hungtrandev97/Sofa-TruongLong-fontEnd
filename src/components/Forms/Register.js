@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
 import { useDispatch } from "react-redux";
+import { ReactSelect } from "./select/select";
 import { registerSuccess } from "../../store/actions/actions";
 import { apiRegister } from "../../services/auth";
 import { NotifySuccess, NotifyWarning } from "../Notify/Toast";
@@ -13,15 +14,24 @@ const loginSchema = Yup.object().shape({
   userName: Yup.string().required("Tên đăng nhập không được rỗng"),
   password: Yup.string().required("Mật khẩu không được rỗng").min(6).max(20),
   email: Yup.string().email().required("Email không được rỗng"),
-  gender: Yup.number().required("Giới tính không được rỗng"),
   address: Yup.string().required("Địa chỉ không được rỗng"),
   numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
 });
 
 export default function Register() {
+  const [gender, setGender] = useState(1);
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
-    const req = await apiRegister(value);
+    const concatData = {
+      numberPhone: value.numberPhone,
+      address: value.address,
+      gender,
+      email: value.email,
+      password: value.password,
+      userName: value.userName,
+    };
+    console.log(concatData);
+    const req = await apiRegister(concatData);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
       dispatch(registerSuccess(req.data));
@@ -38,7 +48,6 @@ export default function Register() {
           userName: "",
           password: "",
           email: "",
-          gender: "",
           address: "",
           numberPhone: "",
         }}
@@ -104,21 +113,20 @@ export default function Register() {
                 autoComplete="email"
               />
             </FormGroup>
+
             <FormGroup>
-              <Label for="gender" className="font-ob-bold AcountLabel">
-                Giới Tính
-              </Label>
-              {errors.gender && touched.gender ? (
-                <div className="invalid-feedback d-block  AcountError">
-                  {errors.gender}
-                </div>
-              ) : null}
-              <Field
-                className="form-control AcountInput"
-                type="number"
-                name="gender"
-                placeholder="Nhập Tên Tài Khoản"
-                autoComplete="gender"
+              <ReactSelect
+                label="Giới Tính"
+                options={[
+                  { value: 1, label: "Nam" },
+                  { value: 2, label: "Nữ" },
+                ]}
+                nameSelect="gender"
+                isClearable={false}
+                onHandleChange={(selectedOpt) => {
+                  setGender(selectedOpt.value);
+                }}
+                selectedValue={gender}
               />
             </FormGroup>
             <FormGroup>
