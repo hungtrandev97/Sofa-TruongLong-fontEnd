@@ -8,113 +8,113 @@ import ItemProduct from "./Layout/ItemProduct";
 import HeaderProduct from "./Layout/HeaderProduct";
 import { getAllProductIndex } from "../../services/product";
 
-const category = [
-  {
-    id: 1,
-    title: "Sản Phẩm Mới Nhất",
-    url: "san-pham-moi-nhat",
-    checkProduct: true,
-  },
-  {
-    id: 2,
-    title: "Sản Phẩm Bán Cháy",
-    url: "san-pham-moi-nhat",
-    checkProduct: true,
-  },
-  {
-    id: 3,
-    title: "Sản phẩm mwosi nhất3",
-    url: "san-pham-moi-nhat",
-    checkProduct: true,
-  },
-  {
-    id: 4,
-    title: "Sản phẩm mwosi nhất4",
-    url: "san-pham-moi-nhat",
-    checkProduct: false,
-  },
-  {
-    id: 5,
-    title: "Sản phẩm mwosi nhất5",
-    url: "san-pham-moi-nhat",
-    checkProduct: false,
-  },
-];
+// const category = [
+//   {
+//     id: 1,
+//     title: "Sản Phẩm Mới Nhất",
+//     url: "san-pham-moi-nhat",
+//     checkProduct: true,
+//   },
+//   {
+//     id: 2,
+//     title: "Sản Phẩm Bán Cháy",
+//     url: "san-pham-moi-nhat",
+//     checkProduct: true,
+//   },
+//   {
+//     id: 3,
+//     title: "Sản phẩm mwosi nhất3",
+//     url: "san-pham-moi-nhat",
+//     checkProduct: true,
+//   },
+//   {
+//     id: 4,
+//     title: "Sản phẩm mwosi nhất4",
+//     url: "san-pham-moi-nhat",
+//     checkProduct: false,
+//   },
+//   {
+//     id: 5,
+//     title: "Sản phẩm mwosi nhất5",
+//     url: "san-pham-moi-nhat",
+//     checkProduct: false,
+//   },
+// ];
 
-const ListProduct = [
-  {
-    id: "5fb11766ded2b6352d5d3fb4",
-    title: "Bàn Ghế ăn",
-    SouceProduct: "M15",
-    price: "5.000.000",
-    pricePromotional: "4.000.000",
-    idCategory: 1,
-  },
-  {
-    id: 2,
-    title: "Bàn Ghế ăn",
-    SouceProduct: "M15",
-    price: "5.000.000",
-    pricePromotional: "4.000.000",
-    idCategory: 1,
-  },
-  {
-    id: 3,
-    title: "Bàn Ghế ăn",
-    SouceProduct: "M15",
-    price: "5.000.000",
-    pricePromotional: "4.000.000",
-    idCategory: 1,
-  },
-  {
-    id: 4,
-    title: "Bàn Ghế ăn",
-    SouceProduct: "M15",
-    price: "5.000.000",
-    pricePromotional: "4.000.000",
-    idCategory: 2,
-  },
-  {
-    id: 5,
-    title: "Bàn Ghế ăn",
-    SouceProduct: "M15",
-    price: "5.000.000",
-    pricePromotional: "4.000.000",
-    idCategory: 2,
-  },
-  {
-    id: 6,
-    title: "Bàn Ghế ăn",
-    SouceProduct: "M15",
-    price: "5.000.000",
-    pricePromotional: "4.000.000",
-    idCategory: 2,
-  },
-  {
-    id: 7,
-    title: "Bàn Ghế ăn",
-    SouceProduct: "M15",
-    price: "5.000.000",
-    pricePromotional: "4.000.000",
-    idCategory: 3,
-  },
-  {
-    id: 8,
-    title: "Bàn Ghế ăn",
-    SouceProduct: "M15",
-    price: "5.000.000",
-    pricePromotional: "4.000.000",
-    idCategory: 3,
-  },
-  {
-    id: 20,
-    title: "Bàn Ghế ăn",
-    SouceProduct: "M15",
-    price: "5.000.000",
-    pricePromotional: "4.000.000",
-    idCategory: 3,
-  },
-];
+// const ListProduct = [
+//   {
+//     id: "5fb11766ded2b6352d5d3fb4",
+//     title: "Bàn Ghế ăn",
+//     SouceProduct: "M15",
+//     price: "5.000.000",
+//     pricePromotional: "4.000.000",
+//     idCategory: 1,
+//   },
+//   {
+//     id: 2,
+//     title: "Bàn Ghế ăn",
+//     SouceProduct: "M15",
+//     price: "5.000.000",
+//     pricePromotional: "4.000.000",
+//     idCategory: 1,
+//   },
+//   {
+//     id: 3,
+//     title: "Bàn Ghế ăn",
+//     SouceProduct: "M15",
+//     price: "5.000.000",
+//     pricePromotional: "4.000.000",
+//     idCategory: 1,
+//   },
+//   {
+//     id: 4,
+//     title: "Bàn Ghế ăn",
+//     SouceProduct: "M15",
+//     price: "5.000.000",
+//     pricePromotional: "4.000.000",
+//     idCategory: 2,
+//   },
+//   {
+//     id: 5,
+//     title: "Bàn Ghế ăn",
+//     SouceProduct: "M15",
+//     price: "5.000.000",
+//     pricePromotional: "4.000.000",
+//     idCategory: 2,
+//   },
+//   {
+//     id: 6,
+//     title: "Bàn Ghế ăn",
+//     SouceProduct: "M15",
+//     price: "5.000.000",
+//     pricePromotional: "4.000.000",
+//     idCategory: 2,
+//   },
+//   {
+//     id: 7,
+//     title: "Bàn Ghế ăn",
+//     SouceProduct: "M15",
+//     price: "5.000.000",
+//     pricePromotional: "4.000.000",
+//     idCategory: 3,
+//   },
+//   {
+//     id: 8,
+//     title: "Bàn Ghế ăn",
+//     SouceProduct: "M15",
+//     price: "5.000.000",
+//     pricePromotional: "4.000.000",
+//     idCategory: 3,
+//   },
+//   {
+//     id: 20,
+//     title: "Bàn Ghế ăn",
+//     SouceProduct: "M15",
+//     price: "5.000.000",
+//     pricePromotional: "4.000.000",
+//     idCategory: 3,
+//   },
+// ];
 
 const HomeContent = () => {
   const [dataProduct, setDataProduct] = useState([]);

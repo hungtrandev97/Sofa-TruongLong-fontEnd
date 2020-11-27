@@ -105,6 +105,13 @@ export default function ProductPage() {
       sortable: true,
     },
     {
+      name: " Hiện Thị Trên Trang Chủ",
+      selector: "product_index",
+      sortable: true,
+      width: "150px",
+      format: (row) => <>{row.product_index === 1 ? "Có" : "Không"}</>,
+    },
+    {
       name: "Sản Phẩm Mới",
       selector: "product_new",
       sortable: true,

@@ -26,6 +26,7 @@ function FormCreateProduct() {
   const [categoryValue, setCategoryValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [productNewValue, setproductNewValue] = useState(1);
+  const [productIndexValue, setproductIndexValue] = useState(1);
   const [dataTextarea, setDataTextarea] = useState(
     `const data: '<p>Nội dung</p>'`
   );
@@ -71,6 +72,7 @@ function FormCreateProduct() {
     const concatData = {
       _category: categoryValue,
       product_new: productNewValue,
+      product_index: productIndexValue,
       product_discript: dataTextarea,
       product_title: value.product_title,
       product_code: value.product_code,
@@ -244,6 +246,22 @@ function FormCreateProduct() {
                 setproductNewValue(selectedOpt.value);
               }}
               selectedValue={productNewValue}
+            />
+          </FormGroup>
+          <FormGroup>
+            <ReactSelect
+              label="Hiện Thị Trang Chủ"
+              options={[
+                { value: 1, label: "Có" },
+                { value: 2, label: "Không" },
+              ]}
+              nameSelect="ProductIndex"
+              optionsPlaceholder="Hiện Thị Trang Chủ"
+              isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setproductIndexValue(selectedOpt.value);
+              }}
+              selectedValue={productIndexValue}
             />
           </FormGroup>
           <Button
