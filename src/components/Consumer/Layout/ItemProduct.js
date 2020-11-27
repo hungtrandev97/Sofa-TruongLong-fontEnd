@@ -13,7 +13,7 @@ const ItemProduct = ({ title, SouceProduct, price, pricePromotional }) => {
       </div>
       <div className="ItemProduct__Content__title">{title}</div>
       <div className="ItemProduct__Content__Source">
-        <span>mã sản phẩm : - </span>
+        <span>MSP-</span>
         <span>{SouceProduct}</span>
       </div>
       <div className="ItemProduct__Content__Price">

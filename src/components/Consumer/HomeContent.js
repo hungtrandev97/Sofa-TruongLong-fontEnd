@@ -1,14 +1,49 @@
-import React, { useEffect } from "react";
+/* eslint-disable no-shadow */
+/* eslint-disable no-underscore-dangle */
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
 import "./HomeContent.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import ItemProduct from "./Layout/ItemProduct";
 import HeaderProduct from "./Layout/HeaderProduct";
-import { getAllCategory } from "../../store/actions/actions";
+import { getAllProductIndex } from "../../services/product";
+
+const category = [
+  {
+    id: 1,
+    title: "Sản Phẩm Mới Nhất",
+    url: "san-pham-moi-nhat",
+    checkProduct: true,
+  },
+  {
+    id: 2,
+    title: "Sản Phẩm Bán Cháy",
+    url: "san-pham-moi-nhat",
+    checkProduct: true,
+  },
+  {
+    id: 3,
+    title: "Sản phẩm mwosi nhất3",
+    url: "san-pham-moi-nhat",
+    checkProduct: true,
+  },
+  {
+    id: 4,
+    title: "Sản phẩm mwosi nhất4",
+    url: "san-pham-moi-nhat",
+    checkProduct: false,
+  },
+  {
+    id: 5,
+    title: "Sản phẩm mwosi nhất5",
+    url: "san-pham-moi-nhat",
+    checkProduct: false,
+  },
+];
 
 const ListProduct = [
   {
-    id: 1,
+    id: "5fb11766ded2b6352d5d3fb4",
     title: "Bàn Ghế ăn",
     SouceProduct: "M15",
     price: "5.000.000",
@@ -82,32 +117,39 @@ const ListProduct = [
 ];
 
 const HomeContent = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllCategory());
-  }, [dispatch]);
+  const [dataProduct, setDataProduct] = useState([]);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
-  console.log(dataCategory);
+
+  const GetProduct = async () => {
+    const responseData = await getAllProductIndex();
+    setDataProduct(responseData.data);
+  };
+
+  useEffect(() => {
+    GetProduct();
+  }, []);
+
+  console.log(dataProduct, "dataProduct");
   return (
     <div className="HomeContent screen__Wep">
-      {dataCategory.map((item) => (
-        <div className="HomeContent_nav" key={item.id}>
-          {item.checkProduct ? (
-            <HeaderProduct title={item.title} link={item.url} />
-          ) : (
+      {dataCategory.map((item, index) => (
+        <div className="HomeContent_nav" key={index}>
+          {/* {item.checkProduct ? ( */}
+          <HeaderProduct title={item.category_title} link={item.url} />
+          {/* ) : (
             ""
-          )}
+          )} */}
           <div className="HomeContent__product__new">
             <Row>
-              {ListProduct.map((itemproduct, index) => {
-                if (item.id === itemproduct.idCategory) {
+              {dataProduct.map((itemproduct, index) => {
+                if (item._id === itemproduct._category._id) {
                   return (
                     <Col key={index} lg={3} md={4} ms={6} xs={6}>
                       <ItemProduct
-                        title="Bàn Ghế ăn"
-                        SouceProduct="M15"
-                        price="5.000.000"
-                        pricePromotional="4.000.000"
+                        title={itemproduct.product_title}
+                        SouceProduct={itemproduct.product_code}
+                        price={itemproduct.product_price}
+                        pricePromotional={itemproduct.product_price_sale}
                       />
                     </Col>
                   );

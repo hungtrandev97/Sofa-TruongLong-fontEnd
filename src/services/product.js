@@ -85,3 +85,30 @@ export const apiGetAllProduct = async () => {
     data: response,
   };
 };
+
+export const getAllProductIndex = async () => {
+  const response = await requestGet({
+    fullUrl: `${END_POINT}/v1/ProductRoutes/GetAllProductIndex`,
+  });
+  if (response.statusCode === 200) {
+    const { body } = response;
+    return {
+      status: true,
+      type: TYPE_NOTIFY.SUCCESS,
+      data: body.data,
+    };
+  }
+  if (response.statusCode === 250) {
+    return {
+      status: false,
+      type: TYPE_NOTIFY.WARNING,
+      message: response.body.message,
+    };
+  }
+  return {
+    status: false,
+    type: TYPE_NOTIFY.ERROR,
+    message: response.body.message,
+    data: response,
+  };
+};
