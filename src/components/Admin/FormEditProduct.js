@@ -1,19 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, FormGroup, Label } from "reactstrap";
 import { Formik, Form, Field } from "formik";
 import Dropzone from "react-dropzone-uploader";
+import CKEditor from "ckeditor4-react";
+import * as Yup from "yup";
+import { useSelector } from "react-redux";
 import { ReactSelect } from "../Forms/select/select";
 
-export default function FormEditProduct() {
+const editProductSchema = Yup.object().shape({
+  product_title: Yup.string().required("Tên Sản Phẩm Không Được Rỗng"),
+  product_code: Yup.number().required("Mã Sản Phẩm Không Được Rỗng"),
+  product_price: Yup.number().required("Bắt buộc phải có giá sản phẩm"),
+  product_price_sale: Yup.number().required(""),
+});
+export default function FormEditProduct({ match }) {
+  const { dataCategory } = useSelector((state) => state.categoryRedux);
+  const [categoryValue, setCategoryValue] = useState("");
+  const [dataTextarea, setDataTextarea] = useState("");
+  const ChangeTextarea = (ChangeEvent) => {
+    setDataTextarea(ChangeEvent.editor.getData());
+  };
+  const dataCategoryDefault = [];
+  dataCategory.forEach((item) => {
+    dataCategoryDefault.push({
+      value: `${item._id}`,
+      label: `${item.category_title}`,
+    });
+  });
   return (
     <Formik
       initialValues={{
         product_title: "",
         product_code: "",
-        product_image: "",
         product_price: "",
         product_price_sale: "",
       }}
+      validationSchema={editProductSchema}
       onSubmit={(values) => {
         console.log(values);
       }}
@@ -46,15 +68,20 @@ export default function FormEditProduct() {
               type="text"
               name="product_title"
               placeholder="Nhập Tên Sản Phẩm"
-              autoComplete="producttitle"
+              autoComplete="productTitle"
             />
           </FormGroup>
           <FormGroup>
             <ReactSelect
               label="Tên Danh Mục Sản Phẩm"
+              options={dataCategoryDefault}
               nameSelect="_category"
               optionsPlaceholder="Select Gender"
               isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setCategoryValue(selectedOpt.value);
+              }}
+              selectedValue={categoryValue}
             />
           </FormGroup>
           <FormGroup>
@@ -117,7 +144,12 @@ export default function FormEditProduct() {
                 {errors.product_discript}
               </div>
             ) : null}
-            <div />
+            <div>
+              <CKEditor
+                data={dataTextarea}
+                onChange={(value) => ChangeTextarea(value)}
+              />
+            </div>
           </FormGroup>
           <FormGroup>
             <ReactSelect

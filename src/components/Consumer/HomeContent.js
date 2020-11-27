@@ -1,41 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
 import "./HomeContent.css";
+import { useSelector, useDispatch } from "react-redux";
 import ItemProduct from "./Layout/ItemProduct";
 import HeaderProduct from "./Layout/HeaderProduct";
-
-const category = [
-  {
-    id: 1,
-    title: "Sản Phẩm Mới Nhất",
-    url: "san-pham-moi-nhat",
-    checkProduct: true,
-  },
-  {
-    id: 2,
-    title: "Sản Phẩm Bán Cháy",
-    url: "san-pham-moi-nhat",
-    checkProduct: true,
-  },
-  {
-    id: 3,
-    title: "Sản phẩm mwosi nhất3",
-    url: "san-pham-moi-nhat",
-    checkProduct: true,
-  },
-  {
-    id: 4,
-    title: "Sản phẩm mwosi nhất4",
-    url: "san-pham-moi-nhat",
-    checkProduct: false,
-  },
-  {
-    id: 5,
-    title: "Sản phẩm mwosi nhất5",
-    url: "san-pham-moi-nhat",
-    checkProduct: false,
-  },
-];
+import { getAllCategory } from "../../store/actions/actions";
 
 const ListProduct = [
   {
@@ -113,9 +82,15 @@ const ListProduct = [
 ];
 
 const HomeContent = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllCategory());
+  }, [dispatch]);
+  const { dataCategory } = useSelector((state) => state.categoryRedux);
+  console.log(dataCategory);
   return (
     <div className="HomeContent screen__Wep">
-      {category.map((item) => (
+      {dataCategory.map((item) => (
         <div className="HomeContent_nav" key={item.id}>
           {item.checkProduct ? (
             <HeaderProduct title={item.title} link={item.url} />

@@ -101,11 +101,10 @@ function FormCreateProduct() {
   return (
     <Formik
       initialValues={{
-        product_title: "âccs",
-        product_code: "123",
-        product_image: "",
-        product_price: "123",
-        product_price_sale: "12312",
+        product_title: "",
+        product_code: "",
+        product_price: "",
+        product_price_sale: "",
       }}
       validationSchema={createProductSchema}
       onSubmit={(values) => {

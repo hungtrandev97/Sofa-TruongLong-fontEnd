@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import { AiOutlineCaretRight } from "react-icons/ai";
-
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCategory } from "../../../store/actions/actions";
 import "./MenuConsumer.css";
 
 const MenuConsumer = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllCategory());
+  }, [dispatch]);
+  const { dataCategory } = useSelector((state) => state.categoryRedux);
+
   return (
     <div className="consumersMenu">
       <div className="consumersMenu__Menu">
@@ -37,48 +44,17 @@ const MenuConsumer = () => {
                 </li>
                 <li>
                   <Link to="/home/educational/">Sản Phẩm</Link>
+
                   <ul className="sub-menu">
                     <Row className="screen__Wep sub-menuCategory">
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Ghế
-                      </Col>
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Bàn
-                      </Col>
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Bàn Ăn
-                      </Col>
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Ghế sofa Cao Cấp
-                      </Col>
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Ghế
-                      </Col>
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Bàn
-                      </Col>
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Bàn Ăn
-                      </Col>
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Ghế sofa Cao Cấp
-                      </Col>
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Bàn Ăn
-                      </Col>
-                      <Col md={3}>
-                        <AiOutlineCaretRight />
-                        Ghế sofa Cao Cấp
-                      </Col>
+                      {dataCategory.map((data, index) => {
+                        return (
+                          <Col key={index} md={3}>
+                            <AiOutlineCaretRight />
+                            {data.category_title}
+                          </Col>
+                        );
+                      })}
                     </Row>
                   </ul>
                 </li>

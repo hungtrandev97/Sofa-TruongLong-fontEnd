@@ -22,11 +22,15 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Loader from "../Loaders/Loader";
 import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
-import { getAllCategory } from "../../store/actions/actions";
+import {
+  getAllCategory,
+  createCategorySuccess,
+} from "../../store/actions/actions";
 import "react-data-table-component-extensions/dist/index.css";
 import FormCreateCategory from "./FormCreateCategory";
 import { apiDeleteCategory } from "../../services/category";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
+
 import "./CategoryPage.css";
 
 function CategoryPage() {
@@ -105,6 +109,7 @@ function CategoryPage() {
     const req = await apiDeleteCategory(idCategory);
     if (req.status) {
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
+      dispatch(createCategorySuccess(req.data));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Xóa Danh Mục", `${req.message}`);
     } else {

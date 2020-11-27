@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BiMenu,
   BiCaretDown,
@@ -15,7 +15,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { FromAcount } from "../../../constants/DefaultValues";
 import FormLogin from "../../Forms/Login";
 import Register from "../../Forms/Register";
-import { logoutUser } from "../../../store/actions/actions";
+import { logoutUser, getAllCategory } from "../../../store/actions/actions";
+
 import "./MenuMobile.css";
 
 const MenuMobile = () => {
@@ -40,6 +41,11 @@ const MenuMobile = () => {
   const logoutAcout = () => {
     dispatch(logoutUser());
   };
+  useEffect(() => {
+    dispatch(getAllCategory());
+  }, [dispatch]);
+  const { dataCategory } = useSelector((state) => state.categoryRedux);
+  console.log(dataCategory);
   const { loginUser } = useSelector((state) => state.authRedux);
   return (
     <div className="MenuMobile">
@@ -138,18 +144,14 @@ const MenuMobile = () => {
                 className="MenuMobile__Content_UlMenuleft__ProductUL"
                 style={{ display: `${isOpenListProduct ? "block" : "none"}` }}
               >
-                <li>
-                  <BiChevronRight size="1rem" />
-                  <Link to="/">Page 1</Link>
-                </li>
-                <li>
-                  <BiChevronRight size="1rem" />
-                  <Link to="/">Page 2</Link>
-                </li>
-                <li>
-                  <BiChevronRight size="1rem" />
-                  <Link to="/">Page 3</Link>
-                </li>
+                {dataCategory.map((Data, index) => {
+                  return (
+                    <li key={index}>
+                      <BiChevronRight size="1rem" />
+                      <Link to="/">{Data.category_title}</Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div className="MenuMobile__Content_UlMenuleft__Contact">

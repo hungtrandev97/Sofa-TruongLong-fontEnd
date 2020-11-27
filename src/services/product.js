@@ -1,4 +1,4 @@
-import { requestGet, requestPost, requestPut } from "../helpers/NetworkUtils";
+import { requestGet, requestPost } from "../helpers/NetworkUtils";
 import {
   END_POINT,
   TYPE_NOTIFY,
@@ -34,7 +34,6 @@ export const apiCreateProduct = async (data) => {
   };
 };
 export const apiDeleteProduct = async (idProduct) => {
-  console.log(idProduct);
   const response = await requestGet({
     fullUrl: `${END_POINT}/v1/ProductRoutes/RemoveProduct?id_product=${idProduct}`,
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
