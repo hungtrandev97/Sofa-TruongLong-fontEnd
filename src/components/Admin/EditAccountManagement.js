@@ -1,8 +1,8 @@
 import React from "react";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import FormEditAccount from "./FormEditAccount";
+import FormEditAccountAdmin from "./FormEditAccountAdmin";
 
-export default function EditAccountManagement({ match }) {
+export default function EditAccountManagement({ match, location }) {
   return (
     <div>
       <div
@@ -18,7 +18,7 @@ export default function EditAccountManagement({ match }) {
         </Breadcrumb>
       </div>
       <div style={{ padding: "30px 130px 30px 130px" }}>
-        <FormEditAccount match={match} />
+        <FormEditAccountAdmin match={match} location={location} />
       </div>
     </div>
   );
