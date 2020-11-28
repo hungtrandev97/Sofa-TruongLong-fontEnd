@@ -13,10 +13,10 @@ const createAccountAdminSchema = Yup.object().shape({
   address: Yup.string().required("Địa chỉ không được rỗng"),
   numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
 });
-export default function FromEditAccountAdmin({ match, location }) {
-  const dataAccountAdmin = location.state.row;
-  const [gender, setGender] = useState(dataAccountAdmin.gender);
-  const [role, setRole] = useState(dataAccountAdmin.role);
+export default function FormEditAccountConsumer({ match, location }) {
+  const dataAccountConsumer = location.state.row;
+  const [gender, setGender] = useState(dataAccountConsumer.gender);
+  const [role, setRole] = useState(dataAccountConsumer.role);
   const idAcountAdminUrl = match.params.idAccount;
 
   const onFinalSubmit = async (value) => {
@@ -41,10 +41,10 @@ export default function FromEditAccountAdmin({ match, location }) {
   return (
     <Formik
       initialValues={{
-        userName: dataAccountAdmin.userName,
-        email: dataAccountAdmin.email,
-        address: dataAccountAdmin.address,
-        numberPhone: dataAccountAdmin.numberPhone,
+        userName: dataAccountConsumer.userName,
+        email: dataAccountConsumer.email,
+        address: dataAccountConsumer.address,
+        numberPhone: dataAccountConsumer.numberPhone,
       }}
       validationSchema={createAccountAdminSchema}
       onSubmit={(values) => {

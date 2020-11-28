@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { apiRegister } from "../../services/auth";
+import { apiRegister, apiGetAllAcountCustomer } from "../../services/auth";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { NotifySuccess, NotifyWarning } from "../Notify/Toast";
 import { acountConsumerSuccess } from "../../store/actions/actions";
@@ -33,11 +33,11 @@ export default function FromCreateAccountCustomer() {
     };
     setIsLoading(true);
     const req = await apiRegister(concatData);
-
     setIsLoading(false);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
-      dispatch(acountConsumerSuccess(req.data));
+      const getDataAcountConsumerIndex = await apiGetAllAcountCustomer();
+      dispatch(acountConsumerSuccess(getDataAcountConsumerIndex));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
     } else {

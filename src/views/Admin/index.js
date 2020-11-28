@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { withRouter, Switch, Route, Redirect } from "react-router-dom";
 import CategoryPage from "../../components/Admin/CategoryPage";
+import EditAccountConsumer from "../../components/Admin/EditAccountConsumer";
 import ProductPage from "../../components/Admin/ProductPage";
 import BaseAdmin from "../../components/Layout/Admin/BaseAdmin";
 import CreateProduct from "../../components/Admin/CreateProduct";
@@ -69,6 +70,10 @@ function Admin({ location, match }) {
               <Route
                 path={`${match.url}/EditAccountManagement/:idAccount`}
                 component={EditAccountManagement}
+              />
+              <Route
+                path={`${match.url}/EditAccountConsumer/:idAccount`}
+                component={EditAccountConsumer}
               />
               <Route
                 path={`${match.url}/AccountCustomer`}

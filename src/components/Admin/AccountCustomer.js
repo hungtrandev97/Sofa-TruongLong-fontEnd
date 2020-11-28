@@ -58,7 +58,6 @@ export default function AccountCustomer() {
       name: "Địa Chỉ",
       selector: "address",
       sortable: true,
-      width: "300px",
     },
     {
       name: "Sửa",
@@ -70,10 +69,9 @@ export default function AccountCustomer() {
       format: (row) => (
         <Link
           to={{
-            pathname: `/admin/EditAccountManagement/${row._id}`,
+            pathname: `/admin/EditAccountConsumer/${row._id}`,
             state: {
-              category_title: row.category_title,
-              checkProduct: row.checkProduct,
+              row,
             },
           }}
         >
@@ -101,18 +99,18 @@ export default function AccountCustomer() {
     setRemoveAccount(true);
     setIdAccount(id);
   };
-  const GetFromApiAllAcountCustomer = async () => {
-    const getDataAcountAdmin = await apiGetAllAcountCustomer();
-    console.log(getDataAcountAdmin);
-  };
+
   useEffect(() => {
+    const GetFromApiAllAcountCustomer = async () => {
+      const getDataAcountConsumerIndex = await apiGetAllAcountCustomer();
+      dispatch(acountConsumerSuccess(getDataAcountConsumerIndex));
+    };
     GetFromApiAllAcountCustomer();
-  }, []);
-  const { consumerData } = useSelector((state) => state.authRedux);
-  console.log(consumerData, "customerData");
+  }, [dispatch]);
+  const { dataAcountConsumer } = useSelector((state) => state.authRedux);
   const tableData = {
     columns: columns(),
-    data: consumerData,
+    data: dataAcountConsumer,
     filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
@@ -121,7 +119,9 @@ export default function AccountCustomer() {
     const req = await apiDeleteAccount(idAccount);
     if (req.status) {
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
-      dispatch(acountConsumerSuccess(req));
+      const getDataAcountConsumer = await apiGetAllAcountCustomer();
+      setRemoveAccount(false);
+      dispatch(acountConsumerSuccess(getDataAcountConsumer));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Xóa Danh Mục", `${req.message}`);
     } else {
@@ -185,7 +185,7 @@ export default function AccountCustomer() {
               noHeader
               pagination
               columns={columns()}
-              data={consumerData}
+              data={dataAcountConsumer}
               paginationPerPage={PAGE_SIZE}
               highlightOnHover
               noDataComponent="Danh mục rỗng"
