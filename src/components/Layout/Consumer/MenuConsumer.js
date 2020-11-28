@@ -1,20 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import { AiOutlineCaretRight } from "react-icons/ai";
-import { useSelector, useDispatch } from "react-redux";
-import { apiGetAllCategory } from "../../../services/category";
+import { useSelector } from "react-redux";
 import "./MenuConsumer.css";
 
 const MenuConsumer = () => {
-  const dispatch = useDispatch();
-  const GetFromApiAllAcountCategory = async () => {
-    const getDataAcountAdmin = await apiGetAllCategory();
-    console.log(getDataAcountAdmin);
-  };
-  useEffect(() => {
-    GetFromApiAllAcountCategory();
-  }, []);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
 
   return (

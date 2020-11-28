@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FromAcount } from "../../../constants/DefaultValues";
 import FormLogin from "../../Forms/Login";
 import Register from "../../Forms/Register";
-import { logoutUser } from "../../../store/actions/actions";
+import { logoutUser, CategorySuccess } from "../../../store/actions/actions";
 import { apiGetAllCategory } from "../../../services/category";
 
 import "./MenuMobile.css";
@@ -42,13 +42,16 @@ const MenuMobile = () => {
   const logoutAcout = () => {
     dispatch(logoutUser());
   };
-  const GetFromApiAllAcountCategory = async () => {
-    const getDataAcountAdmin = await apiGetAllCategory();
-    console.log(getDataAcountAdmin);
-  };
+
   useEffect(() => {
+    const GetFromApiAllAcountCategory = async () => {
+      const getDataCategory = await apiGetAllCategory();
+      if (getDataCategory.status) {
+        dispatch(CategorySuccess(getDataCategory));
+      }
+    };
     GetFromApiAllAcountCategory();
-  }, []);
+  }, [dispatch]);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
   const { loginUser } = useSelector((state) => state.authRedux);
   return (
@@ -71,7 +74,7 @@ const MenuMobile = () => {
             </div>
             <div className="MenuMobile__Content_UlMenuleft__LoginLoguot">
               <div className="HeaderConsumer__Modal">
-                <Modal isOpen={modal && loginUser} toggle={toggle}>
+                <Modal isOpen={modal} toggle={toggle}>
                   <ModalHeader toggle={toggle}>
                     {typeAcount === FromAcount.LOGIN ? "ĐĂNG NHẬP" : "Đăng Ký"}
                   </ModalHeader>
@@ -87,7 +90,7 @@ const MenuMobile = () => {
               <div className="MenuMobile__LoginLoguot__icon">
                 <BsPeopleCircle size="2rem" color="#ffff" />
               </div>
-              {loginUser === null ? (
+              {loginUser === null || loginUser.accessToken === undefined ? (
                 <div className="MenuMobile__Acount">
                   <button
                     type="button"

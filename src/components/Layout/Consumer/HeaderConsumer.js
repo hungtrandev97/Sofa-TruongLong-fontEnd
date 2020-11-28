@@ -37,7 +37,7 @@ export default function Header() {
           </ModalBody>
         </Modal>
       </div>
-      {loginUser === null ? (
+      {loginUser === null || loginUser.accessToken === undefined ? (
         <div className="HeaderConsumer__account">
           <button
             onClick={() => ChangeIsModal(true, FromAcount.LOGIN)}

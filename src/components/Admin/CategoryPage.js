@@ -125,15 +125,16 @@ function CategoryPage() {
     toggle(true);
     setRemoveCategory(type);
   };
-  const GetFromApiAllCategory = async () => {
-    const getDataCategory = await apiGetAllCategory();
-    dispatch(CategorySuccess(getDataCategory));
-  };
+
   // end function
 
   useEffect(() => {
+    const GetFromApiAllCategory = async () => {
+      const getDataCategory = await apiGetAllCategory();
+      dispatch(CategorySuccess(getDataCategory));
+    };
     GetFromApiAllCategory();
-  }, []);
+  }, [dispatch]);
 
   const tableData = {
     columns: columns(),
