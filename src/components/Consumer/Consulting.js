@@ -23,7 +23,7 @@ function Consulting() {
         <div className="Consulting__Header__Content">
           <h4>LỜI KHUYÊN KHI MUA GHẾ SOFA</h4>
           <b>BƯỚC 1: CHỌN KHUNG GHẾ SOFA</b>
-          <p>
+          <p style={{ paddingLeft: "20px" }}>
             Khung sofa được làm từ các loại gỗ cứng như gỗ dầu đã được qua công
             đoạn xử lý chống mối mọt và chống cong vênh sẽ giúp ghế chắc chắn và
             sử dụng bền lâu. Loại gỗ mềm hơn như gỗ thông là một lựa chọn phổ
@@ -34,7 +34,7 @@ function Consulting() {
             nứt và thường không thoải mái.
           </p>
           <b>BƯỚC 2: KIỂM TRA NÚT ĐỆM</b>
-          <p>
+          <p style={{ paddingLeft: "20px" }}>
             Khung sofa được làm từ các loại gỗ cứng như gỗ dầu đã được qua công
             đoạn xử lý chống mối mọt và chống cong vênh sẽ giúp ghế chắc chắn và
             sử dụng bền lâu. Loại gỗ mềm hơn như gỗ thông là một lựa chọn phổ
@@ -45,7 +45,7 @@ function Consulting() {
             nứt và thường không thoải mái.
           </p>
           <b>BƯỚC 3: CHẤT LIỆU VẢI BỌC SOFA</b>
-          <p>
+          <p style={{ paddingLeft: "20px" }}>
             Ghế sofa bằng vải bố, vải nỉ và ghế sofa da là những chất liệu bọc
             được sử dụng phổ biến nhất hiện nay. Các loại vải sợi nhỏ có thể là
             lựa chọn tuyệt vời, bởi nó khá đẹp, bền và dễ làm sạch. Tùy theo

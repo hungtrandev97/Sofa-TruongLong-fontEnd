@@ -73,7 +73,18 @@ function CategoryPage() {
       wrap: true,
       width: "80px",
       format: (row) => (
-        <Link to={`/admin/editCategory/${row._id}`}>
+        // <Link to={`/admin/editCategory/${row._id}`}>
+        //   <AiOutlineEdit size="1rem" color="#23b7e5" />
+        // </Link>
+        <Link
+          to={{
+            pathname: `/admin/editCategory/${row._id}`,
+            state: {
+              category_title: row.category_title,
+              checkProduct: row.checkProduct,
+            },
+          }}
+        >
           <AiOutlineEdit size="1rem" color="#23b7e5" />
         </Link>
       ),

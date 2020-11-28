@@ -114,3 +114,26 @@ export const apiGetAllCategory = async () => {
     data: response,
   };
 };
+
+// export const apiGetOneCategory = async (idCategory) => {
+//   const response = await requestGet({
+//     fullUrl: `${END_POINT}/v1/categoryRoutes/GetOneCategory?id_category=${idCategory}`,
+//   });
+//   if (response.statusCode === 200) {
+//     const { body } = response;
+//     return {
+//       status: true,
+//       data: body,
+//     };
+//   }
+//   if (response.statusCode === 250) {
+//     return {
+//       status: false,
+//       message: response.body.message,
+//     };
+//   }
+//   return {
+//     status: false,
+//     message: response.body.message,
+//   };
+// };

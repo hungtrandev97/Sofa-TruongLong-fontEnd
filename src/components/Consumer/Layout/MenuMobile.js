@@ -45,7 +45,6 @@ const MenuMobile = () => {
     dispatch(getAllCategory());
   }, [dispatch]);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
-  console.log(dataCategory);
   const { loginUser } = useSelector((state) => state.authRedux);
   return (
     <div className="MenuMobile">
@@ -67,7 +66,7 @@ const MenuMobile = () => {
             </div>
             <div className="MenuMobile__Content_UlMenuleft__LoginLoguot">
               <div className="HeaderConsumer__Modal">
-                <Modal isOpen={modal} toggle={toggle}>
+                <Modal isOpen={modal && loginUser} toggle={toggle}>
                   <ModalHeader toggle={toggle}>
                     {typeAcount === FromAcount.LOGIN ? "ĐĂNG NHẬP" : "Đăng Ký"}
                   </ModalHeader>

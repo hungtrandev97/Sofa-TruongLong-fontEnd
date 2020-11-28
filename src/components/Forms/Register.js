@@ -30,7 +30,6 @@ export default function Register() {
       password: value.password,
       userName: value.userName,
     };
-    console.log(concatData);
     const req = await apiRegister(concatData);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
@@ -57,11 +56,7 @@ export default function Register() {
         }}
       >
         {({ errors, touched }) => (
-          <Form
-            className="FormLogin__Form"
-            // style={{ marginTop: `${errorLogin ? "24px" : "53px"}` }}
-            noValidate
-          >
+          <Form className="FormLogin__Form" noValidate>
             <FormGroup>
               <Label for="userName" className="font-ob-bold AcountLabel">
                 Tên Đăng Nhập
@@ -97,24 +92,6 @@ export default function Register() {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="email" className="font-ob-bold AcountLabel">
-                Email
-              </Label>
-              {errors.email && touched.email ? (
-                <div className="invalid-feedback d-block  AcountError">
-                  {errors.email}
-                </div>
-              ) : null}
-              <Field
-                className="form-control AcountInput"
-                type="email"
-                name="email"
-                placeholder="Nhập Tên Tài Khoản"
-                autoComplete="email"
-              />
-            </FormGroup>
-
-            <FormGroup>
               <ReactSelect
                 label="Giới Tính"
                 options={[
@@ -127,23 +104,6 @@ export default function Register() {
                   setGender(selectedOpt.value);
                 }}
                 selectedValue={gender}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="address" className="font-ob-bold AcountLabel">
-                Địa Chỉ
-              </Label>
-              {errors.address && touched.address ? (
-                <div className="invalid-feedback d-block  AcountError">
-                  {errors.address}
-                </div>
-              ) : null}
-              <Field
-                className="form-control AcountInput"
-                type="text"
-                name="address"
-                placeholder="Nhập Tên Tài Khoản"
-                autoComplete="address"
               />
             </FormGroup>
             <FormGroup>
@@ -163,6 +123,42 @@ export default function Register() {
                 autoComplete="numberPhone"
               />
             </FormGroup>
+            <FormGroup>
+              <Label for="email" className="font-ob-bold AcountLabel">
+                Email
+              </Label>
+              {errors.email && touched.email ? (
+                <div className="invalid-feedback d-block  AcountError">
+                  {errors.email}
+                </div>
+              ) : null}
+              <Field
+                className="form-control AcountInput"
+                type="email"
+                name="email"
+                placeholder="Nhập Tên Tài Khoản"
+                autoComplete="email"
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <Label for="address" className="font-ob-bold AcountLabel">
+                Địa Chỉ
+              </Label>
+              {errors.address && touched.address ? (
+                <div className="invalid-feedback d-block  AcountError">
+                  {errors.address}
+                </div>
+              ) : null}
+              <Field
+                className="form-control AcountInput"
+                type="text"
+                name="address"
+                placeholder="Nhập Tên Tài Khoản"
+                autoComplete="address"
+              />
+            </FormGroup>
+
             <Button type="submit" color="primary" className="AcountButton">
               <span className="ml-50 font-ob-bold">Đăng Ký</span>
             </Button>

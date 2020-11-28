@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./ItemProduct.css";
 
 const ItemProduct = ({ title, SouceProduct, price, pricePromotional }) => {
@@ -24,7 +25,6 @@ const ItemProduct = ({ title, SouceProduct, price, pricePromotional }) => {
         <span className="ItemProduct__Content__Price__span">-</span>
         <div className="ItemProduct__Content__Price__promotional">
           <span>{pricePromotional}</span>
-          <span>₫</span>
         </div>
       </div>
       <div className="ItemProduct__Content__button">
@@ -32,6 +32,19 @@ const ItemProduct = ({ title, SouceProduct, price, pricePromotional }) => {
       </div>
     </div>
   );
+};
+
+ItemProduct.propTypes = {
+  title: PropTypes.string,
+  SouceProduct: PropTypes.number,
+  price: PropTypes.string,
+  pricePromotional: PropTypes.string,
+};
+ItemProduct.defaultProps = {
+  title: "",
+  SouceProduct: 1,
+  price: "",
+  pricePromotional: "",
 };
 
 export default ItemProduct;

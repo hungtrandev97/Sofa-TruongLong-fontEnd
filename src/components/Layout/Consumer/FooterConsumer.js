@@ -25,7 +25,7 @@ function FooterConsumer() {
               </div>
             </div>
             <div className="FooterCosumer_left_Content">
-              <h1> SOFA TRƯỜNG LONG</h1>
+              <h1 style={{ color: "rgb(35, 183, 229)" }}> SOFA TRƯỜNG LONG</h1>
               <div className="FooterCosumer_left_Content_Address">
                 <ImHome3 size="0.8rem" color="#23b7e5" />
                 <span>

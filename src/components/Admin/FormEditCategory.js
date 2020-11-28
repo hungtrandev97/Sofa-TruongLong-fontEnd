@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
@@ -12,10 +13,12 @@ import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 const eidtCategorySchema = Yup.object().shape({
   category_title: Yup.string().required("Danh Mục Không Được Rỗng"),
 });
-export default function FormEditCategory({ match }) {
-  const [checkProduct, setCheckProduct] = useState(2);
+export default function FormEditCategory({ match, location }) {
+  const [checkProduct, setCheckProduct] = useState(location.state.checkProduct);
+  const CategoryTitle = location.state.category_title;
   const dispatch = useDispatch();
   const idCategoryUrl = match.params.idCategory;
+
   const onFinalSubmit = async (value) => {
     const concatData = {
       category_title: value.category_title,
@@ -34,7 +37,7 @@ export default function FormEditCategory({ match }) {
   return (
     <Formik
       initialValues={{
-        category_title: "",
+        category_title: CategoryTitle,
       }}
       validationSchema={eidtCategorySchema}
       onSubmit={(values) => {

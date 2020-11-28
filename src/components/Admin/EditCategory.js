@@ -2,7 +2,7 @@ import React from "react";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import FormEditCategory from "./FormEditCategory";
 
-export default function EditCategory({ match }) {
+export default function EditCategory({ match, location }) {
   return (
     <div>
       <div
@@ -18,7 +18,7 @@ export default function EditCategory({ match }) {
         </Breadcrumb>
       </div>
       <div style={{ padding: "30px 130px 30px 130px" }}>
-        <FormEditCategory match={match} />
+        <FormEditCategory match={match} location={location} />
       </div>
     </div>
   );
