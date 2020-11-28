@@ -42,6 +42,7 @@ const HomeContent = () => {
                             SouceProduct={itemproduct.product_code}
                             price={itemproduct.product_price}
                             pricePromotional={itemproduct.product_price_sale}
+                            imageMain={itemproduct.product_imageMain}
                           />
                         </Col>
                       );

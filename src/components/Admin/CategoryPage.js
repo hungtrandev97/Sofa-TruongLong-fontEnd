@@ -125,6 +125,7 @@ function CategoryPage() {
   const DeleteCategory = async () => {
     const req = await apiDeleteCategory(idCategory);
     if (req.status) {
+      setRemoveCategory(false);
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
       dispatch(createCategorySuccess(req.data));
     } else if (req.type === TYPE_NOTIFY.WARNING) {

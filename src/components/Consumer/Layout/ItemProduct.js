@@ -2,13 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./ItemProduct.css";
 
-const ItemProduct = ({ title, SouceProduct, price, pricePromotional }) => {
+const ItemProduct = ({
+  title,
+  SouceProduct,
+  price,
+  pricePromotional,
+  imageMain,
+}) => {
   return (
     <div className="ItemProduct">
       <div className="ItemProduct__Content">
         <img
-          src="/img/product/imageProduct.jpg"
-          style={{ width: "100%", height: "200px" }}
+          src={`${imageMain}`}
+          style={{ width: "100%", height: "200px", padding: "5px" }}
           alt="product"
         />
       </div>
@@ -20,7 +26,6 @@ const ItemProduct = ({ title, SouceProduct, price, pricePromotional }) => {
       <div className="ItemProduct__Content__Price">
         <del className="ItemProduct__Content__Price__del">
           <span>{price}</span>
-          <span>₫</span>
         </del>
         <span className="ItemProduct__Content__Price__span">-</span>
         <div className="ItemProduct__Content__Price__promotional">
@@ -39,12 +44,14 @@ ItemProduct.propTypes = {
   SouceProduct: PropTypes.number,
   price: PropTypes.string,
   pricePromotional: PropTypes.string,
+  imageMain: PropTypes.string,
 };
 ItemProduct.defaultProps = {
   title: "",
   SouceProduct: 1,
   price: "",
   pricePromotional: "",
+  imageMain: "",
 };
 
 export default ItemProduct;
