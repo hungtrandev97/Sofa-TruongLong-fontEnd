@@ -30,7 +30,6 @@ export default function Register() {
       password: value.password,
       userName: value.userName,
     };
-    console.log(concatData);
     const req = await apiRegister(concatData);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");

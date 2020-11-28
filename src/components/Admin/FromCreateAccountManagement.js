@@ -3,15 +3,15 @@ import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { apiRegister } from "../../services/auth";
+import { apiRegisterAdmin } from "../../services/auth";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { NotifySuccess, NotifyWarning } from "../Notify/Toast";
-import { registerSuccess } from "../../store/actions/actions";
+import { registerAdminSuccess } from "../../store/actions/actions";
 import { ReactSelect } from "../Forms/select/select";
 
 const createAccountSchema = Yup.object().shape({
-  Account_title: Yup.string().required("Tên Tài Khoản Không Được Rỗng"),
-  PassWord: Yup.string().required("Mật Khẩu Không Được Rỗng"),
+  userName: Yup.string().required("Tên Tài Khoản Không Được Rỗng"),
+  password: Yup.string().required("Mật Khẩu Không Được Rỗng"),
   email: Yup.string().email().required("Email không được rỗng"),
   address: Yup.string().required("Địa chỉ không được rỗng"),
   numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
@@ -32,12 +32,12 @@ export default function FromCreateAccountManagement() {
       userName: value.userName,
     };
     setIsLoading(true);
-    const req = await apiRegister(concatData);
-    console.log(concatData);
+    const req = await apiRegisterAdmin(concatData);
+
     setIsLoading(false);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
-      dispatch(registerSuccess(req.data));
+      dispatch(registerAdminSuccess(req.data));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
     } else {
@@ -47,8 +47,8 @@ export default function FromCreateAccountManagement() {
   return (
     <Formik
       initialValues={{
-        Account_title: "",
-        PassWord: "",
+        userName: "",
+        password: "",
         email: "",
         address: "",
         numberPhone: "",
@@ -61,35 +61,33 @@ export default function FromCreateAccountManagement() {
       {({ errors, touched }) => (
         <Form>
           <FormGroup>
-            <Label for="Account_title" className="font-ob-bold">
+            <Label for="userName" className="font-ob-bold">
               Thêm tên tài Khoản
             </Label>
-            {errors.Account_title && touched.Account_title ? (
-              <div className="invalid-feedback d-block">
-                {errors.Account_title}
-              </div>
+            {errors.userName && touched.userName ? (
+              <div className="invalid-feedback d-block">{errors.userName}</div>
             ) : null}
             <Field
               className="form-control"
               type="text"
-              name="Account_title"
+              name="userName"
               placeholder="Nhập tên tài khoản"
-              autoComplete="Accounttitle"
+              autoComplete="userName"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="PassWord" className="font-ob-bold">
+            <Label for="password" className="font-ob-bold">
               Mật Khẩu
             </Label>
-            {errors.PassWord && touched.PassWord ? (
-              <div className="invalid-feedback d-block">{errors.PassWord}</div>
+            {errors.password && touched.password ? (
+              <div className="invalid-feedback d-block">{errors.password}</div>
             ) : null}
             <Field
               className="form-control"
               type="password"
-              name="PassWord"
+              name="password"
               placeholder="Nhập mật khẩu"
-              autoComplete="Password"
+              autoComplete="password"
             />
           </FormGroup>
           <FormGroup>
