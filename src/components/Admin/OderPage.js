@@ -26,17 +26,10 @@ export default function OderPage() {
   const [removeOder, setRemoveOder] = useState(false);
   const columns = () => [
     {
-      name: "STT",
-      selector: "serial",
-      sortable: false,
-      center: true,
-      wrap: true,
-      width: "50px",
-    },
-    {
       name: "Tên Danh Mục",
       selector: "category_title",
       sortable: true,
+      width: "200px",
     },
     {
       name: "Tên Sản Phẩm",
@@ -51,10 +44,6 @@ export default function OderPage() {
     {
       name: "Địa Chỉ Khách Hàng",
       selector: "address_customer",
-      sortable: true,
-    },
-    {
-      name: "Chức Năng",
       sortable: true,
     },
     {

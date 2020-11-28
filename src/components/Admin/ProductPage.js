@@ -97,24 +97,26 @@ export default function ProductPage() {
       name: "Giá Sản Phẩm",
       selector: "product_price",
       sortable: true,
-      width: "100px",
+      width: "200px",
     },
     {
       name: "Giảm Giá Sản Phẩm",
       selector: "product_price_sale",
       sortable: true,
+      width: "200px",
     },
     {
       name: " Hiện Thị Trên Trang Chủ",
       selector: "product_index",
       sortable: true,
-      width: "150px",
+      width: "200px",
       format: (row) => <>{row.product_index === 1 ? "Có" : "Không"}</>,
     },
     {
       name: "Sản Phẩm Mới",
       selector: "product_new",
       sortable: true,
+      width: "150px",
       format: (row) => <>{row.product_new === 1 ? "Có" : "Không"}</>,
     },
     {
