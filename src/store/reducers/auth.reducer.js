@@ -25,6 +25,7 @@ const INIT_STATE = {
     numberPhone: "",
     numberPoint: "",
   },
+  registerAdmin: [],
   registerCustomer: [],
   consumerData: [],
   loadingLogin: false,

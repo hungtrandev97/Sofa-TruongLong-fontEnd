@@ -19,7 +19,10 @@ import "./AccountManagement.css";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
-import { getAllAcountAdmin } from "../../store/actions/actions";
+import {
+  getAllAcountAdmin,
+  registerAdminSuccess,
+} from "../../store/actions/actions";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 import { apiDeleteAccount } from "../../services/auth";
 
@@ -116,7 +119,7 @@ export default function AccountManagement() {
     if (req.status) {
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
       setRemoveAccount(false);
-      // dispatch(createCategorySuccess(req.data));
+      dispatch(registerAdminSuccess(req.data));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Xóa Danh Mục", `${req.message}`);
     } else {
