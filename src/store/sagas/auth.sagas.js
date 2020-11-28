@@ -1,6 +1,6 @@
 import { all, fork, call, put, takeEvery } from "redux-saga/effects";
 import { ROLE } from "../../constants/DefaultValues";
-import { apiLogin } from "../../services/auth";
+import { apiLogin, apiGetAllAccountAdmin } from "../../services/auth";
 
 import {
   LOGIN_USER,
@@ -9,6 +9,9 @@ import {
   LOGOUT_USER,
   logoutUserSuccess,
   logoutUserFailed,
+  GET_ALL_ACCOUNT_ADMIN,
+  registerAdminSuccess,
+  getAllAcountAdminFailed,
 } from "../actions/actions";
 
 function* loginWithPassword({ payload }) {
@@ -39,7 +42,18 @@ function* logout() {
     yield put(logoutUserFailed());
   }
 }
-
+function* GetAllAcountAdmin() {
+  try {
+    const response = yield call(apiGetAllAccountAdmin);
+    if (response.status) {
+      yield put(registerAdminSuccess(response));
+    } else {
+      yield put(getAllAcountAdminFailed());
+    }
+  } catch (error) {
+    yield put(getAllAcountAdminFailed());
+  }
+}
 export function* watchLoginUser() {
   yield takeEvery(LOGIN_USER, loginWithPassword);
 }
@@ -47,7 +61,13 @@ export function* watchLoginUser() {
 export function* watchLogoutUser() {
   yield takeEvery(LOGOUT_USER, logout);
 }
-
+export function* watchGetAllAccountAdmin() {
+  yield takeEvery(GET_ALL_ACCOUNT_ADMIN, GetAllAcountAdmin);
+}
 export default function* rootSage() {
-  yield all([fork(watchLoginUser), fork(watchLogoutUser)]);
+  yield all([
+    fork(watchLoginUser),
+    fork(watchLogoutUser),
+    fork(watchGetAllAccountAdmin),
+  ]);
 }

@@ -7,6 +7,8 @@ import {
   LOGOUT_USER,
   REGISTER_SUCCESS,
   AUTH_RESET_STATUS_LOGIN,
+  REGISTER_ADMIN_SUCCESS,
+  GET_ALL_ACCOUNT_ADMIN,
 } from "../actions/actions";
 
 const INIT_STATE = {
@@ -21,6 +23,7 @@ const INIT_STATE = {
     numberPhone: "",
     numberPoint: "",
   },
+  registerAdmin: [],
   loadingLogin: false,
   errorLogin: false,
   loadingLogout: false,
@@ -87,11 +90,24 @@ const authReducer = (state = INIT_STATE, action) => {
         },
       };
     }
+    case REGISTER_ADMIN_SUCCESS: {
+      const { data } = action.payload;
+      return {
+        ...state,
+        registerAdmin: data,
+      };
+    }
     case AUTH_RESET_STATUS_LOGIN: {
       return {
         ...state,
         loadingLogin: false,
         errorLogin: false,
+      };
+    }
+    case GET_ALL_ACCOUNT_ADMIN: {
+      return {
+        ...state,
+        registerAdmin: [],
       };
     }
     default:

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import {
@@ -18,40 +18,42 @@ import { Link } from "react-router-dom";
 import "./AccountManagement.css";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { AdminAccountManagementData } from "./Columndata";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
+import { getAllAcountAdmin } from "../../store/actions/actions";
 
 export default function AccountManagement() {
+  const dispatch = useDispatch();
   const [removeAccount, setRemoveAccount] = useState(false);
   const columns = () => [
     {
       name: "Tên Tài Khoản",
-      selector: "AdminAccounr_title",
+      selector: "userName",
       sortable: true,
+      wrap: true,
     },
     {
       name: "Mật Khẩu",
-      selector: "PassWord",
+      selector: "password",
       sortable: true,
     },
     {
       name: "Giới Tính",
-      selector: "Gender",
+      selector: "gender",
       sortable: true,
     },
     {
       name: "Gmail",
-      selector: "Email",
+      selector: "email",
       sortable: true,
     },
     {
       name: "Số Điện Thoại",
-      selector: "Phone",
+      selector: "numberPhone",
       sortable: true,
     },
     {
       name: "Địa Chỉ",
-      selector: "Address",
+      selector: "address",
       sortable: true,
     },
     {
@@ -85,12 +87,15 @@ export default function AccountManagement() {
     },
   ];
   const removeItem = (id) => {
-    console.log(id);
     setRemoveAccount(true);
   };
+  useEffect(() => {
+    dispatch(getAllAcountAdmin());
+  }, [dispatch]);
+  const { registerAdmin } = useSelector((state) => state.authRedux);
   const tableData = {
     columns: columns(),
-    data: AdminAccountManagementData,
+    data: registerAdmin.data,
     filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
@@ -147,7 +152,7 @@ export default function AccountManagement() {
               noHeader
               pagination
               columns={columns()}
-              data={AdminAccountManagementData}
+              data={registerAdmin.data}
               paginationPerPage={PAGE_SIZE}
               highlightOnHover
               noDataComponent="Danh mục rỗng"

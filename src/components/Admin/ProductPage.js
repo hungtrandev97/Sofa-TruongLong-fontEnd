@@ -171,7 +171,7 @@ export default function ProductPage() {
   const toggleRemove = () => setRemoveProduct(!removeProduct);
   const DeleteProduct = async () => {
     const req = await apiDeleteProduct(idProduct);
-    console.log(req, "req");
+
     if (req.status) {
       NotifySuccess("Xoa Sản Phẩm", "Xóa Sản Phẩm Thành Công");
     } else if (req.type === TYPE_NOTIFY.WARNING) {
