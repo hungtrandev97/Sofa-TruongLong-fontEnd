@@ -1,22 +1,27 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState } from "react";
-import { Button, FormGroup, Label } from "reactstrap";
+import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import { Formik, Form, Field } from "formik";
+import { useSelector } from "react-redux";
 import Dropzone from "react-dropzone-uploader";
+import NumberFormat from "react-number-format";
 import CKEditor from "ckeditor4-react";
 import * as Yup from "yup";
-import { useSelector } from "react-redux";
+// import UploadImagevIEW from "../firebase/uploadImage";
+// import { NotifySuccess, NotifyError, NotifyWarning } from "../Notify/Toast";
 import { ReactSelect } from "../Forms/select/select";
 
 const editProductSchema = Yup.object().shape({
   product_title: Yup.string().required("Tên Sản Phẩm Không Được Rỗng"),
   product_code: Yup.number().required("Mã Sản Phẩm Không Được Rỗng"),
-  product_price: Yup.number().required("Bắt buộc phải có giá sản phẩm"),
-  product_price_sale: Yup.number().required(""),
 });
-export default function FormEditProduct({ match }) {
+export default function FormEditProduct() {
+  const [isLoading, setIsLoading] = useState(false);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
   const [categoryValue, setCategoryValue] = useState("");
   const [dataTextarea, setDataTextarea] = useState("");
+  const [price, setPrice] = useState("");
+  const [priceSale, setPriceSale] = useState("");
   const ChangeTextarea = (ChangeEvent) => {
     setDataTextarea(ChangeEvent.editor.getData());
   };
@@ -27,6 +32,40 @@ export default function FormEditProduct({ match }) {
       label: `${item.category_title}`,
     });
   });
+
+  const onFinalSubmit = async (value) => {
+    setIsLoading(true);
+    // const uploadImages = productImages.forEach(async (item) => {
+    //   const urlimageIndex = await UploadImagevIEW(item.file);
+    // });
+    // const urlImageFirebase = await UploadImagevIEW(productImage);
+    const concatData = {
+      _category: categoryValue,
+      // product_new: productNewValue,
+      // product_index: productIndexValue,
+      product_discript: dataTextarea,
+      product_title: value.product_title,
+      product_code: value.product_code,
+      // product_imageMain: urlImageFirebase,
+      // product_image: concatImageToArray,
+      product_price: price.formattedValue,
+      product_price_sale: priceSale.formattedValue,
+    };
+    console.log(concatData);
+    // if (urlImageFirebase !== "" && concatImageToArray !== "") {
+    //   const req = await apiCreateProduct(concatData);
+    //   setIsLoading(false);
+    //   if (req.status) {
+    //     NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
+    //     dispatch(createProductSuccess(req.data));
+    //   } else if (req.type === TYPE_NOTIFY.WARNING) {
+    //     NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
+    //   } else {
+    //     NotifyError("Thêm Sản Phẩm", `${req.message}`);
+    //   }
+    // }
+  };
+
   return (
     <Formik
       initialValues={{
@@ -37,7 +76,7 @@ export default function FormEditProduct({ match }) {
       }}
       validationSchema={editProductSchema}
       onSubmit={(values) => {
-        console.log(values);
+        onFinalSubmit(values);
       }}
     >
       {({ errors, touched }) => (
@@ -105,34 +144,34 @@ export default function FormEditProduct({ match }) {
             <Label for="product_price" className="font-ob-bold">
               Giá Sản Phẩm
             </Label>
-            {errors.product_price && touched.product_price ? (
+            {price === "" ? (
               <div className="invalid-feedback d-block">
-                {errors.product_price}
+                Bắt buộc phải có giá sản phẩm
               </div>
             ) : null}
-            <Field
+            <NumberFormat
+              thousandSeparator
               className="form-control"
-              type="number"
               name="product_price"
               placeholder="Thêm Giá"
               autoComplete="productPrice"
+              suffix="vnđ"
+              onValueChange={(vals) => setPrice(vals)}
+              defaultValue={price}
             />
           </FormGroup>
           <FormGroup>
             <Label for="product_price_sale" className="font-ob-bold">
               Giá Khuyến Mãi
             </Label>
-            {errors.product_price_sale && touched.product_price_sale ? (
-              <div className="invalid-feedback d-block">
-                {errors.product_price_sale}
-              </div>
-            ) : null}
-            <Field
+            <NumberFormat
+              thousandSeparator
               className="form-control"
-              type="number"
-              name="product_price_sale"
-              placeholder="Thêm Giá Khuyến Mãi"
-              autoComplete="productPriceSale"
+              name="product_price"
+              placeholder="Thêm Giá"
+              autoComplete="productPrice"
+              suffix="vnđ"
+              onValueChange={(vals) => setPriceSale(vals)}
             />
           </FormGroup>
           <FormGroup>
@@ -164,6 +203,7 @@ export default function FormEditProduct({ match }) {
             />
           </FormGroup>
           <Button type="submit" color="primary" className="Create__Button">
+            {isLoading ? <Spinner size="sm" color="light" /> : ""}
             <span className="ml-50 font-ob-bold"> Tạo Mới </span>
           </Button>
         </Form>

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { useSelector, useDispatch } from "react-redux";
+import NumberFormat from "react-number-format";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
 import CKEditor from "ckeditor4-react";
@@ -17,13 +18,13 @@ import "react-dropzone-uploader/dist/styles.css";
 const createProductSchema = Yup.object().shape({
   product_title: Yup.string().required("Tên Sản Phẩm Không Được Rỗng"),
   product_code: Yup.number().required("Mã Sản Phẩm Không Được Rỗng"),
-  product_price: Yup.number().required("Bắt buộc phải có giá sản phẩm"),
-  product_price_sale: Yup.number().required(""),
 });
 
 function FormCreateProduct() {
   const { dataCategory } = useSelector((state) => state.categoryRedux);
   const [categoryValue, setCategoryValue] = useState("");
+  const [price, setPrice] = useState("");
+  const [priceSale, setPriceSale] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [productNewValue, setproductNewValue] = useState(1);
   const [productIndexValue, setproductIndexValue] = useState(1);
@@ -65,9 +66,9 @@ function FormCreateProduct() {
     setIsLoading(true);
     const uploadImages = productImages.forEach(async (item) => {
       const urlimageIndex = await UploadImagevIEW(item.file);
-      console.log(urlimageIndex, "===========");
       concatImageToArray.push(urlimageIndex);
     });
+    console.log(uploadImages);
     const urlImageFirebase = await UploadImagevIEW(productImage);
     const concatData = {
       _category: categoryValue,
@@ -78,8 +79,8 @@ function FormCreateProduct() {
       product_code: value.product_code,
       product_imageMain: urlImageFirebase,
       product_image: concatImageToArray,
-      product_price: value.product_price,
-      product_price_sale: value.product_price_sale,
+      product_price: price.formattedValue,
+      product_price_sale: priceSale.formattedValue,
     };
     if (urlImageFirebase !== "" && concatImageToArray !== "") {
       const req = await apiCreateProduct(concatData);
@@ -103,8 +104,8 @@ function FormCreateProduct() {
       initialValues={{
         product_title: "",
         product_code: "",
-        product_price: "",
-        product_price_sale: "",
+        product_price: price,
+        product_price_sale: priceSale,
       }}
       validationSchema={createProductSchema}
       onSubmit={(values) => {
@@ -186,34 +187,34 @@ function FormCreateProduct() {
             <Label for="product_price" className="font-ob-bold">
               Giá Sản Phẩm
             </Label>
-            {errors.product_price && touched.product_price ? (
+            {price === "" ? (
               <div className="invalid-feedback d-block">
-                {errors.product_price}
+                Bắt buộc phải có giá sản phẩm
               </div>
             ) : null}
-            <Field
+            <NumberFormat
+              thousandSeparator
               className="form-control"
-              type="number"
               name="product_price"
               placeholder="Thêm Giá"
               autoComplete="productPrice"
+              suffix="vnđ"
+              onValueChange={(vals) => setPrice(vals)}
+              defaultValue={price}
             />
           </FormGroup>
           <FormGroup>
             <Label for="product_price_sale" className="font-ob-bold">
               Giá Khuyến Mãi
             </Label>
-            {errors.product_price_sale && touched.product_price_sale ? (
-              <div className="invalid-feedback d-block">
-                {errors.product_price_sale}
-              </div>
-            ) : null}
-            <Field
+            <NumberFormat
+              thousandSeparator
               className="form-control"
-              type="number"
-              name="product_price_sale"
-              placeholder="Thêm Giá Khuyến Mãi"
-              autoComplete="productPriceSale"
+              name="product_price"
+              placeholder="Thêm Giá"
+              autoComplete="productPrice"
+              suffix="vnđ"
+              onValueChange={(vals) => setPriceSale(vals)}
             />
           </FormGroup>
           <FormGroup>
