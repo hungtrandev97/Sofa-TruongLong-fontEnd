@@ -1,70 +1,121 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
+import * as Yup from "yup";
+import { ReactSelect } from "../Forms/select/select";
+import { apiEditAccountAdmin } from "../../services/auth";
+import { TYPE_NOTIFY } from "../../constants/DefaultValues";
+import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 
-export default function FromEditAccount() {
+const createAccountAdminSchema = Yup.object().shape({
+  userName: Yup.string().required("Tên Tài Khoản Không Được Rỗng"),
+  password: Yup.string().required("Mật Khẩu Không Được Rỗng"),
+  email: Yup.string().email().required("Email không được rỗng"),
+  address: Yup.string().required("Địa chỉ không được rỗng"),
+  numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
+});
+export default function FromEditAccount({ match }) {
+  const [gender, setGender] = useState(1);
+  const [role, setRole] = useState(1);
+  const idAcountAdminUrl = match.params.idAccount;
+
+  const onFinalSubmit = async (value) => {
+    const concatData = {
+      numberPhone: value.numberPhone,
+      address: value.address,
+      gender: value.gender,
+      email: value.email,
+      password: value.password,
+      userName: value.userName,
+      role: value.role,
+    };
+    const req = await apiEditAccountAdmin(concatData, idAcountAdminUrl);
+    if (req.status) {
+      NotifySuccess("Chỉnh Sửa Danh Mục", "Chỉnh Sửa Thành Công");
+      // dispatch(createCategorySuccess(req.data));
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      NotifyWarning("Chỉnh Sửa Danh Mục", `${req.message}`);
+    } else {
+      NotifyError("Chỉnh Sửa Danh Mục", `${req.message}`);
+    }
+  };
+
   return (
     <Formik
       initialValues={{
-        Account_title: "",
-        PassWord: "",
+        userName: "",
+        password: "",
+        gender,
         email: "",
-        gender: "",
         address: "",
         numberPhone: "",
+        role,
       }}
-      // validationSchema={createAccountSchema}
+      validationSchema={createAccountAdminSchema}
       onSubmit={(values) => {
-        // onFinalSubmit(values);
+        onFinalSubmit(values);
       }}
     >
       {({ errors, touched }) => (
         <Form>
           <FormGroup>
-            <Label for="Account_title" className="font-ob-bold">
+            <Label for="userName" className="font-ob-bold">
               Thêm tên tài Khoản
             </Label>
-            {errors.Account_title && touched.Account_title ? (
-              <div className="invalid-feedback d-block">
-                {errors.Account_title}
-              </div>
+            {errors.userName && touched.userName ? (
+              <div className="invalid-feedback d-block">{errors.userName}</div>
             ) : null}
             <Field
               className="form-control"
               type="text"
-              name="Account_title"
+              name="userName"
               placeholder="Nhập tên tài khoản"
-              autoComplete="Accounttitle"
+              autoComplete="userName"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="PassWord" className="font-ob-bold">
+            <Label for="password" className="font-ob-bold">
               Mật Khẩu
             </Label>
-            {errors.PassWord && touched.PassWord ? (
-              <div className="invalid-feedback d-block">{errors.PassWord}</div>
+            {errors.password && touched.password ? (
+              <div className="invalid-feedback d-block">{errors.password}</div>
             ) : null}
             <Field
               className="form-control"
               type="password"
-              name="PassWord"
+              name="password"
               placeholder="Nhập mật khẩu"
-              autoComplete="Password"
+              autoComplete="password"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="gender" className="font-ob-bold ">
-              Giới Tính
-            </Label>
-            {errors.gender && touched.gender ? (
-              <div className="invalid-feedback d-block  ">{errors.gender}</div>
-            ) : null}
-            <Field
-              className="form-control "
-              type="number"
-              name="gender"
-              placeholder="Chọn Giới Tính"
-              autoComplete="gender"
+            <ReactSelect
+              label="Giới Tính"
+              options={[
+                { value: 1, label: "Nam" },
+                { value: 2, label: "Nữ" },
+              ]}
+              nameSelect="gender"
+              isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setGender(selectedOpt.value);
+              }}
+              selectedValue={gender}
+            />
+          </FormGroup>
+          <FormGroup>
+            <ReactSelect
+              label="Phân Quyền"
+              options={[
+                { value: 1, label: "Admin" },
+                { value: 2, label: "User" },
+              ]}
+              nameSelect="role"
+              isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setRole(selectedOpt.value);
+              }}
+              selectedValue={role}
             />
           </FormGroup>
           <FormGroup>

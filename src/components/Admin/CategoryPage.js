@@ -48,21 +48,23 @@ function CategoryPage() {
       name: "Tên Danh Mục",
       selector: "category_title",
       sortable: true,
-      center: true,
       wrap: true,
+      width: "300px",
     },
     {
       name: "Thời Gian Tạo Danh Mục",
       selector: "date_create",
       sortable: false,
-      center: true,
+
       wrap: true,
+      width: "300px",
       format: (row) => moment(row.date_create).format("DD-MM-DD hh:ss"),
     },
     {
       name: "Hiện thị danh mục trang chủ",
       selector: "checkProduct",
       sortable: true,
+      width: "300px",
       format: (row) => <>{row.checkProduct === 1 ? "Có" : "Không"}</>,
     },
     {
@@ -71,11 +73,8 @@ function CategoryPage() {
       sortable: false,
       center: true,
       wrap: true,
-      width: "80px",
+      width: "100px",
       format: (row) => (
-        // <Link to={`/admin/editCategory/${row._id}`}>
-        //   <AiOutlineEdit size="1rem" color="#23b7e5" />
-        // </Link>
         <Link
           to={{
             pathname: `/admin/editCategory/${row._id}`,
@@ -95,7 +94,7 @@ function CategoryPage() {
       sortable: false,
       center: true,
       wrap: true,
-      width: "80px",
+      width: "100px",
       cell: (row) => (
         <RiDeleteBin6Line
           onClick={() => submit(row._id)}

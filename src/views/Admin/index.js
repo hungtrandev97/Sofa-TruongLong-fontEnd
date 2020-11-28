@@ -64,7 +64,7 @@ function Admin({ location, match }) {
                 component={CreateAccountManagement}
               />
               <Route
-                path={`${match.url}/EditAccountManagement`}
+                path={`${match.url}/EditAccountManagement/:idAccount`}
                 component={EditAccountManagement}
               />
               <Route
