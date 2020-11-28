@@ -15,7 +15,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { FromAcount } from "../../../constants/DefaultValues";
 import FormLogin from "../../Forms/Login";
 import Register from "../../Forms/Register";
-import { logoutUser, getAllCategory } from "../../../store/actions/actions";
+import { logoutUser } from "../../../store/actions/actions";
+import { apiGetAllCategory } from "../../../services/category";
 
 import "./MenuMobile.css";
 
@@ -41,9 +42,13 @@ const MenuMobile = () => {
   const logoutAcout = () => {
     dispatch(logoutUser());
   };
+  const GetFromApiAllAcountCategory = async () => {
+    const getDataAcountAdmin = await apiGetAllCategory();
+    console.log(getDataAcountAdmin);
+  };
   useEffect(() => {
-    dispatch(getAllCategory());
-  }, [dispatch]);
+    GetFromApiAllAcountCategory();
+  }, []);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
   const { loginUser } = useSelector((state) => state.authRedux);
   return (

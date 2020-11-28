@@ -19,9 +19,9 @@ import "./AccountCustomer.css";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
-import { getAllAcountCustomer } from "../../store/actions/actions";
+import { acountConsumerSuccess } from "../../store/actions/actions";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
-import { apiDeleteAccount } from "../../services/auth";
+import { apiDeleteAccount, apiGetAllAcountCustomer } from "../../services/auth";
 
 export default function AccountCustomer() {
   const [idAccount, setIdAccount] = useState("");
@@ -101,14 +101,18 @@ export default function AccountCustomer() {
     setRemoveAccount(true);
     setIdAccount(id);
   };
+  const GetFromApiAllAcountCustomer = async () => {
+    const getDataAcountAdmin = await apiGetAllAcountCustomer();
+    console.log(getDataAcountAdmin);
+  };
   useEffect(() => {
-    dispatch(getAllAcountCustomer());
-  }, [dispatch]);
+    GetFromApiAllAcountCustomer();
+  }, []);
   const { consumerData } = useSelector((state) => state.authRedux);
-  console.log(consumerData.data, "customerData");
+  console.log(consumerData, "customerData");
   const tableData = {
     columns: columns(),
-    data: consumerData.data,
+    data: consumerData,
     filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
@@ -117,7 +121,7 @@ export default function AccountCustomer() {
     const req = await apiDeleteAccount(idAccount);
     if (req.status) {
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
-      // dispatch(createCategorySuccess(req.data));
+      dispatch(acountConsumerSuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Xóa Danh Mục", `${req.message}`);
     } else {
@@ -181,7 +185,7 @@ export default function AccountCustomer() {
               noHeader
               pagination
               columns={columns()}
-              data={consumerData.data}
+              data={consumerData}
               paginationPerPage={PAGE_SIZE}
               highlightOnHover
               noDataComponent="Danh mục rỗng"

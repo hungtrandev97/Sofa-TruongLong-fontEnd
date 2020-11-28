@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from "react";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
@@ -15,13 +16,19 @@ const editProductSchema = Yup.object().shape({
   product_title: Yup.string().required("Tên Sản Phẩm Không Được Rỗng"),
   product_code: Yup.number().required("Mã Sản Phẩm Không Được Rỗng"),
 });
-export default function FormEditProduct() {
+export default function FormEditProduct({ location }) {
+  const dataProduct = location.state.row;
   const [isLoading, setIsLoading] = useState(false);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
-  const [categoryValue, setCategoryValue] = useState("");
-  const [dataTextarea, setDataTextarea] = useState("");
-  const [price, setPrice] = useState("");
-  const [priceSale, setPriceSale] = useState("");
+  const [categoryValue, setCategoryValue] = useState(dataProduct._category._id);
+  const [dataTextarea, setDataTextarea] = useState(
+    dataProduct.product_discript
+  );
+  const [productIndexValue, setproductIndexValue] = useState(
+    dataProduct.product_new
+  );
+  const [price, setPrice] = useState(dataProduct.product_price);
+  const [priceSale, setPriceSale] = useState(dataProduct.product_price_sale);
   const ChangeTextarea = (ChangeEvent) => {
     setDataTextarea(ChangeEvent.editor.getData());
   };
@@ -69,10 +76,10 @@ export default function FormEditProduct() {
   return (
     <Formik
       initialValues={{
-        product_title: "",
-        product_code: "",
-        product_price: "",
-        product_price_sale: "",
+        product_title: dataProduct.product_title,
+        product_code: dataProduct.product_code,
+        product_price: dataProduct.product_price,
+        product_price_sale: dataProduct.product_price_sale,
       }}
       validationSchema={editProductSchema}
       onSubmit={(values) => {
@@ -172,6 +179,7 @@ export default function FormEditProduct() {
               autoComplete="productPrice"
               suffix="vnđ"
               onValueChange={(vals) => setPriceSale(vals)}
+              defaultValue={priceSale}
             />
           </FormGroup>
           <FormGroup>
@@ -200,6 +208,10 @@ export default function FormEditProduct() {
               nameSelect="ProductNew"
               optionsPlaceholder="Sản phẩm mới"
               isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setproductIndexValue(selectedOpt.value);
+              }}
+              selectedValue={productIndexValue}
             />
           </FormGroup>
           <Button type="submit" color="primary" className="Create__Button">

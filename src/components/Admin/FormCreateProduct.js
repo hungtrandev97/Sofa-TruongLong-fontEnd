@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import NumberFormat from "react-number-format";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
@@ -11,7 +11,6 @@ import UploadImagevIEW from "../firebase/uploadImage";
 import { apiCreateProduct } from "../../services/product";
 import { NotifySuccess, NotifyError, NotifyWarning } from "../Notify/Toast";
 import { ReactSelect } from "../Forms/select/select";
-import { createProductSuccess } from "../../store/actions/actions";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import "react-dropzone-uploader/dist/styles.css";
 
@@ -61,14 +60,12 @@ function FormCreateProduct() {
     setCategoryValue(dataCategory[0]._id);
   }, [dataCategory]);
 
-  const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
     setIsLoading(true);
-    const uploadImages = productImages.forEach(async (item) => {
+    productImages.forEach(async (item) => {
       const urlimageIndex = await UploadImagevIEW(item.file);
       concatImageToArray.push(urlimageIndex);
     });
-    console.log(uploadImages);
     const urlImageFirebase = await UploadImagevIEW(productImage);
     const concatData = {
       _category: categoryValue,
@@ -87,7 +84,6 @@ function FormCreateProduct() {
       setIsLoading(false);
       if (req.status) {
         NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
-        dispatch(createProductSuccess(req.data));
       } else if (req.type === TYPE_NOTIFY.WARNING) {
         NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
       } else {

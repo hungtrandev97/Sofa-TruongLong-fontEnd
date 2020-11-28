@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { apiRegisterAdmin } from "../../services/auth";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { NotifySuccess, NotifyWarning } from "../Notify/Toast";
-import { registerAdminSuccess } from "../../store/actions/actions";
+import { acountAdminSuccess } from "../../store/actions/actions";
 import { ReactSelect } from "../Forms/select/select";
 
 const createAccountSchema = Yup.object().shape({
@@ -33,11 +33,10 @@ export default function FromCreateAccountManagement() {
     };
     setIsLoading(true);
     const req = await apiRegisterAdmin(concatData);
-
     setIsLoading(false);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
-      dispatch(registerAdminSuccess(req.data));
+      dispatch(acountAdminSuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
     } else {

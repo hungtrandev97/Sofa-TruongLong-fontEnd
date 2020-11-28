@@ -19,12 +19,9 @@ import "./AccountManagement.css";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
-import {
-  getAllAcountAdmin,
-  registerAdminSuccess,
-} from "../../store/actions/actions";
+import { acountAdminSuccess } from "../../store/actions/actions";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
-import { apiDeleteAccount } from "../../services/auth";
+import { apiDeleteAccount, apiGetAllAccountAdmin } from "../../services/auth";
 
 export default function AccountManagement() {
   const [idAccount, setIdAccount] = useState("");
@@ -103,13 +100,17 @@ export default function AccountManagement() {
     setRemoveAccount(true);
     setIdAccount(id);
   };
+  const GetFromApiAllAcountAdmin = async () => {
+    const getDataAcountAdmin = await apiGetAllAccountAdmin();
+    console.log(getDataAcountAdmin);
+  };
   useEffect(() => {
-    dispatch(getAllAcountAdmin());
+    GetFromApiAllAcountAdmin();
   }, [dispatch]);
   const { registerAdmin } = useSelector((state) => state.authRedux);
   const tableData = {
     columns: columns(),
-    data: registerAdmin.data,
+    data: registerAdmin,
     filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
@@ -119,7 +120,7 @@ export default function AccountManagement() {
     if (req.status) {
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
       setRemoveAccount(false);
-      dispatch(registerAdminSuccess(req.data));
+      dispatch(acountAdminSuccess(req.data));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Xóa Danh Mục", `${req.message}`);
     } else {
@@ -183,7 +184,7 @@ export default function AccountManagement() {
               noHeader
               pagination
               columns={columns()}
-              data={registerAdmin.data}
+              data={registerAdmin}
               paginationPerPage={PAGE_SIZE}
               highlightOnHover
               noDataComponent="Danh mục rỗng"

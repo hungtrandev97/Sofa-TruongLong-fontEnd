@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
+import { useDispatch } from "react-redux";
 import { Button, FormGroup, Label } from "reactstrap";
 import * as Yup from "yup";
 import { ReactSelect } from "../Forms/select/select";
 import { apiEditAccountAdmin } from "../../services/auth";
+import { CategorySuccess } from "../../store/actions/actions";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 
@@ -15,6 +17,7 @@ const createAccountAdminSchema = Yup.object().shape({
   numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
 });
 export default function FromEditAccount({ match }) {
+  const dispatch = useDispatch();
   const [gender, setGender] = useState(1);
   const [role, setRole] = useState(1);
   const idAcountAdminUrl = match.params.idAccount;
@@ -32,7 +35,7 @@ export default function FromEditAccount({ match }) {
     const req = await apiEditAccountAdmin(concatData, idAcountAdminUrl);
     if (req.status) {
       NotifySuccess("Chỉnh Sửa Danh Mục", "Chỉnh Sửa Thành Công");
-      // dispatch(createCategorySuccess(req.data));
+      dispatch(CategorySuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Chỉnh Sửa Danh Mục", `${req.message}`);
     } else {

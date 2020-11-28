@@ -60,11 +60,11 @@ export const apiRegisterAdmin = async (concatData) => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataAcountAdmin = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataAcountAdmin,
     };
   }
   if (response.statusCode === 250) {
@@ -87,11 +87,11 @@ export const apiGetAllAccountAdmin = async () => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataAcountAdmin = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataAcountAdmin,
     };
   }
   if (response.statusCode === 250) {
@@ -114,11 +114,11 @@ export const apiGetAllAcountCustomer = async () => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataAcountConsumer = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataAcountConsumer,
     };
   }
   if (response.statusCode === 250) {
@@ -142,11 +142,11 @@ export const apiEditAccountAdmin = async (value, idAccount) => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataAcountAdmin = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataAcountAdmin,
     };
   }
   if (response.statusCode === 250) {
@@ -168,11 +168,11 @@ export const apiDeleteAccount = async (idAccount) => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataAcount = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataAcount,
     };
   }
   if (response.statusCode === 250) {

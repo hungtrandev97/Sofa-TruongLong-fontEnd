@@ -2,7 +2,7 @@ import React from "react";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import FormEditProduct from "./FormEditProduct";
 
-export default function EditProduct({ match }) {
+export default function EditProduct({ match, location }) {
   return (
     <div>
       <div
@@ -18,7 +18,7 @@ export default function EditProduct({ match }) {
         </Breadcrumb>
       </div>
       <div style={{ padding: "30px 130px 30px 130px" }}>
-        <FormEditProduct match={match} />
+        <FormEditProduct match={match} location={location} />
       </div>
     </div>
   );

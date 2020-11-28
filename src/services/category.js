@@ -12,11 +12,11 @@ export const apiCreateCategory = async (data) => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataCategory = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataCategory,
     };
   }
   if (response.statusCode === 250) {
@@ -41,11 +41,11 @@ export const apiEditCategory = async (value, idCategory) => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataCategory = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataCategory,
     };
   }
   if (response.statusCode === 250) {
@@ -68,11 +68,11 @@ export const apiDeleteCategory = async (idCategory) => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataCategory = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataCategory,
     };
   }
   if (response.statusCode === 250) {
@@ -93,11 +93,11 @@ export const apiGetAllCategory = async () => {
     fullUrl: `${END_POINT}/v1/categoryRoutes/GetAllCategory`,
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataCategory = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataCategory,
     };
   }
   if (response.statusCode === 250) {

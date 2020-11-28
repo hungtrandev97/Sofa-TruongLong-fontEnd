@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { apiRegister } from "../../services/auth";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { NotifySuccess, NotifyWarning } from "../Notify/Toast";
-import { registerConsumerSuccess } from "../../store/actions/actions";
+import { acountConsumerSuccess } from "../../store/actions/actions";
 import { ReactSelect } from "../Forms/select/select";
 
 const createAccountSchema = Yup.object().shape({
@@ -37,7 +37,7 @@ export default function FromCreateAccountCustomer() {
     setIsLoading(false);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
-      dispatch(registerConsumerSuccess(req.data));
+      dispatch(acountConsumerSuccess(req.data));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
     } else {

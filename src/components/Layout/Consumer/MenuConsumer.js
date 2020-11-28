@@ -3,14 +3,18 @@ import { Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import { AiOutlineCaretRight } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllCategory } from "../../../store/actions/actions";
+import { apiGetAllCategory } from "../../../services/category";
 import "./MenuConsumer.css";
 
 const MenuConsumer = () => {
   const dispatch = useDispatch();
+  const GetFromApiAllAcountCategory = async () => {
+    const getDataAcountAdmin = await apiGetAllCategory();
+    console.log(getDataAcountAdmin);
+  };
   useEffect(() => {
-    dispatch(getAllCategory());
-  }, [dispatch]);
+    GetFromApiAllAcountCategory();
+  }, []);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
 
   return (

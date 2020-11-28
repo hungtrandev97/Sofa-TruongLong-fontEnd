@@ -1,7 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-use-before-define */
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,36 +14,23 @@ import {
   ModalHeader,
   Button,
 } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
-import DataTableExtensions from "react-data-table-component-extensions";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import DataTableExtensions from "react-data-table-component-extensions";
 import Loader from "../Loaders/Loader";
 import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
-import {
-  getAllCategory,
-  createCategorySuccess,
-} from "../../store/actions/actions";
-import "react-data-table-component-extensions/dist/index.css";
+import { CategorySuccess } from "../../store/actions/actions";
 import FormCreateCategory from "./FormCreateCategory";
-import { apiDeleteCategory } from "../../services/category";
+import { apiGetAllCategory, apiDeleteCategory } from "../../services/category";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
-
+import "react-data-table-component-extensions/dist/index.css";
 import "./CategoryPage.css";
 
 function CategoryPage() {
-  const dispatch = useDispatch();
-  const [modal, setModal] = useState(false);
-  const [idCategory, setIdCategory] = useState("");
-  const [removeCategory, setRemoveCategory] = useState(false);
-  const toggle = () => {
-    setModal(!modal);
-    setRemoveCategory(!removeCategory);
-  };
-  const toggleRemove = () => setRemoveCategory(!removeCategory);
+  // column data-react-table
   const columns = () => [
     {
       name: "Tên Danh Mục",
@@ -52,19 +40,18 @@ function CategoryPage() {
       width: "300px",
     },
     {
-      name: "Thời Gian Tạo Danh Mục",
-      selector: "date_create",
-      sortable: false,
-
-      wrap: true,
-      width: "300px",
-      format: (row) => moment(row.date_create).format("DD-MM-DD hh:ss"),
-    },
-    {
       name: "Hiện thị danh mục trang chủ",
       selector: "checkProduct",
       sortable: true,
+      width: "300px",
       format: (row) => <>{row.checkProduct === 1 ? "Có" : "Không"}</>,
+    },
+    {
+      name: "Thời Gian Tạo Danh Mục",
+      selector: "date_create",
+      sortable: false,
+      wrap: true,
+      format: (row) => moment(row.date_create).format("DD-MM-DD hh:ss"),
     },
     {
       name: "Sửa",
@@ -96,7 +83,7 @@ function CategoryPage() {
       width: "100px",
       cell: (row) => (
         <RiDeleteBin6Line
-          onClick={() => submit(row._id)}
+          onClick={() => RemoveItemCategory(row._id)}
           size="1rem"
           color="#23b7e5"
           style={{ cursor: "pointer" }}
@@ -104,28 +91,30 @@ function CategoryPage() {
       ),
     },
   ];
+  // end
 
-  const submit = (id) => {
+  const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
+  const [idCategory, setIdCategory] = useState("");
+  const [removeCategory, setRemoveCategory] = useState(false);
+  const toggleRemove = () => setRemoveCategory(!removeCategory);
+  const { dataCategory } = useSelector((state) => state.categoryRedux);
+
+  // function
+  const toggle = () => {
+    setModal(!modal);
+    setRemoveCategory(!removeCategory);
+  };
+  const RemoveItemCategory = (id) => {
     setRemoveCategory(true);
     setIdCategory(id);
-  };
-  useEffect(() => {
-    dispatch(getAllCategory());
-  }, [dispatch]);
-  const { dataCategory } = useSelector((state) => state.categoryRedux);
-  const tableData = {
-    columns: columns(),
-    data: dataCategory,
-    filterPlaceholder: "Tìm kiếm",
-    export: false,
-    print: false,
   };
   const DeleteCategory = async () => {
     const req = await apiDeleteCategory(idCategory);
     if (req.status) {
       setRemoveCategory(false);
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
-      dispatch(createCategorySuccess(req.data));
+      dispatch(CategorySuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Xóa Danh Mục", `${req.message}`);
     } else {
@@ -136,6 +125,24 @@ function CategoryPage() {
     toggle(true);
     setRemoveCategory(type);
   };
+  const GetFromApiAllCategory = async () => {
+    const getDataCategory = await apiGetAllCategory();
+    dispatch(CategorySuccess(getDataCategory));
+  };
+  // end function
+
+  useEffect(() => {
+    GetFromApiAllCategory();
+  }, []);
+
+  const tableData = {
+    columns: columns(),
+    data: dataCategory,
+    filterPlaceholder: "Tìm kiếm",
+    export: false,
+    print: false,
+  };
+
   return (
     <div className="Category">
       <div className="Category__Header">

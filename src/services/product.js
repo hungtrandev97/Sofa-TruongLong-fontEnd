@@ -12,11 +12,11 @@ export const apiCreateProduct = async (data) => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataProduct = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataProduct,
     };
   }
   if (response.statusCode === 250) {
@@ -39,11 +39,11 @@ export const apiDeleteProduct = async (idProduct) => {
     bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataProduct = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataProduct,
     };
   }
   if (response.statusCode === 250) {
@@ -64,11 +64,11 @@ export const apiGetAllProduct = async () => {
     fullUrl: `${END_POINT}/v1/ProductRoutes/GetAllProduct`,
   });
   if (response.statusCode === 200) {
-    const { body } = response;
+    const dataProduct = response.body.data;
     return {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
-      data: body,
+      data: dataProduct,
     };
   }
   if (response.statusCode === 250) {
@@ -82,7 +82,6 @@ export const apiGetAllProduct = async () => {
     status: false,
     type: TYPE_NOTIFY.ERROR,
     message: response.body.message,
-    data: response,
   };
 };
 

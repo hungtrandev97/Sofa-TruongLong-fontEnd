@@ -1,38 +1,21 @@
 import { ACCESS_TOKEN_KEY } from "../../constants/DefaultValues";
 import {
-  LOGIN_USER,
   RELOAD_LOGIN,
+  LOGIN_USER,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILED,
   LOGOUT_USER,
   REGISTER_SUCCESS,
-  AUTH_RESET_STATUS_LOGIN,
-  REGISTER_ADMIN_SUCCESS,
-  GET_ALL_ACCOUNT_ADMIN,
-  REGISTER_CONSUMER_SUCCESS,
-  GET_ALL_ACCOUNT_CUSTOMER,
+  ACOUNT_ADMIN_SUCCESS,
+  ACOUNT_CONSUMER_SUCCESS,
 } from "../actions/actions";
 
 const INIT_STATE = {
-  loginUser: {
-    accessToken: "",
-    role: "",
-    userId: "",
-    email: "",
-    userName: "",
-    gender: "",
-    address: "",
-    numberPhone: "",
-    numberPoint: "",
-  },
-  registerAdmin: [],
-  registerCustomer: [],
-  consumerData: [],
   loadingLogin: false,
   errorLogin: false,
-  loadingLogout: false,
-  loadingRegister: false,
-  errorRegister: false,
+  loginUser: {},
+  dataAcountAdmin: [],
+  dataAcountConsumer: [],
 };
 
 const authReducer = (state = INIT_STATE, action) => {
@@ -94,37 +77,20 @@ const authReducer = (state = INIT_STATE, action) => {
         },
       };
     }
-    case REGISTER_ADMIN_SUCCESS: {
+    // admin
+    case ACOUNT_ADMIN_SUCCESS: {
       const { data } = action.payload;
       return {
         ...state,
-        registerAdmin: data,
+        dataAcountAdmin: data,
       };
     }
-    case AUTH_RESET_STATUS_LOGIN: {
-      return {
-        ...state,
-        loadingLogin: false,
-        errorLogin: false,
-      };
-    }
-    case GET_ALL_ACCOUNT_ADMIN: {
-      return {
-        ...state,
-        registerAdmin: [],
-      };
-    }
-    case REGISTER_CONSUMER_SUCCESS: {
+    // Consumer
+    case ACOUNT_CONSUMER_SUCCESS: {
       const { data } = action.payload;
       return {
         ...state,
-        consumerData: data,
-      };
-    }
-    case GET_ALL_ACCOUNT_CUSTOMER: {
-      return {
-        ...state,
-        customerData: [],
+        dataAcountConsumer: data,
       };
     }
     default:

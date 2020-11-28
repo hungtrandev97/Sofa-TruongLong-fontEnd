@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { createCategorySuccess } from "../../store/actions/actions";
+import { CategorySuccess } from "../../store/actions/actions";
 import { ReactSelect } from "../Forms/select/select";
 import { NotifySuccess, NotifyError, NotifyWarning } from "../Notify/Toast";
 import { apiCreateCategory } from "../../services/category";
@@ -12,6 +12,7 @@ import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 const createCategorySchema = Yup.object().shape({
   category_title: Yup.string().required("Tên Danh Mục Không Được Rỗng"),
 });
+
 function FormCreateCategory() {
   const [isLoading, setIsLoading] = useState(false);
   const [checkProduct, setCheckProduct] = useState(2);
@@ -26,7 +27,7 @@ function FormCreateCategory() {
     setIsLoading(false);
     if (req.status) {
       NotifySuccess("Tạo Thư Mục", "Thêm Thư Mục Thành Công");
-      dispatch(createCategorySuccess(req.data));
+      dispatch(CategorySuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Tạo Thư Mục", `${req.message}`);
     } else {

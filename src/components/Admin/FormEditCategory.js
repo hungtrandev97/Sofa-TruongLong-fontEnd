@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
 import { useDispatch } from "react-redux";
 import { ReactSelect } from "../Forms/select/select";
-import { createCategorySuccess } from "../../store/actions/actions";
+import { CategorySuccess } from "../../store/actions/actions";
 import { apiEditCategory } from "../../services/category";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
@@ -13,6 +13,7 @@ import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 const eidtCategorySchema = Yup.object().shape({
   category_title: Yup.string().required("Danh Mục Không Được Rỗng"),
 });
+
 export default function FormEditCategory({ match, location }) {
   const [checkProduct, setCheckProduct] = useState(location.state.checkProduct);
   const CategoryTitle = location.state.category_title;
@@ -27,7 +28,7 @@ export default function FormEditCategory({ match, location }) {
     const req = await apiEditCategory(concatData, idCategoryUrl);
     if (req.status) {
       NotifySuccess("Chỉnh Sửa Danh Mục", "Chỉnh Sửa Thành Công");
-      dispatch(createCategorySuccess(req.data));
+      dispatch(CategorySuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Chỉnh Sửa Danh Mục", `${req.message}`);
     } else {
