@@ -7,22 +7,33 @@ import { apiRegister } from "../../services/auth";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { NotifySuccess, NotifyWarning } from "../Notify/Toast";
 import { registerSuccess } from "../../store/actions/actions";
+import { ReactSelect } from "../Forms/select/select";
 
 const createAccountSchema = Yup.object().shape({
   Account_title: Yup.string().required("Tên Tài Khoản Không Được Rỗng"),
   PassWord: Yup.string().required("Mật Khẩu Không Được Rỗng"),
   email: Yup.string().email().required("Email không được rỗng"),
-  gender: Yup.number().required("Giới tính không được rỗng"),
   address: Yup.string().required("Địa chỉ không được rỗng"),
   numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
 });
 
 export default function FromCreateAccountManagement() {
-  const [isLoading, setIsLoading] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [gender, setGender] = useState(1);
+
   const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
+    const concatData = {
+      numberPhone: value.numberPhone,
+      address: value.address,
+      gender,
+      email: value.email,
+      password: value.password,
+      userName: value.userName,
+    };
     setIsLoading(true);
-    const req = await apiRegister(value);
+    const req = await apiRegister(concatData);
+    console.log(concatData);
     setIsLoading(false);
     if (req.status) {
       NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
@@ -39,7 +50,6 @@ export default function FromCreateAccountManagement() {
         Account_title: "",
         PassWord: "",
         email: "",
-        gender: "",
         address: "",
         numberPhone: "",
       }}
@@ -98,18 +108,18 @@ export default function FromCreateAccountManagement() {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="gender" className="font-ob-bold ">
-              Giới Tính
-            </Label>
-            {errors.gender && touched.gender ? (
-              <div className="invalid-feedback d-block  ">{errors.gender}</div>
-            ) : null}
-            <Field
-              className="form-control "
-              type="number"
-              name="gender"
-              placeholder="Chọn Giới Tính"
-              autoComplete="gender"
+            <ReactSelect
+              label="Giới Tính"
+              options={[
+                { value: 1, label: "Nam" },
+                { value: 2, label: "Nữ" },
+              ]}
+              nameSelect="gender"
+              isClearable={false}
+              onHandleChange={(selectedOpt) => {
+                setGender(selectedOpt.value);
+              }}
+              selectedValue={gender}
             />
           </FormGroup>
           <FormGroup>
