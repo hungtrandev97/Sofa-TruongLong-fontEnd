@@ -71,6 +71,11 @@ const AdminMenu = [
     icon: "",
   },
   {
+    name: "Tài Khoản Khách Hàng",
+    path: "AccountCustomer",
+    icon: "",
+  },
+  {
     name: "Thống Kê",
     path: "Statistical",
     icon: "",

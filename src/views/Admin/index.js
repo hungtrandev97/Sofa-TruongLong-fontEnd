@@ -15,6 +15,8 @@ import EditProduct from "../../components/Admin/EditProduct";
 import EditCategory from "../../components/Admin/EditCategory";
 import EditOder from "../../components/Admin/EditOder";
 import EditAccountManagement from "../../components/Admin/EditAccountManagement";
+import AccountCustomer from "../../components/Admin/AccountCustomer";
+import CreateAccountCustomer from "../../components/Admin/CreateAccountCustomer";
 
 function Admin({ location, match }) {
   const currentKey = location.pathname.split("/")[1] || "/";
@@ -59,6 +61,7 @@ function Admin({ location, match }) {
                 path={`${match.url}/AccountManagement`}
                 component={AccountManagement}
               />
+
               <Route
                 path={`${match.url}/CreateAccountManagement`}
                 component={CreateAccountManagement}
@@ -66,6 +69,14 @@ function Admin({ location, match }) {
               <Route
                 path={`${match.url}/EditAccountManagement/:idAccount`}
                 component={EditAccountManagement}
+              />
+              <Route
+                path={`${match.url}/AccountCustomer`}
+                component={AccountCustomer}
+              />
+              <Route
+                path={`${match.url}/CreateAccountCustomer`}
+                component={CreateAccountCustomer}
               />
               <Route
                 path={`${match.url}/Statistical`}
