@@ -3,11 +3,11 @@ import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
+import { ReactSelect } from "../Forms/select/select";
 import { apiRegisterAdmin } from "../../services/auth";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { NotifySuccess, NotifyWarning } from "../Notify/Toast";
 import { acountAdminSuccess } from "../../store/actions/actions";
-import { ReactSelect } from "../Forms/select/select";
 
 const createAccountSchema = Yup.object().shape({
   userName: Yup.string().required("Tên Tài Khoản Không Được Rỗng"),
@@ -20,8 +20,9 @@ const createAccountSchema = Yup.object().shape({
 export default function FromCreateAccountManagement() {
   const [isLoading, setIsLoading] = useState(false);
   const [gender, setGender] = useState(1);
-
   const dispatch = useDispatch();
+
+  // function
   const onFinalSubmit = async (value) => {
     const concatData = {
       numberPhone: value.numberPhone,
@@ -43,6 +44,7 @@ export default function FromCreateAccountManagement() {
       NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
     }
   };
+
   return (
     <Formik
       initialValues={{

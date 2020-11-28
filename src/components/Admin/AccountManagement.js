@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import {
@@ -15,18 +14,15 @@ import {
   Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import "./AccountManagement.css";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
-import { acountAdminSuccess } from "../../store/actions/actions";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 import { apiDeleteAccount, apiGetAllAccountAdmin } from "../../services/auth";
+import "./AccountManagement.css";
 
 export default function AccountManagement() {
-  const [idAccount, setIdAccount] = useState("");
-  const dispatch = useDispatch();
-  const [removeAccount, setRemoveAccount] = useState(false);
+  // column data-react-table
   const columns = () => [
     {
       name: "Tên Tài Khoản",
@@ -60,6 +56,13 @@ export default function AccountManagement() {
       sortable: true,
     },
     {
+      name: "Phân Quyền",
+      selector: "role",
+      sortable: true,
+      width: "150px",
+      format: (row) => <>{row.role === 1 ? "Admin" : "User"}</>,
+    },
+    {
       name: "Sửa",
       selector: "isDeleted",
       sortable: false,
@@ -71,8 +74,7 @@ export default function AccountManagement() {
           to={{
             pathname: `/admin/EditAccountManagement/${row._id}`,
             state: {
-              category_title: row.category_title,
-              checkProduct: row.checkProduct,
+              row,
             },
           }}
         >
@@ -96,38 +98,54 @@ export default function AccountManagement() {
       ),
     },
   ];
+  // end
+
+  const [idAccount, setIdAccount] = useState("");
+  const [removeAccount, setRemoveAccount] = useState(false);
+  const toggleRemove = () => setRemoveAccount(!removeAccount);
+  const [dataAccountAdminList, setdataAccountAdminList] = useState();
+
+  // function
   const removeItem = (id) => {
     setRemoveAccount(true);
     setIdAccount(id);
-  };
-  const GetFromApiAllAcountAdmin = async () => {
-    const getDataAcountAdmin = await apiGetAllAccountAdmin();
-    console.log(getDataAcountAdmin);
-  };
-  useEffect(() => {
-    GetFromApiAllAcountAdmin();
-  }, [dispatch]);
-  const { registerAdmin } = useSelector((state) => state.authRedux);
-  const tableData = {
-    columns: columns(),
-    data: registerAdmin,
-    filterPlaceholder: "Tìm kiếm",
-    export: false,
-    print: false,
   };
   const DeleteAccount = async () => {
     const req = await apiDeleteAccount(idAccount);
     if (req.status) {
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
       setRemoveAccount(false);
-      dispatch(acountAdminSuccess(req.data));
+      const ListAcountAdmin = await apiGetAllAccountAdmin();
+      console.log(ListAcountAdmin);
+      if (ListAcountAdmin.status) {
+        setdataAccountAdminList(ListAcountAdmin.data);
+      }
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Xóa Danh Mục", `${req.message}`);
     } else {
       NotifyError("Xóa Danh Mục", `${req.message}`);
     }
   };
-  const toggleRemove = () => setRemoveAccount(!removeAccount);
+  const GetFromApiAllAcountAdmin = async () => {
+    const req = await apiGetAllAccountAdmin();
+    if (req.status) {
+      setdataAccountAdminList(req.data);
+    }
+  };
+
+  // end function
+  useEffect(() => {
+    GetFromApiAllAcountAdmin();
+  }, []);
+
+  const tableData = {
+    columns: columns(),
+    data: dataAccountAdminList,
+    filterPlaceholder: "Tìm kiếm",
+    export: false,
+    print: false,
+  };
+
   return (
     <div className="AdminAccountManagement">
       <div className="Delete__Account__Modal">
@@ -184,7 +202,7 @@ export default function AccountManagement() {
               noHeader
               pagination
               columns={columns()}
-              data={registerAdmin}
+              data={dataAccountAdminList}
               paginationPerPage={PAGE_SIZE}
               highlightOnHover
               noDataComponent="Danh mục rỗng"

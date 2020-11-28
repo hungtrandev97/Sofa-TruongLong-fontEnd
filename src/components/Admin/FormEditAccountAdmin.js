@@ -1,41 +1,36 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { useDispatch } from "react-redux";
 import { Button, FormGroup, Label } from "reactstrap";
 import * as Yup from "yup";
 import { ReactSelect } from "../Forms/select/select";
 import { apiEditAccountAdmin } from "../../services/auth";
-import { CategorySuccess } from "../../store/actions/actions";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 
 const createAccountAdminSchema = Yup.object().shape({
   userName: Yup.string().required("Tên Tài Khoản Không Được Rỗng"),
-  password: Yup.string().required("Mật Khẩu Không Được Rỗng"),
   email: Yup.string().email().required("Email không được rỗng"),
   address: Yup.string().required("Địa chỉ không được rỗng"),
   numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
 });
-export default function FromEditAccount({ match }) {
-  const dispatch = useDispatch();
-  const [gender, setGender] = useState(1);
-  const [role, setRole] = useState(1);
+export default function FromEditAccountAdmin({ match, location }) {
+  const dataAccountAdmin = location.state.row;
+  const [gender, setGender] = useState(dataAccountAdmin.gender);
+  const [role, setRole] = useState(dataAccountAdmin.role);
   const idAcountAdminUrl = match.params.idAccount;
 
   const onFinalSubmit = async (value) => {
     const concatData = {
       numberPhone: value.numberPhone,
       address: value.address,
-      gender: value.gender,
+      gender,
       email: value.email,
-      password: value.password,
       userName: value.userName,
-      role: value.role,
+      role,
     };
     const req = await apiEditAccountAdmin(concatData, idAcountAdminUrl);
     if (req.status) {
       NotifySuccess("Chỉnh Sửa Danh Mục", "Chỉnh Sửa Thành Công");
-      dispatch(CategorySuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Chỉnh Sửa Danh Mục", `${req.message}`);
     } else {
@@ -46,16 +41,14 @@ export default function FromEditAccount({ match }) {
   return (
     <Formik
       initialValues={{
-        userName: "",
-        password: "",
-        gender,
-        email: "",
-        address: "",
-        numberPhone: "",
-        role,
+        userName: dataAccountAdmin.userName,
+        email: dataAccountAdmin.email,
+        address: dataAccountAdmin.address,
+        numberPhone: dataAccountAdmin.numberPhone,
       }}
       validationSchema={createAccountAdminSchema}
       onSubmit={(values) => {
+        console.log(values);
         onFinalSubmit(values);
       }}
     >
@@ -74,21 +67,6 @@ export default function FromEditAccount({ match }) {
               name="userName"
               placeholder="Nhập tên tài khoản"
               autoComplete="userName"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="password" className="font-ob-bold">
-              Mật Khẩu
-            </Label>
-            {errors.password && touched.password ? (
-              <div className="invalid-feedback d-block">{errors.password}</div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="password"
-              name="password"
-              placeholder="Nhập mật khẩu"
-              autoComplete="password"
             />
           </FormGroup>
           <FormGroup>
