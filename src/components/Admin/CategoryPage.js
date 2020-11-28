@@ -64,7 +64,6 @@ function CategoryPage() {
       name: "Hiện thị danh mục trang chủ",
       selector: "checkProduct",
       sortable: true,
-      width: "300px",
       format: (row) => <>{row.checkProduct === 1 ? "Có" : "Không"}</>,
     },
     {

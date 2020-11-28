@@ -58,7 +58,6 @@ export default function AccountManagement() {
       name: "Địa Chỉ",
       selector: "address",
       sortable: true,
-      width: "300px",
     },
     {
       name: "Sửa",
@@ -116,6 +115,7 @@ export default function AccountManagement() {
     const req = await apiDeleteAccount(idAccount);
     if (req.status) {
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
+      setRemoveAccount(false);
       // dispatch(createCategorySuccess(req.data));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Xóa Danh Mục", `${req.message}`);
