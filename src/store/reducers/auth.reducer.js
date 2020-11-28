@@ -9,6 +9,8 @@ import {
   AUTH_RESET_STATUS_LOGIN,
   REGISTER_ADMIN_SUCCESS,
   GET_ALL_ACCOUNT_ADMIN,
+  REGISTER_CONSUMER_SUCCESS,
+  GET_ALL_ACCOUNT_CUSTOMER,
 } from "../actions/actions";
 
 const INIT_STATE = {
@@ -23,7 +25,8 @@ const INIT_STATE = {
     numberPhone: "",
     numberPoint: "",
   },
-  registerAdmin: [],
+  registerCustomer: [],
+  consumerData: [],
   loadingLogin: false,
   errorLogin: false,
   loadingLogout: false,
@@ -108,6 +111,19 @@ const authReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         registerAdmin: [],
+      };
+    }
+    case REGISTER_CONSUMER_SUCCESS: {
+      const { data } = action.payload;
+      return {
+        ...state,
+        consumerData: data,
+      };
+    }
+    case GET_ALL_ACCOUNT_CUSTOMER: {
+      return {
+        ...state,
+        customerData: [],
       };
     }
     default:
