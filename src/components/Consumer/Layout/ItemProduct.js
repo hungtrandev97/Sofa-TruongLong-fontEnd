@@ -29,9 +29,16 @@ const ItemProduct = ({
         <span>{SouceProduct}</span>
       </div>
       <div className="ItemProduct__Content__Price">
-        <del className="ItemProduct__Content__Price__del">
-          <span>{price}</span>
-        </del>
+        {pricePromotional !== "" ? (
+          <del className="ItemProduct__Content__Price__del">
+            <span>{price}</span>
+          </del>
+        ) : (
+          <div className="ItemProduct__Content__Price__promotional">
+            <span>{price}</span>
+          </div>
+        )}
+
         <span className="ItemProduct__Content__Price__span">-</span>
         <div className="ItemProduct__Content__Price__promotional">
           <span>{pricePromotional}</span>
