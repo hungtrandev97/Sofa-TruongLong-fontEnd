@@ -32,13 +32,13 @@ const MenuConsumer = () => {
             <div className="consumersMenu__MenuHeaderLink">
               <ul className="MenuMenu">
                 <li style={{ marginLeft: "0px" }}>
-                  <Link to="/home/"> Trang Chủ </Link>
+                  <Link to="/trang-chu"> Trang Chủ </Link>
                 </li>
                 <li>
                   <Link to="/home/"> Giới Thiệu </Link>
                 </li>
                 <li>
-                  <Link to="/home/educational/">Sản Phẩm</Link>
+                  <Link to="/san-pham">Sản Phẩm</Link>
 
                   <ul className="sub-menu">
                     <Row className="screen__Wep sub-menuCategory">
@@ -57,7 +57,7 @@ const MenuConsumer = () => {
                   <Link to="/home/educational/">Khuyến Mãi</Link>
                 </li>
                 <li>
-                  <Link to="/home/contact">Liên Hệ</Link>
+                  <Link to="/gioi-thieu">Liên Hệ</Link>
                 </li>
               </ul>
               <div className="consumersMenu__SiguploginMobile">

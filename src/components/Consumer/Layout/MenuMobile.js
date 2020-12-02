@@ -126,7 +126,12 @@ const MenuMobile = () => {
           <div className="MenuMobile__Content_UlMenuleft__Data">
             <div className="MenuMobile__Content_UlMenuleft__Home">
               <FaHome size="1.3rem" color="rgb(250, 62, 63)" />
-              <span>Trang Chủ</span>
+              <Link
+                to="/trang-chu"
+                style={{ color: "black", paddingLeft: "10px" }}
+              >
+                Trang Chủ
+              </Link>
             </div>
             <div className="MenuMobile__Content_UlMenuleft__About">
               <BsPersonLinesFill size="1.2rem" color="rgb(250, 62, 63)" />
@@ -163,7 +168,12 @@ const MenuMobile = () => {
             </div>
             <div className="MenuMobile__Content_UlMenuleft__Contact">
               <BiPhoneCall size="1.2rem" color="rgb(250, 62, 63)" />
-              <span>Liên Hệ</span>
+              <Link
+                to="/gioi-thieu"
+                style={{ color: "black", paddingLeft: "10px" }}
+              >
+                Liên Hệ
+              </Link>
             </div>
             {loginUser === null ? (
               ""
