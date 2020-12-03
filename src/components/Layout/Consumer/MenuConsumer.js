@@ -54,6 +54,26 @@ const MenuConsumer = () => {
                   </ul>
                 </li>
                 <li>
+                  <Link to="/san-pham">Lọc SoFa</Link>
+
+                  <ul className="sub-menu">
+                    <Row className="screen__Wep sub-menuCategory">
+                      <Col md={3}>
+                        <AiOutlineCaretRight />
+                        aaaa
+                      </Col>
+                      <Col md={3}>
+                        <AiOutlineCaretRight />
+                        aaaa
+                      </Col>
+                      <Col md={3}>
+                        <AiOutlineCaretRight />
+                        aaaa
+                      </Col>
+                    </Row>
+                  </ul>
+                </li>
+                <li>
                   <Link to="/home/educational/">Khuyến Mãi</Link>
                 </li>
                 <li>

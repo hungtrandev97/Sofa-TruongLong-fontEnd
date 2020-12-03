@@ -6,7 +6,6 @@ import { MdEmail } from "react-icons/md";
 import { AiOutlineContacts } from "react-icons/ai";
 import { SiInternetexplorer } from "react-icons/si";
 import { BiMap } from "react-icons/bi";
-
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import "./FormContact.css";
 
