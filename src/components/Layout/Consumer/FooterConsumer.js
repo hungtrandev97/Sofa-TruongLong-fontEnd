@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import io from "socket.io-client";
+import io from "socket.io-client";
 import { Row, Col } from "reactstrap";
 import { RiContactsLine, RiArrowRightSFill } from "react-icons/ri";
 import { ImHome3, ImPhone } from "react-icons/im";
@@ -12,24 +12,17 @@ import { AiFillEye } from "react-icons/ai";
 import { VscEye } from "react-icons/vsc";
 import "./FooterConsumer.css";
 
-// let socket;
+let socket;
 function FooterConsumer() {
-  const [numberOnline, setNumberOnline] = useState(2);
+  const [numberOnline, setNumberOnline] = useState(1);
   const [numberCountOnline, setNumberCountOnline] = useState(97);
-  // const ENDPOINT = "http://localhost:3002/";
-  // socket = io(ENDPOINT);
-  // socket.on("numberOnline", (numberIo) => {
-  //   setNumber(numberIo);
-  //   console.log(numberIo, "check");
-  // });
-  // console.log(number);
-
-  // useEffect(() => {
-  //   const socket = io("http://192.168.1.155:3002");
-  //   socket.on("timer", (time) => {
-  //     setTimer(time);
-  //   });
-  // });
+  const ENDPOINT = "localhost:3002";
+  socket = io(ENDPOINT);
+  socket.on("numberOnline", (numberIo) => {
+    setNumberOnline(numberIo);
+    console.log(numberIo, "check");
+  });
+  console.log(numberOnline);
   const year = new Date().getFullYear();
   sessionStorage.setItem("name", "Ted Mosby");
   const a = window.sessionStorage;

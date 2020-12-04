@@ -33,8 +33,9 @@ function FormCreateProduct() {
   );
   const [productImage, setProductImage] = useState("");
 
-  const productImages = [];
-  const concatImageToArray = [];
+  const [productImage1, setProductImage1] = useState("");
+  const [productImage2, setProductImage2] = useState("");
+  const [productImage3, setProductImage3] = useState("");
 
   const getUploadParams = () => {
     return { url: "https://httpbin.org/post" };
@@ -44,10 +45,14 @@ function FormCreateProduct() {
     setProductImage(file);
   };
 
-  const changeImages = (files) => {
-    if (files.meta.status === "done") {
-      productImages.push(files);
-    }
+  const changeImages1 = ({ file }) => {
+    setProductImage1(file);
+  };
+  const changeImages2 = ({ file }) => {
+    setProductImage2(file);
+  };
+  const changeImages3 = ({ file }) => {
+    setProductImage3(file);
   };
 
   const dataCategoryDefault = [];
@@ -62,13 +67,12 @@ function FormCreateProduct() {
   }, [dataCategory]);
 
   const onFinalSubmit = async (value) => {
-    setIsLoading(true);
-    productImages.forEach(async (item) => {
-      const urlimageIndex = await UploadImagevIEW(item.file);
-      concatImageToArray.push(urlimageIndex);
-    });
+    await setIsLoading(true);
+    const urlimageIndex1 = await UploadImagevIEW(productImage1);
+    const urlimageIndex2 = await UploadImagevIEW(productImage2);
+    const urlimageIndex3 = await UploadImagevIEW(productImage3);
     const urlImageFirebase = await UploadImagevIEW(productImage);
-    const concatData = {
+    const concatData = await {
       _category: categoryValue,
       product_new: productNewValue,
       product_index: productIndexValue,
@@ -76,20 +80,21 @@ function FormCreateProduct() {
       product_title: value.product_title,
       product_code: value.product_code,
       product_imageMain: urlImageFirebase,
-      product_image: concatImageToArray,
+      product_image1: urlimageIndex1,
+      product_image2: urlimageIndex2,
+      product_image3: urlimageIndex3,
       product_price: price.formattedValue,
       product_price_sale: priceSale.formattedValue,
     };
-    if (urlImageFirebase !== "" && concatImageToArray !== "") {
-      const req = await apiCreateProduct(concatData);
-      setIsLoading(false);
-      if (req.status) {
-        NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
-      } else if (req.type === TYPE_NOTIFY.WARNING) {
-        NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
-      } else {
-        NotifyError("Thêm Sản Phẩm", `${req.message}`);
-      }
+    console.log(concatData);
+    const req = await apiCreateProduct(concatData);
+    setIsLoading(false);
+    if (req.status) {
+      NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
+    } else {
+      NotifyError("Thêm Sản Phẩm", `${req.message}`);
     }
   };
   const ChangeTextarea = (changeEvent) => {
@@ -124,12 +129,34 @@ function FormCreateProduct() {
           </FormGroup>
           <FormGroup>
             <Label for="product_image" className="font-ob-bold">
-              Thêm Hình Phụ Sản Phẩm
+              Thêm Hình Phụ Sản Phẩm 1
             </Label>
             <Dropzone
               getUploadParams={getUploadParams}
-              onChangeStatus={changeImages}
-              maxFiles={3}
+              onChangeStatus={changeImages1}
+              maxFiles={1}
+              accept="image/*,audio/*,video/*"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="product_image" className="font-ob-bold">
+              Thêm Hình Phụ Sản Phẩm 2
+            </Label>
+            <Dropzone
+              getUploadParams={getUploadParams}
+              onChangeStatus={changeImages2}
+              maxFiles={1}
+              accept="image/*,audio/*,video/*"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="product_image" className="font-ob-bold">
+              Thêm Hình Phụ Sản Phẩm 3
+            </Label>
+            <Dropzone
+              getUploadParams={getUploadParams}
+              onChangeStatus={changeImages3}
+              maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
           </FormGroup>
