@@ -8,6 +8,8 @@ import { CgMail } from "react-icons/cg";
 import { SiInternetexplorer } from "react-icons/si";
 import { BsCheckBox } from "react-icons/bs";
 import { BiWrench } from "react-icons/bi";
+import { AiFillEye } from "react-icons/ai";
+import { VscEye } from "react-icons/vsc";
 import "./FooterConsumer.css";
 
 // let socket;
@@ -61,7 +63,7 @@ function FooterConsumer() {
                 </Col>
                 <Col>
                   <MdPhoneIphone size="0.8rem" color="#23b7e5" />
-                  <span> 0762 607 636 </span>
+                  <span> 07626 07636 </span>
                 </Col>
               </div>
               <div className="FooterCosumer_left_Content_Email">
@@ -129,6 +131,20 @@ function FooterConsumer() {
             <div className="FooterCosumer__center__Tutorial">
               <RiArrowRightSFill size="1.3rem" color="#23b7e5" />
               <span> Sửa Chữa SOFA</span>
+            </div>
+            <div className="numberOnline">
+              <span style={{ paddingLeft: "5px", paddingRight: "5px" }}>
+                <AiFillEye size="1rem" color="#23b7e5" />
+              </span>
+              <span>Đang Online:</span>
+              <span>{numberOnline}</span>
+            </div>
+            <div className="numberOnline">
+              <span style={{ paddingLeft: "5px", paddingRight: "5px" }}>
+                <VscEye size="1rem" color="#23b7e5" />
+              </span>
+              <span>Đã Xem:</span>
+              <span>{numberCountOnline}</span>
             </div>
           </Col>
         </Row>

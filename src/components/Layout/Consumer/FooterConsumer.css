@@ -119,6 +119,17 @@
   font-weight: 700;
   color: #c5c5c5;
 }
+.numberOnline {
+  border-bottom: 1px solid gray;
+  display: flex;
+  padding-top: 20px;
+}
+.numberOnline > span {
+  padding-left: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #c5c5c5;
+}
 /* --------- */
 .footer_year {
   background: rgb(41, 41, 41);

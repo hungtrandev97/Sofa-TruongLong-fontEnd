@@ -13,6 +13,7 @@ import { NotifySuccess, NotifyError, NotifyWarning } from "../Notify/Toast";
 import { ReactSelect } from "../Forms/select/select";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import "react-dropzone-uploader/dist/styles.css";
+import "./Product.css";
 
 const createProductSchema = Yup.object().shape({
   product_title: Yup.string().required("Tên Sản Phẩm Không Được Rỗng"),
@@ -109,7 +110,7 @@ function FormCreateProduct() {
       }}
     >
       {({ errors, touched }) => (
-        <Form>
+        <Form className="FormProduct">
           <FormGroup>
             <Label for="product_image" className="font-ob-bold">
               Thêm Hình Chính Sản Phẩm
