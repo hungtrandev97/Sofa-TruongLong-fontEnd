@@ -54,6 +54,9 @@ const MenuConsumer = () => {
                   </ul>
                 </li>
                 <li>
+                  <Link to="/san-pham-moi"> Sản Phẩm Mới </Link>
+                </li>
+                <li>
                   <Link to="/san-pham">Lọc SoFa</Link>
 
                   <ul className="sub-menu">
@@ -74,7 +77,7 @@ const MenuConsumer = () => {
                   </ul>
                 </li>
                 <li>
-                  <Link to="/home/educational/">Khuyến Mãi</Link>
+                  <Link to="/khuyen-mai">Khuyến Mãi</Link>
                 </li>
                 <li>
                   <Link to="/gioi-thieu">Liên Hệ</Link>

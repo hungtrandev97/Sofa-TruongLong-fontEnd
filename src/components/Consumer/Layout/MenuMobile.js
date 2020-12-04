@@ -6,6 +6,7 @@ import {
   BiPhoneCall,
   BiLogIn,
 } from "react-icons/bi";
+import { MdFiberNew } from "react-icons/md";
 import { CgCloseO } from "react-icons/cg";
 import { FaHome, FaShoppingCart } from "react-icons/fa";
 import { BsPeopleCircle, BsPersonLinesFill } from "react-icons/bs";
@@ -166,6 +167,16 @@ const MenuMobile = () => {
                 })}
               </ul>
             </div>
+            <div className="MenuMobile__Content_UlMenuleft__Contact">
+              <MdFiberNew size="1.2rem" color="rgb(250, 62, 63)" />
+              <Link
+                to="/san-pham-moi"
+                style={{ color: "black", paddingLeft: "10px" }}
+              >
+                Sản Phẩm Mới
+              </Link>
+            </div>
+
             <div className="MenuMobile__Content_UlMenuleft__Contact">
               <BiPhoneCall size="1.2rem" color="rgb(250, 62, 63)" />
               <Link
