@@ -14,6 +14,7 @@ import { getAllProductIndex } from "../../services/product";
 const HomeContent = () => {
   const [dataProduct, setDataProduct] = useState([]);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
+  console.log(dataCategory);
 
   const GetProduct = async () => {
     const responseData = await getAllProductIndex();
@@ -28,28 +29,36 @@ const HomeContent = () => {
     <div className="HomeContent screen__Wep">
       {dataCategory.map((item, index) => (
         <div className="HomeContent_nav" key={index}>
-          {item.checkProduct === 1 ? (
+          {item.length > 0 ? (
             <>
-              <HeaderProduct title={item.category_title} link={item.url} />
-              <div className="HomeContent__product__new">
-                <Row>
-                  {dataProduct.map((itemproduct, index) => {
-                    if (item._id === itemproduct._category._id) {
-                      return (
-                        <Col key={index} lg={3} md={4} ms={6} xs={6}>
-                          <ItemProduct
-                            title={itemproduct.product_title}
-                            SouceProduct={itemproduct.product_code}
-                            price={itemproduct.product_price}
-                            pricePromotional={itemproduct.product_price_sale}
-                            imageMain={itemproduct.product_imageMain}
-                          />
-                        </Col>
-                      );
-                    }
-                  })}
-                </Row>
-              </div>
+              {item.checkProduct === 1 ? (
+                <>
+                  <HeaderProduct title={item.category_title} link={item.url} />
+                  <div className="HomeContent__product__new">
+                    <Row>
+                      {dataProduct.map((itemproduct, index) => {
+                        if (item._id === itemproduct._category._id) {
+                          return (
+                            <Col key={index} lg={3} md={4} ms={6} xs={6}>
+                              <ItemProduct
+                                title={itemproduct.product_title}
+                                SouceProduct={itemproduct.product_code}
+                                price={itemproduct.product_price}
+                                pricePromotional={
+                                  itemproduct.product_price_sale
+                                }
+                                imageMain={itemproduct.product_imageMain}
+                              />
+                            </Col>
+                          );
+                        }
+                      })}
+                    </Row>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </>
           ) : (
             ""
