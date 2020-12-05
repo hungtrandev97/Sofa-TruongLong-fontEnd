@@ -3,7 +3,7 @@ import { Row, Col } from "reactstrap";
 import { ImHome3, ImPhone } from "react-icons/im";
 import { FaAddressCard, FaUserAlt, FaPhoneSquareAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { AiOutlineContacts } from "react-icons/ai";
+
 import { SiInternetexplorer } from "react-icons/si";
 import { BiMap } from "react-icons/bi";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
@@ -15,9 +15,6 @@ export default function FormContact() {
       <ChatBox />
       <div className="FromContact__Header">
         <p>Liên Hệ</p>
-        <p>
-          <AiOutlineContacts size="1.5rem" color="#122f5b" />
-        </p>
       </div>
       <div className="FromContact__Content">
         <Row style={{ paddingBottom: "50px" }}>

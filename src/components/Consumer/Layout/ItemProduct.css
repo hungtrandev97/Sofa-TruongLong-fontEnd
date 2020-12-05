@@ -63,3 +63,11 @@
   color: #fff;
   font-size: 14px;
 }
+
+@media (max-width: 425px) {
+  .ItemProduct__Content__Price {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+  }
+}
