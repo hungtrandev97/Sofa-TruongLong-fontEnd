@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalHeader,
   Button,
+  Spinner,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -25,10 +26,10 @@ import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 import "./Product.css";
 
 export default function ProductPage() {
+  const [isLoading, setIsLoading] = useState(false);
   const [ItemProducts, setItemProducts] = useState();
   const [dataProductList, setDataProductList] = useState();
   const [removeProduct, setRemoveProduct] = useState(false);
-  console.log(ItemProducts, "ItemProducts");
   const columns = () => [
     {
       name: "Tên Sản Phẩm",
@@ -173,18 +174,33 @@ export default function ProductPage() {
   const toggleRemove = () => setRemoveProduct(!removeProduct);
 
   const DeleteProduct = async () => {
-    const removeImageMain = await RemoveImage(ItemProducts.product_imageMain);
-    console.log(removeImageMain);
-    // const req = await apiDeleteProduct(ItemProducts._id);
-    // if (req.status) {
-    //   setRemoveProduct(false);
-    //   setDataProductList(req.data);
-    //   NotifySuccess("Xoa Sản Phẩm", "Xóa Sản Phẩm Thành Công");
-    // } else if (req.type === TYPE_NOTIFY.WARNING) {
-    //   NotifyWarning("Xóa Sản Phẩm", `${req.message}`);
-    // } else {
-    //   NotifyError("Xóa Sản Phẩm", `${req.message}`);
-    // }
+    await setIsLoading(true);
+    if (ItemProducts.product_product_imageMainUrl !== "") {
+      await RemoveImage(ItemProducts.product_product_imageMainUrl);
+    }
+    if (ItemProducts.product_image_url1 !== "") {
+      await RemoveImage(ItemProducts.product_image_url1);
+    }
+    if (ItemProducts.product_image_url2 !== "") {
+      await RemoveImage(ItemProducts.product_image_url2);
+    }
+    if (ItemProducts.product_image_url3 !== "") {
+      await RemoveImage(ItemProducts.product_image_url3);
+    }
+
+    const req = await apiDeleteProduct(ItemProducts._id);
+    if (req.status) {
+      setIsLoading(false);
+      setRemoveProduct(false);
+      setDataProductList(req.data);
+      NotifySuccess("Xoa Sản Phẩm", "Xóa Sản Phẩm Thành Công");
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      setIsLoading(false);
+      NotifyWarning("Xóa Sản Phẩm", `${req.message}`);
+    } else {
+      setIsLoading(false);
+      NotifyError("Xóa Sản Phẩm", `${req.message}`);
+    }
   };
   const tableData = {
     columns: columns(),
@@ -201,11 +217,13 @@ export default function ProductPage() {
           <ModalHeader>Bạn Có Chắc Chán Muốn Xóa ? </ModalHeader>
           <ModalBody className="Delete__Product__Modal__Body">
             <Button
+              disabled={isLoading}
               onClick={() => DeleteProduct()}
               type="submit"
               color="primary"
               style={{ margin: "0 20px" }}
             >
+              {isLoading ? <Spinner size="sm" color="light" /> : ""}
               Có
             </Button>
             <Button

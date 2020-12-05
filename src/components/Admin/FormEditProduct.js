@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import { Formik, Form, Field } from "formik";
@@ -8,9 +8,12 @@ import Dropzone from "react-dropzone-uploader";
 import NumberFormat from "react-number-format";
 import CKEditor from "ckeditor4-react";
 import * as Yup from "yup";
-// import UploadImagevIEW from "../firebase/uploadImage";
-// import { NotifySuccess, NotifyError, NotifyWarning } from "../Notify/Toast";
+import UploadImagevIEW from "../firebase/uploadImage";
+import RemoveImage from "../firebase/removeImage";
+import { NotifySuccess, NotifyError, NotifyWarning } from "../Notify/Toast";
 import { ReactSelect } from "../Forms/select/select";
+import { TYPE_NOTIFY } from "../../constants/DefaultValues";
+import { apiEditProduct } from "../../services/product";
 
 const editProductSchema = Yup.object().shape({
   product_title: Yup.string().required("Tên Sản Phẩm Không Được Rỗng"),
@@ -24,11 +27,49 @@ export default function FormEditProduct({ location }) {
   const [dataTextarea, setDataTextarea] = useState(
     dataProduct.product_discript
   );
+  const [productImage, setProductImage] = useState("");
+  const [productImage1, setProductImage1] = useState("");
+  const [productImage2, setProductImage2] = useState("");
+  const [productImage3, setProductImage3] = useState("");
+  const [changeImage, setChangeImage] = useState(false);
+  const [changeImage1, setChangeImage1] = useState(false);
+  const [changeImage2, setChangeImage2] = useState(false);
+  const [changeImage3, setChangeImage3] = useState(false);
   const [productIndexValue, setproductIndexValue] = useState(
+    dataProduct.product_index
+  );
+  const [productNewValue, setproductNewValue] = useState(
     dataProduct.product_new
   );
   const [price, setPrice] = useState(dataProduct.product_price);
   const [priceSale, setPriceSale] = useState(dataProduct.product_price_sale);
+  const [productPriceNumber, setproductPriceNumber] = useState(
+    dataProduct.product_priceNumber
+  );
+  const [productPriceNumberSale, setproductPriceNumberSale] = useState(
+    dataProduct.product_priceNumber_sale
+  );
+
+  const getUploadParams = () => {
+    return { url: "https://httpbin.org/post" };
+  };
+  const changeImageProductIndex = ({ file }) => {
+    setChangeImage(true);
+    setProductImage(file);
+  };
+
+  const changeImages1 = ({ file }) => {
+    setChangeImage1(true);
+    setProductImage1(file);
+  };
+  const changeImages2 = ({ file }) => {
+    setProductImage2(file);
+    setChangeImage2(true);
+  };
+  const changeImages3 = ({ file }) => {
+    setProductImage3(file);
+    setChangeImage3(true);
+  };
   const ChangeTextarea = (ChangeEvent) => {
     setDataTextarea(ChangeEvent.editor.getData());
   };
@@ -40,37 +81,101 @@ export default function FormEditProduct({ location }) {
     });
   });
 
+  const fnSetPrice = (value) => {
+    setPrice(value.formattedValue);
+    setproductPriceNumber(value.floatValue);
+  };
+
+  const fnSetPriceSale = (value) => {
+    setPriceSale(value.formattedValue);
+    setproductPriceNumberSale(value.floatValue);
+  };
+
   const onFinalSubmit = async (value) => {
     setIsLoading(true);
-    // const uploadImages = productImages.forEach(async (item) => {
-    //   const urlimageIndex = await UploadImagevIEW(item.file);
-    // });
-    // const urlImageFirebase = await UploadImagevIEW(productImage);
-    const concatData = {
+    let urlImageFirebase = "";
+    let productProductImageMainUrl = "";
+
+    let urlimageIndex1 = "";
+    let productImageUrl1 = "";
+
+    let urlimageIndex2 = "";
+    let productImageUrl2 = "";
+
+    let urlimageIndex3 = "";
+    let productImageUrl3 = "";
+
+    // hinh chinh
+    if (changeImage) {
+      const uploadImage = await UploadImagevIEW(productImage);
+      urlImageFirebase = uploadImage[0].spaceRef;
+      productProductImageMainUrl = uploadImage[0].url;
+      await RemoveImage(dataProduct.product_product_imageMainUrl);
+    } else {
+      urlImageFirebase = dataProduct.product_imageMain;
+      productProductImageMainUrl = dataProduct.product_product_imageMainUrl;
+    }
+
+    // 3 hinh phu
+    if (changeImage1) {
+      const uploadImage1 = await UploadImagevIEW(productImage1);
+      urlimageIndex1 = uploadImage1[0].spaceRef;
+      productImageUrl1 = uploadImage1[0].url;
+      await RemoveImage(dataProduct.product_image_url1);
+    } else {
+      urlimageIndex1 = dataProduct.product_image1;
+      productImageUrl1 = dataProduct.product_image_url1;
+    }
+
+    if (changeImage2) {
+      const uploadImage2 = await UploadImagevIEW(productImage2);
+      await RemoveImage(dataProduct.product_image_url2);
+      urlimageIndex2 = uploadImage2[0].spaceRef;
+      productImageUrl2 = uploadImage2[0].url;
+    } else {
+      urlimageIndex2 = dataProduct.product_image2;
+      productImageUrl2 = dataProduct.product_image_url2;
+    }
+
+    if (changeImage3) {
+      const uploadImage3 = await UploadImagevIEW(productImage3);
+      await RemoveImage(dataProduct.product_image_url3);
+      urlimageIndex3 = await uploadImage3[0].spaceRef;
+      productImageUrl3 = await uploadImage3[0].url;
+    } else {
+      urlimageIndex3 = await dataProduct.product_image2;
+      productImageUrl3 = await dataProduct.product_image_url2;
+    }
+    const concatData = await {
       _category: categoryValue,
-      // product_new: productNewValue,
-      // product_index: productIndexValue,
+      product_new: productNewValue,
+      product_index: productIndexValue,
       product_discript: dataTextarea,
       product_title: value.product_title,
       product_code: value.product_code,
-      // product_imageMain: urlImageFirebase,
-      // product_image: concatImageToArray,
-      product_price: price.formattedValue,
-      product_price_sale: priceSale.formattedValue,
+      product_imageMain: urlImageFirebase,
+      product_product_imageMainUrl: productProductImageMainUrl,
+      product_image1: urlimageIndex1,
+      product_image_url1: productImageUrl1,
+      product_image2: urlimageIndex2,
+      product_image_url2: productImageUrl2,
+      product_image3: urlimageIndex3,
+      product_image_url3: productImageUrl3,
+      product_price: price,
+      product_price_sale: priceSale,
+      product_priceNumber: productPriceNumber,
+      product_priceNumber_sale: productPriceNumberSale,
     };
     console.log(concatData);
-    // if (urlImageFirebase !== "" && concatImageToArray !== "") {
-    //   const req = await apiCreateProduct(concatData);
-    //   setIsLoading(false);
-    //   if (req.status) {
-    //     NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
-    //     dispatch(createProductSuccess(req.data));
-    //   } else if (req.type === TYPE_NOTIFY.WARNING) {
-    //     NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
-    //   } else {
-    //     NotifyError("Thêm Sản Phẩm", `${req.message}`);
-    //   }
-    // }
+    const req = await apiEditProduct(concatData, dataProduct._id);
+    setIsLoading(false);
+    if (req.status) {
+      NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
+    } else {
+      NotifyError("Thêm Sản Phẩm", `${req.message}`);
+    }
   };
 
   return (
@@ -90,15 +195,67 @@ export default function FormEditProduct({ location }) {
         <Form>
           <FormGroup>
             <Label for="product_image" className="font-ob-bold">
-              Chỉnh Sửa Chính Sản Phẩm
+              Thêm Hình Chính Sản Phẩm
             </Label>
-            <Dropzone maxFiles={1} accept="image/*,audio/*,video/*" />
+            <Dropzone
+              getUploadParams={getUploadParams}
+              onChangeStatus={changeImageProductIndex}
+              inputContent={(
+                <div>
+                  <img src={dataProduct.product_imageMain} alt="" width="70" />
+                </div>
+              )}
+              maxFiles={1}
+              accept="image/*,audio/*,video/*"
+            />
           </FormGroup>
           <FormGroup>
             <Label for="product_image" className="font-ob-bold">
-              Chỉnh Sửa Phụ Sản Phẩm
+              Thêm Hình Phụ Sản Phẩm 1
             </Label>
-            <Dropzone maxFiles={4} accept="image/*,audio/*,video/*" />
+            <Dropzone
+              getUploadParams={getUploadParams}
+              onChangeStatus={changeImages1}
+              inputContent={(
+                <div>
+                  <img src={dataProduct.product_image1} alt="" width="70" />
+                </div>
+              )}
+              maxFiles={1}
+              accept="image/*,audio/*,video/*"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="product_image" className="font-ob-bold">
+              Thêm Hình Phụ Sản Phẩm 2
+            </Label>
+            <Dropzone
+              getUploadParams={getUploadParams}
+              onChangeStatus={changeImages2}
+              inputContent={(
+                <div>
+                  <img src={dataProduct.product_image2} alt="" width="70" />
+                </div>
+              )}
+              maxFiles={1}
+              accept="image/*,audio/*,video/*"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="product_image" className="font-ob-bold">
+              Thêm Hình Phụ Sản Phẩm 3
+            </Label>
+            <Dropzone
+              getUploadParams={getUploadParams}
+              onChangeStatus={changeImages3}
+              inputContent={(
+                <div>
+                  <img src={dataProduct.product_image3} alt="" width="70" />
+                </div>
+              )}
+              maxFiles={1}
+              accept="image/*,audio/*,video/*"
+            />
           </FormGroup>
           <FormGroup>
             <Label for="product_title" className="font-ob-bold">
@@ -151,11 +308,6 @@ export default function FormEditProduct({ location }) {
             <Label for="product_price" className="font-ob-bold">
               Giá Sản Phẩm
             </Label>
-            {price === "" ? (
-              <div className="invalid-feedback d-block">
-                Bắt buộc phải có giá sản phẩm
-              </div>
-            ) : null}
             <NumberFormat
               thousandSeparator
               className="form-control"
@@ -163,7 +315,7 @@ export default function FormEditProduct({ location }) {
               placeholder="Thêm Giá"
               autoComplete="productPrice"
               suffix="vnđ"
-              onValueChange={(vals) => setPrice(vals)}
+              onValueChange={(vals) => fnSetPrice(vals)}
               defaultValue={price}
             />
           </FormGroup>
@@ -178,7 +330,7 @@ export default function FormEditProduct({ location }) {
               placeholder="Thêm Giá"
               autoComplete="productPrice"
               suffix="vnđ"
-              onValueChange={(vals) => setPriceSale(vals)}
+              onValueChange={(vals) => fnSetPriceSale(vals)}
               defaultValue={priceSale}
             />
           </FormGroup>
@@ -209,12 +361,33 @@ export default function FormEditProduct({ location }) {
               optionsPlaceholder="Sản phẩm mới"
               isClearable={false}
               onHandleChange={(selectedOpt) => {
+                setproductNewValue(selectedOpt.value);
+              }}
+              selectedValue={productNewValue}
+            />
+          </FormGroup>
+          <FormGroup>
+            <ReactSelect
+              label="Hiện Thị Trang Chủ"
+              options={[
+                { value: 1, label: "Có" },
+                { value: 2, label: "Không" },
+              ]}
+              nameSelect="ProductIndex"
+              optionsPlaceholder="Hiện Thị Trang Chủ"
+              isClearable={false}
+              onHandleChange={(selectedOpt) => {
                 setproductIndexValue(selectedOpt.value);
               }}
               selectedValue={productIndexValue}
             />
           </FormGroup>
-          <Button type="submit" color="primary" className="Create__Button">
+          <Button
+            disabled={isLoading}
+            type="submit"
+            color="primary"
+            className="Create__Button"
+          >
             {isLoading ? <Spinner size="sm" color="light" /> : ""}
             <span className="ml-50 font-ob-bold"> Tạo Mới </span>
           </Button>

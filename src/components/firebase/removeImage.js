@@ -1,13 +1,9 @@
 import firebase from "../../firebase/index";
 
 async function RemoveImage(urlFile) {
-  console.log(urlFile);
   const storageRefImage = await firebase.storage().ref();
-  const desertRef = await storageRefImage.child(urlFile);
-  console.log(desertRef);
-  if (desertRef) {
-    return true;
-  }
-  return false;
+  const desertRef = storageRefImage.child(`images/${urlFile}`);
+  const desertRefs = await desertRef.delete();
+  return desertRefs;
 }
 export default RemoveImage;

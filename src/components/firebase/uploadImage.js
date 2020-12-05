@@ -9,6 +9,12 @@ async function UploadImage(file) {
   const spaceRef = await storageRefImage
     .child(`${bucketName}/${image}`)
     .getDownloadURL();
-  return spaceRef;
+  const imageProduct = [
+    {
+      url: image,
+      spaceRef,
+    },
+  ];
+  return imageProduct;
 }
 export default UploadImage;
