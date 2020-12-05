@@ -23,3 +23,18 @@
   height: 50px;
   cursor: pointer;
 }
+.CreateAccountManagement {
+  padding: 30px 130px 30px 130px;
+}
+.EditAccountManagement {
+  padding: 30px 130px 30px 130px;
+}
+
+@media (max-width: 768px) {
+  .CreateAccountManagement {
+    padding: 10px;
+  }
+  .EditAccountManagement {
+    padding: 10px;
+  }
+}

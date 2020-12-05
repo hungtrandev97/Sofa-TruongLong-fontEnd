@@ -1,0 +1,14 @@
+.CreateAccountCustomer {
+  padding: 30px 130px 30px 130px;
+}
+.EditAccountCustomer {
+  padding: 30px 130px 30px 130px;
+}
+@media (max-width: 768px) {
+  .CreateAccountCustomer {
+    padding: 10px;
+  }
+  .EditAccountCustomer {
+    padding: 10px;
+  }
+}

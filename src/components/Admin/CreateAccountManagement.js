@@ -1,6 +1,7 @@
 import React from "react";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import FromCreateAccountManagement from "./FromCreateAccountManagement";
+import "./AccountManagement.css";
 
 export default function CreateAccountManagement() {
   return (
@@ -17,7 +18,7 @@ export default function CreateAccountManagement() {
           <BreadcrumbItem active>Thêm Mới Tài Khoản</BreadcrumbItem>
         </Breadcrumb>
       </div>
-      <div style={{ padding: "30px 130px 30px 130px" }}>
+      <div className="CreateAccountManagement">
         <FromCreateAccountManagement />
       </div>
     </div>

@@ -208,6 +208,23 @@ search */
   }
 }
 
+@media (max-width: 812px) {
+  .consumersMenu__MenuHeaderLink > ul > li > a {
+    padding: 15px;
+  }
+}
+@media (max-width: 993px) {
+  .consumersMenu__MenuHeaderLink > ul > li {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 827px) {
+  .consumersMenu__MenuHeaderLink > ul > li {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 767px) {
   .HeaderConsumer__nav__MenuLeftMobile {
     display: block;

@@ -16,6 +16,8 @@ import MainView from "./views/index";
 import DashboardView from "./views/dashboard/index";
 import ContactView from "./views/dashboard/Contact";
 import ProductPage from "./views/dashboard/ProductPage";
+import NewProductPage from "./views/dashboard/NewProductPage";
+import SalePage from "./views/dashboard/SalePage";
 
 const auth = {
   isAuthenticated: false,
@@ -74,6 +76,8 @@ const Routes = (props) => {
         <Route path="/trang-chu" component={DashboardView} />
         <Route path="/gioi-thieu" component={ContactView} />
         <Route path="/san-pham" component={ProductPage} />
+        <Route path="/san-pham-moi" component={NewProductPage} />
+        <Route path="/khuyen-mai" component={SalePage} />
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />
       </Switch>
