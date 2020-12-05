@@ -19,14 +19,16 @@ import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
+import RemoveImage from "../firebase/removeImage";
 import { apiGetAllProduct, apiDeleteProduct } from "../../services/product";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 import "./Product.css";
 
 export default function ProductPage() {
-  const [idProduct, setIdProduct] = useState();
+  const [ItemProducts, setItemProducts] = useState();
   const [dataProductList, setDataProductList] = useState();
   const [removeProduct, setRemoveProduct] = useState(false);
+  console.log(ItemProducts, "ItemProducts");
   const columns = () => [
     {
       name: "Tên Sản Phẩm",
@@ -92,7 +94,7 @@ export default function ProductPage() {
       width: "150px",
       cell: (row) => (
         <>
-          <img src={`${row.product_image[0]}`} alt="" width="100" />
+          <img src={`${row.product_image1}`} alt="" width="100" />
         </>
       ),
     },
@@ -103,7 +105,7 @@ export default function ProductPage() {
       width: "150px",
       cell: (row) => (
         <>
-          <img src={`${row.product_image[1]}`} alt="" width="100" />
+          <img src={`${row.product_image2}`} alt="" width="100" />
         </>
       ),
     },
@@ -114,7 +116,7 @@ export default function ProductPage() {
       width: "150px",
       cell: (row) => (
         <>
-          <img src={`${row.product_image[2]}`} alt="" width="100" />
+          <img src={`${row.product_image3}`} alt="" width="100" />
         </>
       ),
     },
@@ -147,16 +149,16 @@ export default function ProductPage() {
       width: "80px",
       cell: (row) => (
         <RiDeleteBin6Line
-          onClick={() => RemoveItemProdcut(row._id)}
+          onClick={() => RemoveItemProdcut(row)}
           size="1rem"
           color="#23b7e5"
         />
       ),
     },
   ];
-  const RemoveItemProdcut = (id) => {
+  const RemoveItemProdcut = (itemProduct) => {
     setRemoveProduct(true);
-    setIdProduct(id);
+    setItemProducts(itemProduct);
   };
   const GetFromApiAllProduct = async () => {
     const req = await apiGetAllProduct();
@@ -169,17 +171,20 @@ export default function ProductPage() {
     GetFromApiAllProduct();
   }, []);
   const toggleRemove = () => setRemoveProduct(!removeProduct);
+
   const DeleteProduct = async () => {
-    const req = await apiDeleteProduct(idProduct);
-    if (req.status) {
-      setRemoveProduct(false);
-      setDataProductList(req.data);
-      NotifySuccess("Xoa Sản Phẩm", "Xóa Sản Phẩm Thành Công");
-    } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Xóa Sản Phẩm", `${req.message}`);
-    } else {
-      NotifyError("Xóa Sản Phẩm", `${req.message}`);
-    }
+    const removeImageMain = await RemoveImage(ItemProducts.product_imageMain);
+    console.log(removeImageMain);
+    // const req = await apiDeleteProduct(ItemProducts._id);
+    // if (req.status) {
+    //   setRemoveProduct(false);
+    //   setDataProductList(req.data);
+    //   NotifySuccess("Xoa Sản Phẩm", "Xóa Sản Phẩm Thành Công");
+    // } else if (req.type === TYPE_NOTIFY.WARNING) {
+    //   NotifyWarning("Xóa Sản Phẩm", `${req.message}`);
+    // } else {
+    //   NotifyError("Xóa Sản Phẩm", `${req.message}`);
+    // }
   };
   const tableData = {
     columns: columns(),

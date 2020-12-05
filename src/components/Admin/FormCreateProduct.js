@@ -28,9 +28,7 @@ function FormCreateProduct() {
   const [isLoading, setIsLoading] = useState(false);
   const [productNewValue, setproductNewValue] = useState(1);
   const [productIndexValue, setproductIndexValue] = useState(1);
-  const [dataTextarea, setDataTextarea] = useState(
-    `const data: '<p>Nội dung</p>'`
-  );
+  const [dataTextarea, setDataTextarea] = useState(``);
   const [productImage, setProductImage] = useState("");
 
   const [productImage1, setProductImage1] = useState("");
@@ -84,9 +82,10 @@ function FormCreateProduct() {
       product_image2: urlimageIndex2,
       product_image3: urlimageIndex3,
       product_price: price.formattedValue,
+      product_priceNumber: price.floatValue,
       product_price_sale: priceSale.formattedValue,
+      product_priceNumber_sale: priceSale.floatValue,
     };
-    console.log(concatData);
     const req = await apiCreateProduct(concatData);
     setIsLoading(false);
     if (req.status) {
@@ -211,11 +210,6 @@ function FormCreateProduct() {
             <Label for="product_price" className="font-ob-bold">
               Giá Sản Phẩm
             </Label>
-            {price === "" ? (
-              <div className="invalid-feedback d-block">
-                Bắt buộc phải có giá sản phẩm
-              </div>
-            ) : null}
             <NumberFormat
               thousandSeparator
               className="form-control"
