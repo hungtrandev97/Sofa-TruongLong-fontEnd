@@ -13,7 +13,7 @@ function ErrorPage() {
   let Header = <></>;
   let goBack = (
     <a className="errorPage__btnBack" href="/home">
-      Onebiome.com
+      Sofatruonglong.com
     </a>
   );
   if (loginUser && loginUser.role) {
@@ -21,13 +21,13 @@ function ErrorPage() {
       Header = <ConsumerHeader />;
       goBack = (
         <a className="errorPage__btnBack" href="/consumer/profiles">
-          Onebiome.com
+          Sofatruonglong.com
         </a>
       );
     } else if (loginUser.role === ROLE.HCP) {
       goBack = (
         <a className="errorPage__btnBack" href="/hcp">
-          Onebiome.com
+          Sofatruonglong.com
         </a>
       );
     }
@@ -41,12 +41,15 @@ function ErrorPage() {
           className="errorPage__content__image"
           alt="Logo"
         />
-        <h2 className="errorPage__content__Title font-ob-bold">
-          PAGE NOT FOUND
+        <h2
+          className="errorPage__content__Title font-ob-bold"
+          style={{ color: "rgb(250, 62, 63)" }}
+        >
+          KHÔNG TÌM THẤY TRANG
         </h2>
         <p className="errorPage__content__descript">
-          The page you are looking for doesn't exist or an error occured. Please
-          click
+          Trang bạn đang tìm kiếm không tồn tại hoặc đã xảy ra lỗi. Xin vui lòng
+          nhấp chuột
           <button
             type="button"
             className="errorPage__content__descript__btn"
@@ -54,11 +57,11 @@ function ErrorPage() {
               history.goBack();
             }}
           >
-            "Go Back"
+            "Quay Lại"
           </button>
-          or return to
+          {/* hoặc trở lại
           {goBack}
-          to select a new page.
+          để chọn một trang mới. */}
         </p>
         <button
           type="button"
@@ -67,7 +70,7 @@ function ErrorPage() {
             history.goBack();
           }}
         >
-          Go Back
+          Quay Lại
         </button>
         <ConsumerFooter />
       </div>

@@ -14,7 +14,6 @@ import { getAllProductIndex } from "../../services/product";
 const HomeContent = () => {
   const [dataProduct, setDataProduct] = useState([]);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
-  console.log(dataCategory);
 
   const GetProduct = async () => {
     const responseData = await getAllProductIndex();

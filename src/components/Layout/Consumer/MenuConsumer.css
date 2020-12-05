@@ -66,7 +66,7 @@
   font-size: 13px;
   font-weight: normal;
   text-transform: uppercase;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 .consumersMenu__MenuHeaderLinkActive {
@@ -210,7 +210,7 @@ search */
 
 @media (max-width: 812px) {
   .consumersMenu__MenuHeaderLink > ul > li > a {
-    padding: 15px;
+    padding: 8px;
   }
 }
 @media (max-width: 993px) {
@@ -258,7 +258,6 @@ search */
   visibility: hidden;
   opacity: inherit;
   list-style: none;
-  background: #fff;
   width: 100%;
   color: black;
   position: fixed;
@@ -266,23 +265,40 @@ search */
   width: 100%;
   padding: 0;
   margin-top: 7px;
-  padding: 10px 0;
 }
-
+.sub-menuCategory {
+  background: #fff;
+  border: 1px dotted #fa3e3f;
+  border-top: none;
+  padding: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 .sub-menuCategory > div {
   font-weight: bold;
   font-size: 15px;
   height: 50px;
   display: flex;
   align-items: center;
-  border-bottom: solid 1px #f8f8f8;
   padding: 15px 0;
 }
-
-.sub-menuCategory > div:hover {
+.sub-menuCategory__Title {
+  border-bottom: solid 1px #d5d5d58a;
+  width: 200px;
+  text-align: left;
+}
+.sub-menuCategory__Title:hover {
   font-size: 16px;
   color: #fa3e3f;
+  /* background: #eef0ef; */
   background: #eef0ef;
+}
+.sub-menuCategory__Title__Link {
+  color: #2d2d2d;
+}
+.sub-menuCategory__Title__Link:hover {
+  color: #fa3e3f;
+  text-decoration: none;
 }
 .MenuMenu > li:hover .sub-menu {
   visibility: visible;

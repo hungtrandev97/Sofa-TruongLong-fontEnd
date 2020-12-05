@@ -22,15 +22,19 @@ export default function FormNewProduct() {
           <span>Tất Cả Sản Phẩm Mới Nhất</span>
         </div>
         <Row className="New__Product__Row ">
-          <Col lg={3} md={4} ms={6} xs={6}>
-            <ItemProduct
-              title=""
-              SouceProduct=""
-              price=""
-              pricePromotional=""
-              imageMain=""
-            />
-          </Col>
+          {dataProductNew.map((DataNew, index) => {
+            return (
+              <Col key={index} lg={3} md={4} ms={6} xs={6}>
+                <ItemProduct
+                  title={DataNew.product_title}
+                  SouceProduct={DataNew.product_code}
+                  price={DataNew.product_price}
+                  pricePromotional={DataNew.product_price_sale}
+                  imageMain={DataNew.product_imageMain}
+                />
+              </Col>
+            );
+          })}
         </Row>
       </div>
     </div>

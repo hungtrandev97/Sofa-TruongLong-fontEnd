@@ -6,10 +6,12 @@ import {
   BiPhoneCall,
   BiLogIn,
 } from "react-icons/bi";
+import { RiFilter2Line } from "react-icons/ri";
 import { MdFiberNew } from "react-icons/md";
 import { CgCloseO } from "react-icons/cg";
 import { FaHome, FaShoppingCart } from "react-icons/fa";
 import { BsPeopleCircle, BsPersonLinesFill } from "react-icons/bs";
+import { AiFillDollarCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,12 +26,17 @@ import "./MenuMobile.css";
 const MenuMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenListProduct, setIsOpenListProduct] = useState(false);
+  const [isOpenListFilterPrice, setIsOpenListFilterPrice] = useState(false);
   const showMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const OpenListProduct = () => {
     setIsOpenListProduct(!isOpenListProduct);
+  };
+
+  const OpenListFilterPrice = () => {
+    setIsOpenListFilterPrice(!isOpenListFilterPrice);
   };
 
   const [modal, setModal] = useState(false);
@@ -176,7 +183,50 @@ const MenuMobile = () => {
                 Sản Phẩm Mới
               </Link>
             </div>
+            <div className="MenuMobile__Content_UlMenuleft__Contact">
+              <AiFillDollarCircle size="1.2rem" color="rgb(250, 62, 63)" />
+              <Link
+                to="/khuyen-mai"
+                style={{ color: "black", paddingLeft: "10px" }}
+              >
+                Khuyến Mãi
+              </Link>
+            </div>
+            <div className="MenuMobile__Content_UlMenuleft__Product">
+              <button
+                type="button"
+                className="m-0 p-0"
+                onClick={() => OpenListFilterPrice()}
+              >
+                <RiFilter2Line size="1.2rem" color="rgb(250, 62, 63)" />
+                <span className="MenuMobile__Content_UlMenuleft__Product__span">
+                  Lọc SoFa
+                </span>
+                <span className="MenuMobile__Content_UlMenuleft__Product__icon">
+                  <BiCaretDown size="1rem" />
+                </span>
+              </button>
 
+              <ul
+                className="MenuMobile__Content_UlMenuleft__ProductUL"
+                style={{
+                  display: `${isOpenListFilterPrice ? "block" : "none"}`,
+                }}
+              >
+                <li>
+                  <BiChevronRight size="1rem" />
+                  <Link to="/">Dưới 5 Triệu</Link>
+                </li>
+                <li>
+                  <BiChevronRight size="1rem" />
+                  <Link to="/">Dưới 10 Triệu</Link>
+                </li>
+                <li>
+                  <BiChevronRight size="1rem" />
+                  <Link to="/">Dưới 15 Triệu</Link>
+                </li>
+              </ul>
+            </div>
             <div className="MenuMobile__Content_UlMenuleft__Contact">
               <BiPhoneCall size="1.2rem" color="rgb(250, 62, 63)" />
               <Link

@@ -1,13 +1,13 @@
 import React from "react";
 import HeaderConsumer from "../../components/Layout/Consumer/HeaderConsumer";
 import FooterConsumer from "../../components/Layout/Consumer/FooterConsumer";
-import FormSaleProduct from "./FormSaleProduct";
+import FormScreening from "./FormScreening";
 
-export default function ProductPage() {
+export default function ScreeningPage({ match }) {
   return (
     <div>
       <HeaderConsumer />
-      <FormSaleProduct />
+      <FormScreening match={match} />
       <FooterConsumer />
     </div>
   );
