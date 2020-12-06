@@ -175,25 +175,24 @@ export default function ProductPage() {
 
   const DeleteProduct = async () => {
     await setIsLoading(true);
-    if (ItemProducts.product_product_imageMainUrl !== "") {
-      await RemoveImage(ItemProducts.product_product_imageMainUrl);
-    }
-    if (ItemProducts.product_image_url1 !== "") {
-      await RemoveImage(ItemProducts.product_image_url1);
-    }
-    if (ItemProducts.product_image_url2 !== "") {
-      await RemoveImage(ItemProducts.product_image_url2);
-    }
-    if (ItemProducts.product_image_url3 !== "") {
-      await RemoveImage(ItemProducts.product_image_url3);
-    }
-
     const req = await apiDeleteProduct(ItemProducts._id);
     if (req.status) {
       setIsLoading(false);
       setRemoveProduct(false);
       setDataProductList(req.data);
       NotifySuccess("Xoa Sản Phẩm", "Xóa Sản Phẩm Thành Công");
+      if (ItemProducts.product_product_imageMainUrl !== "") {
+        await RemoveImage(ItemProducts.product_product_imageMainUrl);
+      }
+      if (ItemProducts.product_image_url1 !== "") {
+        await RemoveImage(ItemProducts.product_image_url1);
+      }
+      if (ItemProducts.product_image_url2 !== "") {
+        await RemoveImage(ItemProducts.product_image_url2);
+      }
+      if (ItemProducts.product_image_url3 !== "") {
+        await RemoveImage(ItemProducts.product_image_url3);
+      }
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       setIsLoading(false);
       NotifyWarning("Xóa Sản Phẩm", `${req.message}`);

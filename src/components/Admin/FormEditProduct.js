@@ -110,7 +110,6 @@ export default function FormEditProduct({ location }) {
       const uploadImage = await UploadImagevIEW(productImage);
       urlImageFirebase = uploadImage[0].spaceRef;
       productProductImageMainUrl = uploadImage[0].url;
-      await RemoveImage(dataProduct.product_product_imageMainUrl);
     } else {
       urlImageFirebase = dataProduct.product_imageMain;
       productProductImageMainUrl = dataProduct.product_product_imageMainUrl;
@@ -121,7 +120,6 @@ export default function FormEditProduct({ location }) {
       const uploadImage1 = await UploadImagevIEW(productImage1);
       urlimageIndex1 = uploadImage1[0].spaceRef;
       productImageUrl1 = uploadImage1[0].url;
-      await RemoveImage(dataProduct.product_image_url1);
     } else {
       urlimageIndex1 = dataProduct.product_image1;
       productImageUrl1 = dataProduct.product_image_url1;
@@ -129,7 +127,6 @@ export default function FormEditProduct({ location }) {
 
     if (changeImage2) {
       const uploadImage2 = await UploadImagevIEW(productImage2);
-      await RemoveImage(dataProduct.product_image_url2);
       urlimageIndex2 = uploadImage2[0].spaceRef;
       productImageUrl2 = uploadImage2[0].url;
     } else {
@@ -139,7 +136,6 @@ export default function FormEditProduct({ location }) {
 
     if (changeImage3) {
       const uploadImage3 = await UploadImagevIEW(productImage3);
-      await RemoveImage(dataProduct.product_image_url3);
       urlimageIndex3 = await uploadImage3[0].spaceRef;
       productImageUrl3 = await uploadImage3[0].url;
     } else {
@@ -171,6 +167,19 @@ export default function FormEditProduct({ location }) {
     setIsLoading(false);
     if (req.status) {
       NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
+      if (changeImage) {
+        await RemoveImage(dataProduct.product_product_imageMainUrl);
+      }
+
+      if (changeImage1) {
+        await RemoveImage(dataProduct.product_image_url1);
+      }
+      if (changeImage2) {
+        await RemoveImage(dataProduct.product_image_url2);
+      }
+      if (changeImage3) {
+        await RemoveImage(dataProduct.product_image_url3);
+      }
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
     } else {
@@ -200,11 +209,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImageProductIndex}
-              inputContent={(
+              inputContent={
                 <div>
                   <img src={dataProduct.product_imageMain} alt="" width="70" />
                 </div>
-              )}
+              }
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
@@ -216,11 +225,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages1}
-              inputContent={(
+              inputContent={
                 <div>
                   <img src={dataProduct.product_image1} alt="" width="70" />
                 </div>
-              )}
+              }
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
@@ -232,11 +241,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages2}
-              inputContent={(
+              inputContent={
                 <div>
                   <img src={dataProduct.product_image2} alt="" width="70" />
                 </div>
-              )}
+              }
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
@@ -248,11 +257,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages3}
-              inputContent={(
+              inputContent={
                 <div>
                   <img src={dataProduct.product_image3} alt="" width="70" />
                 </div>
-              )}
+              }
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
