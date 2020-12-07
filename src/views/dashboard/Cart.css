@@ -1,0 +1,30 @@
+.Cart__Form {
+  padding-top: 20px;
+}
+.Header__left__Cart {
+  background: #ffffff;
+  display: flex;
+  height: 40px;
+  font-size: 15px;
+  color: #757575;
+}
+.Header__left__Cart__input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 11px;
+  margin-right: 16px;
+}
+.Header__left__Cart__Title {
+  margin-left: 10px;
+  margin-top: 9px;
+  margin-right: 16px;
+}
+.Header__left__Cart__Remove {
+  padding-left: 360px;
+  margin-top: 8px;
+}
+.Header__left__Cart__Remove > span {
+  padding-left: 5px;
+}

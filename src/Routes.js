@@ -19,6 +19,7 @@ import ProductPage from "./views/dashboard/ProductPage";
 import NewProductPage from "./views/dashboard/NewProductPage";
 import SalePage from "./views/dashboard/SalePage";
 import ScreeningPage from "./views/dashboard/ScreeningPage";
+import CartPage from "./views/dashboard/CartPage";
 
 const auth = {
   isAuthenticated: false,
@@ -80,6 +81,7 @@ const Routes = (props) => {
         <Route path="/san-pham-moi" component={NewProductPage} />
         <Route path="/khuyen-mai" component={SalePage} />
         <Route path="/loc-gia-san-pham/:price" component={ScreeningPage} />
+        <Route path="/gio-hang" component={CartPage} />
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />
       </Switch>

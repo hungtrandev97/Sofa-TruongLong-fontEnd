@@ -4,6 +4,7 @@ import { Row, Col, Modal, ModalBody, ModalHeader } from "reactstrap";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import MenuConsumer from "./MenuConsumer";
 import SideNavPage from "../../Consumer/Layout/MenuMobile";
 import FormLogin from "../../Forms/Login";
@@ -135,7 +136,9 @@ export default function Header() {
           <div className="HeaderConsumer__nav__card_content">
             <div className="HeaderConsumer__nav__card_content__text">
               <div className="HeaderConsumer__nav__card_content__icon">
-                <TiShoppingCart color="#fa3e3f" size="2rem" />
+                <Link to="/gio-hang">
+                  <TiShoppingCart color="#fa3e3f" size="2rem" />
+                </Link>
                 <div className="SpanMobile">
                   <span style={{ color: "#fffff" }}>15</span>
                 </div>

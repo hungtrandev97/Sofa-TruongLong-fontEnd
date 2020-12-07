@@ -5,6 +5,26 @@
   right: 30px;
 }
 
+.Chat_Box_Phone {
+  animation: 700ms infinite Phone;
+  animation: 1s infinite Phone1;
+}
+@keyframes Phone {
+  100% {
+    transform: rotate(5deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes Phone1 {
+  100% {
+    transform: rotate(5deg);
+  }
+  90% {
+    transform: rotate(-15deg);
+  }
+}
 .chatbox_content {
   display: flex;
   flex-direction: column;
