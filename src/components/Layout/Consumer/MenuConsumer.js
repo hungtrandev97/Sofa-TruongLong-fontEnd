@@ -33,14 +33,14 @@ const MenuConsumer = () => {
             <div className="consumersMenu__MenuHeaderLink">
               <ul className="MenuMenu">
                 <li style={{ marginLeft: "0px" }}>
-                  <Link to="/trang-chu"> Trang Chủ </Link>
+                  <Link to="/trang-chu"> TRANG CHỦ </Link>
                 </li>
                 <li>
-                  <Link to="/home/"> Giới Thiệu </Link>
+                  <Link to="/home/">GIỚI THIỆU</Link>
                 </li>
                 <li>
                   <Link>
-                    <span>Sản Phẩm</span>
+                    <span>SẢN PHẨM</span>
                     <BiChevronDown
                       size="1rem"
                       style={{ marginTop: "-2px", paddingLeft: "5px" }}
@@ -66,11 +66,11 @@ const MenuConsumer = () => {
                   </ul>
                 </li>
                 <li>
-                  <Link to="/san-pham-moi"> Sản Phẩm Mới </Link>
+                  <Link to="/san-pham-moi">SẢN PHẨM MỚI</Link>
                 </li>
                 <li>
                   <Link>
-                    <span>Lọc SoFa</span>
+                    <span>LỌC SOFA</span>
                     <BiChevronDown
                       size="1rem"
                       style={{ marginTop: "-2px", paddingLeft: "5px" }}
@@ -119,10 +119,10 @@ const MenuConsumer = () => {
                   </ul>
                 </li>
                 <li>
-                  <Link to="/khuyen-mai">Khuyến Mãi</Link>
+                  <Link to="/khuyen-mai">KHUYẾN MÃI</Link>
                 </li>
                 <li>
-                  <Link to="/gioi-thieu">Liên Hệ</Link>
+                  <Link to="/gioi-thieu">LIÊN HỆ</Link>
                 </li>
               </ul>
               <div className="consumersMenu__SiguploginMobile">
