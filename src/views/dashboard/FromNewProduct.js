@@ -19,7 +19,7 @@ export default function FormNewProduct() {
       <div className="NewFromProduct ">
         <ChatBox />
         <div className="New__Product__title">
-          <span>Tất Cả Sản Phẩm Mới Nhất</span>
+          <span> Sản Phẩm Mới Nhất</span>
         </div>
         <Row className="New__Product__Row ">
           {dataProductNew.map((DataNew, index) => {

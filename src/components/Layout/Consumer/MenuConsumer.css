@@ -64,7 +64,7 @@
 .consumersMenu__MenuHeaderLink > ul > li > a {
   color: #fff;
   font-size: 13px;
-  font-weight: normal;
+  font-weight: bold;
   text-transform: uppercase;
   padding: 0 10px;
 }
@@ -151,6 +151,7 @@ search */
   background: none;
   padding: 0;
   padding-right: 15px;
+  font-size: 12px;
 }
 
 .HeaderConsumer__accountSuccess {
@@ -276,7 +277,7 @@ search */
 }
 .sub-menuCategory > div {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 12px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -288,7 +289,7 @@ search */
   text-align: left;
 }
 .sub-menuCategory__Title:hover {
-  font-size: 16px;
+  font-size: 13px;
   color: #fa3e3f;
   /* background: #eef0ef; */
   background: #eef0ef;
