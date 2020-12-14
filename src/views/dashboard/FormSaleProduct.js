@@ -19,7 +19,7 @@ export default function FormSaleProduct() {
       <div className="SaleFromProduct ">
         <ChatBox />
         <div className="Sale__Product__title">
-          <span>Tất Cả Sản Phẩm Khuyến Mãi</span>
+          <span> Sản Phẩm Khuyến Mãi</span>
         </div>
         <Row className="Sale__Product__Row ">
           {dataProductSale.map((DataSale, index) => {

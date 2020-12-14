@@ -10,8 +10,8 @@ const IntroduceContent = ({ Icon, Title, Descript }) => {
     >
       <div className="Introduce__content__icon">{Icon}</div>
       <div className="Introduce__content__span">
-        <span style={{ fontWeight: "bold", fontSize: "15px" }}>{Title}</span>
-        <span style={{ fontSize: "14px", color: "#3a3f51db" }}>{Descript}</span>
+        <span style={{ fontWeight: "bold", fontSize: "13px" }}>{Title}</span>
+        <span style={{ fontSize: "12px", color: "#3a3f51db" }}>{Descript}</span>
       </div>
     </div>
   );

@@ -5,6 +5,8 @@
 .Consulting__Header {
   color: rgb(250, 62, 63);
   text-align: center;
+  padding-top: 20px;
+  font-size: 20px;
 }
 .Consulting__Header > h3 {
   padding-top: 35px;
@@ -17,12 +19,13 @@
   text-align: center;
   padding-top: 35px;
   padding-bottom: 15px;
+  font-size: 20px;
 }
 .Consulting__Header__Content > b {
-  font-size: 16px;
+  font-size: 15px;
 }
 .Consulting__Header__Content > p {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .Consulting__Header__img > div {

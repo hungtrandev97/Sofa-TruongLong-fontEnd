@@ -1,3 +1,6 @@
+.Cart__Form {
+  padding-bottom: 50px;
+}
 .FromContact__Header {
   padding: 40px;
   text-align: center;
@@ -74,7 +77,13 @@
   font-size: 13px;
   border-radius: 2px;
 }
-
+.Cart__Relate {
+  border-top: 1px solid #eff0f5;
+  border-bottom: 1px solid #eff0f5;
+}
+.Cart__Relate__Product {
+  padding-top: 20px;
+}
 @media (max-width: 1024px) {
   .Content__Right {
     padding: 40px 20px;

@@ -6,9 +6,8 @@ function Consulting() {
   return (
     <div className="Consulting">
       <div className="Consulting__All screen__Wep">
-        <div className="Consulting__Header">
-          <h3>TƯ VẤN SOFA</h3>
-        </div>
+        <h3 className="Consulting__Header">TƯ VẤN SOFA</h3>
+
         <Row className="Consulting__Header__img">
           <Col lg={6} md={6} sm={12}>
             <img src="/img/default/tuvan.png" width="100%" alt="tuvan" />
