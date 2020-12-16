@@ -1,37 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
-import ConsumerHeader from "../../components/Layout/Consumer/ConsumerHeader";
 import ConsumerFooter from "../../components/Layout/Consumer/ConsumerFooter";
-import { ROLE } from "../../constants/DefaultValues";
 import "./404.css";
 
 function ErrorPage() {
   const history = useHistory();
-  const { loginUser } = useSelector((state) => state.authRedux);
-  let Header = <></>;
-  let goBack = (
-    <a className="errorPage__btnBack" href="/home">
-      Sofatruonglong.com
-    </a>
-  );
-  if (loginUser && loginUser.role) {
-    if (loginUser.role === ROLE.PATIENT) {
-      Header = <ConsumerHeader />;
-      goBack = (
-        <a className="errorPage__btnBack" href="/consumer/profiles">
-          Sofatruonglong.com
-        </a>
-      );
-    } else if (loginUser.role === ROLE.HCP) {
-      goBack = (
-        <a className="errorPage__btnBack" href="/hcp">
-          Sofatruonglong.com
-        </a>
-      );
-    }
-  }
+  const Header = <></>;
   return (
     <div className="errorPage">
       {Header}
@@ -59,9 +34,6 @@ function ErrorPage() {
           >
             "Quay Lại"
           </button>
-          {/* hoặc trở lại
-          {goBack}
-          để chọn một trang mới. */}
         </p>
         <button
           type="button"

@@ -39,7 +39,7 @@ const MenuConsumer = () => {
                   <Link to="/home/">GIỚI THIỆU</Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link to="/">
                     <span>SẢN PHẨM</span>
                     <BiChevronDown
                       size="1rem"
@@ -69,7 +69,7 @@ const MenuConsumer = () => {
                   <Link to="/san-pham-moi">SẢN PHẨM MỚI</Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link to="/">
                     <span>LỌC SOFA</span>
                     <BiChevronDown
                       size="1rem"
