@@ -27,7 +27,6 @@ function FooterConsumer() {
   socket = io(ENDPOINT);
   socket.on("numberOnlineServe", function (sockets) {
     checka = sockets;
-    console.log(checka);
   });
 
   return (

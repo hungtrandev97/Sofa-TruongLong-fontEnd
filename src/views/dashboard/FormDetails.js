@@ -169,6 +169,17 @@ export default function FormDetails() {
               <b>Giá sản phẩm:</b>
               <p>10.000.000đ</p>
             </div>
+            <div>
+              <p>Thông số</p>
+            </div>
+            <div>
+              <div>
+                <button type="button"> Mua Ngay</button>
+              </div>
+              <div>
+                <button type="button"> Gọi Tư Vấn</button>
+              </div>
+            </div>
           </Col>
         </Row>
       </div>

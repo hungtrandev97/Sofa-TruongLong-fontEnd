@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
-import { DataProduct } from "./Data";
 import ProductCart from "../../components/Consumer/Layout/ProductCart";
 import MenuCart from "../../components/Consumer/Layout/MenuCart";
+import { apiGetAllProductSale } from "../../services/product";
 import "./Cart.css";
 
 export default function FormCart() {
+  const [dataProductSale, setDataProductSale] = useState([]);
+  const getAllProductSale = async () => {
+    const response = await apiGetAllProductSale();
+    setDataProductSale(response.data);
+  };
+  useEffect(() => {
+    getAllProductSale();
+  });
   return (
     <div className="screen__Wep" style={{ paddingTop: "143px" }}>
       <div className="Cart__Form">
@@ -63,7 +71,7 @@ export default function FormCart() {
             <span>Dành riêng cho bạn</span>
           </div>
           <Row className="Cart__Relate__Product">
-            {DataProduct.map((DataCart, index) => {
+            {dataProductSale.map((DataSale, index) => {
               return (
                 <Col key={index} lg={3} md={4} ms={6} xs={6}>
                   <img
@@ -72,15 +80,15 @@ export default function FormCart() {
                     alt="img"
                   />
                   <ItemProduct
-                    idProduct={DataCart._id}
                     className="Sale__Product__Data"
-                    title={DataCart.product_tiile}
-                    SouceProduct={DataCart.product_code}
-                    price={DataCart.produc_price}
-                    pricePromotional=""
-                    imageMain={DataCart.img}
-                    product_priceNumber={DataCart.product_priceNumber}
-                    product_priceNumber_sale={DataCart.product_priceNumber_sale}
+                    idProduct={DataSale._id}
+                    title={DataSale.product_title}
+                    SouceProduct={DataSale.product_code}
+                    price={DataSale.product_price}
+                    pricePromotional={DataSale.product_price_sale}
+                    imageMain={DataSale.product_imageMain}
+                    product_priceNumber={DataSale.product_priceNumber}
+                    product_priceNumber_sale={DataSale.product_priceNumber_sale}
                   />
                 </Col>
               );
