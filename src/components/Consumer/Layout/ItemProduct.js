@@ -28,6 +28,7 @@ const ItemProduct = ({
         imageMain,
         product_priceNumber,
         product_priceNumber_sale,
+        quanity: 1,
       },
     ];
     dispatch(addCart(data));

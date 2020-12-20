@@ -29,7 +29,6 @@ export default function FormOderDetails() {
               Address="Krông Năng-Đăk Lắk"
               Phone="012365489"
               price="10.000.000"
-              DeliveryCharges="50.000"
               Total="10.050.000"
               buttonMenu="OderDetails"
             />

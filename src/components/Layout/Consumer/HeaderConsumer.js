@@ -16,6 +16,7 @@ import "./style.css";
 export default function Header() {
   const dispatch = useDispatch();
   const { loginUser } = useSelector((state) => state.authRedux);
+  const { cartData } = useSelector((state) => state.cartRedux);
   const [modal, setModal] = useState(false);
   const [typeAcount, setTypeAcount] = useState(FromAcount.LOGIN);
   const toggle = () => setModal(!modal);
@@ -140,13 +141,13 @@ export default function Header() {
                   <TiShoppingCart color="#fa3e3f" size="2rem" />
                 </Link>
                 <div className="SpanMobile">
-                  <span style={{ color: "#fffff" }}>15</span>
+                  <span style={{ color: "#fffff" }}>{cartData.length}</span>
                 </div>
               </div>
               <div className="HeaderConsumer__nav__card_content__CartText">
                 Giỏ Hàng
                 <div>
-                  <span style={{ color: "#fa3e3f" }}>0</span>
+                  <span style={{ color: "#fa3e3f" }}>{cartData.length}</span>
                   <span> sản phẩm</span>
                 </div>
               </div>
