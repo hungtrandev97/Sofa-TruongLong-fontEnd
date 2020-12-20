@@ -8,6 +8,7 @@ import {
   REGISTER_SUCCESS,
   ACOUNT_ADMIN_SUCCESS,
   ACOUNT_CONSUMER_SUCCESS,
+  ACOUNT_SAVE_IP,
 } from "../actions/actions";
 
 const INIT_STATE = {
@@ -16,6 +17,7 @@ const INIT_STATE = {
   loginUser: {},
   dataAcountAdmin: [],
   dataAcountConsumer: [],
+  ipConfig: 1,
 };
 
 const authReducer = (state = INIT_STATE, action) => {
@@ -91,6 +93,13 @@ const authReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         dataAcountConsumer: data,
+      };
+    }
+    case ACOUNT_SAVE_IP: {
+      const { data } = action.payload;
+      return {
+        ...state,
+        ipConfig: data,
       };
     }
     default:

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-// import io from "socket.io-client";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import io from "socket.io-client";
 import { Row, Col } from "reactstrap";
 import { RiContactsLine, RiArrowRightSFill } from "react-icons/ri";
 import { ImHome3, ImPhone } from "react-icons/im";
@@ -10,22 +11,24 @@ import { BsCheckBox } from "react-icons/bs";
 import { BiWrench } from "react-icons/bi";
 import { AiFillEye } from "react-icons/ai";
 import { VscEye } from "react-icons/vsc";
+import { saveIpConfig } from "../../../store/actions/auth.actions";
 import "./FooterConsumer.css";
 
-// let socket;
+let socket;
+let checka;
 function FooterConsumer() {
-  const [numberOnline, setNumberOnline] = useState(1);
+  const dispatch = useDispatch();
+  const [numberOnlineFooter, setNumberOnline] = useState(1);
   const [numberCountOnline, setNumberCountOnline] = useState(97);
-  // const ENDPOINT = "192.168.1.155:3002";
-  // socket = io(ENDPOINT);
-  // socket.on("numberOnline", (numberIo) => {
-  //   setNumberOnline(numberIo);
-  //   console.log(numberIo, "check");
-  // });
-  // console.log(numberOnline);
+  const { ipConfig } = useSelector((state) => state.authRedux);
   const year = new Date().getFullYear();
-  sessionStorage.setItem("name", "Ted Mosby");
-  const a = window.sessionStorage;
+  // socket io
+  const ENDPOINT = "192.168.1.155:3002";
+  socket = io(ENDPOINT);
+  socket.on("numberOnlineServe", function (sockets) {
+    checka = sockets;
+    console.log(checka);
+  });
 
   return (
     <div className="FooterCosumer">
@@ -130,7 +133,7 @@ function FooterConsumer() {
                 <AiFillEye size="1rem" color="#23b7e5" />
               </span>
               <span>Đang Online:</span>
-              <span>{numberOnline}</span>
+              <span>{checka}</span>
             </div>
             <div className="numberOnline">
               <span style={{ paddingLeft: "5px", paddingRight: "5px" }}>
