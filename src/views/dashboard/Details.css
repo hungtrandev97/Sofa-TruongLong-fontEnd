@@ -1,0 +1,53 @@
+.Details__Form {
+  padding-top: 1px;
+}
+.Details__Form__Col__Left {
+  background-color: #ffffff;
+  height: 665px;
+}
+.Details__Form__ImgP__Left {
+  padding-top: 10px;
+}
+.Details__Form__ImgP__Col {
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.Details__Form__ImgP__Col:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.Details__Form__Customer__Left {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  height: 200px;
+}
+.Details__Form__Customer__icon > span {
+  padding-left: 5px;
+  font-size: 17px;
+  font-weight: bold;
+}
+.Details__Form__Customer__Ul {
+  height: 145px;
+  overflow: auto;
+}
+.Details__Form__Customer__Ul > ul {
+  list-style: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* ___ */
+.Details__Form__Right__Tittle {
+  padding: 20px 0px 20px 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.Details__Form__Right__Price {
+  padding: 0px 0px 20px 10px;
+  display: flex;
+}
+.Details__Form__Right__Price > p {
+  padding-left: 10px;
+  color: rgb(250, 62, 63);
+  font-weight: bold;
+}
