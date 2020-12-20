@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
@@ -16,12 +16,8 @@ export default function FormScreening({ match }) {
   const dataScreeningPrive = [];
   const GetAllScreening = async () => {
     const response = await apiGetAllScreeningPrice(number);
-    console.log(response);
-    // setDataScreeningPrive(response.data);
     dataScreeningPrive.push(response.data[0]);
   };
-  console.log(dataScreeningPrive);
-
   useEffect(() => {
     GetAllScreening();
   });

@@ -45,6 +45,7 @@ export default function FormContact() {
 
             <div className="Content__Left Content__Left__Map">
               <iframe
+                title="map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.93567103311!2d106.59732931462285!3d10.816234992294547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752b9600cfc4f5%3A0xb0d82bbaa6c901e!2zMjg5LCAzNiDEkC4gTmd1eeG7hW4gVGjhu4sgVMO6LCBCw6xuaCBIxrBuZyBIw7JhIEIsIELDrG5oIFTDom4sIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1606748512259!5m2!1svi!2s"
                 width="600"
                 height="450"
@@ -57,7 +58,6 @@ export default function FormContact() {
                 }}
                 allowFullScreen=""
                 aria-hidden="false"
-                tabIndex="0"
               />
             </div>
           </Col>

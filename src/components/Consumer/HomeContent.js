@@ -14,7 +14,6 @@ import { getAllProductIndex } from "../../services/product";
 const HomeContent = () => {
   const [dataProduct, setDataProduct] = useState([]);
   const { dataCategory } = useSelector((state) => state.categoryRedux);
-
   const GetProduct = async () => {
     const responseData = await getAllProductIndex();
     setDataProduct(responseData.data);
@@ -28,7 +27,7 @@ const HomeContent = () => {
     <div className="HomeContent screen__Wep">
       {dataCategory.map((item, index) => (
         <div className="HomeContent_nav" key={index}>
-          {item.length > 0 ? (
+          {item ? (
             <>
               {item.checkProduct === 1 ? (
                 <>
