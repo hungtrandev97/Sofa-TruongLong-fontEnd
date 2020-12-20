@@ -72,12 +72,15 @@ export default function FormCart() {
                     alt="img"
                   />
                   <ItemProduct
+                    idProduct={DataCart._id}
                     className="Sale__Product__Data"
                     title={DataCart.product_tiile}
                     SouceProduct={DataCart.product_code}
                     price={DataCart.produc_price}
                     pricePromotional=""
                     imageMain={DataCart.img}
+                    product_priceNumber={DataCart.product_priceNumber}
+                    product_priceNumber_sale={DataCart.product_priceNumber_sale}
                   />
                 </Col>
               );

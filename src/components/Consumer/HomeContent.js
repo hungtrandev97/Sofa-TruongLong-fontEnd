@@ -39,6 +39,7 @@ const HomeContent = () => {
                           return (
                             <Col key={index} lg={3} md={4} ms={6} xs={6}>
                               <ItemProduct
+                                idProduct={itemproduct._id}
                                 title={itemproduct.product_title}
                                 SouceProduct={itemproduct.product_code}
                                 price={itemproduct.product_price}
@@ -46,6 +47,12 @@ const HomeContent = () => {
                                   itemproduct.product_price_sale
                                 }
                                 imageMain={itemproduct.product_imageMain}
+                                product_priceNumber={
+                                  itemproduct.product_priceNumber
+                                }
+                                product_priceNumber_sale={
+                                  itemproduct.product_priceNumber_sale
+                                }
                               />
                             </Col>
                           );

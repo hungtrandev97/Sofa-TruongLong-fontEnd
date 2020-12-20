@@ -26,11 +26,14 @@ export default function FormNewProduct() {
             return (
               <Col key={index} lg={3} md={4} ms={6} xs={6}>
                 <ItemProduct
+                  idProduct={DataNew._id}
                   title={DataNew.product_title}
                   SouceProduct={DataNew.product_code}
                   price={DataNew.product_price}
                   pricePromotional={DataNew.product_price_sale}
                   imageMain={DataNew.product_imageMain}
+                  product_priceNumber={DataNew.product_priceNumber}
+                  product_priceNumber_sale={DataNew.product_priceNumber_sale}
                 />
               </Col>
             );

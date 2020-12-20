@@ -18,11 +18,16 @@ export default function FormProduct() {
             return (
               <Col key={index} lg={3} md={4} ms={6} xs={6}>
                 <ItemProduct
+                  idProduct={DataProduct._id}
                   title={DataProduct.product_tiile}
                   SouceProduct={DataProduct.product_code}
                   price={DataProduct.produc_price}
                   pricePromotional=""
                   imageMain={DataProduct.img}
+                  product_priceNumber={DataProduct.product_priceNumber}
+                  product_priceNumber_sale={
+                    DataProduct.product_priceNumber_sale
+                  }
                 />
               </Col>
             );

@@ -33,11 +33,14 @@ export default function FormScreening({ match }) {
             return (
               <Col key={index} lg={3} md={4} ms={6} xs={6}>
                 <ItemProduct
+                  idProduct={Data._id}
                   title={Data.product_title}
                   SouceProduct={Data.product_code}
                   price=""
                   pricePromotional=""
                   imageMain=""
+                  product_priceNumber={Data.product_priceNumber}
+                  product_priceNumber_sale={Data.product_priceNumber_sale}
                 />
               </Col>
             );

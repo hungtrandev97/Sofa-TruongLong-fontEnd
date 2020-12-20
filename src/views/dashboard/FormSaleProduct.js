@@ -32,11 +32,14 @@ export default function FormSaleProduct() {
                 />
                 <ItemProduct
                   className="Sale__Product__Data"
+                  idProduct={DataSale._id}
                   title={DataSale.product_title}
                   SouceProduct={DataSale.product_code}
                   price={DataSale.product_price}
                   pricePromotional={DataSale.product_price_sale}
                   imageMain={DataSale.product_imageMain}
+                  product_priceNumber={DataSale.product_priceNumber}
+                  product_priceNumber_sale={DataSale.product_priceNumber_sale}
                 />
               </Col>
             );
