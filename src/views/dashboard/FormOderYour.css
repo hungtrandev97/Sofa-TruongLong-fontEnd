@@ -1,0 +1,116 @@
+.OderYour__Form {
+  padding-top: 20px;
+}
+
+.OderCart__left__Header {
+  background: #ffffff;
+  height: 45px;
+  font-size: 15px;
+  color: #757575;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.OderCart__left__Content {
+  padding: 15px;
+  background: #fff;
+  display: flex;
+  font-size: 14px;
+  /* margin-bottom: 10px; */
+}
+.OderCart__left__Content__Code {
+  display: grid;
+  text-align: center;
+}
+.OderCart__left__Content__Date {
+  display: grid;
+  text-align: center;
+}
+.OderCart__left__Content__Delivery {
+  display: grid;
+  text-align: center;
+}
+.OderCart__left__Content__Delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.OderCart__left__Content__button {
+  background-color: #f57224;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  width: 100%;
+  height: 30px;
+  cursor: pointer;
+}
+.OderCart__left__Content__Delete > span {
+  cursor: pointer;
+}
+.OderCart__Right {
+  background-color: #fff;
+  padding: 10px;
+  height: 190px;
+  font-size: 14px;
+}
+.OderCart__Right__title {
+  border-bottom: 1px solid rgb(230, 217, 217);
+  padding-bottom: 10px;
+  color: #757575;
+  font-size: 18px;
+  font-weight: 500;
+}
+.OderCart__Right__processed {
+  padding-top: 10px;
+}
+.OderCart__Right__Completed {
+  padding-bottom: 30px;
+  padding-top: 10px;
+}
+.OderCart__Right__Button {
+  width: 100%;
+  height: 40px;
+  background-color: #f57224;
+  color: #ffff;
+  border: none;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+@media (max-width: 768px) {
+  .OderYour__Form__Row {
+    padding-top: 30px;
+  }
+  .OderCart__Right__Row {
+    padding-top: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .OderCart__left__Content__button {
+    width: 20%;
+  }
+  .OderCart__left__Content__Code {
+    text-align: left;
+    display: flow-root;
+  }
+  .OderCart__left__Content__Date {
+    text-align: left;
+    display: flow-root;
+  }
+  .OderCart__left__Content__Delivery {
+    text-align: left;
+    display: flow-root;
+  }
+  .OderCart__left__Content__Delete {
+    text-align: left;
+    display: flow-root;
+  }
+  .OderCart__left__Content__Span {
+    padding-right: 10px;
+  }
+}
+@media (max-width: 425px) {
+  .OderCart__left__Content__button {
+    width: 30%;
+  }
+}

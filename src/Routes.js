@@ -20,6 +20,9 @@ import NewProductPage from "./views/dashboard/NewProductPage";
 import SalePage from "./views/dashboard/SalePage";
 import ScreeningPage from "./views/dashboard/ScreeningPage";
 import CartPage from "./views/dashboard/CartPage";
+import OderYour from "./views/dashboard/OderYour";
+import OrderDetails from "./views/dashboard/OrderDetails";
+import DetailsPage from "./views/dashboard/DetailsPage";
 
 const auth = {
   isAuthenticated: false,
@@ -82,6 +85,9 @@ const Routes = (props) => {
         <Route path="/khuyen-mai" component={SalePage} />
         <Route path="/loc-gia-san-pham/:price" component={ScreeningPage} />
         <Route path="/gio-hang" component={CartPage} />
+        <Route path="/don-hang-cua-ban" component={OderYour} />
+        <Route path="/chi-tiet-don-hang" component={OrderDetails} />
+        <Route path="/chi-tiet-san-pham" component={DetailsPage} />
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />
       </Switch>

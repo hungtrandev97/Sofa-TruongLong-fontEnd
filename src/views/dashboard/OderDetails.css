@@ -1,0 +1,11 @@
+.Form__OderDetails {
+  padding-top: 20px;
+}
+@media (max-width: 768px) {
+  .Form__OderDetails__Row {
+    padding-top: 30px;
+  }
+  .Form__OderDetails__Col {
+    padding-top: 10px;
+  }
+}

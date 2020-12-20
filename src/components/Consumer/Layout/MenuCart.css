@@ -1,0 +1,87 @@
+.Menu__Cart {
+  background: #ffff;
+  padding: 16px 12px 0;
+}
+.Menu__Cart__Header {
+  font-size: 14px;
+  border-bottom: 1px solid rgb(230, 217, 217);
+  padding-bottom: 16px;
+}
+.Menu__Cart__Header > span {
+  color: #666;
+}
+.Menu__Cart__Header__Name {
+  padding-top: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.Menu__Cart__Header__Name > span {
+  font-size: 14px;
+  padding-left: 10px;
+}
+.Menu__Cart__Header__Address {
+  padding-top: 10px;
+  font-weight: bold;
+}
+.Menu__Cart__Header__Address > span {
+  font-size: 12px;
+  padding-left: 10px;
+}
+.Menu__Cart__Header__Phone {
+  font-weight: bold;
+  padding-top: 10px;
+  font-size: 12px;
+}
+.Menu__Cart__Header__Phone > span {
+  font-size: 12px;
+  padding-left: 10px;
+}
+.Menu__Cart__Content {
+  padding-top: 16px;
+  padding-bottom: 20px;
+  color: #212121;
+  font-size: 18px;
+  font-weight: 500;
+}
+.Menu__Cart__Content__Price {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #757575;
+  letter-spacing: 0;
+  line-height: 21px;
+  padding-top: 10px;
+}
+.Menu__Cart__Content__Fees {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #757575;
+  letter-spacing: 0;
+  line-height: 21px;
+  padding-top: 10px;
+}
+.Menu__Cart__Content__Total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #000000;
+  letter-spacing: 0;
+  line-height: 21px;
+  padding-top: 10px;
+  font-weight: bold;
+}
+.Menu__Cart__Content__Total > b {
+  color: rgb(250, 62, 63);
+  font-size: 15px;
+  padding-bottom: 30px;
+}
+.Menu__Cart__Content__Button {
+  width: 100%;
+  height: 40px;
+  background-color: #f57224;
+  color: #ffff;
+  border: none;
+  font-size: 14px;
+  line-height: 14px;
+}
