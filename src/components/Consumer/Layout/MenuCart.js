@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import PropTypes from "prop-types";
 import NumberFormat from "react-number-format";
 import { BiMap } from "react-icons/bi";
 import { BsPersonFill } from "react-icons/bs";
 import { HiOutlinePhone } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import FormEditInFoCart from "./FormEditInFoCart";
 import "./MenuCart.css";
 
 const MenuCart = ({
@@ -16,8 +18,23 @@ const MenuCart = ({
   buttonMenu,
   countCart,
 }) => {
+  const [modal, setModal] = useState(false);
+  const toggle = () => {
+    setModal(!modal);
+  };
+  const ChangeIsModal = () => {
+    toggle(true);
+  };
   return (
     <div>
+      <div className="Modal__Edit__Info">
+        <Modal isOpen={modal} toggle={toggle}>
+          <ModalHeader toggle={toggle}>CHỈNH SỬA THÔNG TIN</ModalHeader>
+          <ModalBody>
+            <FormEditInFoCart />
+          </ModalBody>
+        </Modal>
+      </div>
       <div className="Menu__Cart">
         <div className="Menu__Cart__Header">
           <span>Địa Chỉ Nhận Hàng </span>
@@ -32,6 +49,11 @@ const MenuCart = ({
           <div className="Menu__Cart__Header__Phone">
             <HiOutlinePhone size="1.2rem" color="#666" />
             <span>{Phone}</span>
+          </div>
+          <div className="Menu__Cart__Edit__Info">
+            <button type="button" onClick={() => ChangeIsModal(true)}>
+              Chỉnh sủa thông tin
+            </button>
           </div>
         </div>
         <div className="Menu__Cart__Content">
