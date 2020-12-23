@@ -31,7 +31,11 @@ const MenuCart = ({
         <Modal isOpen={modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>CHỈNH SỬA THÔNG TIN</ModalHeader>
           <ModalBody>
-            <FormEditInFoCart />
+            <FormEditInFoCart
+              CustomerName={CustomerName}
+              Address={Address}
+              Phone={Phone}
+            />
           </ModalBody>
         </Modal>
       </div>

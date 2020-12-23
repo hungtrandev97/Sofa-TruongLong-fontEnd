@@ -10,7 +10,7 @@ import { apiGetAllProductSale } from "../../services/product";
 import "./Cart.css";
 
 export default function FormCart() {
-  const { cartData } = useSelector((state) => state.cartRedux);
+  const { cartData, inforConsumer } = useSelector((state) => state.cartRedux);
   const { loginUser } = useSelector((state) => state.authRedux);
   const [dataProductSale, setDataProductSale] = useState([]);
   const [fullName, setFullName] = useState("Chưa có thông tin của bạn");
@@ -22,6 +22,15 @@ export default function FormCart() {
   };
   useEffect(() => {
     getAllProductSale();
+    if (inforConsumer) {
+      setFullName(inforConsumer.name_customer);
+      setAddress(inforConsumer.Address_Customer);
+      setNumberPhone(inforConsumer.Phone_Customer);
+    } else if (loginUser) {
+      setFullName(loginUser.userName);
+      setAddress(loginUser.address);
+      setNumberPhone(loginUser.numberPhone);
+    }
   }, []);
   let totaiPrice = 0;
   const countCart = cartData.length;
@@ -51,9 +60,9 @@ export default function FormCart() {
             className="Content__right__Cart__Col"
           >
             <MenuCart
-              CustomerName="Hưng Khánh Trần"
-              Address="Krông Năng-Đăk Lắk"
-              Phone="012365489"
+              CustomerName={fullName}
+              Address={address}
+              Phone={numberPhone}
               price={totaiPrice}
               Total={totaiPrice}
               countCart={countCart}

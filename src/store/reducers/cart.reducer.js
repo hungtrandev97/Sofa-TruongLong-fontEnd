@@ -1,14 +1,19 @@
-import { ADD_CART, REMOVE_CART, MORE_QUATITY_CARY } from "../actions/actions";
+import {
+  ADD_CART,
+  REMOVE_CART,
+  MORE_QUATITY_CARY,
+  UPDATE_INFOR,
+} from "../actions/actions";
 
 const INIT_STATE = {
   cartData: [],
+  inforConsumer: [],
 };
 
 const cartReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case ADD_CART: {
       const { data } = action.payload;
-      console.log(data, "add");
       return {
         ...state,
         cartData: data,
@@ -23,7 +28,6 @@ const cartReducer = (state = INIT_STATE, action) => {
     }
     case MORE_QUATITY_CARY: {
       const { data } = action.payload;
-      console.log(data, "update");
       return {
         ...state,
         cartData: state.cartData.map((content) =>
@@ -31,6 +35,13 @@ const cartReducer = (state = INIT_STATE, action) => {
             ? { ...content, quanity: data[1] }
             : content
         ),
+      };
+    }
+    case UPDATE_INFOR: {
+      const { data } = action.payload;
+      return {
+        ...state,
+        inforConsumer: data,
       };
     }
     default:

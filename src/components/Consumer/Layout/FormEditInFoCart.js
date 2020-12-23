@@ -1,7 +1,9 @@
 import React from "react";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
+import { updateInfor } from "../../../store/actions/actions";
 
 const EditInfoCartSchema = Yup.object().shape({
   name_customer: Yup.string().required("Tên người nhận không được rỗng"),
@@ -9,17 +11,19 @@ const EditInfoCartSchema = Yup.object().shape({
   Phone_Customer: Yup.string().required("Số điện thoại không được rỗng"),
 });
 
-export default function FormEditInFoCart() {
+export default function FormEditInFoCart({ CustomerName, Address, Phone }) {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
-        name_customer: "",
-        Address_Customer: "",
-        Phone_Customer: "",
+        name_customer: CustomerName,
+        Address_Customer: Address,
+        Phone_Customer: Phone,
       }}
       validationSchema={EditInfoCartSchema}
       onSubmit={(values) => {
-        console.log(values);
+        dispatch(updateInfor(values));
+        window.location.href = "/gio-hang";
       }}
     >
       {({ errors, touched }) => (
