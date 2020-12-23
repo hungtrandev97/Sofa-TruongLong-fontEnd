@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
-
 import { apiGetAllProductCategory } from "../../services/product";
 import "./FormProduct.css";
 
