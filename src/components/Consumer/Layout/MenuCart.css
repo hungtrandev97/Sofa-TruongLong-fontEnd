@@ -43,6 +43,18 @@
   font-size: 18px;
   font-weight: 500;
 }
+.Menu__Cart__Edit__Info {
+  text-align: center;
+  padding-top: 20px;
+}
+.Menu__Cart__Edit__Info > button {
+  border: none;
+  background-color: #f57224;
+  color: #ffff;
+  height: 30px;
+  font-size: 14px;
+  width: 100%;
+}
 .Menu__Cart__Content__Price {
   display: flex;
   justify-content: space-between;
