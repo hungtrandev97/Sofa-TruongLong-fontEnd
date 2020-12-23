@@ -92,7 +92,7 @@ class Header extends Component {
                   }}
                 >
                   <Power size={14} className="mr-2" />
-                  <span className="align-middle">Log Out</span>
+                  <span className="align-middle">Đăng Xuất</span>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

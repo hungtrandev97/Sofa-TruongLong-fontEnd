@@ -35,6 +35,7 @@
 .Content__Cart__content__Remove {
   cursor: pointer;
   color: gray;
+  line-height: 1;
 }
 .Content__Cart__content__title {
   padding-bottom: 5px;
@@ -45,6 +46,7 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
+  height: 20px;
   -webkit-box-orient: vertical;
 }
 .Content__Cart__content__Source {

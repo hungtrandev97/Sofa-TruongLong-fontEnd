@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
-import { Link } from "react-router-dom";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import ProductCart from "../../components/Consumer/Layout/ProductCart";
@@ -38,7 +37,10 @@ export default function FormCart() {
     totaiPrice += item.product_priceNumber_sale * item.quanity;
   });
   return (
-    <div className="screen__Wep" style={{ paddingTop: "143px" }}>
+    <div
+      className="screen__Wep"
+      style={{ paddingTop: "143px", overflowX: "hidden" }}
+    >
       <div className="Cart__Form">
         <ChatBox />
         <Row
@@ -69,19 +71,6 @@ export default function FormCart() {
               buttonMenu="FormCart"
             />
           </Col>
-          <Link to="/don-hang-cua-ban">
-            <button
-              type="button"
-              style={{
-                background: "red",
-                color: "#ffff",
-                border: "none",
-                fontSize: "14px",
-              }}
-            >
-              Xem Đơn Hàng
-            </button>
-          </Link>
         </Row>
         <div className="Cart__Relate">
           <div className="Cart__Relate__Tittle">

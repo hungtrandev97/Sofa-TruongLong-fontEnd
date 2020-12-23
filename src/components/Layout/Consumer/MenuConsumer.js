@@ -8,6 +8,7 @@ import "./MenuConsumer.css";
 
 const MenuConsumer = () => {
   const { dataCategory } = useSelector((state) => state.categoryRedux);
+  const { loginUser } = useSelector((state) => state.authRedux);
 
   return (
     <div className="consumersMenu">
@@ -34,9 +35,6 @@ const MenuConsumer = () => {
               <ul className="MenuMenu">
                 <li style={{ marginLeft: "0px" }}>
                   <Link to="/trang-chu"> TRANG CHỦ </Link>
-                </li>
-                <li>
-                  <Link to="/home/">GIỚI THIỆU</Link>
                 </li>
                 <li>
                   <Link to="/">
@@ -131,6 +129,14 @@ const MenuConsumer = () => {
                 <li>
                   <Link to="/khuyen-mai">KHUYẾN MÃI</Link>
                 </li>
+                {loginUser ? (
+                  <li>
+                    <Link to="/don-hang-cua-ban">kiểm tra đơn hàng</Link>
+                  </li>
+                ) : (
+                  ""
+                )}
+
                 <li>
                   <Link to="/gioi-thieu">LIÊN HỆ</Link>
                 </li>
