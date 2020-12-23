@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
@@ -9,6 +10,7 @@ import { apiGetAllProductSale } from "../../services/product";
 import "./Cart.css";
 
 export default function FormCart() {
+  const { cartData } = useSelector((state) => state.cartRedux);
   const [dataProductSale, setDataProductSale] = useState([]);
   const getAllProductSale = async () => {
     const response = await apiGetAllProductSale();
@@ -28,10 +30,7 @@ export default function FormCart() {
           <Col lg={8} md={8} ms={12} xs={12}>
             <ProductCart
               titlePage="Chon Tất Cả"
-              titleProduct="Ghế Sofa "
-              SouceProduct="1"
-              price="10.000.000"
-              imageMain="Hình"
+              cartData={cartData}
               pageMain="cartMe"
             />
           </Col>
@@ -47,7 +46,6 @@ export default function FormCart() {
               Address="Krông Năng-Đăk Lắk"
               Phone="012365489"
               price="10.000.000"
-              DeliveryCharges="50.000"
               Total="10.050.000"
               buttonMenu="FormCart"
             />

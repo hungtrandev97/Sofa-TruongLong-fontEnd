@@ -13,7 +13,6 @@ const MenuCart = ({
   Address,
   Phone,
   price,
-  DeliveryCharges,
   Total,
   buttonMenu,
 }) => {
@@ -66,10 +65,7 @@ const MenuCart = ({
           </div>
           <div className="Menu__Cart__Content__Fees">
             <span>Phí giao hàng</span>
-            <b>
-              {DeliveryCharges}
-              <span>đ</span>
-            </b>
+            <b>miễn phí nội thành</b>
           </div>
           <div className="Menu__Cart__Content__Total">
             <span>Tổng cộng</span>
@@ -99,10 +95,9 @@ const MenuCart = ({
 MenuCart.propTypes = {
   CustomerName: PropTypes.string,
   Address: PropTypes.string,
-  Phone: PropTypes.number,
-  price: PropTypes.number,
-  DeliveryCharges: PropTypes.number,
-  Total: PropTypes.number,
+  Phone: PropTypes.string,
+  price: PropTypes.string,
+  Total: PropTypes.string,
   buttonMenu: PropTypes.string,
 };
 MenuCart.defaultProps = {
@@ -110,7 +105,6 @@ MenuCart.defaultProps = {
   Address: "",
   Phone: "",
   price: "",
-  DeliveryCharges: "",
   Total: "",
   buttonMenu: "",
 };
