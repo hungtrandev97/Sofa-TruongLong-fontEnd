@@ -21,6 +21,7 @@ export default function FormOderDetails() {
               SouceProduct="1"
               price="10.000.000"
               imageMain="Hình"
+              pageMain="OderDetails"
             />
           </Col>
           <Col lg={4} md={4} ms={12} xs={12} className="Form__OderDetails__Col">

@@ -47,7 +47,7 @@ export default function FormCart() {
         >
           <Col lg={8} md={8} ms={12} xs={12}>
             <ProductCart
-              titlePage="Chon Tất Cả"
+              titlePage="Giỏ Hàng Của Bạn"
               cartData={cartData}
               pageMain="cartMe"
             />

@@ -18,17 +18,9 @@ const ProductCart = ({ titlePage, cartData, pageMain }) => {
     <div>
       <div style={{ paddingBottom: "15px" }}>
         <div className="Header__Cart">
-          {pageMain === "cartMe" ? (
-            <input type="checkbox" className="Header__Cart__input" />
-          ) : (
-            ""
-          )}
           <div className="Header__Cart__Title">{titlePage}</div>
           {pageMain === "cartMe" ? (
-            <div className="Header__Cart__Remove">
-              <RiDeleteBinLine size="1.2rem" style={{ marginBottom: "5px" }} />
-              <span>Xóa</span>
-            </div>
+            ""
           ) : (
             <div>
               <span>MĐH-10000</span>
@@ -40,16 +32,6 @@ const ProductCart = ({ titlePage, cartData, pageMain }) => {
         <div key={index} style={{ paddingBottom: "15px" }}>
           <div className="Content__Cart">
             <div className="Content__Cart__Image">
-              {pageMain === "cartMe" ? (
-                <input
-                  type="checkbox"
-                  className="Content__Cart__input"
-                  style={{ marginTop: "40px" }}
-                />
-              ) : (
-                ""
-              )}
-
               <img
                 className="Content__Cart__img"
                 src={`${item.imageMain}`}
@@ -58,7 +40,18 @@ const ProductCart = ({ titlePage, cartData, pageMain }) => {
               />
             </div>
             <div className="Content__Cart__content">
-              <div className="Content__Cart__content__title">{item.title}</div>
+              <div className="Content__Cart__content__Nav">
+                <div className="Content__Cart__content__title">
+                  {item.title}
+                </div>
+                <div className="Content__Cart__content__Remove">
+                  <RiDeleteBinLine
+                    size="20px"
+                    onClick={() => removeItem(item.idProduct)}
+                  />
+                </div>
+              </div>
+
               <div className="Content__Cart__content__Source">
                 <span>MSP-</span>
                 <span>{item.SouceProduct}</span>
@@ -94,7 +87,6 @@ const ProductCart = ({ titlePage, cartData, pageMain }) => {
                 >
                   &#xff0b;
                 </button>
-                <span onClick={() => removeItem(item.idProduct)}>Xóa</span>
               </div>
             </div>
           </div>
