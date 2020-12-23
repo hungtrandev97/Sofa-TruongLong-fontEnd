@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart } from "../../../store/actions/actions";
+import { addCart, moreQuatitys } from "../../../store/actions/actions";
 import "./ItemProduct.css";
 
 const ItemProduct = ({
@@ -18,6 +18,7 @@ const ItemProduct = ({
   const { cartData } = useSelector((state) => state.cartRedux);
   const addCartInRedux = () => {
     const data = [
+      ...cartData,
       {
         idProduct,
         title,
@@ -30,7 +31,24 @@ const ItemProduct = ({
         quanity: 1,
       },
     ];
-    dispatch(addCart(data));
+    let checkItemProduct = false;
+    let moreQuatity = 1;
+    if (cartData.length > 0) {
+      cartData.forEach((element) => {
+        if (element.idProduct === idProduct) {
+          checkItemProduct = true;
+          moreQuatity += element.quanity;
+        }
+      });
+    } else {
+      dispatch(addCart(data));
+    }
+    if (checkItemProduct === true) {
+      const dataUpdateQuatity = [idProduct, moreQuatity];
+      dispatch(moreQuatitys(dataUpdateQuatity));
+    } else {
+      dispatch(addCart(data));
+    }
   };
   return (
     <div className="ItemProduct">
