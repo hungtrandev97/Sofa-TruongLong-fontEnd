@@ -11,7 +11,11 @@ import "./Cart.css";
 
 export default function FormCart() {
   const { cartData } = useSelector((state) => state.cartRedux);
+  const { loginUser } = useSelector((state) => state.authRedux);
   const [dataProductSale, setDataProductSale] = useState([]);
+  const [fullName, setFullName] = useState("Chưa có thông tin của bạn");
+  const [address, setAddress] = useState("Chưa có thông tin của bạn");
+  const [numberPhone, setNumberPhone] = useState("Chưa có thông tin của bạn");
   const getAllProductSale = async () => {
     const response = await apiGetAllProductSale();
     setDataProductSale(response.data);
@@ -22,7 +26,7 @@ export default function FormCart() {
   let totaiPrice = 0;
   const countCart = cartData.length;
   cartData.forEach((item) => {
-    totaiPrice += item.product_priceNumber_sale;
+    totaiPrice += item.product_priceNumber_sale * item.quanity;
   });
   return (
     <div className="screen__Wep" style={{ paddingTop: "143px" }}>

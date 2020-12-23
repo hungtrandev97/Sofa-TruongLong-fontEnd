@@ -8,16 +8,10 @@ const cartReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case ADD_CART: {
       const { data } = action.payload;
+      console.log(data, "add");
       return {
         ...state,
-        cartData: state.cartData.map((content) =>
-          content.idProduct === data[0].idProduct
-            ? { ...content, quanity: content.quanity + 1 }
-            : {
-                ...content,
-                cartData: state.cartData.push([data[0]]),
-              }
-        ),
+        cartData: data,
       };
     }
     case REMOVE_CART: {
@@ -25,6 +19,18 @@ const cartReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         cartData: state.cartData.filter((item) => item.idProduct !== data),
+      };
+    }
+    case MORE_QUATITY_CARY: {
+      const { data } = action.payload;
+      console.log(data, "update");
+      return {
+        ...state,
+        cartData: state.cartData.map((content) =>
+          content.idProduct === data[0]
+            ? { ...content, quanity: data[1] }
+            : content
+        ),
       };
     }
     default:
