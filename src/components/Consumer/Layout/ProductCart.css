@@ -28,6 +28,14 @@
   width: 100%;
   padding: 0 15px;
 }
+.Content__Cart__content__Nav {
+  display: flex;
+  justify-content: space-between;
+}
+.Content__Cart__content__Remove {
+  cursor: pointer;
+  color: gray;
+}
 .Content__Cart__content__title {
   padding-bottom: 5px;
   line-height: 1.3;
