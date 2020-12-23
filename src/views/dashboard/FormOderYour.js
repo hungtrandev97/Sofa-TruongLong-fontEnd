@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
-import { RiDeleteBinLine } from "react-icons/ri";
 import { FaRegHandPointRight } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import "./FormOderYour.css";
