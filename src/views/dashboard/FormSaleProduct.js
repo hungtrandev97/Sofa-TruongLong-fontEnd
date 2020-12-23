@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
-import { getAllProductSaleIndex } from "../../services/product";
+import { apiGetAllProductSale } from "../../services/product";
 import "./ProductSale.css";
 
 export default function FormSaleProduct() {
   const [dataProductSale, setDataProductSale] = useState([]);
-  const GetAllProductNew = async () => {
-    const response = await getAllProductSaleIndex();
+  const GetAllProductSale = async () => {
+    const response = await apiGetAllProductSale();
     setDataProductSale(response.data);
   };
   useEffect(() => {
-    GetAllProductNew();
+    GetAllProductSale();
   }, []);
   return (
     <div className="screen__Wep" style={{ paddingTop: "143px" }}>

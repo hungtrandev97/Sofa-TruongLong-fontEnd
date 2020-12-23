@@ -55,10 +55,20 @@ const MenuConsumer = () => {
                       {dataCategory.map((data, index) => {
                         return (
                           <Col key={index} md={3}>
-                            <div className="sub-menuCategory__Title">
-                              <AiOutlineCaretRight />
-                              {data.category_title}
-                            </div>
+                            <Link
+                              to={{
+                                pathname: `/san-pham`,
+                                state: {
+                                  data,
+                                },
+                              }}
+                              style={{ color: "black", textDecoration: "none" }}
+                            >
+                              <div className="sub-menuCategory__Title">
+                                <AiOutlineCaretRight />
+                                {data.category_title}
+                              </div>
+                            </Link>
                           </Col>
                         );
                       })}

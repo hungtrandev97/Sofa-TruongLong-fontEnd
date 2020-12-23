@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
-import { getAllProductNewIndex } from "../../services/product";
+import { getAllProductNew } from "../../services/product";
 import "./NewProduct.css";
 
 export default function FormNewProduct() {
   const [dataProductNew, setDataProductNew] = useState([]);
   const GetAllProductNew = async () => {
-    const response = await getAllProductNewIndex();
+    const response = await getAllProductNew();
     setDataProductNew(response.data);
   };
   useEffect(() => {
