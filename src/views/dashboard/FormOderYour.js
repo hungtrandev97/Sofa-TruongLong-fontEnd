@@ -52,21 +52,24 @@ export default function FormOderYour() {
                   xs={12}
                   className="OderCart__left__Content__Delete"
                 >
-                  <Link to="/chi-tiet-don-hang">
-                    <button
-                      className="OderCart__left__Content__button"
-                      type="button"
-                    >
-                      Chi Tiết
-                    </button>
-                  </Link>
-                  <span>
-                    <RiDeleteBinLine
-                      size="1.2rem"
-                      color=" #f57224"
-                      style={{ paddingLeft: "5px" }}
-                    />
-                  </span>
+                  <div style={{ display: "flex" }}>
+                    <Link to="/chi-tiet-don-hang">
+                      <button
+                        className="OderCart__left__Content__button"
+                        type="button"
+                      >
+                        Chi Tiết
+                      </button>
+                    </Link>
+                    <span style={{ paddingLeft: "10px" }}>
+                      <button
+                        className="OderCart__left__Content__button"
+                        type="button"
+                      >
+                        Xóa
+                      </button>
+                    </span>
+                  </div>
                 </Col>
               </Row>
             </div>
