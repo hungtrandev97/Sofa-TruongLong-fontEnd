@@ -18,7 +18,6 @@ const ItemProduct = ({
   const { cartData } = useSelector((state) => state.cartRedux);
   const addCartInRedux = () => {
     const data = [
-      ...cartData,
       {
         idProduct,
         title,

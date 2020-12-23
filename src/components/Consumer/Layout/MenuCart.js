@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import NumberFormat from "react-number-format";
 import { BiMap } from "react-icons/bi";
 import { BsPersonFill } from "react-icons/bs";
 import { HiOutlinePhone } from "react-icons/hi";
@@ -13,6 +14,7 @@ const MenuCart = ({
   price,
   Total,
   buttonMenu,
+  countCart,
 }) => {
   return (
     <div>
@@ -35,10 +37,15 @@ const MenuCart = ({
         <div className="Menu__Cart__Content">
           <span>Thông tin đơn hàng</span>
           <div className="Menu__Cart__Content__Price">
-            <span>Tạm tính (0 Sản phẩm)</span>
+            <span>{`Tạm tính (${countCart} Sản phẩm)`}</span>
             <b>
-              {price}
-              <span>đ</span>
+              <NumberFormat
+                value={price}
+                displayType="text"
+                thousandSeparator
+                suffix="vnđ"
+                renderText={(value) => <div>{value}</div>}
+              />
             </b>
           </div>
           <div className="Menu__Cart__Content__Fees">
@@ -48,8 +55,13 @@ const MenuCart = ({
           <div className="Menu__Cart__Content__Total">
             <span>Tổng cộng</span>
             <b>
-              {Total}
-              <span>đ</span>
+              <NumberFormat
+                value={Total}
+                displayType="text"
+                thousandSeparator
+                suffix="vnđ"
+                renderText={(value) => <div>{value}</div>}
+              />
             </b>
           </div>
           {buttonMenu === "FormCart" ? (
@@ -77,6 +89,7 @@ MenuCart.propTypes = {
   price: PropTypes.string,
   Total: PropTypes.string,
   buttonMenu: PropTypes.string,
+  countCart: PropTypes.number,
 };
 MenuCart.defaultProps = {
   CustomerName: "",
@@ -85,5 +98,6 @@ MenuCart.defaultProps = {
   price: "",
   Total: "",
   buttonMenu: "",
+  countCart: 0,
 };
 export default MenuCart;

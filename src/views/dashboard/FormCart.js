@@ -18,6 +18,11 @@ export default function FormCart() {
   };
   useEffect(() => {
     getAllProductSale();
+  }, []);
+  let totaiPrice = 0;
+  const countCart = cartData.length;
+  cartData.forEach((item) => {
+    totaiPrice += item.product_priceNumber_sale;
   });
   return (
     <div className="screen__Wep" style={{ paddingTop: "143px" }}>
@@ -45,8 +50,9 @@ export default function FormCart() {
               CustomerName="Hưng Khánh Trần"
               Address="Krông Năng-Đăk Lắk"
               Phone="012365489"
-              price="10.000.000"
-              Total="10.050.000"
+              price={totaiPrice}
+              Total={totaiPrice}
+              countCart={countCart}
               buttonMenu="FormCart"
             />
           </Col>

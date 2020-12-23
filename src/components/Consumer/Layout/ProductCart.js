@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { removeCart, moreQuatitys } from "../../../store/actions/actions";
 import "./ProductCart.css";
 
 const ProductCart = ({ titlePage, cartData, pageMain }) => {
-  const [quatity, setQuatity] = useState(1);
+  const dispatch = useDispatch();
+  const removeItem = (id) => {
+    dispatch(removeCart(id));
+  };
+  const updateQuatity = (id, moreQuatity) => {
+    const data = [id, moreQuatity];
+    dispatch(moreQuatitys(data));
+  };
   return (
     <div>
       <div style={{ paddingBottom: "15px" }}>
@@ -62,29 +71,30 @@ const ProductCart = ({ titlePage, cartData, pageMain }) => {
               <div className="quantity-input">
                 <button
                   type="button"
-                  disabled={`${quatity < 2 ? "disabled" : ""}`}
+                  disabled={`${item.quanity < 2 ? "disabled" : ""}`}
                   className="quantity-input__modifier quantity-input__modifier--left"
-                  onClick={() => {
-                    setQuatity(quatity - 1);
-                  }}
+                  onClick={() =>
+                    updateQuatity(item.idProduct, item.quanity - 1)
+                  }
                 >
                   &mdash;
                 </button>
                 <input
                   className="quantity-input__screen"
                   type="text"
-                  value={quatity}
+                  value={item.quanity}
                   readOnly
                 />
                 <button
                   type="button"
                   className="quantity-input__modifier quantity-input__modifier--right"
-                  onClick={() => {
-                    setQuatity(quatity + 1);
-                  }}
+                  onClick={() =>
+                    updateQuatity(item.idProduct, item.quanity + 1)
+                  }
                 >
                   &#xff0b;
                 </button>
+                <span onClick={() => removeItem(item.idProduct)}>Xóa</span>
               </div>
             </div>
           </div>
