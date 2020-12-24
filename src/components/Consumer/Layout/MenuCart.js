@@ -112,8 +112,8 @@ MenuCart.propTypes = {
   CustomerName: PropTypes.string,
   Address: PropTypes.string,
   Phone: PropTypes.string,
-  price: PropTypes.string,
-  Total: PropTypes.string,
+  price: PropTypes.number,
+  Total: PropTypes.number,
   buttonMenu: PropTypes.string,
   countCart: PropTypes.number,
 };
@@ -121,8 +121,8 @@ MenuCart.defaultProps = {
   CustomerName: "",
   Address: "",
   Phone: "",
-  price: "",
-  Total: "",
+  price: 0,
+  Total: 0,
   buttonMenu: "",
   countCart: 0,
 };
