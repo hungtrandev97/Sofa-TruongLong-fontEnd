@@ -275,12 +275,12 @@ export default function FormDetails() {
               className="Sale__Product__Data"
               idProduct=""
               title=""
-              SouceProduct=""
+              SouceProduct={1}
               price=""
               pricePromotional=""
               imageMain=""
-              product_priceNumber=""
-              product_priceNumber_sale=""
+              product_priceNumber={1}
+              product_priceNumber_sale={2}
             />
           </Col>
           <Col lg={3} md={4} ms={6} xs={6}>
@@ -289,12 +289,12 @@ export default function FormDetails() {
               className="Sale__Product__Data"
               idProduct=""
               title=""
-              SouceProduct=""
+              SouceProduct={11}
               price=""
               pricePromotional=""
               imageMain=""
-              product_priceNumber=""
-              product_priceNumber_sale=""
+              product_priceNumber={1}
+              product_priceNumber_sale={2}
             />
           </Col>
           <Col lg={3} md={4} ms={6} xs={6}>
@@ -303,12 +303,12 @@ export default function FormDetails() {
               className="Sale__Product__Data"
               idProduct=""
               title=""
-              SouceProduct=""
+              SouceProduct={12}
               price=""
               pricePromotional=""
               imageMain=""
-              product_priceNumber=""
-              product_priceNumber_sale=""
+              product_priceNumber={1}
+              product_priceNumber_sale={2}
             />
           </Col>
           <Col lg={3} md={4} ms={6} xs={6}>
@@ -317,12 +317,12 @@ export default function FormDetails() {
               className="Sale__Product__Data"
               idProduct=""
               title=""
-              SouceProduct=""
+              SouceProduct={22}
               price=""
               pricePromotional=""
               imageMain=""
-              product_priceNumber=""
-              product_priceNumber_sale=""
+              product_priceNumber={1}
+              product_priceNumber_sale={333}
             />
           </Col>
           {/* );
