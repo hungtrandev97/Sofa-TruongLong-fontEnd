@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import io from "socket.io-client";
 import { numberOnline, countNumberOnline } from "../../store/actions/actions";
 import { apiCountNumberOnline } from "../../services/setting";
+import { END_POINT } from "../../constants/DefaultValues.js";
 
 let socket;
 const AuthView = () => {
@@ -13,8 +14,7 @@ const AuthView = () => {
       dispatch(countNumberOnline(req.data.CountPoint));
     }
   };
-  const ENDPOINT = "192.168.1.155:3002";
-  socket = io(ENDPOINT);
+  socket = io(END_POINT);
   socket.on("numberOnlineServe", function (sockets) {
     dispatch(numberOnline(sockets));
     CallApiCountNumber();
