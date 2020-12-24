@@ -9,7 +9,8 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 
 export const ACOUNT_ADMIN_SUCCESS = "ACOUNT_ADMIN_SUCCESS";
 export const ACOUNT_CONSUMER_SUCCESS = "ACOUNT_CONSUMER_SUCCESS";
-export const ACOUNT_SAVE_IP = "ACOUNT_SAVE_IP";
+export const NUMBER_ONLINE = "NUMBER_ONLINE";
+export const COUNT_NUMBER_ONLINE = "COUNT_NUMBER_ONLINE";
 
 export const reloadLogin = () => ({
   type: RELOAD_LOGIN,
@@ -63,8 +64,13 @@ export const acountConsumerSuccess = ({ data }) => ({
   payload: { data },
 });
 
-export const saveIpConfig = (data) => ({
-  type: ACOUNT_SAVE_IP,
+export const numberOnline = (data) => ({
+  type: NUMBER_ONLINE,
+  payload: { data },
+});
+
+export const countNumberOnline = (data) => ({
+  type: COUNT_NUMBER_ONLINE,
   payload: { data },
 });
 // end return

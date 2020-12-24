@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
+import AuthView from "./components/middlewares/auth";
 
 // App Routes
 import Routes from "./Routes";
@@ -25,6 +26,7 @@ class App extends Component {
 
     return (
       <BrowserRouter basename={basename}>
+        <AuthView />
         <Routes />
       </BrowserRouter>
     );

@@ -8,7 +8,8 @@ import {
   REGISTER_SUCCESS,
   ACOUNT_ADMIN_SUCCESS,
   ACOUNT_CONSUMER_SUCCESS,
-  ACOUNT_SAVE_IP,
+  NUMBER_ONLINE,
+  COUNT_NUMBER_ONLINE,
 } from "../actions/actions";
 
 const INIT_STATE = {
@@ -17,7 +18,8 @@ const INIT_STATE = {
   loginUser: {},
   dataAcountAdmin: [],
   dataAcountConsumer: [],
-  ipConfig: 1,
+  numberOnline: 1,
+  totalNumberOnline: 1,
 };
 
 const authReducer = (state = INIT_STATE, action) => {
@@ -95,11 +97,18 @@ const authReducer = (state = INIT_STATE, action) => {
         dataAcountConsumer: data,
       };
     }
-    case ACOUNT_SAVE_IP: {
+    case NUMBER_ONLINE: {
       const { data } = action.payload;
       return {
         ...state,
-        ipConfig: data,
+        numberOnline: state.numberOnline > 0 ? data - 1 : 1,
+      };
+    }
+    case COUNT_NUMBER_ONLINE: {
+      const { data } = action.payload;
+      return {
+        ...state,
+        totalNumberOnline: data,
       };
     }
     default:

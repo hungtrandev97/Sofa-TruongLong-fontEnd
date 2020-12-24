@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import { apiGetAllProductCategory } from "../../services/product";
 import "./FormProduct.css";
 
-export default function FormProduct({ location }) {
+const FormProduct = ({ location }) => {
   const idCategory = location.state.data._id;
   const [dataProduct, setDataProduct] = useEffect();
   const GetAllProductCategory = async () => {
@@ -46,3 +46,5 @@ export default function FormProduct({ location }) {
     </div>
   );
 }
+
+export default FormProduct
