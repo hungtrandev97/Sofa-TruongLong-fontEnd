@@ -7,7 +7,7 @@
 
 .Chat_Box_Phone {
   animation: 700ms infinite Phone;
-  animation: 1s infinite Phone1;
+  animation: 0.3s infinite Phone1;
 }
 @keyframes Phone {
   100% {
