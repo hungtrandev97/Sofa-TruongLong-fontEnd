@@ -9,7 +9,7 @@ function ChatBox() {
           href="http://zalo.me/0966284484"
           className="chatbox_content_link Chatbox__Zalo"
         >
-          <img src="/img/default/ZaLo.png" alt="ZaLo" />
+          <img src="/img/default/zalo26122020.png" alt="zaLo" />
         </a>
         <a
           href="https://www.facebook.com/xuongsofa.truonglong/"

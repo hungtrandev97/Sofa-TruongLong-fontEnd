@@ -39,57 +39,53 @@ export default function FormDetails() {
                 <Col
                   lg={3}
                   md={3}
-                  ms={6}
-                  xs={6}
+                  ms={3}
+                  xs={3}
                   className="Details__Form__ImgP__Col"
                 >
                   <img
+                    className="Details__Form__ImgP__Col__img"
                     src="/img/product/imageProduct.jpg"
                     alt="img"
-                    width="100%"
-                    height="85px"
                   />
                 </Col>
                 <Col
                   lg={3}
                   md={3}
-                  ms={6}
-                  xs={6}
+                  ms={3}
+                  xs={3}
                   className="Details__Form__ImgP__Col"
                 >
                   <img
+                    className="Details__Form__ImgP__Col__img"
                     src="/img/product/imageProduct.jpg"
                     alt="img"
-                    width="100%"
-                    height="85px"
                   />
                 </Col>
                 <Col
                   lg={3}
                   md={3}
-                  ms={6}
-                  xs={6}
+                  ms={3}
+                  xs={3}
                   className="Details__Form__ImgP__Col"
                 >
                   <img
+                    className="Details__Form__ImgP__Col__img"
                     src="/img/product/imageProduct.jpg"
                     alt="img"
-                    width="100%"
-                    height="85px"
                   />
                 </Col>
                 <Col
                   lg={3}
                   md={3}
-                  ms={6}
-                  xs={6}
+                  ms={3}
+                  xs={3}
                   className="Details__Form__ImgP__Col"
                 >
                   <img
+                    className="Details__Form__ImgP__Col__img"
                     src="/img/product/imageProduct.jpg"
                     alt="img"
-                    width="100%"
-                    height="85px"
                   />
                 </Col>
               </Row>
