@@ -130,6 +130,11 @@
   font-weight: 700;
   color: #c5c5c5;
 }
+@media (max-width: 767px) {
+  .FooterCosumer__right {
+    padding-bottom: 40px;
+  }
+}
 /* --------- */
 .footer_year {
   background: rgb(41, 41, 41);
