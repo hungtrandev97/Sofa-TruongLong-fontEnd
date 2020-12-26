@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import io from "socket.io-client";
 import { numberOnline, countNumberOnline } from "../../store/actions/actions";
 import { apiCountNumberOnline } from "../../services/setting";
-import { END_POINT } from "../../constants/DefaultValues.js";
+import { END_POINT } from "../../constants/DefaultValues";
 
 let socket;
 const AuthView = () => {

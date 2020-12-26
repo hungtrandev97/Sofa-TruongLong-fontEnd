@@ -6,7 +6,7 @@ export const TOATS_CLOSE_TIME = 3002;
 
 /** SERVER */
 // export const END_POINT = "http://localhost:3002";
-export const END_POINT = "http://192.168.1.155:3002";
+export const END_POINT = "http://103.15.50.89:3002";
 // export const END_POINT = "http://192.168.1.164:3002";
 // export const END_POINT =
 //   "https://c09vsg0ebd.execute-api.ap-southeast-1.amazonaws.com/stag";
