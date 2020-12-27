@@ -79,11 +79,16 @@ export default function FormContact() {
                 <BiMap size="1rem" color="rgb(35, 183, 229)" />
                 <input type="text" placeholder="Địa Chỉ" />
               </div>
+              <div className="Content__Right__Address Input__Style">
+                <input type="text" placeholder="Nội dung liên hệ" />
+              </div>
               <div
                 className="Content__Right__Button"
                 style={{ paddingTop: "20px" }}
               >
-                <button to="/">Gửi</button>
+                <button type="button" to="/">
+                  Gửi
+                </button>
               </div>
             </div>
           </Col>

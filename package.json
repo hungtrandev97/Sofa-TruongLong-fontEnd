@@ -67,7 +67,7 @@
     "react": "17.0.1",
     "react-bootstrap": "1.4.0",
     "react-bootstrap-sidebar": "0.0.1",
-    "react-chartjs-2": "^2.10.0",
+    "react-chartjs-2": "^2.11.1",
     "react-circular-progressbar": "^2.0.3",
     "react-color": "2.18.1",
     "react-confirm-alert": "^2.6.2",

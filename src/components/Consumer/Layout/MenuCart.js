@@ -44,7 +44,7 @@ const MenuCart = ({
           <span>Địa Chỉ Nhận Hàng </span>
           <div className="Menu__Cart__Header__Name">
             <BsPersonFill size="1.2rem" color="#666" />
-            <span>{CustomerName}</span>
+            <span>{CustomerName || "Chưa có thông tin..."}</span>
           </div>
           <div className="Menu__Cart__Header__Address">
             <BiMap size="1.2rem" color="#666" />

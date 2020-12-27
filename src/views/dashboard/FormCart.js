@@ -81,11 +81,6 @@ export default function FormCart() {
             {dataProductSale.map((DataSale, index) => {
               return (
                 <Col key={index} lg={3} md={4} ms={6} xs={6}>
-                  <img
-                    className="Sale__Product__img"
-                    src="/img/Hot .gif"
-                    alt="img"
-                  />
                   <ItemProduct
                     className="Sale__Product__Data"
                     idProduct={DataSale._id}

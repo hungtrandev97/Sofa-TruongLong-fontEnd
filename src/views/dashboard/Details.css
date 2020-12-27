@@ -126,7 +126,7 @@
   padding-left: 3px;
 }
 
-.Details__Form__Right__Phone__Icon {
+/* .Details__Form__Right__Phone__Icon {
   animation: 700ms infinite icon;
   animation: 0.3s infinite icon1;
 }
@@ -144,6 +144,18 @@
   }
   90% {
     transform: rotate(-15deg);
+  }
+} */
+.Details__Form__Right__Phone__Icon {
+  animation: app-logo-spin infinite 2s linear;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 .Details__Form__Right__Address {

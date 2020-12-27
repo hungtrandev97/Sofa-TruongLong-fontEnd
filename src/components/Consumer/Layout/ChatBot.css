@@ -5,7 +5,7 @@
   right: 30px;
 }
 
-.Chat_Box_Phone {
+/* .Chat_Box_Phone {
   animation: 700ms infinite Phone;
   animation: 0.3s infinite Phone1;
 }
@@ -23,6 +23,43 @@
   }
   90% {
     transform: rotate(-15deg);
+  }
+} */
+.Chat_Box_Phone {
+  animation: app-logo-spin infinite 5s linear;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Chat__box__FB {
+  animation: app-logo-spin infinite 5s linear;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.Chatbox__Zalo {
+  animation: app-logo-spin infinite 5s linear;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 .chatbox_content {
