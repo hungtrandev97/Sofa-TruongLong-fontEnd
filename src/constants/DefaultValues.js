@@ -2,16 +2,14 @@ export const ROLE = {
   ADMIN: 1,
   PATIENT: 2,
 };
-export const TOATS_CLOSE_TIME = 3002;
+export const TOATS_CLOSE_TIME = 4000;
 
 /** SERVER */
-export const END_POINT = "http://localhost:3002";
+// export const END_POINT = "http://localhost:3002";
 // export const END_POINT = "http://192.168.1.155:3002";
 // export const END_POINT = "http://192.168.1.164:3002";
 // export const END_POINT = "http://103.15.50.89:3002";
-// export const END_POINT =
-//   "https://c09vsg0ebd.execute-api.ap-southeast-1.amazonaws.com/stag";
-
+export const END_POINT = "http://103.15.50.89:3002";
 /** COMMON */
 export const PAGE_SIZE = 5;
 export const PAGE_SIZE_50 = 50;
