@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
-import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 import NumberFormat from "react-number-format";
 import { BiMap } from "react-icons/bi";
 import { BsPersonFill } from "react-icons/bs";
 import { HiOutlinePhone } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import FormEditInFoCart from "./FormEditInFoCart";
+import { apiCreateOder } from "../../../services/Cart";
+import { NotifySuccess, NotifyWarning, NotifyError } from "../../Notify/Toast";
+import { TYPE_NOTIFY } from "../../../constants/DefaultValues";
+import { removeDataCart } from "../../../store/actions/actions";
 import "./MenuCart.css";
 
 const MenuCart = ({
@@ -18,9 +22,43 @@ const MenuCart = ({
   buttonMenu,
   countCart,
 }) => {
+  const dispatch = useDispatch();
+  const { cartData } = useSelector((state) => state.cartRedux);
+  const cartDataDefault = [];
+  cartData.forEach((item) => {
+    cartDataDefault.push({
+      _product: `${item.idProduct}`,
+      quantity: item.quanity,
+      priceProduct: `${item.product_priceNumber_sale}`,
+    });
+  });
   const [modal, setModal] = useState(false);
   const toggle = () => {
     setModal(!modal);
+  };
+  const submitButtonCrate = async () => {
+    if (Address === "" || Phone === "" || CustomerName === "") {
+      setModal(true);
+    } else if (cartData.length === 0) {
+      NotifyWarning("Đơn Hàng", "Giỏ hàng rỗng, Vui Lòng chọn sản phẩm");
+    } else {
+      const data = {
+        _id_user: "5fd38f508906c718cf19af37",
+        address: Address,
+        numberPhone: Phone,
+        totalMoney: Total,
+        _product: cartDataDefault,
+      };
+      const req = await apiCreateOder(data);
+      if (req.status) {
+        NotifySuccess("Tạo Thư Mục", "Thêm Thư Mục Thành Công");
+        dispatch(removeDataCart());
+      } else if (req.type === TYPE_NOTIFY.WARNING) {
+        NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
+      } else {
+        NotifyError("Thêm Sản Phẩm", `${req.message}`);
+      }
+    }
   };
   const ChangeIsModal = () => {
     toggle(true);
@@ -29,7 +67,7 @@ const MenuCart = ({
     <div>
       <div className="Modal__Edit__Info">
         <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>CHỈNH SỬA THÔNG TIN</ModalHeader>
+          <ModalHeader toggle={toggle}>THÔNG TIN NHẬN HÀNG</ModalHeader>
           <ModalBody>
             <FormEditInFoCart
               CustomerName={CustomerName}
@@ -91,11 +129,13 @@ const MenuCart = ({
             </b>
           </div>
           {buttonMenu === "FormCart" ? (
-            <Link to="/">
-              <button type="button" className="Menu__Cart__Content__Button">
-                XÁC NHẬN GIỎ HÀNG
-              </button>
-            </Link>
+            <button
+              onClick={() => submitButtonCrate()}
+              type="button"
+              className="Menu__Cart__Content__Button"
+            >
+              XÁC NHẬN GIỎ HÀNG
+            </button>
           ) : (
             <Link to="/don-hang-cua-ban">
               <button type="button" className="Menu__Cart__Content__Button">
@@ -107,15 +147,6 @@ const MenuCart = ({
       </div>
     </div>
   );
-};
-MenuCart.propTypes = {
-  CustomerName: PropTypes.string,
-  Address: PropTypes.string,
-  Phone: PropTypes.string,
-  price: PropTypes.number,
-  Total: PropTypes.number,
-  buttonMenu: PropTypes.string,
-  countCart: PropTypes.number,
 };
 MenuCart.defaultProps = {
   CustomerName: "",

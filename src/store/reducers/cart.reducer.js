@@ -3,6 +3,7 @@ import {
   REMOVE_CART,
   MORE_QUATITY_CARY,
   UPDATE_INFOR,
+  REMOVE_DATE_CART,
 } from "../actions/actions";
 
 const INIT_STATE = {
@@ -42,6 +43,12 @@ const cartReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         inforConsumer: data,
+      };
+    }
+    case REMOVE_DATE_CART: {
+      return {
+        ...state,
+        cartData: [],
       };
     }
     default:
