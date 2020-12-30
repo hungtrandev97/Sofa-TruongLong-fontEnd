@@ -19,21 +19,11 @@ export const DataOder = [
   },
 ];
 
-export const AdminAccountManagementData = [
+export const DataSetting = [
   {
-    AdminAccounr_title: "KhanhHung97",
-    PassWord: "******",
-    Gender: "Nam",
-    Email: "Khanhhung@gmail.com",
-    Phone: "0123654789",
-    Address: "12 Gò Vấp",
-  },
-  {
-    AdminAccounr_title: "HieuPhan",
-    PassWord: "******",
-    Gender: "Nam",
-    Email: "HieuPhan@gmail.com",
-    Phone: "0987456123",
-    Address: "14 Gò Vấp",
+    Setting_Slider__1: "Slider1",
+    img_1: "img",
+    Link_1: "link",
+    Phone: "097778046",
   },
 ];
