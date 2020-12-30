@@ -3,13 +3,17 @@ import { Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import { AiOutlineCaretRight } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { ProductScreening } from "../../../store/actions/actions";
 import "./MenuConsumer.css";
 
 const MenuConsumer = () => {
   const { dataCategory } = useSelector((state) => state.categoryRedux);
   const { loginUser } = useSelector((state) => state.authRedux);
-
+  const dispatch = useDispatch();
+  const GetAllScreeningPrice = (number) => {
+    dispatch(ProductScreening(number));
+  };
   return (
     <div className="consumersMenu">
       <div className="consumersMenu__Menu">
@@ -92,35 +96,36 @@ const MenuConsumer = () => {
                       <Col md={3}>
                         <div className="sub-menuCategory__Title ">
                           <AiOutlineCaretRight />
-                          <Link
+                          <div
                             className="sub-menuCategory__Title__Link"
-                            to="/loc-gia-san-pham/5"
+                            onClick={() => GetAllScreeningPrice(5)}
                           >
                             Dưới 5 Triệu
-                          </Link>
+                          </div>
                         </div>
                       </Col>
 
                       <Col md={3}>
                         <div className="sub-menuCategory__Title">
                           <AiOutlineCaretRight />
-                          <Link
+                          <div
                             className="sub-menuCategory__Title__Link"
-                            to="/loc-gia-san-pham/10"
+                            onClick={() => GetAllScreeningPrice(10)}
                           >
                             Dưới 10 Triệu
-                          </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col md={3}>
                         <div className="sub-menuCategory__Title">
                           <AiOutlineCaretRight />
-                          <Link
+                          <div
+                            type="button"
                             className="sub-menuCategory__Title__Link"
-                            to="/loc-gia-san-pham/15"
+                            onClick={() => GetAllScreeningPrice(15)}
                           >
                             Dưới 15 Triệu
-                          </Link>
+                          </div>
                         </div>
                       </Col>
                     </Row>

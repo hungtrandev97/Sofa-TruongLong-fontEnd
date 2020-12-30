@@ -3,6 +3,7 @@ import settingsReducer from "./settings.reducer";
 import authReducer from "./auth.reducer";
 import categoryReducer from "./category.reducer";
 import cartReducer from "./cart.reducer";
+import productReducer from "./product.reducer";
 import { LOGOUT_USER } from "../actions/auth.actions";
 
 const combinedReducer = combineReducers({
@@ -10,6 +11,7 @@ const combinedReducer = combineReducers({
   authRedux: authReducer,
   categoryRedux: categoryReducer,
   cartRedux: cartReducer,
+  productRedux: productReducer,
 });
 
 const rootReducer = (state, action) => {

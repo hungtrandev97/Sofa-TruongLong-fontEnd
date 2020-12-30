@@ -162,7 +162,6 @@ export default function FormEditProduct({ location }) {
       product_priceNumber: productPriceNumber,
       product_priceNumber_sale: productPriceNumberSale,
     };
-    console.log(concatData);
     const req = await apiEditProduct(concatData, dataProduct._id);
     setIsLoading(false);
     if (req.status) {
@@ -209,11 +208,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImageProductIndex}
-              inputContent={
+              inputContent={(
                 <div>
                   <img src={dataProduct.product_imageMain} alt="" width="70" />
                 </div>
-              }
+              )}
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
@@ -225,11 +224,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages1}
-              inputContent={
+              inputContent={(
                 <div>
                   <img src={dataProduct.product_image1} alt="" width="70" />
                 </div>
-              }
+              )}
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
@@ -241,11 +240,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages2}
-              inputContent={
+              inputContent={(
                 <div>
                   <img src={dataProduct.product_image2} alt="" width="70" />
                 </div>
-              }
+              )}
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
@@ -257,11 +256,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages3}
-              inputContent={
+              inputContent={(
                 <div>
                   <img src={dataProduct.product_image3} alt="" width="70" />
                 </div>
-              }
+              )}
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />

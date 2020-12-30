@@ -18,7 +18,7 @@ const INIT_STATE = {
   loginUser: {},
   dataAcountAdmin: [],
   dataAcountConsumer: [],
-  numberOnline: 1,
+  numberOnline: 0,
   totalNumberOnline: 1,
 };
 
@@ -101,7 +101,7 @@ const authReducer = (state = INIT_STATE, action) => {
       const { data } = action.payload;
       return {
         ...state,
-        numberOnline: state.numberOnline > 0 ? data - 1 : 1,
+        numberOnline: state.numberOnline === 0 ? 1 : data,
       };
     }
     case COUNT_NUMBER_ONLINE: {
