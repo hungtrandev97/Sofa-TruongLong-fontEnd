@@ -2,7 +2,7 @@ export const ROLE = {
   ADMIN: 1,
   PATIENT: 2,
 };
-export const TOATS_CLOSE_TIME = 3002;
+export const TOATS_CLOSE_TIME = 5000;
 
 /** SERVER */
 // export const END_POINT = "http://localhost:3002";
