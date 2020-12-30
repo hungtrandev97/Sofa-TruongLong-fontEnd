@@ -9,9 +9,6 @@ export const TOATS_CLOSE_TIME = 5000;
 // export const END_POINT = "http://192.168.1.155:3002";
 // export const END_POINT = "http://192.168.1.164:3002";
 export const END_POINT = "http://103.15.50.89:5000";
-// export const END_POINT =
-//   "https://c09vsg0ebd.execute-api.ap-southeast-1.amazonaws.com/stag";
-
 /** COMMON */
 export const PAGE_SIZE = 5;
 export const PAGE_SIZE_50 = 50;

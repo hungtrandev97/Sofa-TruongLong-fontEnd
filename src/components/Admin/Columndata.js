@@ -27,3 +27,24 @@ export const DataSetting = [
     Phone: "097778046",
   },
 ];
+
+export const DataContact = [
+  {
+    name_Contact: "Hưng Trần",
+    phone_Contact: "01236152254",
+    email_Contact: "hungtran97@gmail.com",
+    info_customer: "Cần mua sofa giá rẻ",
+  },
+  {
+    name_Contact: "Hưng Trần",
+    phone_Contact: "01236152254",
+    email_Contact: "hungtran97@gmail.com",
+    info_customer: "Cần mua sofa giá rẻ",
+  },
+  {
+    name_Contact: "Hưng Trần",
+    phone_Contact: "01236152254",
+    email_Contact: "hungtran97@gmail.com",
+    info_customer: "Cần mua sofa giá rẻ ",
+  },
+];

@@ -81,6 +81,11 @@ const AdminMenu = [
     icon: "",
   },
   {
+    name: "Liên Hệ",
+    path: "Contact",
+    icon: "",
+  },
+  {
     name: "Cài Đặt",
     path: "SettingAdmin",
     icon: "",
