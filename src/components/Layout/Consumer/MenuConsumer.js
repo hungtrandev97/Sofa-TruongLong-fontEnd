@@ -129,7 +129,7 @@ const MenuConsumer = () => {
                 <li>
                   <Link to="/khuyen-mai">KHUYẾN MÃI</Link>
                 </li>
-                {loginUser ? (
+                {loginUser && loginUser.accessToken ? (
                   <li>
                     <Link to="/don-hang-cua-ban">kiểm tra đơn hàng</Link>
                   </li>

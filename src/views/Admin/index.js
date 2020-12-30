@@ -18,6 +18,7 @@ import EditOder from "../../components/Admin/EditOder";
 import EditAccountManagement from "../../components/Admin/EditAccountManagement";
 import AccountCustomer from "../../components/Admin/AccountCustomer";
 import CreateAccountCustomer from "../../components/Admin/CreateAccountCustomer";
+import Contact from "../../components/Admin/Contact";
 
 function Admin({ location, match }) {
   const currentKey = location.pathname.split("/")[1] || "/";
@@ -92,6 +93,8 @@ function Admin({ location, match }) {
                 path={`${match.url}/SettingAdmin`}
                 component={SettingAdmin}
               />
+              <Route path={`${match.url}/Contact`} component={Contact} />
+
               <Redirect to="/error" />
             </Switch>
           </div>
