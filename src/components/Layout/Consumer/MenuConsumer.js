@@ -81,7 +81,7 @@ const MenuConsumer = () => {
                   <Link to="/san-pham-moi">SẢN PHẨM MỚI</Link>
                 </li>
                 <li>
-                  <Link to="/">
+                  <Link to="">
                     <span>LỌC SOFA</span>
                     <BiChevronDown
                       size="1rem"
@@ -96,36 +96,38 @@ const MenuConsumer = () => {
                       <Col md={3}>
                         <div className="sub-menuCategory__Title ">
                           <AiOutlineCaretRight />
-                          <div
+                          <Link
+                            to="/loc-gia-san-pham"
                             className="sub-menuCategory__Title__Link"
-                            onClick={() => GetAllScreeningPrice(5)}
+                            onClick={() => GetAllScreeningPrice(5000001)}
                           >
                             Dưới 5 Triệu
-                          </div>
+                          </Link>
                         </div>
                       </Col>
 
                       <Col md={3}>
                         <div className="sub-menuCategory__Title">
                           <AiOutlineCaretRight />
-                          <div
+                          <Link
+                            to="/loc-gia-san-pham"
                             className="sub-menuCategory__Title__Link"
-                            onClick={() => GetAllScreeningPrice(10)}
+                            onClick={() => GetAllScreeningPrice(10000001)}
                           >
                             Dưới 10 Triệu
-                          </div>
+                          </Link>
                         </div>
                       </Col>
                       <Col md={3}>
                         <div className="sub-menuCategory__Title">
                           <AiOutlineCaretRight />
-                          <div
-                            type="button"
+                          <Link
+                            to="/loc-gia-san-pham"
                             className="sub-menuCategory__Title__Link"
-                            onClick={() => GetAllScreeningPrice(15)}
+                            onClick={() => GetAllScreeningPrice(15000001)}
                           >
                             Dưới 15 Triệu
-                          </div>
+                          </Link>
                         </div>
                       </Col>
                     </Row>

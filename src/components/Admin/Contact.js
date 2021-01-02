@@ -1,38 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Breadcrumb, BreadcrumbItem, CardBody, Card } from "reactstrap";
 import DataTable from "react-data-table-component";
+import moment from "moment";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
-import { DataContact } from "./Columndata";
+import { apiGetAllCategory } from "../../services/contcat";
 import "./Contact.css";
 
 export default function Contact() {
+  const dispatch = useDispatch();
+  const [dataContact, setDataContact] = useState([]);
+  useEffect(() => {
+    const apiGetAllContact = async () => {
+      const getAllDataContact = await apiGetAllCategory();
+      setDataContact(getAllDataContact.data);
+    };
+    apiGetAllContact();
+  }, [dispatch]);
   const columns = () => [
     {
       name: "Khách Hàng",
-      selector: "name_Contact",
+      selector: `name`,
       sortable: true,
       width: "200px",
     },
     {
       name: "SĐT",
-      selector: "phone_Contact",
+      selector: "numberPhone",
       sortable: true,
     },
     {
       name: "Email",
-      selector: "email_Contact",
+      selector: "email",
       sortable: true,
     },
     {
+      name: "Ngày Tạo",
+      selector: `date_create`,
+      sortable: true,
+      format: (row) => moment(row.date_create).format("DD-MM-YY hh:ss"),
+    },
+    {
       name: "Nội Dung Cần  Liên Hệ",
-      selector: "info_customer",
+      selector: `content`,
       sortable: true,
     },
   ];
   const tableData = {
     columns: columns(),
-    data: DataContact,
+    data: dataContact,
     filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
@@ -52,7 +69,7 @@ export default function Contact() {
           <DataTableExtensions {...tableData}>
             <DataTable
               columns={columns()}
-              data={DataContact}
+              data={dataContact}
               noHeader
               pagination
               // paginationServer
