@@ -51,7 +51,7 @@ function CategoryPage() {
       selector: "date_create",
       sortable: false,
       wrap: true,
-      format: (row) => moment(row.date_create).format("DD-MM-DD hh:ss"),
+      format: (row) => moment(row.date_create).format("DD-MM-YY hh:ss"),
     },
     {
       name: "Sửa",

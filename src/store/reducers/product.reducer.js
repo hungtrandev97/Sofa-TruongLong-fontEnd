@@ -1,7 +1,7 @@
 import { PRODUCT_SCREENING } from "../actions/actions";
 
 const INIT_STATE = {
-  numberPrice: 15,
+  numberPrice: 15000000,
 };
 
 const productReducer = (state = INIT_STATE, action) => {
