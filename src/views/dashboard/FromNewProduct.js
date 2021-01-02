@@ -9,7 +9,10 @@ export default function FormNewProduct() {
   const [dataProductNew, setDataProductNew] = useState([]);
   const GetAllProductNew = async () => {
     const response = await getAllProductNew();
-    setDataProductNew(response.data);
+
+    if (response && response.data) {
+      setDataProductNew(response.data);
+    }
   };
   useEffect(() => {
     GetAllProductNew();
@@ -21,24 +24,36 @@ export default function FormNewProduct() {
         <div className="New__Product__title">
           <span> Sản Phẩm Mới Nhất</span>
         </div>
-        <Row className="New__Product__Row ">
-          {dataProductNew.map((DataNew, index) => {
-            return (
-              <Col key={index} lg={3} md={4} ms={6} xs={6}>
-                <ItemProduct
-                  idProduct={DataNew._id}
-                  title={DataNew.product_title}
-                  SouceProduct={DataNew.product_code}
-                  price={DataNew.product_price}
-                  pricePromotional={DataNew.product_price_sale}
-                  imageMain={DataNew.product_imageMain}
-                  product_priceNumber={DataNew.product_priceNumber}
-                  product_priceNumber_sale={DataNew.product_priceNumber_sale}
-                />
-              </Col>
-            );
-          })}
-        </Row>
+        {dataProductNew.length > 0 ? (
+          <Row className="New__Product__Row ">
+            {dataProductNew.map((DataNew, index) => {
+              return (
+                <Col key={index} lg={3} md={4} ms={6} xs={6}>
+                  <ItemProduct
+                    idProduct={DataNew._id}
+                    title={DataNew.product_title}
+                    SouceProduct={DataNew.product_code}
+                    price={DataNew.product_price}
+                    pricePromotional={DataNew.product_price_sale}
+                    imageMain={DataNew.product_imageMain}
+                    product_priceNumber={DataNew.product_priceNumber}
+                    product_priceNumber_sale={DataNew.product_priceNumber_sale}
+                  />
+                </Col>
+              );
+            })}
+          </Row>
+        ) : (
+          <div
+            style={{
+              textAlign: "center",
+              paddingTop: "30px",
+              paddingBottom: "30px",
+            }}
+          >
+            Không Có Sản phẩm Mới
+          </div>
+        )}
       </div>
     </div>
   );

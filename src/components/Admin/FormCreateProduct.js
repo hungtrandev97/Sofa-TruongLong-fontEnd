@@ -22,6 +22,7 @@ const createProductSchema = Yup.object().shape({
 
 function FormCreateProduct() {
   const { dataCategory } = useSelector((state) => state.categoryRedux);
+  const { loginUser } = useSelector((state) => state.authRedux);
   const [categoryValue, setCategoryValue] = useState("");
   const [price, setPrice] = useState("");
   const [priceSale, setPriceSale] = useState("");
@@ -72,6 +73,7 @@ function FormCreateProduct() {
     const urlImageFirebase = await UploadImagevIEW(productImage);
     const concatData = await {
       _category: categoryValue,
+      _manager: loginUser.userId,
       product_new: productNewValue,
       product_index: productIndexValue,
       product_discript: dataTextarea,

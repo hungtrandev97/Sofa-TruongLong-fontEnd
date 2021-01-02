@@ -16,7 +16,9 @@ const HomeContent = () => {
   const { dataCategory } = useSelector((state) => state.categoryRedux);
   const GetProduct = async () => {
     const responseData = await getAllProductIndex();
-    setDataProduct(responseData.data);
+    if (responseData && responseData.data) {
+      setDataProduct(responseData.data);
+    }
   };
 
   useEffect(() => {
@@ -33,32 +35,45 @@ const HomeContent = () => {
                 <>
                   <HeaderProduct title={item.category_title} link={item.url} />
                   <div className="HomeContent__product__new">
-                    <Row>
-                      {dataProduct.map((itemproduct, index) => {
-                        if (item._id === itemproduct._category._id) {
-                          return (
-                            <Col key={index} lg={3} md={4} ms={6} xs={6}>
-                              <ItemProduct
-                                idProduct={itemproduct._id}
-                                title={itemproduct.product_title}
-                                SouceProduct={itemproduct.product_code}
-                                price={itemproduct.product_price}
-                                pricePromotional={
-                                  itemproduct.product_price_sale
-                                }
-                                imageMain={itemproduct.product_imageMain}
-                                product_priceNumber={
-                                  itemproduct.product_priceNumber
-                                }
-                                product_priceNumber_sale={
-                                  itemproduct.product_priceNumber_sale
-                                }
-                              />
-                            </Col>
-                          );
-                        }
-                      })}
-                    </Row>
+                    {dataProduct.length > 0 ? (
+                      <Row>
+                        {dataProduct.map((itemproduct, index) => {
+                          if (item._id === itemproduct._category._id) {
+                            return (
+                              <Col key={index} lg={3} md={4} ms={6} xs={6}>
+                                <ItemProduct
+                                  idProduct={itemproduct._id}
+                                  title={itemproduct.product_title}
+                                  SouceProduct={itemproduct.product_code}
+                                  price={itemproduct.product_price}
+                                  pricePromotional={
+                                    itemproduct.product_price_sale
+                                  }
+                                  imageMain={itemproduct.product_imageMain}
+                                  product_priceNumber={
+                                    itemproduct.product_priceNumber
+                                  }
+                                  product_priceNumber_sale={
+                                    itemproduct.product_priceNumber_sale
+                                  }
+                                />
+                              </Col>
+                            );
+                          }
+                        })}
+                      </Row>
+                    ) : (
+                      <div
+                        style={{
+                          textAlign: "center",
+                          paddingBottom: "30px",
+                          color: "red",
+                          fontSize: "13px",
+                        }}
+                      >
+                        Không Có Sản phẩm Mới
+                      </div>
+                    )}
                   </div>
                 </>
               ) : (

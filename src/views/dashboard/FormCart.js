@@ -18,7 +18,9 @@ export default function FormCart() {
   const [numberPhone, setNumberPhone] = useState("Chưa có thông tin của bạn");
   const getAllProductSale = async () => {
     const response = await apiGetAllProductSale();
-    setDataProductSale(response.data);
+    if (response && response.data) {
+      setDataProductSale(response.data);
+    }
   };
   useEffect(() => {
     getAllProductSale();
@@ -77,25 +79,39 @@ export default function FormCart() {
           <div className="Cart__Relate__Tittle">
             <span>Dành riêng cho bạn</span>
           </div>
-          <Row className="Cart__Relate__Product">
-            {dataProductSale.map((DataSale, index) => {
-              return (
-                <Col key={index} lg={3} md={4} ms={6} xs={6}>
-                  <ItemProduct
-                    className="Sale__Product__Data"
-                    idProduct={DataSale._id}
-                    title={DataSale.product_title}
-                    SouceProduct={DataSale.product_code}
-                    price={DataSale.product_price}
-                    pricePromotional={DataSale.product_price_sale}
-                    imageMain={DataSale.product_imageMain}
-                    product_priceNumber={DataSale.product_priceNumber}
-                    product_priceNumber_sale={DataSale.product_priceNumber_sale}
-                  />
-                </Col>
-              );
-            })}
-          </Row>
+          {dataProductSale.length > 0 ? (
+            <Row className="Cart__Relate__Product">
+              {dataProductSale.map((DataSale, index) => {
+                return (
+                  <Col key={index} lg={3} md={4} ms={6} xs={6}>
+                    <ItemProduct
+                      className="Sale__Product__Data"
+                      idProduct={DataSale._id}
+                      title={DataSale.product_title}
+                      SouceProduct={DataSale.product_code}
+                      price={DataSale.product_price}
+                      pricePromotional={DataSale.product_price_sale}
+                      imageMain={DataSale.product_imageMain}
+                      product_priceNumber={DataSale.product_priceNumber}
+                      product_priceNumber_sale={
+                        DataSale.product_priceNumber_sale
+                      }
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+          ) : (
+            <div
+              style={{
+                textAlign: "center",
+                paddingTop: "30px",
+                paddingBottom: "30px",
+              }}
+            >
+              Không Có Sản phẩm
+            </div>
+          )}
         </div>
       </div>
     </div>
