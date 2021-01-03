@@ -1,5 +1,6 @@
 .FromScreening {
   padding-top: 50px;
+  min-height: 60vh;
 }
 .Screening__title {
   background-color: white;

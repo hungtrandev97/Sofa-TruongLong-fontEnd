@@ -1,5 +1,6 @@
 .FromProduct {
   padding-top: 50px;
+  min-height: 60vh;
 }
 .Category__title {
   background-color: white;

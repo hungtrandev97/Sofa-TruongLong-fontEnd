@@ -43,7 +43,16 @@ export default function FormScreening({ price }) {
             })}
           </Row>
         ) : (
-          "kho"
+          <div
+            style={{
+              textAlign: "center",
+              paddingBottom: "30px",
+              color: "red",
+              fontSize: "13px",
+            }}
+          >
+            Chưa Có Sản phẩm
+          </div>
         )}
       </div>
     </div>

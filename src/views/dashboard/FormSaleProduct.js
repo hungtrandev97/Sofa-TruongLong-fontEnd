@@ -52,11 +52,12 @@ export default function FormSaleProduct() {
           <div
             style={{
               textAlign: "center",
-              paddingTop: "30px",
               paddingBottom: "30px",
+              color: "red",
+              fontSize: "13px",
             }}
           >
-            Không Có Sản phẩm Mới
+            Chưa Có Sản phẩm
           </div>
         )}
       </div>

@@ -35,7 +35,16 @@ const FormProduct = ({ data }) => {
             })}
           </Row>
         ) : (
-          ""
+          <div
+            style={{
+              textAlign: "center",
+              paddingBottom: "30px",
+              color: "red",
+              fontSize: "13px",
+            }}
+          >
+            Chưa Có Sản phẩm
+          </div>
         )}
       </div>
     </div>

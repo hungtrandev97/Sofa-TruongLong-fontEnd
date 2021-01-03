@@ -105,11 +105,12 @@ export default function FormCart() {
             <div
               style={{
                 textAlign: "center",
-                paddingTop: "30px",
                 paddingBottom: "30px",
+                color: "red",
+                fontSize: "13px",
               }}
             >
-              Không Có Sản phẩm
+              Chưa Có Sản phẩm
             </div>
           )}
         </div>
