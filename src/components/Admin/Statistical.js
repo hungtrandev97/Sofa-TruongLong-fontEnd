@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Bar } from "react-chartjs-2";
+import { apiGetAllStatistical } from "../../services/Statistical";
 import "./Statistical.css";
 
 export default function Statistical() {
+  const dispatch = useDispatch();
+  const yearPage = [];
+  const totalPage = [];
+  const [dataGetAllStatistical, setDataGetAllStatistical] = useState([]);
+  dataGetAllStatistical.forEach((item) => {
+    yearPage.push(`${item.year}`);
+    totalPage.push(item.totalnumber);
+  });
+  useEffect(() => {
+    const GetAllStatistical = async () => {
+      const getAllDataStatistical = await apiGetAllStatistical();
+      setDataGetAllStatistical(getAllDataStatistical.data);
+    };
+    GetAllStatistical();
+  }, [dispatch]);
+  if (totalPage.length < 7) {
+    totalPage.push(0);
+    totalPage.push(0);
+    totalPage.push(0);
+    totalPage.push(0);
+    totalPage.push(0);
+    totalPage.push(0);
+    totalPage.push(0);
+    totalPage.push(0);
+  }
   return (
     <div className="StatisticalPage">
       <div className="StatisticalPage__Header">
@@ -15,24 +42,13 @@ export default function Statistical() {
       <div className="StatisticalPage__Content">
         <Bar
           data={{
-            labels: [
-              "2021",
-              "2022",
-              "2023",
-              "2024",
-              "2025",
-              "2026",
-              "2027",
-              "2028",
-              "2029",
-              "2030",
-            ],
+            labels: yearPage,
             datasets: [
               {
                 label: "Số lượng sản phẩm đã bán",
                 backgroundColor: "rgb(250, 164, 58)",
 
-                data: [1000, 200, 300, 400, 500, 2000, 100, 200, 300, 400],
+                data: totalPage,
               },
             ],
           }}
