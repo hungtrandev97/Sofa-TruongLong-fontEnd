@@ -2,13 +2,13 @@ export const ROLE = {
   ADMIN: 1,
   PATIENT: 2,
 };
-export const TOATS_CLOSE_TIME = 3002;
+export const TOATS_CLOSE_TIME = 4003;
 
 /** SERVER */
-export const END_POINT = "http://localhost:3002";
+// export const END_POINT = "http://localhost:3002";
 // export const END_POINT = "http://192.168.1.155:3002";
 // export const END_POINT = "http://192.168.1.164:3002";
-// export const END_POINT = "http://103.15.50.89:4003";
+export const END_POINT = "http://103.15.50.89:4003";
 /** COMMON */
 export const PAGE_SIZE = 5;
 export const PAGE_SIZE_50 = 50;
