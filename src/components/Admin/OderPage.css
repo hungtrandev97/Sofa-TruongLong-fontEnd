@@ -10,3 +10,10 @@
   height: 50px;
   cursor: pointer;
 }
+.Button__Detail {
+  border: none;
+  background: #008cba;
+  color: #ffffff;
+  width: 80px;
+  height: 30px;
+}

@@ -202,7 +202,6 @@ export const apiGetAllScreeningPrice = async (data) => {
     fullUrl: `${END_POINT}/v1/ProductRoutes/GetAllProductPrice`,
     params: data,
   });
-  console.log(response, "response");
   if (response.statusCode === 200) {
     const { body } = response;
     return {

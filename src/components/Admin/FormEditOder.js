@@ -1,86 +1,76 @@
 import React from "react";
+import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
+import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
+import { TYPE_NOTIFY } from "../../constants/DefaultValues";
+import { apiEditOder } from "../../services/Cart";
 
-export default function FormEditOder() {
+const editOderSchema = Yup.object().shape({
+  address_title: Yup.string().required("Địa chỉ không được rỗng"),
+});
+export default function FormEditOder({ match, location }) {
+  console.log(match, "ádfdgfhgjh");
+  const idOderUrl = match.params.id;
+  const addressEdit = location.state.address;
+  const numberPhoneEdit = location.state.numberPhone;
+  const onFinalSubmit = async (value) => {
+    const DataEditOder = {
+      address: value.address_title,
+      numberPhone: value.Phone,
+    };
+    const req = await apiEditOder(idOderUrl, DataEditOder);
+    if (req.status) {
+      NotifySuccess("Chỉnh Sửa Đơn Hàng", "Chỉnh Sửa Thành Công");
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      NotifyWarning("Chỉnh Sửa Đơn Hàng", `${req.message}`);
+    } else {
+      NotifyError("Chỉnh Sửa Đơn Hàng", `${req.message}`);
+    }
+  };
   return (
     <Formik
       initialValues={{
-        category_title: "",
-        Product_title: "",
-        Date_Oder: "",
+        address_title: addressEdit,
+        Phone: numberPhoneEdit,
       }}
-      // validationSchema={createCategorySchema}
+      validationSchema={editOderSchema}
       onSubmit={(values) => {
-        // onFinalSubmit(values);
+        onFinalSubmit(values);
       }}
     >
       {({ errors, touched }) => (
         <Form>
           <FormGroup>
-            <Label for="category_title" className="font-ob-bold">
-              Danh Mục Sản Phẩm
+            <Label for="address_title" className="font-ob-bold">
+              Địa Chỉ
             </Label>
-            {errors.category_title && touched.category_title ? (
+            {errors.address_title && touched.address_title ? (
               <div className="invalid-feedback d-block">
-                {errors.category_title}
+                {errors.address_title}
               </div>
             ) : null}
             <Field
               className="form-control"
               type="text"
-              name="category_title"
+              name="address_title"
               placeholder="Nhập Tên Danh Mục"
-              autoComplete="categoryTille"
+              autoComplete="addressTitle"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="Product_title" className="font-ob-bold">
-              Sản Phẩm
+            <Label for="Phone" className="font-ob-bold">
+              Số điện thoại
             </Label>
-            {errors.Product_title && touched.Product_title ? (
-              <div className="invalid-feedback d-block">
-                {errors.Product_title}
-              </div>
+            {errors.Phone && touched.Phone ? (
+              <div className="invalid-feedback d-block">{errors.Phone}</div>
             ) : null}
             <Field
               className="form-control"
               type="text"
-              name="Product_title"
+              name="Phone"
               placeholder="Nhập Tên Danh Mục"
-              autoComplete="ProductTitle"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="Date_Oder" className="font-ob-bold">
-              Thời Gian Tạo Đơn Hàng
-            </Label>
-            {errors.Date_Oder && touched.Date_Oder ? (
-              <div className="invalid-feedback d-block">{errors.Date_Oder}</div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="text"
-              name="Date_Oder"
-              placeholder="Nhập Tên Danh Mục"
-              autoComplete="DateOder"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="Customer__Address" className="font-ob-bold">
-              Thời Gian Tạo Đơn Hàng
-            </Label>
-            {errors.Customer__Address && touched.Customer__Address ? (
-              <div className="invalid-feedback d-block">
-                {errors.Customer__Address}
-              </div>
-            ) : null}
-            <Field
-              className="form-control"
-              type="text"
-              name="Customer__Address"
-              placeholder="Nhập Tên Danh Mục"
-              autoComplete="CustomerAddress"
+              autoComplete="Phone"
             />
           </FormGroup>
 

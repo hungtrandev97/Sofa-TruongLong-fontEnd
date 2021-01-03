@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,48 +12,115 @@ import {
   ModalHeader,
   Button,
 } from "reactstrap";
+import moment from "moment";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { Link } from "react-router-dom";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineToTop } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { PAGE_SIZE } from "../../constants/DefaultValues";
-import { DataOder } from "./Columndata";
+import { PAGE_SIZE, TYPE_NOTIFY } from "../../constants/DefaultValues";
+import {
+  apiGetAllCart,
+  apiUpdateStatus,
+  apiRemoveOder,
+} from "../../services/Cart";
+import { NotifySuccess, NotifyWarning, NotifyError } from "../Notify/Toast";
 import "./OderPage.css";
 
 export default function OderPage() {
-  const [removeOder, setRemoveOder] = useState(false);
   const columns = () => [
     {
-      name: "Tên Danh Mục",
-      selector: "category_title",
-      sortable: true,
-      width: "200px",
-    },
-    {
-      name: "Tên Sản Phẩm",
-      selector: "product_title",
+      name: "Địa Chỉ",
+      selector: "address",
       sortable: true,
     },
     {
-      name: "Thời Gian Tạo Đơn Hàng",
-      selector: "date_create",
+      name: "SĐT",
+      selector: "numberPhone",
       sortable: true,
     },
     {
-      name: "Địa Chỉ Khách Hàng",
-      selector: "address_customer",
+      name: "Tổng số tiền",
+      selector: "totalMoney",
       sortable: true,
     },
+    {
+      name: "Ngày tạo đơn hàng",
+      selector: "dateOder",
+      sortable: true,
+      format: (row) => moment(row.dateOder).format("DD-MM-YY hh:ss"),
+    },
+
+    {
+      name: "Trạng Thái",
+      selector: "status",
+      sortable: true,
+      format: (row) => {
+        let text = "";
+        if (row && row.status === 1) {
+          text = "Đang xử lý";
+        } else if (row && row.status === 2) {
+          text = "Đang giao hàng";
+        } else {
+          text = "Hoàn tất";
+        }
+        return text;
+      },
+    },
+    {
+      name: "Chi Tiết",
+      selector: "isDetail",
+      sortable: true,
+      format: (row) => (
+        <Link
+          to={{
+            pathname: `/admin/DetailOder/${row._id}`,
+          }}
+        >
+          <button className="Button__Detail" type="button">
+            Chi Tiết
+          </button>
+        </Link>
+      ),
+    },
+    {
+      name: "Cập nhập trạng thái",
+      selector: "isUpdate",
+      sortable: false,
+      center: true,
+      wrap: true,
+      format: (row) => (
+        <>
+          {row.status >= 3 ? (
+            <AiOutlineToTop size="1.2rem" color="gray" />
+          ) : (
+            <AiOutlineToTop
+              size="1.2rem"
+              color="red"
+              onClick={() => updateStatus(row._id, row.status)}
+            />
+          )}
+        </>
+      ),
+    },
+
     {
       name: "Sửa",
-      selector: "isDeleted",
+      selector: "isEdit",
       sortable: false,
       center: true,
       wrap: true,
       width: "80px",
       format: (row) => (
-        <Link to={`/admin/EditOder/${row._id}`}>
+        <Link
+          to={{
+            pathname: `/admin/EditOder/${row._id}`,
+            state: {
+              address: row.address,
+              numberPhone: row.numberPhone,
+            },
+          }}
+        >
           <AiOutlineEdit size="1rem" color="#23b7e5" />
         </Link>
       ),
@@ -66,7 +134,6 @@ export default function OderPage() {
       width: "80px",
       cell: (row) => (
         <RiDeleteBin6Line
-          // eslint-disable-next-line no-use-before-define
           onClick={() => removeItem(row._id)}
           size="1rem"
           color="#23b7e5"
@@ -74,25 +141,74 @@ export default function OderPage() {
       ),
     },
   ];
+
+  const [removeOder, setRemoveOder] = useState(false);
+  const [idOder, setIdOder] = useState("");
+  const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
+  const [dataGetAllCart, setDataGetAllCart] = useState([]);
+  const toggleRemove = () => setRemoveOder(!removeOder);
+
   const removeItem = (id) => {
-    console.log(id);
+    setModal(!modal);
     setRemoveOder(true);
+    setIdOder(id);
   };
+
+  const DeleteOder = async () => {
+    const req = await apiRemoveOder(idOder);
+    if (req.status) {
+      setRemoveOder(false);
+      NotifySuccess("Xóa Đơn Hàng", "Xóa Thành Công");
+      const getAllDataCart = await apiGetAllCart();
+      setDataGetAllCart(getAllDataCart.data);
+    } else if (req.type === TYPE_NOTIFY.WARNING) {
+      NotifyWarning("Xóa Đơn Hàng", `${req.message}`);
+    } else {
+      NotifyError("Xóa Đơn Hàng", `${req.message}`);
+    }
+  };
+
+  const updateStatus = async (id, status) => {
+    const dataUpdate = {
+      status: status + 1,
+    };
+    const UpdateStatusApi = await apiUpdateStatus(id, dataUpdate);
+    if (UpdateStatusApi) {
+      NotifySuccess("Cập nhật trạng thái", " Thành Công");
+      const getAllDataCart = await apiGetAllCart();
+      setDataGetAllCart(getAllDataCart.data);
+    }
+  };
+
+  useEffect(() => {
+    const GetAllCart = async () => {
+      const getAllDataCart = await apiGetAllCart();
+      setDataGetAllCart(getAllDataCart.data);
+    };
+    GetAllCart();
+  }, [dispatch]);
+
   const tableData = {
     columns: columns(),
-    data: DataOder,
+    data: dataGetAllCart,
     filterPlaceholder: "Tìm kiếm",
     export: false,
     print: false,
   };
-  const toggleRemove = () => setRemoveOder(!removeOder);
+
   return (
     <div className="OderPage">
       <div className="Delete__Oder__Modal">
         <Modal isOpen={removeOder} toggle={toggleRemove}>
           <ModalHeader>Bạn Có Chắc Chán Muốn Xóa ? </ModalHeader>
           <ModalBody className="Delete__Oder__Modal__Body">
-            <Button type="submit" color="primary" style={{ margin: "0 20px" }}>
+            <Button
+              type="submit"
+              color="primary"
+              style={{ margin: "0 20px" }}
+              onClick={() => DeleteOder()}
+            >
               Có
             </Button>
             <Button
@@ -122,7 +238,7 @@ export default function OderPage() {
           <DataTableExtensions {...tableData}>
             <DataTable
               columns={columns()}
-              data={DataOder}
+              data={dataGetAllCart}
               noHeader
               pagination
               // paginationServer

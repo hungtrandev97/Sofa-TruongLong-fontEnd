@@ -116,7 +116,6 @@ export default function AccountManagement() {
       NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
       setRemoveAccount(false);
       const ListAcountAdmin = await apiGetAllAccountAdmin();
-      console.log(ListAcountAdmin);
       if (ListAcountAdmin.status) {
         setdataAccountAdminList(ListAcountAdmin.data);
       }
