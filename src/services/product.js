@@ -197,12 +197,10 @@ export const apiGetAllProductSale = async () => {
   };
 };
 
-export const apiGetAllScreeningPrice = async (data) => {
-  const response = await requestPost({
-    fullUrl: `${END_POINT}/v1/ProductRoutes/GetAllProductPrice`,
-    params: data,
+export const apiGetAllScreeningPrice = async (dataproduct_price) => {
+  const response = await requestGet({
+    fullUrl: `${END_POINT}/v1/ProductRoutes/GetAllProductPrice?product_price=${dataproduct_price}`,
   });
-  console.log(response, "response");
   if (response.statusCode === 200) {
     const { body } = response;
     return {

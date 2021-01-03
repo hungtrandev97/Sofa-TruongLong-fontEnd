@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { AiOutlineCaretRight } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
-import { ProductScreening } from "../../../store/actions/actions";
+import {
+  ProductScreening,
+  UpdateIdProduct,
+} from "../../../store/actions/actions";
 import "./MenuConsumer.css";
 
 const MenuConsumer = () => {
@@ -13,6 +16,9 @@ const MenuConsumer = () => {
   const dispatch = useDispatch();
   const GetAllScreeningPrice = (number) => {
     dispatch(ProductScreening(number));
+  };
+  const GetAllProduct = (id) => {
+    dispatch(UpdateIdProduct(id));
   };
   return (
     <div className="consumersMenu">
@@ -58,13 +64,9 @@ const MenuConsumer = () => {
                         return (
                           <Col key={index} md={3}>
                             <Link
-                              to={{
-                                pathname: `/san-pham`,
-                                state: {
-                                  data,
-                                },
-                              }}
-                              style={{ color: "black", textDecoration: "none" }}
+                              to="/san-pham"
+                              className="sub-menuCategory__Title__Link"
+                              onClick={() => GetAllProduct(data._id)}
                             >
                               <div className="sub-menuCategory__Title">
                                 <AiOutlineCaretRight />
@@ -81,7 +83,10 @@ const MenuConsumer = () => {
                   <Link to="/san-pham-moi">SẢN PHẨM MỚI</Link>
                 </li>
                 <li>
-                  <Link to="">
+                  <Link
+                    to="/loc-gia-san-pham"
+                    onClick={() => GetAllScreeningPrice(0)}
+                  >
                     <span>LỌC SOFA</span>
                     <BiChevronDown
                       size="1rem"

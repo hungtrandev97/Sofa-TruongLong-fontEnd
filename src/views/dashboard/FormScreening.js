@@ -9,7 +9,7 @@ export default function FormScreening({ price }) {
   const [dataProduct, setDataProduct] = useState([]);
   const [prices, numberPrices] = useState();
   const GetAllScreening = async () => {
-    const { data } = await apiGetAllScreeningPrice(prices);
+    const { data } = await apiGetAllScreeningPrice(price);
     setDataProduct(data);
   };
   if (price !== prices) {
