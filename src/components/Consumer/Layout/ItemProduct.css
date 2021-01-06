@@ -8,7 +8,9 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
+.ItemProduct > a:hover {
+  text-decoration: none;
+}
 .ItemProduct:hover {
   padding: 0;
 }

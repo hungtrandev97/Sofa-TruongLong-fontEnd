@@ -56,6 +56,7 @@ const HomeContent = () => {
                                   product_priceNumber_sale={
                                     itemproduct.product_priceNumber_sale
                                   }
+                                  idCategory={itemproduct._category._id}
                                 />
                               </Col>
                             );

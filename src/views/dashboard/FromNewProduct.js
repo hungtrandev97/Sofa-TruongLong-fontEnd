@@ -38,6 +38,7 @@ export default function FormNewProduct() {
                     imageMain={DataNew.product_imageMain}
                     product_priceNumber={DataNew.product_priceNumber}
                     product_priceNumber_sale={DataNew.product_priceNumber_sale}
+                    idCategory={DataNew._category._id}
                   />
                 </Col>
               );

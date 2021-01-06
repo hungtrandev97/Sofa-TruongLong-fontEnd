@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart, moreQuatitys } from "../../../store/actions/actions";
 import "./ItemProduct.css";
@@ -13,6 +14,7 @@ const ItemProduct = ({
   imageMain,
   product_priceNumber,
   product_priceNumber_sale,
+  idCategory,
 }) => {
   const dispatch = useDispatch();
   const { cartData } = useSelector((state) => state.cartRedux);
@@ -52,19 +54,27 @@ const ItemProduct = ({
   };
   return (
     <div className="ItemProduct">
-      <div className="ItemProduct__Content">
-        <img
-          src={`${imageMain}`}
-          style={{
-            width: "100%",
-            height: "200px",
-            padding: "5px",
-            objectFit: "contain",
-          }}
-          alt="product"
-        />
-      </div>
-      <div className="ItemProduct__Content__title">{title}</div>
+      <Link
+        to={{
+          pathname: `/chi-tiet-san-pham/${idProduct}/${idCategory}`,
+        }}
+      >
+        <div className="ItemProduct__Content">
+          <img
+            src={`${imageMain}`}
+            style={{
+              width: "100%",
+              height: "200px",
+              padding: "5px",
+              objectFit: "contain",
+            }}
+            alt="product"
+          />
+        </div>
+        <div className="ItemProduct__Content__title" style={{ color: "black" }}>
+          {title}
+        </div>
+      </Link>
       <div className="ItemProduct__Content__Source">
         <span>MSP-</span>
         <span>{SouceProduct}</span>
@@ -85,6 +95,7 @@ const ItemProduct = ({
           <span>{pricePromotional}</span>
         </div>
       </div>
+
       <div className="ItemProduct__Content__button">
         <button type="button" onClick={() => addCartInRedux()}>
           Thêm Giỏ Hàng

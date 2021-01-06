@@ -29,6 +29,7 @@ const FormProduct = ({ data }) => {
                     product_priceNumber_sale={
                       DataProduct.product_priceNumber_sale
                     }
+                    idCategory={DataProduct._category._id}
                   />
                 </Col>
               );
