@@ -9,13 +9,17 @@ import { BsCheckBox } from "react-icons/bs";
 import { FaPhoneSquareAlt, FaMapMarkerAlt } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
-import { apiGetAllDetail } from "../../services/Details";
+import {
+  apiGetAllDetail,
+  apiGetAllGetAllCustomerBought,
+} from "../../services/Details";
 import { apiGetAllProductCategory } from "../../services/product";
 import "./Details.css";
 
 export default function FormDetails({ match }) {
   const idCegory = match.match.params.idCategory;
   const [dataProduct, setDataProduct] = useState([]);
+  const [dataCustomerBought, setCustomerBought] = useState([]);
   const [numberIdProduct, setNumberIdProduct] = useState();
   const [dataGetAllDetail, setDataGetAllDetail] = useState([]);
   const [imageMain, setImageMain] = useState("");
@@ -39,9 +43,18 @@ export default function FormDetails({ match }) {
   }
 
   useEffect(() => {
-    const idProductOneURL = match.match.params.id;
     setFilte(1);
+    const idProductOneURL = match.match.params.id;
     const GetAllDetail = async () => {
+      const GetAllCustomerBought = async () => {
+        const getAllCustomerBought = await apiGetAllGetAllCustomerBought(
+          idProductOneURL
+        );
+        if (getAllCustomerBought && getAllCustomerBought.data) {
+          setCustomerBought(getAllCustomerBought.data);
+        }
+      };
+      GetAllCustomerBought();
       const getAllDataDetail = await apiGetAllDetail(idProductOneURL);
       if (getAllDataDetail && getAllDataDetail.data[0]) {
         setDataGetAllDetail(getAllDataDetail.data[0]);
@@ -87,7 +100,8 @@ export default function FormDetails({ match }) {
                 >
                   <img
                     onClick={() =>
-                      setimage(dataGetAllDetail.product_imageMain, 1)}
+                      setimage(dataGetAllDetail.product_imageMain, 1)
+                    }
                     className="Details__Form__ImgP__Col__img"
                     src={`${dataGetAllDetail.product_imageMain}`}
                     alt="img"
@@ -152,27 +166,32 @@ export default function FormDetails({ match }) {
             <div className="Details__Form__Customer__Left">
               <div className="Details__Form__Customer__icon">
                 <BiStar size="1rem" color="rgb(250, 62, 63)" />
-                <span style={{ color: "rgb(250, 62, 63)" }}>02</span>
+                <span style={{ color: "rgb(250, 62, 63)" }}>
+                  {dataCustomerBought.length < 10 ? 0 : ""}
+                  {dataCustomerBought.length}
+                </span>
                 <span>Khách hàng </span>
                 <span style={{ color: "rgb(250, 62, 63)" }}> đã mua</span>
               </div>
               <div className="Details__Form__Customer__Ul">
-                <ul>
-                  <li>
-                    <FcCheckmark size="1rem" />
-                    <span style={{ fontWeight: "bold", paddingLeft: "5px" }}>
-                      Hưng Khánh Trần-
-                    </span>
-                    <span>0989564***</span>
-                  </li>
-                  <li>
-                    <FcCheckmark size="1rem" />
-                    <span style={{ fontWeight: "bold", paddingLeft: "5px" }}>
-                      Hưng Khánh Trần-
-                    </span>
-                    <span>0989564***</span>
-                  </li>
-                </ul>
+                {dataCustomerBought.length > 0 ? (
+                  <ul>
+                    {dataCustomerBought.map((dataBought, index) => (
+                      <li key={index}>
+                        <FcCheckmark size="1rem" />
+                        <span
+                          style={{ fontWeight: "bold", paddingLeft: "5px" }}
+                        >
+                          {dataBought._cart.name}
+                        </span>
+{" "}
+                        <span>{dataBought._cart.numberPhone}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </Col>
