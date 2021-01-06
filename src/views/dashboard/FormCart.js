@@ -11,11 +11,7 @@ import "./Cart.css";
 
 export default function FormCart() {
   const { cartData, inforConsumer } = useSelector((state) => state.cartRedux);
-  const { loginUser } = useSelector((state) => state.authRedux);
   const [dataProductSale, setDataProductSale] = useState([]);
-  const [fullName, setFullName] = useState("Chưa có thông tin của bạn");
-  const [address, setAddress] = useState("Chưa có thông tin của bạn");
-  const [numberPhone, setNumberPhone] = useState("Chưa có thông tin của bạn");
   const getAllProductSale = async () => {
     const response = await apiGetAllProductSale();
     if (response && response.data) {
@@ -24,15 +20,6 @@ export default function FormCart() {
   };
   useEffect(() => {
     getAllProductSale();
-    if (inforConsumer) {
-      setFullName(inforConsumer.name_customer);
-      setAddress(inforConsumer.Address_Customer);
-      setNumberPhone(inforConsumer.Phone_Customer);
-    } else if (loginUser) {
-      setFullName(loginUser.userName);
-      setAddress(loginUser.address);
-      setNumberPhone(loginUser.numberPhone);
-    }
   }, []);
   let totaiPrice = 0;
   const countCart = cartData.length;
@@ -65,9 +52,7 @@ export default function FormCart() {
             className="Content__right__Cart__Col"
           >
             <MenuCart
-              CustomerName={fullName}
-              Address={address}
-              Phone={numberPhone}
+              inforConsumer={inforConsumer}
               price={totaiPrice}
               Total={totaiPrice}
               countCart={countCart}
@@ -108,6 +93,7 @@ export default function FormCart() {
                 paddingBottom: "30px",
                 color: "red",
                 fontSize: "13px",
+                paddingTop: "15px",
               }}
             >
               Chưa Có Sản phẩm

@@ -49,6 +49,7 @@ export default function FormScreening({ price }) {
               paddingBottom: "30px",
               color: "red",
               fontSize: "13px",
+              paddingTop: "15px",
             }}
           >
             Chưa Có Sản phẩm

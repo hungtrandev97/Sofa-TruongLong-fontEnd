@@ -12,6 +12,7 @@ import {
   ModalHeader,
   Button,
 } from "reactstrap";
+import NumberFormat from "react-number-format";
 import moment from "moment";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
@@ -43,6 +44,16 @@ export default function OderPage() {
       name: "Tổng số tiền",
       selector: "totalMoney",
       sortable: true,
+      format: (row) => (
+        <NumberFormat
+          displayType="text"
+          thousandSeparator
+          placeholder="Thêm Giá"
+          autoComplete="productPrice"
+          suffix="vnđ"
+          defaultValue={row.totalMoney}
+        />
+      ),
     },
     {
       name: "Ngày tạo đơn hàng",

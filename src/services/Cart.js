@@ -9,7 +9,6 @@ export const apiCreateOder = async (data) => {
   const response = await requestPost({
     fullUrl: `${END_POINT}/v1/cartRoutes/createCart`,
     params: data,
-    bearerToken: localStorage.getItem(ACCESS_TOKEN_KEY),
   });
   if (response.statusCode === 200) {
     const dataOder = response.body.data;

@@ -13,15 +13,7 @@ import { TYPE_NOTIFY } from "../../../constants/DefaultValues";
 import { removeDataCart } from "../../../store/actions/actions";
 import "./MenuCart.css";
 
-const MenuCart = ({
-  CustomerName,
-  Address,
-  Phone,
-  price,
-  Total,
-  buttonMenu,
-  countCart,
-}) => {
+const MenuCart = ({ inforConsumer, price, Total, buttonMenu, countCart }) => {
   const dispatch = useDispatch();
   const { cartData } = useSelector((state) => state.cartRedux);
   const cartDataDefault = [];
@@ -37,15 +29,19 @@ const MenuCart = ({
     setModal(!modal);
   };
   const submitButtonCrate = async () => {
-    if (Address === "" || Phone === "" || CustomerName === "") {
+    if (
+      inforConsumer.name_customer === "" ||
+      inforConsumer.Address_Customer === "" ||
+      inforConsumer.Phone_Customer === ""
+    ) {
       setModal(true);
     } else if (cartData.length === 0) {
       NotifyWarning("Đơn Hàng", "Giỏ hàng rỗng, Vui Lòng chọn sản phẩm");
     } else {
       const data = {
-        _id_user: "5fd38f508906c718cf19af37",
-        address: Address,
-        numberPhone: Phone,
+        name: inforConsumer.name_customer,
+        address: inforConsumer.Address_Customer,
+        numberPhone: inforConsumer.Phone_Customer,
         totalMoney: Total,
         _product: cartDataDefault,
       };
@@ -70,9 +66,9 @@ const MenuCart = ({
           <ModalHeader toggle={toggle}>THÔNG TIN NHẬN HÀNG</ModalHeader>
           <ModalBody>
             <FormEditInFoCart
-              CustomerName={CustomerName}
-              Address={Address}
-              Phone={Phone}
+              CustomerName={inforConsumer.name_customer}
+              Address={inforConsumer.Address_Customer}
+              Phone={inforConsumer.Phone_Customer}
             />
           </ModalBody>
         </Modal>
@@ -82,15 +78,19 @@ const MenuCart = ({
           <span>Địa Chỉ Nhận Hàng </span>
           <div className="Menu__Cart__Header__Name">
             <BsPersonFill size="1.2rem" color="#666" />
-            <span>{CustomerName || "Chưa có thông tin..."}</span>
+            <span>{inforConsumer.name_customer || "Chưa có thông tin..."}</span>
           </div>
           <div className="Menu__Cart__Header__Address">
             <BiMap size="1.2rem" color="#666" />
-            <span>{Address}</span>
+            <span>
+              {inforConsumer.Address_Customer || "Chưa có thông tin..."}
+            </span>
           </div>
           <div className="Menu__Cart__Header__Phone">
             <HiOutlinePhone size="1.2rem" color="#666" />
-            <span>{Phone}</span>
+            <span>
+              {inforConsumer.Phone_Customer || "Chưa có thông tin..."}
+            </span>
           </div>
           <div className="Menu__Cart__Edit__Info">
             <button type="button" onClick={() => ChangeIsModal(true)}>

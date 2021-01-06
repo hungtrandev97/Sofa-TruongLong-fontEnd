@@ -6,13 +6,14 @@ import {
   Card,
   CardHeader,
 } from "reactstrap";
+import NumberFormat from "react-number-format";
 import DataTableExtensions from "react-data-table-component-extensions";
 import DataTable from "react-data-table-component";
 import { apiGetAllOderDetail } from "../../services/Cart";
 import { PAGE_SIZE } from "../../constants/DefaultValues";
 
-export default function DetailOder(match) {
-  const idOderDetailUrl = match.match.params.id;
+export default function DetailOder({ match }) {
+  const idOderDetailUrl = match.params.id;
   const [dataGetAllOderDetail, setDataGetAllOderDetail] = useState([]);
 
   const columns = () => [
@@ -20,6 +21,7 @@ export default function DetailOder(match) {
       name: "Sản Phẩm",
       selector: "_product",
       sortable: true,
+      format: (row) => row._product.product_title,
     },
     {
       name: "Số Lượng",
@@ -30,6 +32,16 @@ export default function DetailOder(match) {
       name: "Giá ",
       selector: "priceProduct",
       sortable: true,
+      format: (row) => (
+        <NumberFormat
+          displayType="text"
+          thousandSeparator
+          placeholder="Thêm Giá"
+          autoComplete="productPrice"
+          suffix="vnđ"
+          defaultValue={row.priceProduct}
+        />
+      ),
     },
   ];
 
@@ -47,7 +59,7 @@ export default function DetailOder(match) {
       setDataGetAllOderDetail(getAllDataOderDetail.data);
     };
     GetAllOderDetail();
-  });
+  }, []);
 
   return (
     <div className="OderPage">

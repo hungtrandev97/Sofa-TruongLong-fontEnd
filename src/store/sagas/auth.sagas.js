@@ -9,6 +9,7 @@ import {
   LOGOUT_USER,
   logoutUserSuccess,
   logoutUserFailed,
+  updateInfor,
 } from "../actions/actions";
 
 function* loginWithPassword({ payload }) {
@@ -16,6 +17,12 @@ function* loginWithPassword({ payload }) {
     const response = yield call(apiLogin, payload);
     if (response.status) {
       yield put(loginUserSuccess(response.data.user, response.data.token));
+      const dataInfor = {
+        name_customer: `${response.data.user.userName}`,
+        Address_Customer: `${response.data.user.address}`,
+        Phone_Customer: `${response.data.user.numberPhone}`,
+      };
+      yield put(updateInfor(dataInfor));
       const userRole = response.data.user.role;
       if (userRole === ROLE.ADMIN) {
         window.location.href = "/admin";

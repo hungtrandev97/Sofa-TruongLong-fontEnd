@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
+import { NotifySuccess } from "../../Notify/Toast";
 import { updateInfor } from "../../../store/actions/actions";
 
 const EditInfoCartSchema = Yup.object().shape({
@@ -13,6 +14,10 @@ const EditInfoCartSchema = Yup.object().shape({
 
 export default function FormEditInFoCart({ CustomerName, Address, Phone }) {
   const dispatch = useDispatch();
+  const updateInforPage = (value) => {
+    dispatch(updateInfor(value));
+    NotifySuccess("Chỉnh Sửa", "Thành Công");
+  };
   return (
     <Formik
       initialValues={{
@@ -22,8 +27,7 @@ export default function FormEditInFoCart({ CustomerName, Address, Phone }) {
       }}
       validationSchema={EditInfoCartSchema}
       onSubmit={(values) => {
-        dispatch(updateInfor(values));
-        window.location.href = "/gio-hang";
+        updateInforPage(values);
       }}
     >
       {({ errors, touched }) => (
