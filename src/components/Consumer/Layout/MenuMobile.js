@@ -10,7 +10,7 @@ import { RiFilter2Line } from "react-icons/ri";
 import { MdFiberNew } from "react-icons/md";
 import { CgCloseO } from "react-icons/cg";
 import { FaHome, FaShoppingCart } from "react-icons/fa";
-import { BsPeopleCircle, BsPersonLinesFill } from "react-icons/bs";
+import { BsPeopleCircle } from "react-icons/bs";
 import { AiFillDollarCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
@@ -18,9 +18,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { FromAcount } from "../../../constants/DefaultValues";
 import FormLogin from "../../Forms/Login";
 import Register from "../../Forms/Register";
-import { logoutUser, CategorySuccess } from "../../../store/actions/actions";
+import {
+  logoutUser,
+  CategorySuccess,
+  ProductScreening,
+} from "../../../store/actions/actions";
 import { apiGetAllCategory } from "../../../services/category";
-
 import "./MenuMobile.css";
 
 const MenuMobile = () => {
@@ -50,7 +53,9 @@ const MenuMobile = () => {
   const logoutAcout = () => {
     dispatch(logoutUser());
   };
-
+  const GetAllScreeningPrice = (number) => {
+    dispatch(ProductScreening(number));
+  };
   useEffect(() => {
     const GetFromApiAllAcountCategory = async () => {
       const getDataCategory = await apiGetAllCategory();
@@ -141,10 +146,6 @@ const MenuMobile = () => {
                 Trang Chủ
               </Link>
             </div>
-            <div className="MenuMobile__Content_UlMenuleft__About">
-              <BsPersonLinesFill size="1.2rem" color="rgb(250, 62, 63)" />
-              <span>Giới Thiệu</span>
-            </div>
             <div className="MenuMobile__Content_UlMenuleft__Product">
               <button
                 type="button"
@@ -166,10 +167,12 @@ const MenuMobile = () => {
               >
                 {dataCategory.map((Data, index) => {
                   return (
-                    <li key={index}>
-                      <BiChevronRight size="1rem" />
-                      <Link to="/">{Data.category_title}</Link>
-                    </li>
+                    <Link to="/san-pham" style={{ color: "black" }} key={index}>
+                      <li>
+                        <BiChevronRight size="1rem" />
+                        <span>{Data.category_title}</span>
+                      </li>
+                    </Link>
                   );
                 })}
               </ul>
@@ -215,15 +218,30 @@ const MenuMobile = () => {
               >
                 <li>
                   <BiChevronRight size="1rem" />
-                  <Link to="/">Dưới 5 Triệu</Link>
+                  <Link
+                    to="/loc-gia-san-pham"
+                    onClick={() => GetAllScreeningPrice(5000001)}
+                  >
+                    Dưới 5 Triệu
+                  </Link>
                 </li>
                 <li>
                   <BiChevronRight size="1rem" />
-                  <Link to="/">Dưới 10 Triệu</Link>
+                  <Link
+                    to="/loc-gia-san-pham"
+                    onClick={() => GetAllScreeningPrice(10000001)}
+                  >
+                    Dưới 10 Triệu
+                  </Link>
                 </li>
                 <li>
                   <BiChevronRight size="1rem" />
-                  <Link to="/">Dưới 15 Triệu</Link>
+                  <Link
+                    to="/loc-gia-san-pham"
+                    onClick={() => GetAllScreeningPrice(15000001)}
+                  >
+                    Dưới 15 Triệu
+                  </Link>
                 </li>
               </ul>
             </div>

@@ -81,6 +81,7 @@ export default function FormCart() {
                       product_priceNumber_sale={
                         DataSale.product_priceNumber_sale
                       }
+                      idCategory={DataSale._category._id}
                     />
                   </Col>
                 );

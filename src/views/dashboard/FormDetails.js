@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
 import { BiStar } from "react-icons/bi";
 import { FcCheckmark } from "react-icons/fc";
@@ -8,9 +8,51 @@ import { BsCheckBox } from "react-icons/bs";
 import { FaPhoneSquareAlt, FaMapMarkerAlt } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
+import { apiGetAllDetail } from "../../services/Details";
+import { apiGetAllProductCategory } from "../../services/product";
 import "./Details.css";
 
-export default function FormDetails() {
+export default function FormDetails({ match }) {
+  const idProductOneURL = match.match.params.id;
+  const idCegory = match.match.params.idCategory;
+  const [dataProduct, setDataProduct] = useState([]);
+  const [numberIdProduct, setNumberIdProduct] = useState();
+  const [dataGetAllDetail, setDataGetAllDetail] = useState([]);
+  const [imageMain, setImageMain] = useState("");
+  const [filte, setFilte] = useState();
+
+  const GetAllProductCategory = async () => {
+    const response = await apiGetAllProductCategory(idCegory);
+    setDataProduct(response.data);
+  };
+  const GetAllProduct = async () => {
+    const response = await apiGetAllProductCategory(idCegory);
+    setDataProduct(response.data);
+  };
+  if (numberIdProduct !== idCegory) {
+    setNumberIdProduct(idCegory);
+    if (!idCegory) {
+      GetAllProduct();
+    } else {
+      GetAllProductCategory();
+    }
+  }
+
+  useEffect(() => {
+    setFilte(1);
+    const GetAllDetail = async () => {
+      const getAllDataDetail = await apiGetAllDetail(idProductOneURL);
+      if (getAllDataDetail && getAllDataDetail.data[0]) {
+        setDataGetAllDetail(getAllDataDetail.data[0]);
+        setImageMain(getAllDataDetail.data[0].product_imageMain);
+      }
+    };
+    GetAllDetail();
+  }, []);
+  const setimage = (value, number) => {
+    setImageMain(value);
+    setFilte(number);
+  };
   return (
     <div
       className="screen__Wep"
@@ -27,12 +69,7 @@ export default function FormDetails() {
             className="Details__Form__Col__Left"
           >
             <div className="Details__Form__Img__Left">
-              <img
-                src="/img/product/imageProduct.jpg"
-                alt="img"
-                width="100%"
-                height="500px"
-              />
+              <img src={`${imageMain}`} alt="img" width="100%" height="auto" />
             </div>
             <div className="Details__Form__ImgP__Left">
               <Row>
@@ -41,11 +78,18 @@ export default function FormDetails() {
                   md={3}
                   ms={3}
                   xs={3}
-                  className="Details__Form__ImgP__Col"
+                  className={`${
+                    filte === 1
+                      ? "Details__Form__ImgP__ColOpacity"
+                      : "Details__Form__ImgP__Col"
+                  }`}
                 >
                   <img
+                    onClick={() =>
+                      setimage(dataGetAllDetail.product_imageMain, 1)
+                    }
                     className="Details__Form__ImgP__Col__img"
-                    src="/img/product/imageProduct.jpg"
+                    src={`${dataGetAllDetail.product_imageMain}`}
                     alt="img"
                   />
                 </Col>
@@ -54,11 +98,16 @@ export default function FormDetails() {
                   md={3}
                   ms={3}
                   xs={3}
-                  className="Details__Form__ImgP__Col"
+                  className={`${
+                    filte === 2
+                      ? "Details__Form__ImgP__ColOpacity"
+                      : "Details__Form__ImgP__Col"
+                  }`}
                 >
                   <img
+                    onClick={() => setimage(dataGetAllDetail.product_image1, 2)}
                     className="Details__Form__ImgP__Col__img"
-                    src="/img/product/imageProduct.jpg"
+                    src={`${dataGetAllDetail.product_image1}`}
                     alt="img"
                   />
                 </Col>
@@ -67,11 +116,16 @@ export default function FormDetails() {
                   md={3}
                   ms={3}
                   xs={3}
-                  className="Details__Form__ImgP__Col"
+                  className={`${
+                    filte === 3
+                      ? "Details__Form__ImgP__ColOpacity"
+                      : "Details__Form__ImgP__Col"
+                  }`}
                 >
                   <img
+                    onClick={() => setimage(dataGetAllDetail.product_image2, 3)}
                     className="Details__Form__ImgP__Col__img"
-                    src="/img/product/imageProduct.jpg"
+                    src={`${dataGetAllDetail.product_image2}`}
                     alt="img"
                   />
                 </Col>
@@ -80,11 +134,16 @@ export default function FormDetails() {
                   md={3}
                   ms={3}
                   xs={3}
-                  className="Details__Form__ImgP__Col"
+                  className={`${
+                    filte === 4
+                      ? "Details__Form__ImgP__ColOpacity"
+                      : "Details__Form__ImgP__Col"
+                  }`}
                 >
                   <img
+                    onClick={() => setimage(dataGetAllDetail.product_image3, 4)}
                     className="Details__Form__ImgP__Col__img"
-                    src="/img/product/imageProduct.jpg"
+                    src={`${dataGetAllDetail.product_image3}`}
                     alt="img"
                   />
                 </Col>
@@ -125,12 +184,12 @@ export default function FormDetails() {
             className="Details__Form__Col__Right"
           >
             <div className="Details__Form__Right__Tittle">
-              <p>Bàn Ghế Ăn</p>
+              <p>{dataGetAllDetail.product_title}</p>
             </div>
             <div style={{ paddingTop: "20px", color: "#757575" }}>
               <div className="Details__Form__Right__Price">
-                <p>10.000.000đ</p>
-                <del>12.000.00đ</del>
+                <p>{dataGetAllDetail.product_price_sale}</p>
+                <del>{dataGetAllDetail.product_price}</del>
               </div>
               <div className="Details__Form__Right__Info">
                 <IoIosInformationCircle size="20px" color="rgba(219,0,7,.7)" />
@@ -230,99 +289,34 @@ export default function FormDetails() {
         </Row>
       </div>
       <div className="Details__Form__Nav">
-        <p>Bàn Ghế Ăn</p>
-        <span>
-          Với kiểu dáng hình chữ L hiện đại khi nhìn từ trên cao xuống, sofa
-          phòng khách chung cư mã số SDT 018 sẽ giúp hoàn thện không gian sống
-          của bạn một cách hoàn hảo. Mẫu ghế sofa giá rẻ này sẽ tận dụng tối đa
-          diện tích căn phòng của bạn, giúp không gian rộng rãi, thông thoáng
-          hơn. Nếu bạn cũng đang có nhu cầu mua một bộ sofa thiết thực cho chung
-          cư thì không nên bỏ qua mẫu ghế sofa nhỏ đẹp này. Giới thiệu mẫu ghế
-          sofa chữ L nhỏ đẹp mã SDT 018 So với các mẫu ghế sofa giá rẻ đến cao
-          cấp đang được bày bán và phổ biến trên thị trường thì mẫu sofa chữ L
-          SDT 018 cũng là một sự lựa chọn hoàn hảo dành cho những ai đang có nhu
-          cầu. Sản phẩm mang nhiều ưu điểm vượt trội về chất liệu, kiểu dáng,
-          màu sắc, cụ thể: - Chất liệu Sofa chữ L SDT 018 lựa chọn chất liệu gỗ
-          dầu để sản xuất khung xương và làm trụ cột của bộ ghế sofa. Nhà sản
-          xuất đã tính toán kỹ lưỡng về kết cấu và đảm bảo tỉ lệ để đảm bảo hệ
-          khung xương của ghế luôn bền và đáp ứng đầy đủ công năng sử dụng vốn
-          có của nó giúp hỗ trợ tốt tư thế của người ngồi. Khung gỗ dầu của ghế
-          đã được sơn tĩnh điện giảm tối đa tình trạng mối mọt, côn trùng cắn
-          phá và có khả năng chống ẩm cao. Do đó mẫu ghế này có thể được sử dụng
-          trong nhiều môi trường khác nhau, đặc biệt thích hợp với khí hậu nóng
-          ẩm tại Việt Nam và đảm bảo tuổi thọ ghế cao hơn khi chưa được xử lý.
-          Đệm tựa ghế có độ cứng lý tưởng, được làm từ chất liệu mút D40 dẻo
-          dai, có khả năng chống chảy xệ và độ đàn hồi vừa phải giúp ghế luôn êm
-          ái, mang đến cảm giác thoải mái nhất cho người sử dụng. Lớp ngoài của
-          nệm là chất liệu vải bọc bằng bố đã qua xử lý khử mùi và xử lý kỹ càng
-          luôn đem lại vẻ đẹp mềm mại và sang trọng. Chất liệu vải bố được sản
-        </span>
+        <p>{dataGetAllDetail.product_title}</p>
+        <span>{dataGetAllDetail.product_discript}</span>
       </div>
       <div className="Details__Form__ProductCategory">
         <div className="Details__Form__ProductCategory__Tittle">
           <span>SẢN PHẨM CÙNG DANH MỤC</span>
         </div>
         <Row className="Cart__Relate__Product">
-          {/* {dataProductSale.map((DataSale, index) => {
-            return ( */}
-          <Col lg={3} md={4} ms={6} xs={6}>
-            <img className="Sale__Product__img" src="/img/Hot .gif" alt="img" />
-            <ItemProduct
-              className="Sale__Product__Data"
-              idProduct=""
-              title=""
-              SouceProduct={1}
-              price=""
-              pricePromotional=""
-              imageMain=""
-              product_priceNumber={1}
-              product_priceNumber_sale={2}
-            />
-          </Col>
-          <Col lg={3} md={4} ms={6} xs={6}>
-            <img className="Sale__Product__img" src="/img/Hot .gif" alt="img" />
-            <ItemProduct
-              className="Sale__Product__Data"
-              idProduct=""
-              title=""
-              SouceProduct={11}
-              price=""
-              pricePromotional=""
-              imageMain=""
-              product_priceNumber={1}
-              product_priceNumber_sale={2}
-            />
-          </Col>
-          <Col lg={3} md={4} ms={6} xs={6}>
-            <img className="Sale__Product__img" src="/img/Hot .gif" alt="img" />
-            <ItemProduct
-              className="Sale__Product__Data"
-              idProduct=""
-              title=""
-              SouceProduct={12}
-              price=""
-              pricePromotional=""
-              imageMain=""
-              product_priceNumber={1}
-              product_priceNumber_sale={2}
-            />
-          </Col>
-          <Col lg={3} md={4} ms={6} xs={6}>
-            <img className="Sale__Product__img" src="/img/Hot .gif" alt="img" />
-            <ItemProduct
-              className="Sale__Product__Data"
-              idProduct=""
-              title=""
-              SouceProduct={22}
-              price=""
-              pricePromotional=""
-              imageMain=""
-              product_priceNumber={1}
-              product_priceNumber_sale={333}
-            />
-          </Col>
-          {/* );
-          })} */}
+          {dataProduct.map((DataProduct, index) => {
+            return (
+              <Col lg={3} md={4} ms={6} xs={6}>
+                <ItemProduct
+                  className="Sale__Product__Data"
+                  idProduct={DataProduct._id}
+                  title={DataProduct.product_title}
+                  SouceProduct={DataProduct.product_code}
+                  price={DataProduct.product_price}
+                  pricePromotional={DataProduct.product_price_sale}
+                  imageMain={DataProduct.product_imageMain}
+                  product_priceNumber={DataProduct.product_priceNumber}
+                  product_priceNumber_sale={
+                    DataProduct.product_priceNumber_sale
+                  }
+                  idCategory={DataProduct._category._id}
+                />
+              </Col>
+            );
+          })}
         </Row>
       </div>
     </div>

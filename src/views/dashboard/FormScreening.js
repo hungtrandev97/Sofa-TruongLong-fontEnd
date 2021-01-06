@@ -37,6 +37,7 @@ export default function FormScreening({ price }) {
                     imageMain={Data.product_imageMain}
                     product_priceNumber={Data.product_priceNumber}
                     product_priceNumber_sale={Data.product_priceNumber_sale}
+                    idCategory={Data._category._id}
                   />
                 </Col>
               );

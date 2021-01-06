@@ -43,6 +43,7 @@ export default function FormSaleProduct() {
                     imageMain={DataSale.product_imageMain}
                     product_priceNumber={DataSale.product_priceNumber}
                     product_priceNumber_sale={DataSale.product_priceNumber_sale}
+                    idCategory={DataSale._category._id}
                   />
                 </Col>
               );
