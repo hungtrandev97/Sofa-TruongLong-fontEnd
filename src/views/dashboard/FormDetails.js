@@ -185,7 +185,10 @@ export default function FormDetails({ match }) {
                           {dataBought._cart.name}
                         </span>
 {" "}
-                        <span>{dataBought._cart.numberPhone}</span>
+                        <span>
+                          {dataBought._cart.numberPhone.slice(0, 7)}
+                          ***
+                        </span>
                       </li>
                     ))}
                   </ul>

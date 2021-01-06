@@ -34,14 +34,12 @@ function Consulting() {
           </p>
           <b>BƯỚC 2: KIỂM TRA NÚT ĐỆM</b>
           <p style={{ paddingLeft: "20px" }}>
-            Khung sofa được làm từ các loại gỗ cứng như gỗ dầu đã được qua công
-            đoạn xử lý chống mối mọt và chống cong vênh sẽ giúp ghế chắc chắn và
-            sử dụng bền lâu. Loại gỗ mềm hơn như gỗ thông là một lựa chọn phổ
-            biến và giá cả phải chăng, nhưng nó có thể cong vênh hoặc gãy sau
-            một thời gian ngắn hoặc khi gặp lực tác động mạnh trong quá trình sử
-            dụng. Còn nếu khung ghế sofa làm bằng ván dăm, nhựa hoặc kim loại
-            thì tốt nhất là không nên mua, vì nó chắc chắn sẽ bị cong vênh hoặc
-            nứt và thường không thoải mái.
+            Nệm mút D40 là loại thường dùng phổ biến trong sản xuất ghế sofa.
+            Đây là loại nệm mút cao cấp hiện nay, chúng có màu trắng, độ bền
+            cao, có khả năng chống xẹp lún tốt và không bị biến dạng sau thời
+            gian sử dụng lâu dài. Đặc biệt hơn là chúng có thể chịu sức ép lớn.
+            Bạn có thể kiểm tra khi ngồi xuống và đứng dậy, mặt ghế sẽ bung căng
+            trở lại như ban đầu.
           </p>
           <b>BƯỚC 3: CHẤT LIỆU VẢI BỌC SOFA</b>
           <p style={{ paddingLeft: "20px" }}>
