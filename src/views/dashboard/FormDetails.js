@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
 import { BiStar } from "react-icons/bi";
@@ -13,7 +14,6 @@ import { apiGetAllProductCategory } from "../../services/product";
 import "./Details.css";
 
 export default function FormDetails({ match }) {
-  const idProductOneURL = match.match.params.id;
   const idCegory = match.match.params.idCategory;
   const [dataProduct, setDataProduct] = useState([]);
   const [numberIdProduct, setNumberIdProduct] = useState();
@@ -39,6 +39,7 @@ export default function FormDetails({ match }) {
   }
 
   useEffect(() => {
+    const idProductOneURL = match.match.params.id;
     setFilte(1);
     const GetAllDetail = async () => {
       const getAllDataDetail = await apiGetAllDetail(idProductOneURL);
@@ -86,8 +87,7 @@ export default function FormDetails({ match }) {
                 >
                   <img
                     onClick={() =>
-                      setimage(dataGetAllDetail.product_imageMain, 1)
-                    }
+                      setimage(dataGetAllDetail.product_imageMain, 1)}
                     className="Details__Form__ImgP__Col__img"
                     src={`${dataGetAllDetail.product_imageMain}`}
                     alt="img"
@@ -290,7 +290,12 @@ export default function FormDetails({ match }) {
       </div>
       <div className="Details__Form__Nav">
         <p>{dataGetAllDetail.product_title}</p>
-        <span>{dataGetAllDetail.product_discript}</span>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: dataGetAllDetail.product_discript,
+          }}
+        />
+        {/* <xmp>{dataGetAllDetail.product_discript}</xmp> */}
       </div>
       <div className="Details__Form__ProductCategory">
         <div className="Details__Form__ProductCategory__Tittle">
@@ -299,7 +304,7 @@ export default function FormDetails({ match }) {
         <Row className="Cart__Relate__Product">
           {dataProduct.map((DataProduct, index) => {
             return (
-              <Col lg={3} md={4} ms={6} xs={6}>
+              <Col lg={3} md={4} ms={6} xs={6} key={index}>
                 <ItemProduct
                   className="Sale__Product__Data"
                   idProduct={DataProduct._id}
