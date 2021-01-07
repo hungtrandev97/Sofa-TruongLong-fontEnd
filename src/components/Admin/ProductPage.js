@@ -64,6 +64,43 @@ export default function ProductPage() {
       width: "200px",
     },
     {
+      name: "Kích Thước",
+      selector: "kich_thuoc",
+      sortable: true,
+      width: "200px",
+    },
+    {
+      name: "Khung",
+      selector: "khung",
+      sortable: true,
+      width: "200px",
+    },
+    {
+      name: "Chất Liệu",
+      selector: "chat_lieu",
+      sortable: true,
+      width: "200px",
+    },
+    {
+      name: "Nệm",
+      selector: "nem",
+      sortable: true,
+      width: "200px",
+    },
+    {
+      name: "Bảo Hành",
+      selector: "bao_hanh",
+      sortable: true,
+      width: "200px",
+    },
+    {
+      name: "Khuyến Mãi",
+      selector: "khuyen_mai",
+      sortable: true,
+      width: "200px",
+    },
+
+    {
       name: " Hiện Thị Trên Trang Chủ",
       selector: "product_index",
       sortable: true,

@@ -18,6 +18,11 @@ import "./Product.css";
 const createProductSchema = Yup.object().shape({
   product_title: Yup.string().required("Tên Sản Phẩm Không Được Rỗng"),
   product_code: Yup.number().required("Mã Sản Phẩm Không Được Rỗng"),
+  kich_thuoc: Yup.string().required("Kích Thước Rỗng"),
+  chat_lieu: Yup.string().required("Chất Liệu Rỗng"),
+  khung: Yup.string().required("Khung Rỗng"),
+  nem: Yup.string().required("Nệm Rỗng"),
+  bao_hanh: Yup.string().required("Bảo Hành Rỗng"),
 });
 
 function FormCreateProduct() {
@@ -91,6 +96,12 @@ function FormCreateProduct() {
       product_priceNumber: price.floatValue,
       product_price_sale: priceSale.formattedValue,
       product_priceNumber_sale: priceSale.floatValue,
+      kich_thuoc: value.kich_thuoc,
+      chat_lieu: value.chat_lieu,
+      khung: value.khung,
+      nem: value.nem,
+      bao_hanh: value.bao_hanh,
+      khuyen_mai: value.khuyen_mai,
     };
     const req = await apiCreateProduct(concatData);
     setIsLoading(false);
@@ -113,9 +124,16 @@ function FormCreateProduct() {
         product_code: "",
         product_price: price,
         product_price_sale: priceSale,
+        product_discript: "",
+        kich_thuoc: "",
+        chat_lieu: "",
+        khung: "",
+        nem: "",
+        bao_hanh: "",
       }}
       validationSchema={createProductSchema}
       onSubmit={(values) => {
+        console.log(values);
         onFinalSubmit(values);
       }}
     >
@@ -242,14 +260,104 @@ function FormCreateProduct() {
             />
           </FormGroup>
           <FormGroup>
+            <Label for="kich_thuoc" className="font-ob-bold">
+              Kích Thước
+            </Label>
+            {errors.kich_thuoc && touched.kich_thuoc ? (
+              <div className="invalid-feedback d-block">
+                {errors.kich_thuoc}
+              </div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="kich_thuoc"
+              placeholder="Nhập Tên Kích"
+              autoComplete="kich_thuoc"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="chat_lieu" className="font-ob-bold">
+              Chất liệu
+            </Label>
+            {errors.chat_lieu && touched.chat_lieu ? (
+              <div className="invalid-feedback d-block">{errors.chat_lieu}</div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="chat_lieu"
+              placeholder="Nhập Tên Chất Liệu"
+              autoComplete="chat_lieu"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="khung" className="font-ob-bold">
+              Khung
+            </Label>
+            {errors.khung && touched.khung ? (
+              <div className="invalid-feedback d-block">{errors.khung}</div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="khung"
+              placeholder="Nhập Khung"
+              autoComplete="khung"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="nem" className="font-ob-bold">
+              Nệm
+            </Label>
+            {errors.nem && touched.nem ? (
+              <div className="invalid-feedback d-block">{errors.nem}</div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="nem"
+              placeholder="Nhập Nệm"
+              autoComplete="nem"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="bao_hanh" className="font-ob-bold">
+              Bảo Hành
+            </Label>
+            {errors.bao_hanh && touched.bao_hanh ? (
+              <div className="invalid-feedback d-block">{errors.bao_hanh}</div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="bao_hanh"
+              placeholder="Nhập Bảo Hành"
+              autoComplete="bao_hanh"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="khuyen_mai" className="font-ob-bold">
+              Khuyến Mãi
+            </Label>
+            {errors.khuyen_mai && touched.khuyen_mai ? (
+              <div className="invalid-feedback d-block">
+                {errors.khuyen_mai}
+              </div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="khuyen_mai"
+              placeholder="Nhập Bảo Hành"
+              autoComplete="khuyen_mai"
+            />
+          </FormGroup>
+          <FormGroup>
             <Label for="product_discript" className="font-ob-bold">
               Mô Tả Sản Phẩm
             </Label>
-            {errors.product_discript && touched.product_discript ? (
-              <div className="invalid-feedback d-block">
-                {errors.product_discript}
-              </div>
-            ) : null}
+
             <div>
               <CKEditor
                 data={dataTextarea}
