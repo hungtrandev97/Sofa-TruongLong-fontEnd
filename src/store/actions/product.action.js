@@ -6,7 +6,7 @@ export const ProductScreening = (number) => ({
   payload: number,
 });
 
-export const UpdateIdProduct = (id) => ({
+export const UpdateIdProduct = (data) => ({
   type: UPDATE_ID_PRODUCT,
-  payload: id,
+  payload: data,
 });

@@ -5,13 +5,13 @@ import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import "./FormProduct.css";
 
-const FormProduct = ({ data }) => {
+const FormProduct = ({ data, nameCategory }) => {
   return (
     <div className="screen__Wep" style={{ paddingTop: "143px" }}>
       <div className="FromProduct ">
         <ChatBox />
         <div className="Category__title">
-          <span>Bàn Ghế</span>
+          <span>{nameCategory}</span>
         </div>
         {data && data.length > 0 ? (
           <Row className="Product__Row ">

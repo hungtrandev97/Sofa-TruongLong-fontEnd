@@ -11,11 +11,14 @@ import { apiCreateOder } from "../../../services/Cart";
 import { NotifySuccess, NotifyWarning, NotifyError } from "../../Notify/Toast";
 import { TYPE_NOTIFY } from "../../../constants/DefaultValues";
 import { removeDataCart } from "../../../store/actions/actions";
+import FormLogin from "../../Forms/Login";
 import "./MenuCart.css";
 
 const MenuCart = ({ inforConsumer, price, Total, buttonMenu, countCart }) => {
   const dispatch = useDispatch();
   const { cartData } = useSelector((state) => state.cartRedux);
+  const [modalLogin, setModalLogin] = useState(false);
+  const { loginUser } = useSelector((state) => state.authRedux);
   const cartDataDefault = [];
   cartData.forEach((item) => {
     cartDataDefault.push({
@@ -28,17 +31,17 @@ const MenuCart = ({ inforConsumer, price, Total, buttonMenu, countCart }) => {
   const toggle = () => {
     setModal(!modal);
   };
+  const toggleModal = () => {
+    setModalLogin(false);
+  };
   const submitButtonCrate = async () => {
-    if (
-      inforConsumer.name_customer === "" ||
-      inforConsumer.Address_Customer === "" ||
-      inforConsumer.Phone_Customer === ""
-    ) {
-      setModal(true);
+    if (loginUser === null || loginUser.accessToken === undefined) {
+      setModalLogin(true);
     } else if (cartData.length === 0) {
       NotifyWarning("Đơn Hàng", "Giỏ hàng rỗng, Vui Lòng chọn sản phẩm");
     } else {
       const data = {
+        _id_user: loginUser.userId,
         name: inforConsumer.name_customer,
         address: inforConsumer.Address_Customer,
         numberPhone: inforConsumer.Phone_Customer,
@@ -62,6 +65,12 @@ const MenuCart = ({ inforConsumer, price, Total, buttonMenu, countCart }) => {
   return (
     <div>
       <div className="Modal__Edit__Info">
+        <Modal isOpen={modalLogin} toggle={toggleModal}>
+          <ModalHeader toggle={toggleModal}>ĐĂNG NHẬP</ModalHeader>
+          <ModalBody>
+            <FormLogin />
+          </ModalBody>
+        </Modal>
         <Modal isOpen={modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>THÔNG TIN NHẬN HÀNG</ModalHeader>
           <ModalBody>

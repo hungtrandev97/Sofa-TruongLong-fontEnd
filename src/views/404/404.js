@@ -1,10 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import ConsumerFooter from "../../components/Layout/Consumer/ConsumerFooter";
 import "./404.css";
 
 function ErrorPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const history = useHistory();
   const Header = <></>;
   return (

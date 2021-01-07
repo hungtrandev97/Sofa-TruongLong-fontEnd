@@ -17,37 +17,28 @@ const MenuConsumer = () => {
   const GetAllScreeningPrice = (number) => {
     dispatch(ProductScreening(number));
   };
-  const GetAllProduct = (id) => {
-    dispatch(UpdateIdProduct(id));
+  const GetAllProduct = (id, category_title) => {
+    const data = {
+      id,
+      category_title,
+    };
+    dispatch(UpdateIdProduct(data));
   };
   return (
     <div className="consumersMenu">
       <div className="consumersMenu__Menu">
         <div className="consumersMenu__Menu__Nav screen__Wep">
           <div className="consumersMenu__MenuHeader">
-            <Link to="/home/">
-              <span>
-                <img
-                  className="consumersMenu__MenuHeaderLogo"
-                  src="/img/home/logo_responsive.png"
-                  width="152px"
-                  alt=""
-                />
-                <img
-                  className="consumersMenu__MenuHeaderLogoResponsive"
-                  src="/img/home/logo_responsive.png"
-                  width="152px"
-                  alt=""
-                />
-              </span>
-            </Link>
             <div className="consumersMenu__MenuHeaderLink">
               <ul className="MenuMenu">
                 <li style={{ marginLeft: "0px" }}>
                   <Link to="/trang-chu"> TRANG CHỦ </Link>
                 </li>
                 <li>
-                  <Link to="/">
+                  <Link
+                    to="/san-pham"
+                    onClick={() => GetAllProduct(0, "Sản Phẩm")}
+                  >
                     <span>SẢN PHẨM</span>
                     <BiChevronDown
                       size="1rem"
@@ -66,7 +57,9 @@ const MenuConsumer = () => {
                             <Link
                               to="/san-pham"
                               className="sub-menuCategory__Title__Link"
-                              onClick={() => GetAllProduct(data._id)}
+                              onClick={() =>
+                                GetAllProduct(data._id, data.category_title)
+                              }
                             >
                               <div className="sub-menuCategory__Title">
                                 <AiOutlineCaretRight />
