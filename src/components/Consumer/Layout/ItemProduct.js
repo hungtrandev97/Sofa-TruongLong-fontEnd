@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { NotifySuccess } from "../../Notify/Toast";
 import {
-  addCart
+  addCart,
   moreQuatitys,
   updateValueProduct,
 } from "../../../store/actions/actions";
