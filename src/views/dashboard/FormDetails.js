@@ -11,6 +11,7 @@ import { FaPhoneSquareAlt, FaMapMarkerAlt } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import { addCart, moreQuatitys } from "../../store/actions/actions";
+import { NotifySuccess } from "../../components/Notify/Toast";
 import {
   apiGetAllDetail,
   apiGetAllGetAllCustomerBought,
@@ -73,6 +74,7 @@ export default function FormDetails({ match }) {
   };
 
   const addCartInRedux = () => {
+    NotifySuccess("Thông Báo", "Thêm vào giỏ hàng thành công");
     const data = [
       ...cartData,
       {
@@ -222,8 +224,7 @@ export default function FormDetails({ match }) {
                           style={{ fontWeight: "bold", paddingLeft: "5px" }}
                         >
                           {dataBought._cart.name}
-                        </span>
-{" "}
+                        </span>{" "}
                         <span>
                           {dataBought._cart.numberPhone.slice(0, 7)}
                           ***
@@ -263,74 +264,63 @@ export default function FormDetails({ match }) {
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
                     <p>Kích thước: </p>
-                    <span> 3.3m x 1.7m x 0.9m </span>
+                    <span>{dataGetAllDetail.kich_thuoc}</span>
                   </li>
                   <li>
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
                     <p>Chất liệu: </p>
-                    <span>
-                      giả da Hàn Quốc cao cấp (có thể thay vải bố, nỉ, nhung)
-                    </span>
+                    <span>{dataGetAllDetail.chat_lieu}</span>
                   </li>
                   <li>
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
-                    <p>Khung: </p>
-                    <span>gỗ dầu (xử lý chống mối mọt, cong vênh)</span>
+                    <p>Kung: </p>
+                    <span>{dataGetllDetail.khung}</span>
                   </li>
                   <li>
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
-                    <p>Nệm: </p>
-                    <span> mút D40 chống xẹp lún cao cấp </span>
+                    <p>Nm: </p>
+                    <span>{dataGtAllDetail.nem}</span>
                   </li>
                   <li>
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
-                    <p>Bảo hành: </p>
-                    <span> 5 năm</span>
+                    <p>Bo hành: </p>
+                    <span>{dataGetAlletail.bao_hanh}</span>
                   </li>
                 </ul>
               </div>
-              <div className="Details__Form__Right__Sale">
-                <AiFillGift size="20px" color="rgba(219,0,7,.7)" />
+              <div cassName="Details__Form__Right__Sale">
+                <AiFillGift size="20px" color="rgba(219,0,,.7)" />
                 <p>KHUYẾN MÃI:</p>
               </div>
-              <div className="Details__Form__Right__Info__Ul">
+              <div cassName="Details__Form__Right__Info__Ul">
                 <ul>
                   <li>
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
-                    <span>
-                      Tặng ngay 05 gối ôm + 02 ghế đôn nhỏ vuông / tròn + 01 bàn
-                      kiếng H3
-                    </span>
-                  </li>
-                  <li>
-                    <b>
-                      <BsCheckBox size="1rem" color="#23af4b" />
-                    </b>
-                    <span>Giảm 10% khi mua kèm thảm Châu Âu cao cấp </span>
+                    <spa>{dataGetAllDetail.khuyen_mai}</spa>
                   </li>
                 </ul>
               </div>
-              <div className="Details__Form__Right__Order">
-                <button onClick={() => addCartInRedux()} type="button">
+              <div cassName="Details__Form__Right__Order">
+                <button onClick={() => addCartInRedux()} tye="button">
                   <IoMdCart size="16px" />
                   <span>Đặt Hàng</span>
                 </button>
-                <div className="Details__Form__Right__Phone">
+                <div clasName="Details__Form__Right__Phone">
                   <b>
-                    <FaPhoneSquareAlt
-                      className="Details__Form__Right__Phone__Icon"
+                    <aPhoneSquareAlt
+                      className="Detals__Form__Right__Phone__Icon"
                       size="35px"
-                      color="#f57224"
+                      color="#f5724"
                     />
                   </b>
                   <p>0966 484 484</p>
