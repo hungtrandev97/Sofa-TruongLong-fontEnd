@@ -106,11 +106,11 @@ function FormCreateProduct() {
     const req = await apiCreateProduct(concatData);
     setIsLoading(false);
     if (req.status) {
-      NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
+      NotifySuccess("Thông Báo", "Thêm Sản Phẩm Thành Công");
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyError("Thêm Sản Phẩm", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
   const ChangeTextarea = (changeEvent) => {

@@ -35,13 +35,13 @@ export default function FromCreateAccountCustomer() {
     const req = await apiRegister(concatData);
     setIsLoading(false);
     if (req.status) {
-      NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
+      NotifySuccess("Thông Báo", "Đăng Ký Thành Công");
       const getDataAcountConsumerIndex = await apiGetAllAcountCustomer();
       dispatch(acountConsumerSuccess(getDataAcountConsumerIndex));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     }
   };
   return (

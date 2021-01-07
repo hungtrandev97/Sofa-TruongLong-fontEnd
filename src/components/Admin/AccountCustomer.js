@@ -118,14 +118,14 @@ export default function AccountCustomer() {
   const DeleteAccount = async () => {
     const req = await apiDeleteAccount(idAccount);
     if (req.status) {
-      NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
+      NotifySuccess("Thông Báo", "Xóa Thành Công");
       const getDataAcountConsumer = await apiGetAllAcountCustomer();
       setRemoveAccount(false);
       dispatch(acountConsumerSuccess(getDataAcountConsumer));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Xóa Danh Mục", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyError("Xóa Danh Mục", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
   const toggleRemove = () => setRemoveAccount(!removeAccount);

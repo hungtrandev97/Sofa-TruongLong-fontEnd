@@ -20,11 +20,11 @@ export default function FormEditOder({ match, location }) {
     };
     const req = await apiEditOder(idOderUrl, DataEditOder);
     if (req.status) {
-      NotifySuccess("Chỉnh Sửa Đơn Hàng", "Chỉnh Sửa Thành Công");
+      NotifySuccess("Thông Báo", "Chỉnh Sửa Thành Công");
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Chỉnh Sửa Đơn Hàng", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyError("Chỉnh Sửa Đơn Hàng", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
   return (

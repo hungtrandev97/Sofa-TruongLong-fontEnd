@@ -16,7 +16,7 @@ export default function FormEditInFoCart({ CustomerName, Address, Phone }) {
   const dispatch = useDispatch();
   const updateInforPage = (value) => {
     dispatch(updateInfor(value));
-    NotifySuccess("Chỉnh Sửa", "Thành Công");
+    NotifySuccess("Thông Báo", "Chỉnh sửa thành công");
   };
   return (
     <Formik

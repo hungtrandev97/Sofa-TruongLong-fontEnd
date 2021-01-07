@@ -34,12 +34,12 @@ export default function Register() {
     };
     const req = await apiRegister(concatData);
     if (req.status) {
-      NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
+      NotifySuccess("Thông Báo", "Đăng Ký Thành Công");
       dispatch(registerSuccess(req.data));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     }
   };
   return (

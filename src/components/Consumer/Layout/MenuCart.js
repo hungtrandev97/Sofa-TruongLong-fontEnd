@@ -38,7 +38,7 @@ const MenuCart = ({ inforConsumer, price, Total, buttonMenu, countCart }) => {
     if (loginUser === null || loginUser.accessToken === undefined) {
       setModalLogin(true);
     } else if (cartData.length === 0) {
-      NotifyWarning("Đơn Hàng", "Giỏ hàng rỗng, Vui Lòng chọn sản phẩm");
+      NotifyWarning("Thông Báo", "Giỏ hàng rỗng, Vui Lòng chọn sản phẩm");
     } else {
       const data = {
         _id_user: loginUser.userId,
@@ -50,12 +50,12 @@ const MenuCart = ({ inforConsumer, price, Total, buttonMenu, countCart }) => {
       };
       const req = await apiCreateOder(data);
       if (req.status) {
-        NotifySuccess("Tạo Thư Mục", "Thêm Thư Mục Thành Công");
+        NotifySuccess("Thông Báo", "Đặt hàng thành công");
         dispatch(removeDataCart());
       } else if (req.type === TYPE_NOTIFY.WARNING) {
-        NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
+        NotifyWarning("Thông Báo", `${req.message}`);
       } else {
-        NotifyError("Thêm Sản Phẩm", `${req.message}`);
+        NotifyError("Thông Báo", `${req.message}`);
       }
     }
   };

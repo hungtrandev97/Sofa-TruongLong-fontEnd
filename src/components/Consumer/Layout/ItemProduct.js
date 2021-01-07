@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { NotifySuccess } from "../../Notify/Toast";
 import { addCart, moreQuatitys } from "../../../store/actions/actions";
 import "./ItemProduct.css";
 
@@ -19,6 +20,7 @@ const ItemProduct = ({
   const dispatch = useDispatch();
   const { cartData } = useSelector((state) => state.cartRedux);
   const addCartInRedux = () => {
+    NotifySuccess("Thông Báo", "Thêm vào giỏ hàng thành công");
     const data = [
       ...cartData,
       {

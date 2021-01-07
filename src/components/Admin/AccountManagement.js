@@ -113,16 +113,16 @@ export default function AccountManagement() {
   const DeleteAccount = async () => {
     const req = await apiDeleteAccount(idAccount);
     if (req.status) {
-      NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
+      NotifySuccess("Thông Báo", "Xóa Thành Công");
       setRemoveAccount(false);
       const ListAcountAdmin = await apiGetAllAccountAdmin();
       if (ListAcountAdmin.status) {
         setdataAccountAdminList(ListAcountAdmin.data);
       }
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Xóa Danh Mục", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyError("Xóa Danh Mục", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
   const GetFromApiAllAcountAdmin = async () => {

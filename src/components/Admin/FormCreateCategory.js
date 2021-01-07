@@ -26,12 +26,12 @@ function FormCreateCategory() {
     const req = await apiCreateCategory(concatData);
     setIsLoading(false);
     if (req.status) {
-      NotifySuccess("Tạo Thư Mục", "Thêm Thư Mục Thành Công");
+      NotifySuccess("Thông Báo", "Thêm Thư Mục Thành Công");
       dispatch(CategorySuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Tạo Thư Mục", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyError("Tạo Thư Mục", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
 

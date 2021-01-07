@@ -17,6 +17,7 @@ export default function Header() {
   const dispatch = useDispatch();
   const { loginUser } = useSelector((state) => state.authRedux);
   const { cartData } = useSelector((state) => state.cartRedux);
+  const { dataSearch } = useSelector((state) => state.searchRedux);
   const [modal, setModal] = useState(false);
   const [typeAcount, setTypeAcount] = useState(FromAcount.LOGIN);
   const toggle = () => setModal(!modal);
@@ -27,7 +28,7 @@ export default function Header() {
   const logoutAcout = () => {
     dispatch(logoutUser());
   };
-  const searchProduct = (value) => {
+  const searchProduct = (value, e) => {
     dispatch(SearchSuccess(value));
   };
   return (
@@ -117,13 +118,14 @@ export default function Header() {
           xs={8}
           className="HeaderConsumer__nav__search m-0 p-0"
         >
-          <form id="HeaderConsumer__nav__search__input">
+          <div id="HeaderConsumer__nav__search__input">
             <div style={{ position: "relative" }}>
               <input
                 type="text"
                 className="HeaderConsumer__nav__search__input__search"
-                placeholder="tìm kiếm..."
-                onInput={(e) => searchProduct(e.target.value)}
+                placeholder={`${dataSearch || "tìm kiếm..."}`}
+                value={`${dataSearch}`}
+                onInput={(e) => searchProduct(e.target.value, e)}
               />
               <Link
                 to="/tim-kiem-san-pham"
@@ -132,7 +134,7 @@ export default function Header() {
                 <AiOutlineSearch color="#fa3e3f" />
               </Link>
             </div>
-          </form>
+          </div>
         </Col>
         <Col
           lg={3}

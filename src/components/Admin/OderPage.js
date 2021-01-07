@@ -170,13 +170,13 @@ export default function OderPage() {
     const req = await apiRemoveOder(idOder);
     if (req.status) {
       setRemoveOder(false);
-      NotifySuccess("Xóa Đơn Hàng", "Xóa Thành Công");
+      NotifySuccess("Thông Báo", "Xóa Thành Công");
       const getAllDataCart = await apiGetAllCart();
       setDataGetAllCart(getAllDataCart.data);
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Xóa Đơn Hàng", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyError("Xóa Đơn Hàng", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
 

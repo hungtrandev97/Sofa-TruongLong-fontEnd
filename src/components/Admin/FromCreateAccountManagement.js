@@ -36,12 +36,12 @@ export default function FromCreateAccountManagement() {
     const req = await apiRegisterAdmin(concatData);
     setIsLoading(false);
     if (req.status) {
-      NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
+      NotifySuccess("Thông Báo", "Đăng Ký Thành Công");
       dispatch(acountAdminSuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     }
   };
 

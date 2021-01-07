@@ -217,7 +217,7 @@ export default function ProductPage() {
       setIsLoading(false);
       setRemoveProduct(false);
       setDataProductList(req.data);
-      NotifySuccess("Xoa Sản Phẩm", "Xóa Sản Phẩm Thành Công");
+      NotifySuccess("Thông Báo", "Xóa Sản Phẩm Thành Công");
       if (ItemProducts.product_product_imageMainUrl !== "") {
         await RemoveImage(ItemProducts.product_product_imageMainUrl);
       }
@@ -232,10 +232,10 @@ export default function ProductPage() {
       }
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       setIsLoading(false);
-      NotifyWarning("Xóa Sản Phẩm", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
       setIsLoading(false);
-      NotifyError("Xóa Sản Phẩm", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
   const tableData = {

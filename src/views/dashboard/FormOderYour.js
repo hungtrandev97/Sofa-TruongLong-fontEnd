@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
-import { FaRegHandPointRight } from "react-icons/fa";
+// import { FaRegHandPointRight } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import "./FormOderYour.css";
 
@@ -14,7 +14,7 @@ export default function FormOderYour() {
           className="m-0 d-0 OderYour__Form__Row "
           style={{ width: "100%", paddingBottom: "30px" }}
         >
-          <Col lg={8} md={8} ms={12} xs={12}>
+          <Col lg={12} md={12} ms={12} xs={12}>
             <div style={{ paddingBottom: "15px" }}>
               <div className="OderCart__left__Header">
                 <span>Đơn Hàng Của Bạn</span>
@@ -65,7 +65,7 @@ export default function FormOderYour() {
                         className="OderCart__left__Content__button"
                         type="button"
                       >
-                        Xóa
+                        Huy Đơn Hàng
                       </button>
                     </span>
                   </div>
@@ -73,7 +73,7 @@ export default function FormOderYour() {
               </Row>
             </div>
           </Col>
-          <Col lg={4} md={4} ms={12} xs={12} className="OderCart__Right__Row">
+          {/* <Col lg={4} md={4} ms={12} xs={12} className="OderCart__Right__Row">
             <div className="OderCart__Right">
               <div className="OderCart__Right__title">Danh Mục Đơn Hàng</div>
               <div className="OderCart__Right__processed">
@@ -102,7 +102,7 @@ export default function FormOderYour() {
                 </button>
               </Link>
             </div>
-          </Col>
+          </Col> */}
         </Row>
       </div>
     </div>

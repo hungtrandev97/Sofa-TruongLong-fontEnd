@@ -30,11 +30,11 @@ export default function FormEditAccountConsumer({ match, location }) {
     };
     const req = await apiEditAccountAdmin(concatData, idAcountAdminUrl);
     if (req.status) {
-      NotifySuccess("Chỉnh Sửa Danh Mục", "Chỉnh Sửa Thành Công");
+      NotifySuccess("Thông Báo", "Chỉnh Sửa Thành Công");
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Chỉnh Sửa Danh Mục", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyError("Chỉnh Sửa Danh Mục", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
 

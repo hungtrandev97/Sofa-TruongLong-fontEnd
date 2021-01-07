@@ -108,7 +108,7 @@ export default function EditSetting({ location }) {
     const req = await apiEditSetting(dataEditSetting);
     setIsLoading(false);
     if (req.status) {
-      NotifySuccess("Chỉnh Sửa Cài Đặt ", "Chỉnh Sửa Thành Công");
+      NotifySuccess("Thông Báo ", "Chỉnh Sửa Thành Công");
       if (changeImage1) {
         await RemoveImage(dataSetting.imageSlider1);
       }
@@ -119,9 +119,9 @@ export default function EditSetting({ location }) {
         await RemoveImage(dataSetting.imageSlider3);
       }
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Chỉnh Sửa Cài Đặt ", `${req.message}`);
+      NotifyWarning("Thông Báo ", `${req.message}`);
     } else {
-      NotifyError("Chỉnh Sửa Cài Đặt", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
 

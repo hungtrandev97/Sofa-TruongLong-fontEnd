@@ -44,11 +44,11 @@ export default function FormContact() {
     };
     const req = await apiSendContact(dataContact);
     if (req.status) {
-      NotifySuccess("Đăng Ký Tài Khoản", "Đăng Ký Thành Công");
+      NotifySuccess("Thông Báo", "Gửi liên hệ thành công");
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyWarning("Đăng Ký Tài Khoản", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     }
   };
   return (

@@ -113,12 +113,12 @@ function CategoryPage() {
     const req = await apiDeleteCategory(idCategory);
     if (req.status) {
       setRemoveCategory(false);
-      NotifySuccess("Xóa Danh Mục", "Xóa Thành Công");
+      NotifySuccess("Thông Báo", "Xóa Thành Công");
       dispatch(CategorySuccess(req));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Xóa Danh Mục", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyError("Xóa Danh Mục", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
   const ChangeIsModal = (type) => {

@@ -171,7 +171,7 @@ export default function FormEditProduct({ location }) {
     const req = await apiEditProduct(concatData, dataProduct._id);
     setIsLoading(false);
     if (req.status) {
-      NotifySuccess("Chỉnh Sửa Sản Phẩm", "Chỉnh Sửa Phẩm Thành Công");
+      NotifySuccess("Thông Báo", "Chỉnh Sửa Phẩm Thành Công");
       if (changeImage) {
         await RemoveImage(dataProduct.product_product_imageMainUrl);
       }
@@ -185,9 +185,9 @@ export default function FormEditProduct({ location }) {
         await RemoveImage(dataProduct.product_image_url3);
       }
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Chỉnh Sửa Sản Phẩm", `${req.message}`);
+      NotifyWarning("Thông Báo", `${req.message}`);
     } else {
-      NotifyError("Chỉnh Sửa Sản Phẩm", `${req.message}`);
+      NotifyError("Thông Báo", `${req.message}`);
     }
   };
 
@@ -218,11 +218,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImageProductIndex}
-              inputContent={(
+              inputContent={
                 <div>
                   <img src={dataProduct.product_imageMain} alt="" width="70" />
                 </div>
-              )}
+              }
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
@@ -234,11 +234,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages1}
-              inputContent={(
+              inputContent={
                 <div>
                   <img src={dataProduct.product_image1} alt="" width="70" />
                 </div>
-              )}
+              }
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
@@ -250,11 +250,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages2}
-              inputContent={(
+              inputContent={
                 <div>
                   <img src={dataProduct.product_image2} alt="" width="70" />
                 </div>
-              )}
+              }
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
@@ -266,11 +266,11 @@ export default function FormEditProduct({ location }) {
             <Dropzone
               getUploadParams={getUploadParams}
               onChangeStatus={changeImages3}
-              inputContent={(
+              inputContent={
                 <div>
                   <img src={dataProduct.product_image3} alt="" width="70" />
                 </div>
-              )}
+              }
               maxFiles={1}
               accept="image/*,audio/*,video/*"
             />
