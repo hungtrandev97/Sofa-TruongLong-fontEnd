@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
 import { BiStar } from "react-icons/bi";
@@ -16,7 +17,6 @@ import { apiGetAllProductCategory } from "../../services/product";
 import "./Details.css";
 
 export default function FormDetails({ match }) {
-  const idProductOneURL = match.match.params.id;
   const idCegory = match.match.params.idCategory;
   const [dataProduct, setDataProduct] = useState([]);
   const [dataCustomerBought, setCustomerBought] = useState([]);
@@ -43,20 +43,18 @@ export default function FormDetails({ match }) {
   }
 
   useEffect(() => {
-    const GetAllCustomerBought = async () => {
-      const getAllCustomerBought = await apiGetAllGetAllCustomerBought(
-        idProductOneURL
-      );
-      if (getAllCustomerBought && getAllCustomerBought.data) {
-        setCustomerBought(getAllCustomerBought.data);
-      }
-    };
-    GetAllCustomerBought();
-  }, []);
-
-  useEffect(() => {
     setFilte(1);
+    const idProductOneURL = match.match.params.id;
     const GetAllDetail = async () => {
+      const GetAllCustomerBought = async () => {
+        const getAllCustomerBought = await apiGetAllGetAllCustomerBought(
+          idProductOneURL
+        );
+        if (getAllCustomerBought && getAllCustomerBought.data) {
+          setCustomerBought(getAllCustomerBought.data);
+        }
+      };
+      GetAllCustomerBought();
       const getAllDataDetail = await apiGetAllDetail(idProductOneURL);
       if (getAllDataDetail && getAllDataDetail.data[0]) {
         setDataGetAllDetail(getAllDataDetail.data[0]);
@@ -186,7 +184,10 @@ export default function FormDetails({ match }) {
                         >
                           {dataBought._cart.name}
                         </span>{" "}
-                        <span>{dataBought._cart.numberPhone}</span>
+                        <span>
+                          {dataBought._cart.numberPhone.slice(0, 7)}
+                          ***
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -310,7 +311,12 @@ export default function FormDetails({ match }) {
       </div>
       <div className="Details__Form__Nav">
         <p>{dataGetAllDetail.product_title}</p>
-        <span>{dataGetAllDetail.product_discript}</span>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: dataGetAllDetail.product_discript,
+          }}
+        />
+        {/* <xmp>{dataGetAllDetail.product_discript}</xmp> */}
       </div>
       <div className="Details__Form__ProductCategory">
         <div className="Details__Form__ProductCategory__Tittle">

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
 import {
   Breadcrumb,
