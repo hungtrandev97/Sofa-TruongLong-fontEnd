@@ -89,8 +89,12 @@ const ItemProduct = ({
             <span>{price}</span>
           </div>
         )}
+        {pricePromotional ? (
+          <span className="ItemProduct__Content__Price__span">-</span>
+        ) : (
+          ""
+        )}
 
-        <span className="ItemProduct__Content__Price__span">-</span>
         <div className="ItemProduct__Content__Price__promotional">
           <span>{pricePromotional}</span>
         </div>

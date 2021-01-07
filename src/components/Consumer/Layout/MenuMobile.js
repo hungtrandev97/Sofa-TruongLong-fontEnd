@@ -22,6 +22,7 @@ import {
   logoutUser,
   CategorySuccess,
   ProductScreening,
+  UpdateIdProduct,
 } from "../../../store/actions/actions";
 import { apiGetAllCategory } from "../../../services/category";
 import "./MenuMobile.css";
@@ -55,6 +56,9 @@ const MenuMobile = () => {
   };
   const GetAllScreeningPrice = (number) => {
     dispatch(ProductScreening(number));
+  };
+  const GetAllProduct = (id) => {
+    dispatch(UpdateIdProduct(id));
   };
   useEffect(() => {
     const GetFromApiAllAcountCategory = async () => {
@@ -167,8 +171,13 @@ const MenuMobile = () => {
               >
                 {dataCategory.map((Data, index) => {
                   return (
-                    <Link to="/san-pham" style={{ color: "black" }} key={index}>
-                      <li>
+                    <Link
+                      to="/san-pham"
+                      onClick={() => GetAllProduct(Data._id)}
+                      style={{ color: "black" }}
+                      key={index}
+                    >
+                      <li style={{ paddingTop: "10px" }}>
                         <BiChevronRight size="1rem" />
                         <span>{Data.category_title}</span>
                       </li>
