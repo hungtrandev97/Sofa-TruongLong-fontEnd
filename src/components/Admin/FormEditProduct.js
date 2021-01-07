@@ -161,11 +161,17 @@ export default function FormEditProduct({ location }) {
       product_price_sale: priceSale,
       product_priceNumber: productPriceNumber,
       product_priceNumber_sale: productPriceNumberSale,
+      kich_thuoc: value.kich_thuoc,
+      chat_lieu: value.chat_lieu,
+      khung: value.khung,
+      nem: value.name,
+      bao_hanh: value.bao_hanh,
+      khuyen_mai: value.khuyen_mai,
     };
     const req = await apiEditProduct(concatData, dataProduct._id);
     setIsLoading(false);
     if (req.status) {
-      NotifySuccess("Thêm Sản Phẩm", "Thêm Sản Phẩm Thành Công");
+      NotifySuccess("Chỉnh Sửa Sản Phẩm", "Chỉnh Sửa Phẩm Thành Công");
       if (changeImage) {
         await RemoveImage(dataProduct.product_product_imageMainUrl);
       }
@@ -179,9 +185,9 @@ export default function FormEditProduct({ location }) {
         await RemoveImage(dataProduct.product_image_url3);
       }
     } else if (req.type === TYPE_NOTIFY.WARNING) {
-      NotifyWarning("Thêm Sản Phẩm", `${req.message}`);
+      NotifyWarning("Chỉnh Sửa Sản Phẩm", `${req.message}`);
     } else {
-      NotifyError("Thêm Sản Phẩm", `${req.message}`);
+      NotifyError("Chỉnh Sửa Sản Phẩm", `${req.message}`);
     }
   };
 
@@ -192,6 +198,11 @@ export default function FormEditProduct({ location }) {
         product_code: dataProduct.product_code,
         product_price: dataProduct.product_price,
         product_price_sale: dataProduct.product_price_sale,
+        kich_thuoc: dataProduct.kich_thuoc,
+        chat_lieu: dataProduct.chat_lieu,
+        khung: dataProduct.khung,
+        nem: dataProduct.nem,
+        bao_hanh: dataProduct.bao_hanh,
       }}
       validationSchema={editProductSchema}
       onSubmit={(values) => {
@@ -342,6 +353,100 @@ export default function FormEditProduct({ location }) {
             />
           </FormGroup>
           <FormGroup>
+            <Label for="kich_thuoc" className="font-ob-bold">
+              Kích Thước
+            </Label>
+            {errors.kich_thuoc && touched.kich_thuoc ? (
+              <div className="invalid-feedback d-block">
+                {errors.kich_thuoc}
+              </div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="kich_thuoc"
+              placeholder="Nhập Tên Kích"
+              autoComplete="kich_thuoc"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="chat_lieu" className="font-ob-bold">
+              Chất liệu
+            </Label>
+            {errors.chat_lieu && touched.chat_lieu ? (
+              <div className="invalid-feedback d-block">{errors.chat_lieu}</div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="chat_lieu"
+              placeholder="Nhập Tên Chất Liệu"
+              autoComplete="chat_lieu"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="khung" className="font-ob-bold">
+              Khung
+            </Label>
+            {errors.khung && touched.khung ? (
+              <div className="invalid-feedback d-block">{errors.khung}</div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="khung"
+              placeholder="Nhập Khung"
+              autoComplete="khung"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="nem" className="font-ob-bold">
+              Nệm
+            </Label>
+            {errors.nem && touched.nem ? (
+              <div className="invalid-feedback d-block">{errors.nem}</div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="nem"
+              placeholder="Nhập Nệm"
+              autoComplete="nem"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="bao_hanh" className="font-ob-bold">
+              Bảo Hành
+            </Label>
+            {errors.bao_hanh && touched.bao_hanh ? (
+              <div className="invalid-feedback d-block">{errors.bao_hanh}</div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="bao_hanh"
+              placeholder="Nhập Bảo Hành"
+              autoComplete="bao_hanh"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="khuyen_mai" className="font-ob-bold">
+              Khuyến Mãi
+            </Label>
+            {errors.khuyen_mai && touched.khuyen_mai ? (
+              <div className="invalid-feedback d-block">
+                {errors.khuyen_mai}
+              </div>
+            ) : null}
+            <Field
+              className="form-control"
+              type="text"
+              name="khuyen_mai"
+              placeholder="Nhập Bảo Hành"
+              autoComplete="khuyen_mai"
+            />
+          </FormGroup>
+          <FormGroup>
             <Label for="product_discript" className="font-ob-bold">
               Mô Tả Sản Phẩm
             </Label>
@@ -396,7 +501,7 @@ export default function FormEditProduct({ location }) {
             className="Create__Button"
           >
             {isLoading ? <Spinner size="sm" color="light" /> : ""}
-            <span className="ml-50 font-ob-bold"> Tạo Mới </span>
+            <span className="ml-50 font-ob-bold"> Chỉnh Sửa </span>
           </Button>
         </Form>
       )}
