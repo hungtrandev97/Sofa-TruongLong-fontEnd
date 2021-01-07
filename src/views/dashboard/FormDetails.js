@@ -12,62 +12,17 @@ import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import { addCart, moreQuatitys } from "../../store/actions/actions";
 import { NotifySuccess } from "../../components/Notify/Toast";
-import {
-  apiGetAllDetail,
-  apiGetAllGetAllCustomerBought,
-} from "../../services/Details";
-import { apiGetAllProductCategory } from "../../services/product";
 import "./Details.css";
 
-export default function FormDetails({ match }) {
+export default function FormDetails({
+  dataGetAllDetail,
+  dataCustomerBought,
+  dataProduct,
+}) {
   const dispatch = useDispatch();
-  const idCegory = match.match.params.idCategory;
   const { cartData } = useSelector((state) => state.cartRedux);
-  const [dataProduct, setDataProduct] = useState([]);
-  const [dataCustomerBought, setCustomerBought] = useState([]);
-  const [numberIdProduct, setNumberIdProduct] = useState();
-  const [dataGetAllDetail, setDataGetAllDetail] = useState([]);
   const [imageMain, setImageMain] = useState("");
-  const [filte, setFilte] = useState();
-
-  const GetAllProductCategory = async () => {
-    const response = await apiGetAllProductCategory(idCegory);
-    setDataProduct(response.data);
-  };
-  const GetAllProduct = async () => {
-    const response = await apiGetAllProductCategory(idCegory);
-    setDataProduct(response.data);
-  };
-  if (numberIdProduct !== idCegory) {
-    setNumberIdProduct(idCegory);
-    if (!idCegory) {
-      GetAllProduct();
-    } else {
-      GetAllProductCategory();
-    }
-  }
-
-  useEffect(() => {
-    setFilte(1);
-    const idProductOneURL = match.match.params.id;
-    const GetAllDetail = async () => {
-      const GetAllCustomerBought = async () => {
-        const getAllCustomerBought = await apiGetAllGetAllCustomerBought(
-          idProductOneURL
-        );
-        if (getAllCustomerBought && getAllCustomerBought.data) {
-          setCustomerBought(getAllCustomerBought.data);
-        }
-      };
-      GetAllCustomerBought();
-      const getAllDataDetail = await apiGetAllDetail(idProductOneURL);
-      if (getAllDataDetail && getAllDataDetail.data[0]) {
-        setDataGetAllDetail(getAllDataDetail.data[0]);
-        setImageMain(getAllDataDetail.data[0].product_imageMain);
-      }
-    };
-    GetAllDetail();
-  }, []);
+  const [filte, setFilte] = useState(1);
   const setimage = (value, number) => {
     setImageMain(value);
     setFilte(number);
@@ -108,6 +63,12 @@ export default function FormDetails({ match }) {
       dispatch(addCart(data));
     }
   };
+
+  useEffect(() => {
+    setImageMain(dataGetAllDetail.product_imageMain);
+    setFilte(1);
+  }, []);
+
   return (
     <div
       className="screen__Wep"
@@ -124,7 +85,12 @@ export default function FormDetails({ match }) {
             className="Details__Form__Col__Left"
           >
             <div className="Details__Form__Img__Left">
-              <img src={`${imageMain}`} alt="img" width="100%" height="auto" />
+              <img
+                src={`${imageMain || dataGetAllDetail.product_imageMain}`}
+                alt="img"
+                width="100%"
+                height="auto"
+              />
             </div>
             <div className="Details__Form__ImgP__Left">
               <Row>
@@ -141,8 +107,7 @@ export default function FormDetails({ match }) {
                 >
                   <img
                     onClick={() =>
-                      setimage(dataGetAllDetail.product_imageMain, 1)
-                    }
+                      setimage(dataGetAllDetail.product_imageMain, 1)}
                     className="Details__Form__ImgP__Col__img"
                     src={`${dataGetAllDetail.product_imageMain}`}
                     alt="img"
@@ -224,7 +189,8 @@ export default function FormDetails({ match }) {
                           style={{ fontWeight: "bold", paddingLeft: "5px" }}
                         >
                           {dataBought._cart.name}
-                        </span>{" "}
+                        </span>
+{" "}
                         <span>
                           {dataBought._cart.numberPhone.slice(0, 7)}
                           ***
@@ -278,46 +244,53 @@ export default function FormDetails({ match }) {
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
                     <p>Kung: </p>
-                    <span>{dataGetllDetail.khung}</span>
+                    <span>{dataGetAllDetail.khung}</span>
                   </li>
                   <li>
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
                     <p>Nm: </p>
-                    <span>{dataGtAllDetail.nem}</span>
+                    <span>{dataGetAllDetail.nem}</span>
                   </li>
                   <li>
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
                     <p>Bo hành: </p>
-                    <span>{dataGetAlletail.bao_hanh}</span>
+                    <span>{dataGetAllDetail.bao_hanh}</span>
                   </li>
                 </ul>
               </div>
-              <div cassName="Details__Form__Right__Sale">
-                <AiFillGift size="20px" color="rgba(219,0,,.7)" />
-                <p>KHUYẾN MÃI:</p>
-              </div>
-              <div cassName="Details__Form__Right__Info__Ul">
-                <ul>
-                  <li>
-                    <b>
-                      <BsCheckBox size="1rem" color="#23af4b" />
-                    </b>
-                    <spa>{dataGetAllDetail.khuyen_mai}</spa>
-                  </li>
-                </ul>
-              </div>
-              <div cassName="Details__Form__Right__Order">
+              {dataGetAllDetail.khuyen_mai ? (
+                <>
+                  <div className="Details__Form__Right__Sale">
+                    <AiFillGift size="20px" color="rgba(219,0,,.7)" />
+                    <p>KHUYẾN MÃI:</p>
+                  </div>
+                  <div className="Details__Form__Right__Info__Ul">
+                    <ul>
+                      <li>
+                        <b>
+                          <BsCheckBox size="1rem" color="#23af4b" />
+                        </b>
+                        <span>{dataGetAllDetail.khuyen_mai}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+
+              <div className="Details__Form__Right__Order">
                 <button onClick={() => addCartInRedux()} tye="button">
                   <IoMdCart size="16px" />
                   <span>Đặt Hàng</span>
                 </button>
-                <div clasName="Details__Form__Right__Phone">
+                <div className="Details__Form__Right__Phone">
                   <b>
-                    <aPhoneSquareAlt
+                    <FaPhoneSquareAlt
                       className="Detals__Form__Right__Phone__Icon"
                       size="35px"
                       color="#f5724"
@@ -325,15 +298,6 @@ export default function FormDetails({ match }) {
                   </b>
                   <p>0966 484 484</p>
                 </div>
-              </div>
-              <div className="Details__Form__Right__Address">
-                <b>
-                  <FaMapMarkerAlt size="20px" color="rgba(219,0,7,.7)" />
-                </b>
-                <span>
-                  Xưởng sản xuất: 289/36 Nguyễn Thị Tú, P.Bình Hưng Hòa B,
-                  Q.Bình Tân, TPHCM
-                </span>
               </div>
             </div>
           </Col>
