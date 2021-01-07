@@ -3,7 +3,6 @@ import { Row, Col } from "reactstrap";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 
 export default function FormSearch({ dataSearch }) {
-  console.log(dataSearch);
   return (
     <div
       className="screen__Wep"
@@ -13,7 +12,7 @@ export default function FormSearch({ dataSearch }) {
         <Row className="Sale__Product__Row ">
           {dataSearch.map((data, index) => {
             return (
-              <Col key={index} lg={3} md={4} ms={6} xs={6}>
+              <Col lg={3} md={4} ms={6} xs={6} key={index}>
                 <ItemProduct
                   className="Sale__Product__Data"
                   idProduct={data._id}

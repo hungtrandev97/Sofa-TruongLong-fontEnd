@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
 import { BiStar } from "react-icons/bi";
 import { FcCheckmark } from "react-icons/fc";
+import { useDispatch, useSelector } from "react-redux";
 import { IoIosInformationCircle, IoMdCart } from "react-icons/io";
 import { AiFillGift } from "react-icons/ai";
 import { BsCheckBox } from "react-icons/bs";
 import { FaPhoneSquareAlt, FaMapMarkerAlt } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
+import { addCart, moreQuatitys } from "../../store/actions/actions";
 import {
   apiGetAllDetail,
   apiGetAllGetAllCustomerBought,
@@ -17,7 +19,9 @@ import { apiGetAllProductCategory } from "../../services/product";
 import "./Details.css";
 
 export default function FormDetails({ match }) {
+  const dispatch = useDispatch();
   const idCegory = match.match.params.idCategory;
+  const { cartData } = useSelector((state) => state.cartRedux);
   const [dataProduct, setDataProduct] = useState([]);
   const [dataCustomerBought, setCustomerBought] = useState([]);
   const [numberIdProduct, setNumberIdProduct] = useState();
@@ -66,6 +70,41 @@ export default function FormDetails({ match }) {
   const setimage = (value, number) => {
     setImageMain(value);
     setFilte(number);
+  };
+
+  const addCartInRedux = () => {
+    const data = [
+      ...cartData,
+      {
+        idProduct: dataGetAllDetail._id,
+        title: dataGetAllDetail.title,
+        SouceProduct: dataGetAllDetail.product_code,
+        price: dataGetAllDetail.product_price,
+        pricePromotional: dataGetAllDetail.product,
+        imageMain: dataGetAllDetail.product_imageMain,
+        product_priceNumber: dataGetAllDetail.product_priceNumber,
+        product_priceNumber_sale: dataGetAllDetail.product_priceNumber_sale,
+        quanity: 1,
+      },
+    ];
+    let checkItemProduct = false;
+    let moreQuatity = 1;
+    if (cartData.length > 0) {
+      cartData.forEach((element) => {
+        if (element.idProduct === dataGetAllDetail._id) {
+          checkItemProduct = true;
+          moreQuatity += element.quanity;
+        }
+      });
+    } else {
+      dispatch(addCart(data));
+    }
+    if (checkItemProduct === true) {
+      const dataUpdateQuatity = [dataGetAllDetail._id, moreQuatity];
+      dispatch(moreQuatitys(dataUpdateQuatity));
+    } else {
+      dispatch(addCart(data));
+    }
   };
   return (
     <div
@@ -183,7 +222,8 @@ export default function FormDetails({ match }) {
                           style={{ fontWeight: "bold", paddingLeft: "5px" }}
                         >
                           {dataBought._cart.name}
-                        </span>{" "}
+                        </span>
+{" "}
                         <span>
                           {dataBought._cart.numberPhone.slice(0, 7)}
                           ***
@@ -281,7 +321,7 @@ export default function FormDetails({ match }) {
                 </ul>
               </div>
               <div className="Details__Form__Right__Order">
-                <button type="button">
+                <button onClick={() => addCartInRedux()} type="button">
                   <IoMdCart size="16px" />
                   <span>Đặt Hàng</span>
                 </button>

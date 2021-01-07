@@ -5,6 +5,7 @@ import {
   Button,
   FormGroup,
   Label,
+  Spinner,
 } from "reactstrap";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
@@ -16,9 +17,6 @@ import { TYPE_NOTIFY } from "../../constants/DefaultValues";
 import { apiEditSetting } from "../../services/setting";
 
 const editOderSchema = Yup.object().shape({
-  Edit_slider1: Yup.string().required("slider1 rỗng"),
-  Edit_slider2: Yup.string().required("slider2 rỗng"),
-  Edit_slider3: Yup.string().required("slider3 rỗng"),
   Edit_NumberPhone: Yup.string().required("số điện thoại 1 rỗng"),
   Edit_NumberPhone1: Yup.string().required("số điện thoại 2 rỗng"),
   edit_Email: Yup.string().email().required("email rỗng"),
@@ -31,7 +29,7 @@ const editOderSchema = Yup.object().shape({
 
 export default function EditSetting({ location }) {
   const dataSetting = location.state.row;
-  console.log(dataSetting.imageSlider1);
+  const [isLoading, setIsLoading] = useState(false);
   const [settingImage1, setSettingImage1] = useState("");
   const [changeImage1, setChangeImage1] = useState(false);
   const [settingImage2, setSettingImage2] = useState("");
@@ -39,23 +37,24 @@ export default function EditSetting({ location }) {
   const [settingImage3, setSettingImage3] = useState("");
   const [changeImage3, setChangeImage3] = useState(false);
 
-  const changeImageSetting1 = ({ file }) => {
-    setSettingImage1(true);
-    setChangeImage1(file);
-  };
-  const changeImageSetting2 = ({ file }) => {
-    setSettingImage2(true);
-    setChangeImage2(file);
-  };
-  const changeImageSetting3 = ({ file }) => {
-    setSettingImage3(true);
-    setChangeImage3(file);
-  };
-
   const getUploadParams = () => {
     return { url: "https://httpbin.org/post" };
   };
+  const changeImageSetting1 = ({ file }) => {
+    setSettingImage1(file);
+    setChangeImage1(true);
+  };
+  const changeImageSetting2 = ({ file }) => {
+    setSettingImage2(file);
+    setChangeImage2(true);
+  };
+  const changeImageSetting3 = ({ file }) => {
+    setSettingImage3(file);
+    setChangeImage3(true);
+  };
+
   const onFinalSubmit = async (value) => {
+    setIsLoading(true);
     let urlimageIndex1 = "";
     let productImageUrl1 = "";
     let urlimageIndex2 = "";
@@ -106,10 +105,19 @@ export default function EditSetting({ location }) {
       support2: value.edit_support2Edit,
       support3: value.edit_support3Edit,
     };
-    console.log(dataEditSetting, "dataEditSetting");
     const req = await apiEditSetting(dataEditSetting);
+    setIsLoading(false);
     if (req.status) {
       NotifySuccess("Chỉnh Sửa Cài Đặt ", "Chỉnh Sửa Thành Công");
+      if (changeImage1) {
+        await RemoveImage(dataSetting.imageSlider1);
+      }
+      if (changeImage2) {
+        await RemoveImage(dataSetting.imageSlider2);
+      }
+      if (changeImage3) {
+        await RemoveImage(dataSetting.imageSlider3);
+      }
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Chỉnh Sửa Cài Đặt ", `${req.message}`);
     } else {
@@ -145,6 +153,7 @@ export default function EditSetting({ location }) {
           }}
           validationSchema={editOderSchema}
           onSubmit={(values) => {
+            // alert("check");
             onFinalSubmit(values);
           }}
         >
@@ -337,7 +346,13 @@ export default function EditSetting({ location }) {
                   autoComplete="edit_support3Edit"
                 />
               </FormGroup>
-              <Button type="submit" color="primary" className="Create__Button">
+              <Button
+                disabled={isLoading}
+                type="submit"
+                color="primary"
+                className="Create__Button"
+              >
+                {isLoading ? <Spinner size="sm" color="light" /> : ""}
                 <span className="ml-50 font-ob-bold"> Chỉnh Sửa </span>
               </Button>
             </Form>

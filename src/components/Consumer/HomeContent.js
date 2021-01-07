@@ -33,7 +33,10 @@ const HomeContent = () => {
             <>
               {item.checkProduct === 1 ? (
                 <>
-                  <HeaderProduct title={item.category_title} link={item.url} />
+                  <HeaderProduct
+                    title={item.category_title}
+                    category={item._id}
+                  />
                   <div className="HomeContent__product__new">
                     {dataProduct.length > 0 ? (
                       <Row>

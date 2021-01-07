@@ -67,7 +67,8 @@ const ProductCart = ({ titlePage, cartData, pageMain }) => {
                   disabled={`${item.quanity < 2 ? "disabled" : ""}`}
                   className="quantity-input__modifier quantity-input__modifier--left"
                   onClick={() =>
-                    updateQuatity(item.idProduct, item.quanity - 1)}
+                    updateQuatity(item.idProduct, item.quanity - 1)
+                  }
                 >
                   &mdash;
                 </button>
@@ -81,7 +82,8 @@ const ProductCart = ({ titlePage, cartData, pageMain }) => {
                   type="button"
                   className="quantity-input__modifier quantity-input__modifier--right"
                   onClick={() =>
-                    updateQuatity(item.idProduct, item.quanity + 1)}
+                    updateQuatity(item.idProduct, item.quanity + 1)
+                  }
                 >
                   &#xff0b;
                 </button>
