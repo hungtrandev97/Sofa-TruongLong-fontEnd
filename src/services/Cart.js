@@ -169,3 +169,30 @@ export const apiGetAllOderDetail = async (idOderDetailUrl) => {
     data: response,
   };
 };
+
+export const apiGetAllSetting = async (userId) => {
+  const response = await requestGet({
+    fullUrl: `${END_POINT}/v1/cartRoutes/getAllCart?idUser=${userId}`,
+  });
+  if (response.statusCode === 200) {
+    const OderYour = response.body.data;
+    return {
+      status: true,
+      type: TYPE_NOTIFY.SUCCESS,
+      data: OderYour,
+    };
+  }
+  if (response.statusCode === 250) {
+    return {
+      status: false,
+      type: TYPE_NOTIFY.WARNING,
+      message: response.body.message,
+    };
+  }
+  return {
+    status: false,
+    type: TYPE_NOTIFY.ERROR,
+    message: response.body.message,
+    data: response,
+  };
+};

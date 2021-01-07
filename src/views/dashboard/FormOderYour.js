@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
+import moment from "moment";
+import NumberFormat from "react-number-format";
 // import { FaRegHandPointRight } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
+import { apiGetAllSetting } from "../../services/Cart";
 import "./FormOderYour.css";
 
 export default function FormOderYour() {
+  const { userId } = useSelector((state) => state.authRedux.loginUser);
+  const [dataOderYour, setDataOderYour] = useState([]);
+  console.log(dataOderYour, "dataOderYour");
+
+  useEffect(() => {
+    const GetAllOderYour = async () => {
+      const dataGetAllOderYour = await apiGetAllSetting(userId);
+      if (dataGetAllOderYour && dataGetAllOderYour.data) {
+        setDataOderYour(dataGetAllOderYour.data[0]);
+      }
+    };
+    GetAllOderYour();
+  }, []);
   return (
     <div className="screen__Wep" style={{ paddingTop: "143px" }}>
       <div className="OderYour__Form">
@@ -22,28 +39,52 @@ export default function FormOderYour() {
             </div>
             <div className="OderCart__left__Content">
               <Row style={{ width: "100%" }}>
-                <Col lg={1} md={1} ms={2} xs={12}>
+                <Col lg={2} md={2} ms={2} xs={12}>
                   <div className="OderCart__left__Content__Code">
-                    <span className="OderCart__left__Content__Span">MĐH</span>
-                    <span style={{ paddingTop: "10px" }}>1</span>
+                    <span className="OderCart__left__Content__Span">
+                      <b>TÊN</b>
+                    </span>
+                    <span style={{ paddingTop: "10px" }}>
+                      {dataOderYour.name}
+                    </span>
                   </div>
                 </Col>
-                <Col lg={4} md={4} ms={5} xs={12}>
+                <Col lg={2} md={2} ms={2} xs={12}>
                   <div className="OderCart__left__Content__Date">
                     <span className="OderCart__left__Content__Span">
-                      Ngày Đặt Hàng
+                      <b> ĐỊA CHỈ</b>
                     </span>
-                    <span style={{ paddingTop: "10px" }}>15-12-2020</span>
+                    <span style={{ paddingTop: "10px" }}>
+                      {dataOderYour.address}
+                    </span>
                   </div>
                 </Col>
-                <Col lg={4} md={4} ms={5} xs={12}>
-                  <div className="OderCart__left__Content__Delivery">
+                <Col lg={2} md={2} ms={2} xs={12}>
+                  <div className="OderCart__left__Content__Date">
                     <span className="OderCart__left__Content__Span">
-                      Ngày Giao Hàng
+                      <b> NGÀY ĐẶT</b>
                     </span>
-                    <span style={{ paddingTop: "10px" }}>16-12-2020</span>
+                    <span style={{ paddingTop: "10px" }}>
+                      {moment(dataOderYour.dateOder).format("DD-MM-YY hh:ss")}
+                    </span>
                   </div>
                 </Col>
+                <Col lg={2} md={2} ms={2} xs={12}>
+                  <div className="OderCart__left__Content__Date">
+                    <span className="OderCart__left__Content__Span">
+                      <b> TỔNG TIỀN</b>
+                    </span>
+                    <span style={{ paddingTop: "10px" }}>
+                      <NumberFormat
+                        value={dataOderYour.totalMoney}
+                        displayType="text"
+                        thousandSeparator
+                        suffix="vnđ"
+                      />
+                    </span>
+                  </div>
+                </Col>
+
                 <Col
                   lg={3}
                   md={3}
