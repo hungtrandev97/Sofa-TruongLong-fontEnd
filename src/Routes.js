@@ -88,10 +88,7 @@ const Routes = (props) => {
         <Route path="/gio-hang" component={CartPage} />
         <Route path="/don-hang-cua-ban" component={OderYour} />
         <Route path="/chi-tiet-don-hang" component={OrderDetails} />
-        <Route
-          path="/chi-tiet-san-pham/:id/:idCategory"
-          component={DetailsPage}
-        />
+        <Route path="/chi-tiet-san-pham" component={DetailsPage} />
         <Route path="/tim-kiem-san-pham" component={search} />
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />

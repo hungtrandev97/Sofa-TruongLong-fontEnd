@@ -1,9 +1,15 @@
-import { PRODUCT_SCREENING, UPDATE_ID_PRODUCT } from "../actions/actions";
+import {
+  PRODUCT_SCREENING,
+  UPDATE_ID_PRODUCT,
+  UPDATE_VALUE_PRODUCT,
+} from "../actions/actions";
 
 const INIT_STATE = {
   numberPrice: 15000000,
   idCategory: "",
   nameCategory: "",
+  idProduct: "",
+  idCategoryForProduct: "",
 };
 
 const productReducer = (state = INIT_STATE, action) => {
@@ -18,6 +24,12 @@ const productReducer = (state = INIT_STATE, action) => {
         ...state,
         idCategory: action.payload.id,
         nameCategory: action.payload.category_title,
+      };
+    case UPDATE_VALUE_PRODUCT:
+      return {
+        ...state,
+        idProduct: action.payload.idProduct,
+        idCategoryForProduct: action.payload.idCategory,
       };
     default:
       return state;

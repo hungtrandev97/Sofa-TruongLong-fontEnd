@@ -2,7 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart, moreQuatitys } from "../../../store/actions/actions";
+import {
+  addCart,
+  moreQuatitys,
+  updateValueProduct,
+} from "../../../store/actions/actions";
 import "./ItemProduct.css";
 
 const ItemProduct = ({
@@ -52,13 +56,16 @@ const ItemProduct = ({
       dispatch(addCart(data));
     }
   };
+  const setValueProduct = () => {
+    const dataValue = {
+      idCategory,
+      idProduct,
+    };
+    dispatch(updateValueProduct(dataValue));
+  };
   return (
     <div className="ItemProduct">
-      <Link
-        to={{
-          pathname: `/chi-tiet-san-pham/${idProduct}/${idCategory}`,
-        }}
-      >
+      <Link onClick={() => setValueProduct()} to="/chi-tiet-san-pham">
         <div className="ItemProduct__Content">
           <img
             src={`${imageMain}`}
