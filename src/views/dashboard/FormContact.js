@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
@@ -11,6 +11,7 @@ import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import { apiSendContact } from "../../services/contcat";
 import { NotifySuccess, NotifyWarning } from "../../components/Notify/Toast";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
+import { apiGetAllSetting } from "../../services/setting";
 import "./FormContact.css";
 
 const sendContactSchema = Yup.object().shape({
@@ -21,6 +22,18 @@ const sendContactSchema = Yup.object().shape({
   content_contact: Yup.string().required("Thêm nội dung cần hỗ trợ"),
 });
 export default function FormContact() {
+  const [dataSetting, setDataSetting] = useState([]);
+
+  useEffect(() => {
+    const GetAllSetting = async () => {
+      const dataGetAllSetting = await apiGetAllSetting();
+      if (dataGetAllSetting && dataGetAllSetting.data) {
+        setDataSetting(dataGetAllSetting.data[0]);
+      }
+    };
+    GetAllSetting();
+  }, []);
+
   const onFinalSubmit = async (value) => {
     const dataContact = {
       name: value.name_contact,
@@ -49,26 +62,23 @@ export default function FormContact() {
           <Col lg={6} md={12} sm={12}>
             <div className="Content__Left">
               <ImHome3 size="1rem" color="rgb(35, 183, 229)" />
-              <span>SOFA GIÁ RẺ TRƯỜNG LONG</span>
+              <span>SOFA TRƯỜNG LONG</span>
             </div>
             <div className="Content__Left Content__Left__Address">
               <FaAddressCard size="1rem" color="rgb(35, 183, 229)" />
-              <span>
-                Địa Chỉ: 289/36 Nguyễn Thị Tú, P.Bình Hưng Hòa B, Q.Bình Tân,
-                TPHCM
-              </span>
+              <span>{dataSetting.address}</span>
             </div>
             <div className="Content__Left Content__Left__Phone">
               <ImPhone size="1rem" color="rgb(35, 183, 229)" />
-              <span>0966 484 484</span>
+              <span>{dataSetting.numberPhone}</span>
             </div>
             <div className="Content__Left Content__Left__Email">
               <MdEmail size="1rem" color="rgb(35, 183, 229)" />
-              <span>@xuongsofa.truonglong</span>
+              <span>{dataSetting.email}</span>
             </div>
             <div className="Content__Left Content__Left__Website">
               <SiInternetexplorer size="1rem" color="#23b7e5" />
-              <span>Sofatruonglong.com</span>
+              <span>sofatruonglong.com</span>
             </div>
 
             <div className="Content__Left Content__Left__Map">

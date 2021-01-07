@@ -183,8 +183,7 @@ export default function FormDetails({ match }) {
                           style={{ fontWeight: "bold", paddingLeft: "5px" }}
                         >
                           {dataBought._cart.name}
-                        </span>
-{" "}
+                        </span>{" "}
                         <span>
                           {dataBought._cart.numberPhone.slice(0, 7)}
                           ***
@@ -326,7 +325,7 @@ export default function FormDetails({ match }) {
         <Row className="Cart__Relate__Product">
           {dataProduct.map((DataProduct, index) => {
             return (
-              <Col lg={3} md={4} ms={6} xs={6} key={index}>
+              <Col key={index} lg={3} md={4} ms={6} xs={6}>
                 <ItemProduct
                   className="Sale__Product__Data"
                   idProduct={DataProduct._id}

@@ -143,7 +143,7 @@ const MenuConsumer = () => {
                 )}
 
                 <li>
-                  <Link to="/gioi-thieu">LIÊN HỆ</Link>
+                  <Link to="/lien-he">LIÊN HỆ</Link>
                 </li>
               </ul>
               <div className="consumersMenu__SiguploginMobile">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Row, Col } from "reactstrap";
 import { RiContactsLine, RiArrowRightSFill } from "react-icons/ri";
@@ -10,9 +10,21 @@ import { BsCheckBox } from "react-icons/bs";
 import { BiWrench } from "react-icons/bi";
 import { AiFillEye } from "react-icons/ai";
 import { VscEye } from "react-icons/vsc";
+import { apiGetAllSetting } from "../../../services/setting";
 import "./FooterConsumer.css";
 
 function FooterConsumer() {
+  const [dataSetting, setDataSetting] = useState([]);
+  useEffect(() => {
+    const GetAllSetting = async () => {
+      const dataGetAllSetting = await apiGetAllSetting();
+      if (dataGetAllSetting && dataGetAllSetting.data) {
+        setDataSetting(dataGetAllSetting.data[0]);
+      }
+    };
+    GetAllSetting();
+  }, []);
+
   const { numberOnline, totalNumberOnline } = useSelector(
     (state) => state.authRedux
   );
@@ -35,29 +47,26 @@ function FooterConsumer() {
               <h1 style={{ color: "rgb(35, 183, 229)" }}> SOFA TRƯỜNG LONG</h1>
               <div className="FooterCosumer_left_Content_Address">
                 <ImHome3 size="0.8rem" color="#23b7e5" />
-                <span>
-                  Địa Chỉ: 289/36 Nguyễn Thị Tú, P.Bình Hưng Hòa B, Q.Bình Tân,
-                  TPHCM
-                </span>
+                <span>{dataSetting.address}</span>
               </div>
               <div className="FooterCosumer_left_Content_Phone">
                 <Col>
                   <ImPhone size="0.8rem" color="#23b7e5" />
-                  <span> 0966 484 484 </span>
+                  <span>{dataSetting.numberPhone}</span>
                 </Col>
                 <Col>
                   <MdPhoneIphone size="0.8rem" color="#23b7e5" />
-                  <span> 07626 07636 </span>
+                  <span>{dataSetting.numberPhone1}</span>
                 </Col>
               </div>
               <div className="FooterCosumer_left_Content_Email">
                 <Col>
                   <CgMail size="1rem" color="#23b7e5" />
-                  <span> @xuongsofa.truonglong </span>
+                  <span>{dataSetting.email}</span>
                 </Col>
                 <Col>
                   <SiInternetexplorer size="0.8rem" color="#23b7e5" />
-                  <span> Sofatruonglong.com </span>
+                  <span> sofatruonglong.com</span>
                 </Col>
               </div>
             </div>
@@ -68,11 +77,11 @@ function FooterConsumer() {
                 <BsCheckBox size="1rem" color="#23b7e5" />
               </div>
               <div className="FooterCosumer_Center_Header_span">
-                <h1>CHÍNH SÁCH</h1>
+                <h1>LIÊN Kết</h1>
               </div>
             </div>
             <div className="FooterCosumer__center__FBandZL">
-              <a href="https://www.facebook.com/xuongsofa.truonglong/">
+              <a href={`${dataSetting.linkFB}`}>
                 <img
                   className="Footer_facebook"
                   src="/img/default/facebook_logo.png"
@@ -80,7 +89,7 @@ function FooterConsumer() {
                 />
               </a>
               <a
-                href="http://zalo.me/0966284484"
+                href={`http://zalo.me/${dataSetting.numberPhoneZallo}`}
                 className="FooterCosumer__center__Zalo"
               >
                 <img
@@ -92,11 +101,11 @@ function FooterConsumer() {
             </div>
             <div className="FooterCosumer__center__Tutorial">
               <RiArrowRightSFill size="1.3rem" color="#23b7e5" />
-              <span> Hướng dẫn đặt hàng</span>
+              <span> Đã được liên kết Facebook</span>
             </div>
             <div className="FooterCosumer__center__Tutorial">
               <RiArrowRightSFill size="1.3rem" color="#23b7e5" />
-              <span> Chính Sách Vẫn Chuyển</span>
+              <span> Đã được liên kết Zalo</span>
             </div>
           </Col>
           <Col lg={3} md={3} sm={12} className="FooterCosumer__right">

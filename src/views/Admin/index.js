@@ -19,7 +19,7 @@ import EditAccountManagement from "../../components/Admin/EditAccountManagement"
 import AccountCustomer from "../../components/Admin/AccountCustomer";
 import CreateAccountCustomer from "../../components/Admin/CreateAccountCustomer";
 import Contact from "../../components/Admin/Contact";
-import editSetting from "../../components/Admin/editSetting";
+import EditSetting from "../../components/Admin/editSetting";
 import DetailOder from "../../components/Admin/DetailOder";
 
 function Admin({ location, match }) {
@@ -101,7 +101,7 @@ function Admin({ location, match }) {
               />
               <Route
                 path={`${match.url}/editSetting`}
-                component={editSetting}
+                component={EditSetting}
               />
               <Route path={`${match.url}/Contact`} component={Contact} />
 
