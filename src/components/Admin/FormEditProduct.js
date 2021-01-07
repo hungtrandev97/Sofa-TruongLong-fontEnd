@@ -139,8 +139,8 @@ export default function FormEditProduct({ location }) {
       urlimageIndex3 = await uploadImage3[0].spaceRef;
       productImageUrl3 = await uploadImage3[0].url;
     } else {
-      urlimageIndex3 = await dataProduct.product_image2;
-      productImageUrl3 = await dataProduct.product_image_url2;
+      urlimageIndex3 = await dataProduct.product_image3;
+      productImageUrl3 = await dataProduct.product_image_url3;
     }
     const concatData = await {
       _category: categoryValue,
@@ -169,7 +169,6 @@ export default function FormEditProduct({ location }) {
       if (changeImage) {
         await RemoveImage(dataProduct.product_product_imageMainUrl);
       }
-
       if (changeImage1) {
         await RemoveImage(dataProduct.product_image_url1);
       }

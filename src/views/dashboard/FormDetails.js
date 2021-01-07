@@ -6,7 +6,6 @@ import { IoIosInformationCircle, IoMdCart } from "react-icons/io";
 import { AiFillGift } from "react-icons/ai";
 import { BsCheckBox } from "react-icons/bs";
 import { FaPhoneSquareAlt, FaMapMarkerAlt } from "react-icons/fa";
-import { map } from "jquery";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import {
@@ -320,7 +319,7 @@ export default function FormDetails({ match }) {
         <Row className="Cart__Relate__Product">
           {dataProduct.map((DataProduct, index) => {
             return (
-              <Col lg={3} md={4} ms={6} xs={6}>
+              <Col key={index} lg={3} md={4} ms={6} xs={6}>
                 <ItemProduct
                   className="Sale__Product__Data"
                   idProduct={DataProduct._id}

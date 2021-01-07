@@ -10,7 +10,6 @@ const editOderSchema = Yup.object().shape({
   address_title: Yup.string().required("Địa chỉ không được rỗng"),
 });
 export default function FormEditOder({ match, location }) {
-  console.log(match, "ádfdgfhgjh");
   const idOderUrl = match.params.id;
   const addressEdit = location.state.address;
   const numberPhoneEdit = location.state.numberPhone;

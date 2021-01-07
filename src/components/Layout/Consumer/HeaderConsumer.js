@@ -10,7 +10,7 @@ import SideNavPage from "../../Consumer/Layout/MenuMobile";
 import FormLogin from "../../Forms/Login";
 import Register from "../../Forms/Register";
 import { FromAcount } from "../../../constants/DefaultValues";
-import { logoutUser } from "../../../store/actions/actions";
+import { logoutUser, SearchSuccess } from "../../../store/actions/actions";
 import "./style.css";
 
 export default function Header() {
@@ -26,6 +26,9 @@ export default function Header() {
   };
   const logoutAcout = () => {
     dispatch(logoutUser());
+  };
+  const searchProduct = (value) => {
+    dispatch(SearchSuccess(value));
   };
   return (
     <div className="HeaderConsumer">
@@ -115,15 +118,19 @@ export default function Header() {
           className="HeaderConsumer__nav__search m-0 p-0"
         >
           <form id="HeaderConsumer__nav__search__input">
-            <div>
+            <div style={{ position: "relative" }}>
               <input
                 type="text"
                 className="HeaderConsumer__nav__search__input__search"
-                placeholder="Search"
+                placeholder="tìm kiếm..."
+                onInput={(e) => searchProduct(e.target.value)}
               />
-              <button type="submit" className="btn">
+              <Link
+                to="/tim-kiem-san-pham"
+                style={{ position: "absolute", right: "10px" }}
+              >
                 <AiOutlineSearch color="#fa3e3f" />
-              </button>
+              </Link>
             </div>
           </form>
         </Col>

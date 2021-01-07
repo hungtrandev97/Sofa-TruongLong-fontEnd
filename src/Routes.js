@@ -23,6 +23,7 @@ import CartPage from "./views/dashboard/CartPage";
 import OderYour from "./views/dashboard/OderYour";
 import OrderDetails from "./views/dashboard/OrderDetails";
 import DetailsPage from "./views/dashboard/DetailsPage";
+import search from "./views/dashboard/search";
 
 const auth = {
   isAuthenticated: false,
@@ -79,7 +80,7 @@ const Routes = (props) => {
         />
         <Route path="/" exact component={MainView} />
         <Route path="/trang-chu" component={DashboardView} />
-        <Route path="/gioi-thieu" component={ContactView} />
+        <Route path="/lien-he" component={ContactView} />
         <Route path="/san-pham" component={ProductPage} />
         <Route path="/san-pham-moi" component={NewProductPage} />
         <Route path="/khuyen-mai" component={SalePage} />
@@ -91,7 +92,7 @@ const Routes = (props) => {
           path="/chi-tiet-san-pham/:id/:idCategory"
           component={DetailsPage}
         />
-
+        <Route path="/tim-kiem-san-pham" component={search} />
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />
       </Switch>
