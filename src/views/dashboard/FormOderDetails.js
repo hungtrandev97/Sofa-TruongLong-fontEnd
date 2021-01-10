@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
-import NumberFormat from "react-number-format";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import { apiGetAllOderYourDetails } from "../../services/Cart";
 import "./OderDetails.css";
@@ -8,12 +7,6 @@ import "./OderDetails.css";
 export default function FormOderDetails({ location }) {
   const idOderYour = location.state._id;
   const [dataOderYourDetail, setDataOderYourDetail] = useState([]);
-  const [imageMain, setImageMain] = useState("");
-  const [filte, setFilte] = useState(1);
-  const setimage = (value, number) => {
-    setImageMain(value);
-    setFilte(number);
-  };
   useEffect(() => {
     const GetAllSetting = async () => {
       const dataGetAllOderYourDetail = await apiGetAllOderYourDetails(
@@ -24,7 +17,6 @@ export default function FormOderDetails({ location }) {
       }
     };
     GetAllSetting();
-    setFilte(1);
   }, []);
 
   return (
