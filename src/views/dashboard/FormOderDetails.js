@@ -1,36 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
+import NumberFormat from "react-number-format";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
-import ProductCart from "../../components/Consumer/Layout/ProductCart";
-import MenuCart from "../../components/Consumer/Layout/MenuCart";
+import { apiGetAllOderYourDetails } from "../../services/Cart";
 import "./OderDetails.css";
 
-export default function FormOderDetails() {
+export default function FormOderDetails({ location }) {
+  const idOderYour = location.state._id;
+  const [dataOderYourDetail, setDataOderYourDetail] = useState([]);
+  const [imageMain, setImageMain] = useState("");
+  const [filte, setFilte] = useState(1);
+  const setimage = (value, number) => {
+    setImageMain(value);
+    setFilte(number);
+  };
+  useEffect(() => {
+    const GetAllSetting = async () => {
+      const dataGetAllOderYourDetail = await apiGetAllOderYourDetails(
+        idOderYour
+      );
+      if (dataGetAllOderYourDetail && dataGetAllOderYourDetail.data) {
+        setDataOderYourDetail(dataGetAllOderYourDetail.data);
+      }
+    };
+    GetAllSetting();
+    setFilte(1);
+  }, []);
+
   return (
     <div
       className="screen__Wep"
       style={{ paddingTop: "143px", minHeight: "70vh" }}
     >
-      <div className="Form__OderDetails">
+      <div>
         <ChatBox />
-        <Row
-          className="m-0 d-0 Form__OderDetails__Row "
-          style={{ width: "100%", paddingBottom: "30px" }}
+        <div
+          style={{
+            paddingBottom: "15px",
+            paddingTop: "20px",
+          }}
         >
-          <Col lg={8} md={8} ms={12} xs={12}>
-            <ProductCart titlePage cartData pageMain="" />
-          </Col>
-          <Col lg={4} md={4} ms={12} xs={12} className="Form__OderDetails__Col">
-            {/* <MenuCart
-              CustomerName="Hưng Khánh Trần"
-              Address="Krông Năng-Đăk Lắk"
-              Phone="012365489"
-              price="10.000.000"
-              Total="10.050.000"
-              buttonMenu="OderDetails"
-            /> */}
-          </Col>
-        </Row>
+          <div className="OderCart__left__Header">
+            <span>Chi Tiết Đơn Hàng</span>
+          </div>
+        </div>
+        {dataOderYourDetail.map((data, index) => {
+          return (
+            <Row className="Form__OderDetails" key={index}>
+              <Col lg={12} md={12} ms={12} xs={12}>
+                <div className="OderCart__left__Content">
+                  <Row style={{ width: "100%" }}>
+                    <Col lg={2} md={2} ms={2} xs={12}>
+                      <div className="OderCart__left__Content__Code">
+                        <img
+                          src={`${data._product.product_imageMain}`}
+                          alt="img"
+                          width="100%"
+                          height="auto"
+                        />
+                      </div>
+                    </Col>
+                    <Col lg={2} md={2} ms={2} xs={12}>
+                      <div className="OderCart__left__Content__Date">
+                        <span>{data.quantity}</span>
+                      </div>
+                    </Col>
+                    <Col lg={2} md={2} ms={2} xs={12}>
+                      <div className="OderCart__left__Content__Date">
+                        <span>{data._product.product_title}</span>
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+          );
+        })}
       </div>
     </div>
   );

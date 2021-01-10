@@ -6,7 +6,7 @@ import moment from "moment";
 import NumberFormat from "react-number-format";
 // import { FaRegHandPointRight } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
-import { apiGetAllSetting } from "../../services/Cart";
+import { apiGetAllOderYour } from "../../services/Cart";
 import "./FormOderYour.css";
 
 export default function FormOderYour() {
@@ -16,7 +16,7 @@ export default function FormOderYour() {
 
   useEffect(() => {
     const GetAllOderYour = async () => {
-      const dataGetAllOderYour = await apiGetAllSetting(userId);
+      const dataGetAllOderYour = await apiGetAllOderYour(userId);
       if (dataGetAllOderYour && dataGetAllOderYour.data) {
         setDataOderYour(dataGetAllOderYour.data[0]);
       }
@@ -93,7 +93,12 @@ export default function FormOderYour() {
                   className="OderCart__left__Content__Delete"
                 >
                   <div style={{ display: "flex" }}>
-                    <Link to="/chi-tiet-don-hang">
+                    <Link
+                      to={{
+                        pathname: `chi-tiet-don-hang`,
+                        state: dataOderYour,
+                      }}
+                    >
                       <button
                         className="OderCart__left__Content__button"
                         type="button"

@@ -9,3 +9,16 @@
     padding-top: 10px;
   }
 }
+
+.Details__Form__ImgP__Col {
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.Details__Form__ImgP__ColOpacity {
+  opacity: 1;
+}
+.Details__Form__ImgP__Col:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}

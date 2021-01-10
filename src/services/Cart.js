@@ -170,7 +170,7 @@ export const apiGetAllOderDetail = async (idOderDetailUrl) => {
   };
 };
 
-export const apiGetAllSetting = async (userId) => {
+export const apiGetAllOderYour = async (userId) => {
   const response = await requestGet({
     fullUrl: `${END_POINT}/v1/cartRoutes/getAllCart?idUser=${userId}`,
   });
@@ -180,6 +180,33 @@ export const apiGetAllSetting = async (userId) => {
       status: true,
       type: TYPE_NOTIFY.SUCCESS,
       data: OderYour,
+    };
+  }
+  if (response.statusCode === 250) {
+    return {
+      status: false,
+      type: TYPE_NOTIFY.WARNING,
+      message: response.body.message,
+    };
+  }
+  return {
+    status: false,
+    type: TYPE_NOTIFY.ERROR,
+    message: response.body.message,
+    data: response,
+  };
+};
+
+export const apiGetAllOderYourDetails = async (idOderYour) => {
+  const response = await requestGet({
+    fullUrl: `${END_POINT}/v1/cartRoutes/getAllCartDetail?carDetail=${idOderYour}`,
+  });
+  if (response.statusCode === 200) {
+    const OderYourDetails = response.body.data;
+    return {
+      status: true,
+      type: TYPE_NOTIFY.SUCCESS,
+      data: OderYourDetails,
     };
   }
   if (response.statusCode === 250) {
