@@ -72,8 +72,10 @@ export default function OderPage() {
           text = "Đang xử lý";
         } else if (row && row.status === 2) {
           text = "Đang giao hàng";
-        } else {
+        } else if (row && row.status === 3) {
           text = "Hoàn tất";
+        } else {
+          text = "Đã hủy đơn";
         }
         return text;
       },
