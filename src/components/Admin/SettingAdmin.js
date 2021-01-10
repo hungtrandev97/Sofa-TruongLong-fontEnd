@@ -41,6 +41,7 @@ export default function SettingAdmin() {
       name: "Slider 2",
       selector: "imageSlider2",
       sortable: true,
+      width: "200px",
       cell: (row) => (
         <>
           <img src={`${row.imageSlider2}`} alt="" width="100" />
@@ -51,6 +52,7 @@ export default function SettingAdmin() {
       name: " Slider 3",
       selector: "imageSlider3",
       sortable: true,
+      width: "200px",
       cell: (row) => (
         <>
           <img src={`${row.imageSlider3}`} alt="" width="100" />
@@ -60,40 +62,54 @@ export default function SettingAdmin() {
     {
       name: "SĐT 1",
       selector: "numberPhone",
+      width: "200px",
       sortable: true,
     },
     {
       name: "SĐT 2",
       selector: "numberPhone1",
+      width: "200px",
       sortable: true,
     },
     {
       name: "Gmail",
       selector: "email",
+      width: "200px",
+      sortable: true,
+    },
+    {
+      name: "Đỉa Chỉ",
+      selector: "address",
+      width: "200px",
       sortable: true,
     },
     {
       name: "Link FaceBook",
+      width: "200px",
       selector: "linkFB",
       sortable: true,
     },
     {
       name: "Link Zalo",
       selector: "numberPhoneZallo",
+      width: "200px",
       sortable: true,
     },
     {
       name: "Hướng Dẫn Mua 1",
+      width: "350px",
       selector: "support1",
       sortable: true,
     },
     {
       name: "Hướng Dẫn Mua 2",
+      width: "350px",
       selector: "support2",
       sortable: true,
     },
     {
       name: "Hướng Dẫn Mua 3",
+      width: "350px",
       selector: "support3",
       sortable: true,
     },

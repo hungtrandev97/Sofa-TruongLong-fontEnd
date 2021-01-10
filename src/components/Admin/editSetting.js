@@ -25,6 +25,7 @@ const editOderSchema = Yup.object().shape({
   edit_support1Edit: Yup.string().required(" Hướng dẫn 1 rỗng"),
   edit_support2Edit: Yup.string().required(" Hướng dẫn 2 rỗng"),
   edit_support3Edit: Yup.string().required(" Hướng dẫn 3 rỗng"),
+  address: Yup.string().required("Đỉa chỉ không được rỗng"),
 });
 
 export default function EditSetting({ location }) {
@@ -104,6 +105,7 @@ export default function EditSetting({ location }) {
       support1: value.edit_support1Edit,
       support2: value.edit_support2Edit,
       support3: value.edit_support3Edit,
+      address: value.address,
     };
     const req = await apiEditSetting(dataEditSetting);
     setIsLoading(false);
@@ -150,6 +152,7 @@ export default function EditSetting({ location }) {
             edit_support1Edit: dataSetting.support1,
             edit_support2Edit: dataSetting.support2,
             edit_support3Edit: dataSetting.support3,
+            address: dataSetting.address,
           }}
           validationSchema={editOderSchema}
           onSubmit={(values) => {
@@ -166,11 +169,11 @@ export default function EditSetting({ location }) {
                 <Dropzone
                   getUploadParams={getUploadParams}
                   onChangeStatus={changeImageSetting1}
-                  inputContent={(
+                  inputContent={
                     <div>
                       <img src={dataSetting.imageSlider1} alt="" width="70" />
                     </div>
-                  )}
+                  }
                   maxFiles={1}
                   accept="image/*,audio/*,video/*"
                 />
@@ -182,11 +185,11 @@ export default function EditSetting({ location }) {
                 <Dropzone
                   getUploadParams={getUploadParams}
                   onChangeStatus={changeImageSetting2}
-                  inputContent={(
+                  inputContent={
                     <div>
                       <img src={dataSetting.imageSlider2} alt="" width="70" />
                     </div>
-                  )}
+                  }
                   maxFiles={1}
                   accept="image/*,audio/*,video/*"
                 />
@@ -199,11 +202,11 @@ export default function EditSetting({ location }) {
                 <Dropzone
                   getUploadParams={getUploadParams}
                   onChangeStatus={changeImageSetting3}
-                  inputContent={(
+                  inputContent={
                     <div>
                       <img src={dataSetting.imageSlider3} alt="" width="70" />
                     </div>
-                  )}
+                  }
                   maxFiles={1}
                   accept="image/*,audio/*,video/*"
                 />
@@ -257,6 +260,24 @@ export default function EditSetting({ location }) {
                   name="edit_Email"
                   placeholder="Nhập Email"
                   autoComplete="edit_Email"
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="edit_Email" className="font-ob-bold">
+                  Đỉa Chỉ
+                </Label>
+                {errors.address && touched.address ? (
+                  <div className="invalid-feedback d-block">
+                    {errors.address}
+                  </div>
+                ) : null}
+                <Field
+                  className="form-control"
+                  type="text"
+                  name="address"
+                  placeholder="Nhập Email"
+                  autoComplete="address"
                 />
               </FormGroup>
 
