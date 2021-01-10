@@ -24,7 +24,11 @@ const MenuCart = ({ inforConsumer, price, Total, buttonMenu, countCart }) => {
     cartDataDefault.push({
       _product: `${item.idProduct}`,
       quantity: item.quanity,
-      priceProduct: `${item.product_priceNumber_sale}`,
+      priceProduct: `${
+        item.product_priceNumber_sale === 0
+          ? item.product_priceNumber
+          : item.product_priceNumber_sale
+      }`,
     });
   });
   const [modal, setModal] = useState(false);

@@ -12,13 +12,12 @@ import "./FormOderYour.css";
 export default function FormOderYour() {
   const { userId } = useSelector((state) => state.authRedux.loginUser);
   const [dataOderYour, setDataOderYour] = useState([]);
-  console.log(dataOderYour, "dataOderYour");
 
   useEffect(() => {
     const GetAllOderYour = async () => {
       const dataGetAllOderYour = await apiGetAllOderYour(userId);
       if (dataGetAllOderYour && dataGetAllOderYour.data) {
-        setDataOderYour(dataGetAllOderYour.data[0]);
+        setDataOderYour(dataGetAllOderYour.data);
       }
     };
     GetAllOderYour();
@@ -37,87 +36,94 @@ export default function FormOderYour() {
                 <span>Đơn Hàng Của Bạn</span>
               </div>
             </div>
-            <div className="OderCart__left__Content">
-              <Row style={{ width: "100%" }}>
-                <Col lg={2} md={2} ms={2} xs={12}>
-                  <div className="OderCart__left__Content__Code">
-                    <span className="OderCart__left__Content__Span">
-                      <b>TÊN</b>
-                    </span>
-                    <span style={{ paddingTop: "10px" }}>
-                      {dataOderYour.name}
-                    </span>
-                  </div>
-                </Col>
-                <Col lg={2} md={2} ms={2} xs={12}>
-                  <div className="OderCart__left__Content__Date">
-                    <span className="OderCart__left__Content__Span">
-                      <b> ĐỊA CHỈ</b>
-                    </span>
-                    <span style={{ paddingTop: "10px" }}>
-                      {dataOderYour.address}
-                    </span>
-                  </div>
-                </Col>
-                <Col lg={2} md={2} ms={2} xs={12}>
-                  <div className="OderCart__left__Content__Date">
-                    <span className="OderCart__left__Content__Span">
-                      <b> NGÀY ĐẶT</b>
-                    </span>
-                    <span style={{ paddingTop: "10px" }}>
-                      {moment(dataOderYour.dateOder).format("DD-MM-YY hh:ss")}
-                    </span>
-                  </div>
-                </Col>
-                <Col lg={2} md={2} ms={2} xs={12}>
-                  <div className="OderCart__left__Content__Date">
-                    <span className="OderCart__left__Content__Span">
-                      <b> TỔNG TIỀN</b>
-                    </span>
-                    <span style={{ paddingTop: "10px" }}>
-                      <NumberFormat
-                        value={dataOderYour.totalMoney}
-                        displayType="text"
-                        thousandSeparator
-                        suffix="vnđ"
-                      />
-                    </span>
-                  </div>
-                </Col>
 
-                <Col
-                  lg={3}
-                  md={3}
-                  ms={12}
-                  xs={12}
-                  className="OderCart__left__Content__Delete"
-                >
-                  <div style={{ display: "flex" }}>
-                    <Link
-                      to={{
-                        pathname: `chi-tiet-don-hang`,
-                        state: dataOderYour,
-                      }}
-                    >
-                      <button
-                        className="OderCart__left__Content__button"
-                        type="button"
+            {dataOderYour.map((data, index) => {
+              return (
+                <div key={index} style={{ paddingBottom: "10px" }}>
+                  <div className="OderCart__left__Content">
+                    <Row style={{ width: "100%" }}>
+                      <Col lg={2} md={2} ms={2} xs={12}>
+                        <div className="OderCart__left__Content__Code">
+                          <span className="OderCart__left__Content__Span">
+                            <b>TÊN</b>
+                          </span>
+                          <span style={{ paddingTop: "10px" }}>
+                            {data.name}
+                          </span>
+                        </div>
+                      </Col>
+                      <Col lg={2} md={2} ms={2} xs={12}>
+                        <div className="OderCart__left__Content__Date">
+                          <span className="OderCart__left__Content__Span">
+                            <b> ĐỊA CHỈ</b>
+                          </span>
+                          <span style={{ paddingTop: "10px" }}>
+                            {data.address}
+                          </span>
+                        </div>
+                      </Col>
+                      <Col lg={2} md={2} ms={2} xs={12}>
+                        <div className="OderCart__left__Content__Date">
+                          <span className="OderCart__left__Content__Span">
+                            <b> NGÀY ĐẶT</b>
+                          </span>
+                          <span style={{ paddingTop: "10px" }}>
+                            {moment(data.dateOder).format("DD-MM-YY hh:ss")}
+                          </span>
+                        </div>
+                      </Col>
+                      <Col lg={2} md={2} ms={2} xs={12}>
+                        <div className="OderCart__left__Content__Date">
+                          <span className="OderCart__left__Content__Span">
+                            <b> TỔNG TIỀN</b>
+                          </span>
+                          <span style={{ paddingTop: "10px" }}>
+                            <NumberFormat
+                              value={data.totalMoney}
+                              displayType="text"
+                              thousandSeparator
+                              suffix="vnđ"
+                            />
+                          </span>
+                        </div>
+                      </Col>
+
+                      <Col
+                        lg={3}
+                        md={3}
+                        ms={12}
+                        xs={12}
+                        className="OderCart__left__Content__Delete"
                       >
-                        Chi Tiết
-                      </button>
-                    </Link>
-                    <span style={{ paddingLeft: "10px" }}>
-                      <button
-                        className="OderCart__left__Content__button"
-                        type="button"
-                      >
-                        Huy Đơn Hàng
-                      </button>
-                    </span>
+                        <div style={{ display: "flex" }}>
+                          <Link
+                            to={{
+                              pathname: `chi-tiet-don-hang`,
+                              state: data,
+                            }}
+                          >
+                            <button
+                              className="OderCart__left__Content__button"
+                              type="button"
+                            >
+                              Chi Tiết
+                            </button>
+                          </Link>
+                          <span style={{ paddingLeft: "10px" }}>
+                            <button
+                              className="OderCart__left__Content__button"
+                              type="button"
+                            >
+                              Huy Đơn Hàng
+                            </button>
+                          </span>
+                        </div>
+                      </Col>
+                    </Row>
                   </div>
-                </Col>
-              </Row>
-            </div>
+                </div>
+              );
+            })}
           </Col>
           {/* <Col lg={4} md={4} ms={12} xs={12} className="OderCart__Right__Row">
             <div className="OderCart__Right">
