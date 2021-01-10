@@ -107,7 +107,8 @@ export default function FormDetails({
                 >
                   <img
                     onClick={() =>
-                      setimage(dataGetAllDetail.product_imageMain, 1)}
+                      setimage(dataGetAllDetail.product_imageMain, 1)
+                    }
                     className="Details__Form__ImgP__Col__img"
                     src={`${dataGetAllDetail.product_imageMain}`}
                     alt="img"
@@ -243,21 +244,21 @@ export default function FormDetails({
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
-                    <p>Kung: </p>
+                    <p>Khung: </p>
                     <span>{dataGetAllDetail.khung}</span>
                   </li>
                   <li>
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
-                    <p>Nm: </p>
+                    <p>Nệm: </p>
                     <span>{dataGetAllDetail.nem}</span>
                   </li>
                   <li>
                     <b>
                       <BsCheckBox size="1rem" color="#23af4b" />
                     </b>
-                    <p>Bo hành: </p>
+                    <p>Bảo Hành: </p>
                     <span>{dataGetAllDetail.bao_hanh}</span>
                   </li>
                 </ul>
