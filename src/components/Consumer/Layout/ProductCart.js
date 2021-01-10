@@ -58,7 +58,11 @@ const ProductCart = ({ titlePage, cartData, pageMain }) => {
               </div>
               <div className="Content__Cart__content__Price">
                 <div className="Content__Cart__content__Price__promotional">
-                  <span>{item.pricePromotional}</span>
+                  <span>
+                    {item.pricePromotional !== ""
+                      ? item.pricePromotional
+                      : item.price}
+                  </span>
                 </div>
               </div>
               <div className="quantity-input">
