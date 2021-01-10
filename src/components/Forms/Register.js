@@ -80,7 +80,7 @@ export default function Register() {
                 </FormGroup>
                 <FormGroup>
                   <Label for="password" className="font-ob-bold AcountLabel">
-                    Nhập Mật Khẩu
+                    Mật Khẩu
                   </Label>
                   {errors.password && touched.password ? (
                     <div className="invalid-feedback d-block  AcountError">

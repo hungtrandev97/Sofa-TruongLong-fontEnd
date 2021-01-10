@@ -212,7 +212,7 @@ const MenuMobile = () => {
               >
                 <RiFilter2Line size="1.2rem" color="rgb(250, 62, 63)" />
                 <span className="MenuMobile__Content_UlMenuleft__Product__span">
-                  Lọc SoFa
+                  Lọc Giá Sản Phẩm
                 </span>
                 <span className="MenuMobile__Content_UlMenuleft__Product__icon">
                   <BiCaretDown size="1rem" />

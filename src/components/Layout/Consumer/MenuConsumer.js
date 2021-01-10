@@ -58,8 +58,7 @@ const MenuConsumer = () => {
                               to="/san-pham"
                               className="sub-menuCategory__Title__Link"
                               onClick={() =>
-                                GetAllProduct(data._id, data.category_title)
-                              }
+                                GetAllProduct(data._id, data.category_title)}
                             >
                               <div className="sub-menuCategory__Title">
                                 <AiOutlineCaretRight />
@@ -80,7 +79,7 @@ const MenuConsumer = () => {
                     to="/loc-gia-san-pham"
                     onClick={() => GetAllScreeningPrice(0)}
                   >
-                    <span>LỌC SOFA</span>
+                    <span>Lọc Giá Sản Phẩm</span>
                     <BiChevronDown
                       size="1rem"
                       style={{ marginTop: "-2px", paddingLeft: "5px" }}

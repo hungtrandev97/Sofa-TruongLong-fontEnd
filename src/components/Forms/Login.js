@@ -71,7 +71,7 @@ export default function Login() {
               <FormGroup>
                 <div className="d-flex align-items-center justify-content-between AcountLabel">
                   <Label for="password" className="font-ob-bold AcountLabel">
-                    Nhập Mật Khẩu
+                    Mật Khẩu
                   </Label>
                 </div>
                 {errors.password && touched.password ? (
