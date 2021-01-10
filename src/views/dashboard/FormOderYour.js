@@ -6,7 +6,8 @@ import moment from "moment";
 import NumberFormat from "react-number-format";
 // import { FaRegHandPointRight } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
-import { apiGetAllOderYour } from "../../services/Cart";
+import { apiGetAllOderYour, apiUpdateStatus } from "../../services/Cart";
+import { NotifySuccess } from "../../components/Notify/Toast";
 import "./FormOderYour.css";
 
 export default function FormOderYour() {
@@ -22,6 +23,16 @@ export default function FormOderYour() {
     };
     GetAllOderYour();
   }, []);
+
+  const updateStatus = async (id) => {
+    const dataUpdate = {
+      status: 4,
+    };
+    const UpdateStatusApi = await apiUpdateStatus(id, dataUpdate);
+    if (UpdateStatusApi) {
+      NotifySuccess("Thông Báo", "hủy đơn hàng thành công");
+    }
+  };
   return (
     <div className="screen__Wep" style={{ paddingTop: "143px" }}>
       <div className="OderYour__Form">
@@ -87,20 +98,43 @@ export default function FormOderYour() {
                           </span>
                         </div>
                       </Col>
-
+                      <Col lg={2} md={2} ms={2} xs={12}>
+                        <div className="OderCart__left__Content__Date">
+                          <span className="OderCart__left__Content__Span">
+                            <b> Trạng Thái</b>
+                          </span>
+                          <span style={{ paddingTop: "10px" }}>
+                            {(() => {
+                              switch (data.status) {
+                                case "1":
+                                  return <div>Đang xử lý</div>;
+                                case "2":
+                                  return <div>Đang giao hàng</div>;
+                                case "3":
+                                  return <div>Hoàn tất</div>;
+                                default:
+                                  return <div>Đã hủy đơn</div>;
+                              }
+                            })()}
+                          </span>
+                        </div>
+                      </Col>
                       <Col
-                        lg={3}
-                        md={3}
+                        lg={2}
+                        md={2}
                         ms={12}
                         xs={12}
                         className="OderCart__left__Content__Delete"
                       >
-                        <div style={{ display: "flex" }}>
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
                           <Link
                             to={{
                               pathname: `chi-tiet-don-hang`,
                               state: data,
                             }}
+                            style={{ paddingBottom: "10px" }}
                           >
                             <button
                               className="OderCart__left__Content__button"
@@ -109,14 +143,19 @@ export default function FormOderYour() {
                               Chi Tiết
                             </button>
                           </Link>
-                          <span style={{ paddingLeft: "10px" }}>
-                            <button
-                              className="OderCart__left__Content__button"
-                              type="button"
-                            >
-                              Huy Đơn Hàng
-                            </button>
-                          </span>
+                          {dataOderYour.status < 3 ? (
+                            <span>
+                              <button
+                                className="OderCart__left__Content__button"
+                                type="button"
+                                onClick={() => updateStatus(dataOderYour._id)}
+                              >
+                                Huy Đơn Hàng
+                              </button>
+                            </span>
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </Col>
                     </Row>
