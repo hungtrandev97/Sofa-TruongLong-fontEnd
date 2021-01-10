@@ -103,14 +103,30 @@
 .MenuMobile__Content_UlMenuleft__ProductUL > li:hover {
   background-color: rgb(220, 218, 218);
 }
+.MenuMobile__Content_UlMenuleft__ProductUL > li > a:hover {
+  text-decoration: none;
+}
+.MenuMobile__Content_UlMenuleft__ProductUL > a:hover {
+  text-decoration: none;
+}
+.MenuMobile__Content_UlMenuleft__ProductUL > a > li:hover {
+  background-color: rgb(220, 218, 218);
+}
+
 .MenuMobile__Content_UlMenuleft__ProductUL {
   list-style: none;
   list-style: none;
   padding-left: 20px;
+  padding-top: 10px;
   margin-bottom: 0;
   font-size: 13px;
 }
 .MenuMobile__Content_UlMenuleft__ProductUL > li {
+  padding: 10px 0;
+  display: flex;
+}
+
+.MenuMobile__Content_UlMenuleft__ProductUL > a > li {
   padding: 10px 0;
   display: flex;
 }

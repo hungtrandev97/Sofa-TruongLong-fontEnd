@@ -42,8 +42,10 @@ function* loginWithPassword({ payload }) {
 function* logout() {
   try {
     yield put(logoutUserSuccess());
+    window.location.href = "/trang-chu";
   } catch (error) {
     yield put(logoutUserFailed());
+    window.location.href = "/trang-chu";
   }
 }
 

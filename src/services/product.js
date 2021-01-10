@@ -117,7 +117,7 @@ export const apiGetAllProduct = async () => {
 
 export const getAllProductIndex = async () => {
   const response = await requestGet({
-    fullUrl: `${END_POINT}/v1/ProductRoutes/GetAllProductNew`,
+    fullUrl: `${END_POINT}/v1/ProductRoutes/GetAllProductIndex`,
   });
   if (response.statusCode === 200) {
     const { body } = response;

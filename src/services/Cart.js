@@ -172,7 +172,7 @@ export const apiGetAllOderDetail = async (idOderDetailUrl) => {
 
 export const apiGetAllOderYour = async (userId) => {
   const response = await requestGet({
-    fullUrl: `${END_POINT}/v1/cartRoutes/getAllCart?idUser=${userId}`,
+    fullUrl: `${END_POINT}/v1/cartRoutes/getAllCartIdUser?idUser=${userId}`,
   });
   if (response.statusCode === 200) {
     const OderYour = response.body.data;

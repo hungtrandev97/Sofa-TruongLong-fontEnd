@@ -9,7 +9,7 @@ import {
 import { RiFilter2Line } from "react-icons/ri";
 import { MdFiberNew } from "react-icons/md";
 import { CgCloseO } from "react-icons/cg";
-import { FaHome, FaShoppingCart } from "react-icons/fa";
+import { FaHome, FaShoppingCart, FaCheckCircle } from "react-icons/fa";
 import { BsPeopleCircle } from "react-icons/bs";
 import { AiFillDollarCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -57,8 +57,12 @@ const MenuMobile = () => {
   const GetAllScreeningPrice = (number) => {
     dispatch(ProductScreening(number));
   };
-  const GetAllProduct = (id) => {
-    dispatch(UpdateIdProduct(id));
+  const GetAllProduct = (id, category_title) => {
+    const data = {
+      id,
+      category_title,
+    };
+    dispatch(UpdateIdProduct(data));
   };
   useEffect(() => {
     const GetFromApiAllAcountCategory = async () => {
@@ -173,7 +177,8 @@ const MenuMobile = () => {
                   return (
                     <Link
                       to="/san-pham"
-                      onClick={() => GetAllProduct(Data._id)}
+                      onClick={() =>
+                        GetAllProduct(Data._id, Data.category_title)}
                       style={{ color: "black" }}
                       key={index}
                     >
@@ -204,6 +209,20 @@ const MenuMobile = () => {
                 Khuyến Mãi
               </Link>
             </div>
+            {loginUser && loginUser.accessToken ? (
+              <div className="MenuMobile__Content_UlMenuleft__Home">
+                <FaCheckCircle size="1.3rem" color="rgb(250, 62, 63)" />
+                <Link
+                  to="/don-hang-cua-ban"
+                  style={{ color: "black", paddingLeft: "10px" }}
+                >
+                  kiểm tra đơn hàng
+                </Link>
+              </div>
+            ) : (
+              ""
+            )}
+
             <div className="MenuMobile__Content_UlMenuleft__Product">
               <button
                 type="button"
@@ -257,7 +276,7 @@ const MenuMobile = () => {
             <div className="MenuMobile__Content_UlMenuleft__Contact">
               <BiPhoneCall size="1.2rem" color="rgb(250, 62, 63)" />
               <Link
-                to="/gioi-thieu"
+                to="/lien-he"
                 style={{ color: "black", paddingLeft: "10px" }}
               >
                 Liên Hệ

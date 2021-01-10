@@ -35,6 +35,7 @@ export default function Register() {
     const req = await apiRegister(concatData);
     if (req.status) {
       NotifySuccess("Thông Báo", "Đăng Ký Thành Công");
+      window.location.href = "/trang-chu";
       dispatch(registerSuccess(req.data));
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Thông Báo", `${req.message}`);
@@ -162,7 +163,7 @@ export default function Register() {
                     autoComplete="address"
                   />
                 </FormGroup>
-                <div style={{ float: "left", paddingRight: "15px" }}>
+                <div style={{ float: "left" }}>
                   <Button
                     type="submit"
                     color="primary"

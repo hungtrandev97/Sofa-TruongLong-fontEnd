@@ -5,6 +5,9 @@
   width: 100%;
   top: 0;
 }
+a {
+  text-decoration: none !important;
+}
 
 .HeaderConsumer__account {
   background: #e4e5e7;

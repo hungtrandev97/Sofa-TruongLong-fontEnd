@@ -4,6 +4,7 @@ import {
   MORE_QUATITY_CARY,
   UPDATE_INFOR,
   REMOVE_DATE_CART,
+  LOGOUT_USER_SUCCESS,
 } from "../actions/actions";
 
 const INIT_STATE = {
@@ -49,6 +50,12 @@ const cartReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         cartData: [],
+      };
+    }
+    case LOGOUT_USER_SUCCESS: {
+      return {
+        ...state,
+        inforConsumer: [],
       };
     }
     default:
