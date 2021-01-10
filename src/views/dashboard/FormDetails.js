@@ -107,8 +107,7 @@ export default function FormDetails({
                 >
                   <img
                     onClick={() =>
-                      setimage(dataGetAllDetail.product_imageMain, 1)
-                    }
+                      setimage(dataGetAllDetail.product_imageMain, 1)}
                     className="Details__Form__ImgP__Col__img"
                     src={`${dataGetAllDetail.product_imageMain}`}
                     alt="img"
@@ -217,8 +216,14 @@ export default function FormDetails({
             </div>
             <div style={{ paddingTop: "20px", color: "#757575" }}>
               <div className="Details__Form__Right__Price">
-                <p>{dataGetAllDetail.product_price_sale}</p>
-                <del>{dataGetAllDetail.product_price}</del>
+                {dataGetAllDetail.product_price === "" ? (
+                  <p>{dataGetAllDetail.product_price_sale}</p>
+                ) : (
+                  <>
+                    <p>{dataGetAllDetail.product_price_sale}</p>
+                    <del>{dataGetAllDetail.product_price}</del>
+                  </>
+                )}
               </div>
               <div className="Details__Form__Right__Info">
                 <IoIosInformationCircle size="20px" color="rgba(219,0,7,.7)" />
