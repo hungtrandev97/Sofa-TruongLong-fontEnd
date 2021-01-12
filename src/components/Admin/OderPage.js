@@ -69,13 +69,13 @@ export default function OderPage() {
       format: (row) => {
         let text = "";
         if (row && row.status === 1) {
-          text = "Đang xử lý";
+          text = <div style={{ color: "#25cc22" }}>Đang xử lý </div>;
         } else if (row && row.status === 2) {
-          text = "Đang giao hàng";
+          text = <div style={{ color: "#ffbf00" }}>Đang giao hàng </div>;
         } else if (row && row.status === 3) {
-          text = "Hoàn tất";
+          text = <div style={{ color: "#b1b2b378" }}>Hoàn tất </div>;
         } else {
-          text = "Đã hủy đơn";
+          text = <div style={{ color: "red" }}>Đã hủy đơn </div>;
         }
         return text;
       },

@@ -24,13 +24,22 @@ export default function FormOderYour() {
     GetAllOderYour();
   }, []);
 
-  const updateStatus = async (id) => {
+  const updateStatus = async (id, status) => {
     const dataUpdate = {
-      status: 4,
+      status,
     };
     const UpdateStatusApi = await apiUpdateStatus(id, dataUpdate);
     if (UpdateStatusApi) {
-      NotifySuccess("Thông Báo", "hủy đơn hàng thành công");
+      if (status === 4) {
+        NotifySuccess("Thông Báo", "Hủy đơn hàng thành công");
+      } else {
+        NotifySuccess("Thông Báo", "Đặt lại đơn hàng thành công");
+      }
+
+      const dataGetAllOderYour = await apiGetAllOderYour(userId);
+      if (dataGetAllOderYour && dataGetAllOderYour.data) {
+        setDataOderYour(dataGetAllOderYour.data);
+      }
     }
   };
   return (
@@ -106,11 +115,11 @@ export default function FormOderYour() {
                           <span style={{ paddingTop: "10px" }}>
                             {(() => {
                               switch (data.status) {
-                                case "1":
+                                case 1:
                                   return <div>Đang xử lý</div>;
-                                case "2":
+                                case 2:
                                   return <div>Đang giao hàng</div>;
-                                case "3":
+                                case 3:
                                   return <div>Hoàn tất</div>;
                                 default:
                                   return <div>Đã hủy đơn</div>;
@@ -143,19 +152,61 @@ export default function FormOderYour() {
                               Chi Tiết
                             </button>
                           </Link>
-                          {dataOderYour.status < 3 ? (
+                          {/* {data.status < 2 ? (
                             <span>
                               <button
                                 className="OderCart__left__Content__button"
                                 type="button"
-                                onClick={() => updateStatus(dataOderYour._id)}
+                                onClick={() => updateStatus(data._id, 4)}
                               >
-                                Huy Đơn Hàng
+                                Hủy Đơn Hàng
                               </button>
                             </span>
                           ) : (
-                            ""
-                          )}
+                            <span>
+                              <button
+                                className="OderCart__left__Content__button"
+                                type="button"
+                                onClick={() => updateStatus(data._id, 1)}
+                              >
+                                Đặt Lại
+                              </button>
+                            </span>
+                          )} */}
+                          {(() => {
+                            switch (data.status) {
+                              case 1:
+                                return (
+                                  <span>
+                                    <button
+                                      className="OderCart__left__Content__button"
+                                      type="button"
+                                      onClick={() => updateStatus(data._id, 4)}
+                                    >
+                                      Hủy Đơn Hàng
+                                    </button>
+                                  </span>
+                                );
+                              case 2:
+                                return "";
+                              case 3:
+                                return "";
+                              case 4:
+                                return (
+                                  <span>
+                                    <button
+                                      className="OderCart__left__Content__button"
+                                      type="button"
+                                      onClick={() => updateStatus(data._id, 1)}
+                                    >
+                                      Đặt Lại
+                                    </button>
+                                  </span>
+                                );
+                              default:
+                                return <div>Đã hủy đơn</div>;
+                            }
+                          })()}
                         </div>
                       </Col>
                     </Row>

@@ -26,6 +26,16 @@ export default function DetailOder({ match }) {
       format: (row) => row._product.product_title,
     },
     {
+      name: "Hình Ảnh",
+      selector: "_product",
+      sortable: true,
+      cell: (row) => (
+        <>
+          <img src={`${row._product.product_imageMain}`} alt="" width="100" />
+        </>
+      ),
+    },
+    {
       name: "Số Lượng",
       selector: "quantity",
       sortable: true,
