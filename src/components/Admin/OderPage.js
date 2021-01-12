@@ -31,6 +31,11 @@ import "./OderPage.css";
 export default function OderPage() {
   const columns = () => [
     {
+      name: "Tên Khách Hàng",
+      selector: "name",
+      sortable: true,
+    },
+    {
       name: "Địa Chỉ",
       selector: "address",
       sortable: true,
