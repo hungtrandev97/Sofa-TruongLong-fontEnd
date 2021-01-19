@@ -107,7 +107,7 @@ const MenuCart = ({ inforConsumer, price, Total, buttonMenu, countCart }) => {
           </div>
           <div className="Menu__Cart__Edit__Info">
             <button type="button" onClick={() => ChangeIsModal(true)}>
-              Chỉnh sủa thông tin
+              Chỉnh sửa thông tin
             </button>
           </div>
         </div>
