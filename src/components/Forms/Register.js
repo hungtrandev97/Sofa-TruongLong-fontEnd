@@ -14,7 +14,6 @@ import "./AcountUser.css";
 const loginSchema = Yup.object().shape({
   userName: Yup.string().required("Tên đăng nhập không được rỗng"),
   password: Yup.string().required("Mật khẩu không được rỗng").min(6).max(20),
-  email: Yup.string().email().required("Email không được rỗng"),
   address: Yup.string().required("Địa chỉ không được rỗng"),
   numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
 });
@@ -28,7 +27,7 @@ export default function Register() {
       numberPhone: value.numberPhone,
       address: value.address,
       gender,
-      email: value.email,
+      // email: value.email,
       password: value.password,
       userName: value.userName,
     };
@@ -51,7 +50,7 @@ export default function Register() {
             initialValues={{
               userName: "",
               password: "",
-              email: "",
+              // email: "",
               address: "",
               numberPhone: "",
             }}
@@ -128,7 +127,7 @@ export default function Register() {
                     autoComplete="numberPhone"
                   />
                 </FormGroup>
-                <FormGroup>
+                {/* <FormGroup>
                   <Label for="email" className="font-ob-bold AcountLabel">
                     Email
                   </Label>
@@ -144,7 +143,7 @@ export default function Register() {
                     placeholder="Nhập Tên Tài Khoản"
                     autoComplete="email"
                   />
-                </FormGroup>
+                </FormGroup> */}
 
                 <FormGroup>
                   <Label for="address" className="font-ob-bold AcountLabel">
