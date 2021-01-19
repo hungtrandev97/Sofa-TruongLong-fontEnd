@@ -35,7 +35,7 @@ html {
   direction: ltr;
   height: 100%; // http://updates.html5rocks.com/2013/12/300ms-tap-delay-gone-away
   -ms-touch-action: manipulation;
-  touch-action: manipulation;
+  // touch-action: manipulation;
   font-size: 18px; // force same font size acrros all device
   scroll-behavior: smooth;
 }

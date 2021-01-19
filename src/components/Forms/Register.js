@@ -14,7 +14,6 @@ import "./AcountUser.css";
 const loginSchema = Yup.object().shape({
   userName: Yup.string().required("Tên đăng nhập không được rỗng"),
   password: Yup.string().required("Mật khẩu không được rỗng").min(6).max(20),
-  email: Yup.string().email().required("Email không được rỗng"),
   address: Yup.string().required("Địa chỉ không được rỗng"),
   numberPhone: Yup.string().required("Số điện thoại không được rỗng"),
 });

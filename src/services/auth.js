@@ -48,7 +48,7 @@ export const apiRegister = async (user) => {
   return {
     status: false,
     type: TYPE_NOTIFY.ERROR,
-    message: "Email đã tồn tại",
+    message: "Tên đăng nhập đã tồn tại",
     data: response,
   };
 };

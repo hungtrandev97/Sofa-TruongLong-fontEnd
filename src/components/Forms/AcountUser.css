@@ -13,10 +13,7 @@
   height: 35px !important;
   font-size: 14px !important;
 }
-.AcountForm {
-  height: 40vh;
-  overflow: scroll;
-}
+
 .AcountErrorSever {
   text-align: center;
   font-size: 15px !important;

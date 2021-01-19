@@ -20,8 +20,8 @@ const Introduce = () => {
         <Col lg={3} md={6} sm={12} className=" Introduce__content__Nav">
           <IntroduceContent
             Icon={<MdSecurity size="2.5rem" color="rgb(97, 192, 93)" />}
-            Title="An toàn tài chính"
-            Descript="Free Ship nội thành"
+            Title="Bảo hành sản phẩm"
+            Descript="Từ 3 năm đến 5 năm"
           />
         </Col>
         <Col lg={3} md={6} sm={12} className=" Introduce__content__Nav">
