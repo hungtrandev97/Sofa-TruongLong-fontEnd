@@ -94,13 +94,18 @@
     width: 320px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .swiper-wrapper {
     height: 350px;
   }
 }
-@media (max-width: 426px) {
+@media (max-width: 768px) {
   .swiper-wrapper {
     height: 250px;
+  }
+}
+@media (max-width: 426px) {
+  .swiper-wrapper {
+    height: 150px;
   }
 }

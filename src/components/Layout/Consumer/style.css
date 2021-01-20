@@ -11,6 +11,9 @@ html {
   background-color: #f5f5f5;
   max-width: 1500px;
 }
+#app > div {
+  background: #fff !important;
+}
 a {
   text-decoration: none !important;
 }
