@@ -46,6 +46,9 @@ body,
   // overflow-x: hidden;
   height: 100%;
   padding-right: 0px !important;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // Main wrapper
@@ -512,6 +515,7 @@ _:-ms-lang(x),
   } // max size for large devices
   @include media-breakpoint-up(xl) {
     .wrapper {
+      background: #fff;
       &,
       & .topnavbar-wrapper {
         width: $boxed-max-width;

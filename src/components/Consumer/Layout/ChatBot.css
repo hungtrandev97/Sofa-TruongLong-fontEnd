@@ -1,8 +1,12 @@
 .chatbox {
+  float: right;
+}
+
+.chatbox_content {
   position: fixed;
   bottom: 30px;
   z-index: 998;
-  right: 30px;
+  margin-left: -70px;
 }
 
 /* .Chat_Box_Phone {
