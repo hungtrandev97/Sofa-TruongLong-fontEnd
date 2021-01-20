@@ -24,7 +24,10 @@ class Header extends Component {
     return (
       <header className="topnavbar-wrapper">
         {/* START Top Navbar */}
-        <nav className="navbar topnavbar" style={{ background: "#585757" }}>
+        <nav
+          className="navbar topnavbar"
+          style={{ background: "#585757", maxWidth: "1500px" }}
+        >
           {/* START navbar header */}
           <div className="navbar-header">
             <a className="navbar-brand" href="#/">
