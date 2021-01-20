@@ -27,7 +27,7 @@ export default function Register() {
       numberPhone: value.numberPhone,
       address: value.address,
       gender,
-      // email: value.email,
+      email: value.email,
       password: value.password,
       userName: value.userName,
     };
@@ -50,7 +50,7 @@ export default function Register() {
             initialValues={{
               userName: "",
               password: "",
-              // email: "",
+              email: "",
               address: "",
               numberPhone: "",
             }}
@@ -127,7 +127,7 @@ export default function Register() {
                     autoComplete="numberPhone"
                   />
                 </FormGroup>
-                {/* <FormGroup>
+                <FormGroup>
                   <Label for="email" className="font-ob-bold AcountLabel">
                     Email
                   </Label>
@@ -143,7 +143,7 @@ export default function Register() {
                     placeholder="Nhập Tên Tài Khoản"
                     autoComplete="email"
                   />
-                </FormGroup> */}
+                </FormGroup>
 
                 <FormGroup>
                   <Label for="address" className="font-ob-bold AcountLabel">
