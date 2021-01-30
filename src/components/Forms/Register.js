@@ -27,7 +27,7 @@ export default function Register() {
       numberPhone: value.numberPhone,
       address: value.address,
       gender,
-      email: value.email,
+      email: `${Date.now()}@gmail.com`,
       password: value.password,
       userName: value.userName,
     };
