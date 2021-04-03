@@ -132,7 +132,7 @@
   flex: 1 1 auto;
   padding: $modal-inner-padding;
   overflow-y: scroll;
-  height: 300px;
+  max-height: 300px;
 }
 
 // Footer (for actions)

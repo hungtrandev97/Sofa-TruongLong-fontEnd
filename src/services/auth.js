@@ -45,6 +45,13 @@ export const apiRegister = async (user) => {
       message: response.body.message,
     };
   }
+  if (response.statusCode === 500) {
+    return {
+      status: false,
+      type: TYPE_NOTIFY.WARNING,
+      message: "Email đã tồn tại",
+    };
+  }
   return {
     status: false,
     type: TYPE_NOTIFY.ERROR,

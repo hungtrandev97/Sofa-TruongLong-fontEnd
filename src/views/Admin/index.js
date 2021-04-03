@@ -114,15 +114,6 @@ function Admin({ location, match }) {
   );
 }
 
-Admin.propTypes = {
-  match: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-  }),
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }),
-};
-
 Admin.defaultProps = {
   match: {
     url: "/admin",
