@@ -24,7 +24,7 @@ export default function FormCart() {
   let totaiPrice = 0;
   const countCart = cartData.length;
   cartData.forEach((item) => {
-    if (item.product_priceNumber_sale !== 0) {
+    if (item.product_priceNumber_sale && item.product_priceNumber_sale !== 0) {
       totaiPrice += item.product_priceNumber_sale * item.quanity;
     } else {
       totaiPrice += item.product_priceNumber * item.quanity;

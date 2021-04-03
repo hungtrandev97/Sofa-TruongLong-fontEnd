@@ -59,7 +59,8 @@ const ProductCart = ({ titlePage, cartData, pageMain }) => {
               <div className="Content__Cart__content__Price">
                 <div className="Content__Cart__content__Price__promotional">
                   <span>
-                    {item.pricePromotional !== ""
+                    {item.product_priceNumber_sale &&
+                    item.product_priceNumber_sale !== 0
                       ? item.pricePromotional
                       : item.price}
                   </span>

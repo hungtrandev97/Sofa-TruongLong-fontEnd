@@ -133,7 +133,6 @@ function FormCreateProduct() {
       }}
       validationSchema={createProductSchema}
       onSubmit={(values) => {
-        console.log(values);
         onFinalSubmit(values);
       }}
     >

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IoIosInformationCircle, IoMdCart } from "react-icons/io";
 import { AiFillGift } from "react-icons/ai";
 import { BsCheckBox } from "react-icons/bs";
-import { FaPhoneSquareAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { FaPhoneSquareAlt } from "react-icons/fa";
 import ChatBox from "../../components/Consumer/Layout/ChatBox";
 import ItemProduct from "../../components/Consumer/Layout/ItemProduct";
 import { addCart, moreQuatitys } from "../../store/actions/actions";
@@ -34,7 +34,7 @@ export default function FormDetails({
       ...cartData,
       {
         idProduct: dataGetAllDetail._id,
-        title: dataGetAllDetail.title,
+        title: dataGetAllDetail.product_title,
         SouceProduct: dataGetAllDetail.product_code,
         price: dataGetAllDetail.product_price,
         pricePromotional: dataGetAllDetail.product,
@@ -107,7 +107,8 @@ export default function FormDetails({
                 >
                   <img
                     onClick={() =>
-                      setimage(dataGetAllDetail.product_imageMain, 1)}
+                      setimage(dataGetAllDetail.product_imageMain, 1)
+                    }
                     className="Details__Form__ImgP__Col__img"
                     src={`${dataGetAllDetail.product_imageMain}`}
                     alt="img"
@@ -189,8 +190,7 @@ export default function FormDetails({
                           style={{ fontWeight: "bold", paddingLeft: "5px" }}
                         >
                           {dataBought._cart.name}
-                        </span>
-{" "}
+                        </span>{" "}
                         <span>
                           {dataBought._cart.numberPhone.slice(0, 7)}
                           ***
@@ -216,8 +216,9 @@ export default function FormDetails({
             </div>
             <div style={{ paddingTop: "20px", color: "#757575" }}>
               <div className="Details__Form__Right__Price">
-                {dataGetAllDetail.product_price === "" ? (
-                  <p>{dataGetAllDetail.product_price_sale}</p>
+                {!dataGetAllDetail.product_price_sale &&
+                dataGetAllDetail.product_price_sale !== "0" ? (
+                  <p>{dataGetAllDetail.product_price}</p>
                 ) : (
                   <>
                     <p>{dataGetAllDetail.product_price_sale}</p>
