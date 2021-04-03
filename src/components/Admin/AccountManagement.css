@@ -1,0 +1,40 @@
+.AccountManagement__LinkNew {
+  border: none;
+  color: #ffffff;
+  float: right;
+  cursor: pointer;
+  text-align: center;
+  padding: 5px 5px;
+  background-color: #008cba;
+  width: 104px;
+}
+.AccountManagement__LinkNew:hover {
+  color: #ffffff;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.AccountManagement__LinkNew > span {
+  font-size: 14px;
+}
+.Delete__Account__Modal__Body > button {
+  font-size: 15px;
+  float: right;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}
+.CreateAccountManagement {
+  padding: 30px 130px 30px 130px;
+}
+.EditAccountManagement {
+  padding: 30px 130px 30px 130px;
+}
+
+@media (max-width: 768px) {
+  .CreateAccountManagement {
+    padding: 10px;
+  }
+  .EditAccountManagement {
+    padding: 10px;
+  }
+}

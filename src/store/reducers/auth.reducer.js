@@ -1,22 +1,25 @@
 import { ACCESS_TOKEN_KEY } from "../../constants/DefaultValues";
 import {
+  RELOAD_LOGIN,
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILED,
   LOGOUT_USER,
-  AUTH_REGISTER_SUCCESS,
-  AUTH_RESET_STATUS_LOGIN,
+  REGISTER_SUCCESS,
+  ACOUNT_ADMIN_SUCCESS,
+  ACOUNT_CONSUMER_SUCCESS,
+  NUMBER_ONLINE,
+  COUNT_NUMBER_ONLINE,
 } from "../actions/actions";
 
 const INIT_STATE = {
-  loginUser: {
-    accessToken: "",
-  },
   loadingLogin: false,
   errorLogin: false,
-  loadingLogout: false,
-  loadingRegister: false,
-  errorRegister: false,
+  loginUser: {},
+  dataAcountAdmin: [],
+  dataAcountConsumer: [],
+  numberOnline: 0,
+  totalNumberOnline: 1,
 };
 
 const authReducer = (state = INIT_STATE, action) => {
@@ -27,19 +30,27 @@ const authReducer = (state = INIT_STATE, action) => {
         loadingLogin: true,
         errorLogin: false,
       };
+    case RELOAD_LOGIN:
+      return {
+        ...state,
+        errorLogin: false,
+      };
 
     case LOGIN_USER_SUCCESS: {
-      const { user } = action.payload;
+      const { user, token } = action.payload;
       localStorage.setItem(ACCESS_TOKEN_KEY, action.payload.token.accessToken);
       return {
         ...state,
         loginUser: {
-          accessToken: action.payload.token.accessToken,
+          accessToken: token.accessToken,
           role: user.role,
           userId: user.id,
           email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
+          userName: user.userName,
+          gender: user.gender,
+          address: user.address,
+          numberPhone: user.numberPhone,
+          numberPoint: user.numberPoint,
         },
         loadingLogin: false,
         errorLogin: false,
@@ -52,7 +63,7 @@ const authReducer = (state = INIT_STATE, action) => {
       return { ...state, loginUser: null };
     }
 
-    case AUTH_REGISTER_SUCCESS: {
+    case REGISTER_SUCCESS: {
       const { user, token } = action.payload;
       localStorage.setItem(ACCESS_TOKEN_KEY, token.accessToken);
       return {
@@ -62,16 +73,42 @@ const authReducer = (state = INIT_STATE, action) => {
           role: user.role,
           userId: user.id,
           email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
+          userName: user.userName,
+          gender: user.gender,
+          address: user.address,
+          numberPhone: user.numberPhone,
+          numberPoint: user.numberPoint,
         },
       };
     }
-    case AUTH_RESET_STATUS_LOGIN: {
+    // admin
+    case ACOUNT_ADMIN_SUCCESS: {
+      const { data } = action.payload;
       return {
         ...state,
-        loadingLogin: false,
-        errorLogin: false,
+        dataAcountAdmin: data,
+      };
+    }
+    // Consumer
+    case ACOUNT_CONSUMER_SUCCESS: {
+      const { data } = action.payload;
+      return {
+        ...state,
+        dataAcountConsumer: data,
+      };
+    }
+    case NUMBER_ONLINE: {
+      const { data } = action.payload;
+      return {
+        ...state,
+        numberOnline: state.numberOnline === 0 ? 1 : data,
+      };
+    }
+    case COUNT_NUMBER_ONLINE: {
+      const { data } = action.payload;
+      return {
+        ...state,
+        totalNumberOnline: data,
       };
     }
     default:

@@ -1,0 +1,19 @@
+.OderPage__Header {
+  padding-top: 10px;
+  background: #80808026;
+  font-size: 15px;
+}
+.Delete__Oder__Modal__Body > button {
+  font-size: 15px;
+  float: right;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}
+.Button__Detail {
+  border: none;
+  background: #008cba;
+  color: #ffffff;
+  width: 80px;
+  height: 30px;
+}

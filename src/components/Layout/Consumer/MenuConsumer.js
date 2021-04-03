@@ -1,113 +1,160 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/destructuring-assignment */
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React from "react";
+import { Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
-
+import { AiOutlineCaretRight } from "react-icons/ai";
+import { BiChevronDown } from "react-icons/bi";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  ProductScreening,
+  UpdateIdProduct,
+} from "../../../store/actions/actions";
 import "./MenuConsumer.css";
 
-class HomeMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { iconMenu: "≡" };
-  }
+const MenuConsumer = () => {
+  const { dataCategory } = useSelector((state) => state.categoryRedux);
+  const { loginUser } = useSelector((state) => state.authRedux);
+  const dispatch = useDispatch();
+  const GetAllScreeningPrice = (number) => {
+    dispatch(ProductScreening(number));
+  };
+  const GetAllProduct = (id, category_title) => {
+    const data = {
+      id,
+      category_title,
+    };
+    dispatch(UpdateIdProduct(data));
+  };
+  return (
+    <div className="consumersMenu">
+      <div className="consumersMenu__Menu">
+        <div className="consumersMenu__Menu__Nav screen__Wep">
+          <div className="consumersMenu__MenuHeader">
+            <div className="consumersMenu__MenuHeaderLink">
+              <ul className="MenuMenu">
+                <li style={{ marginLeft: "0px" }}>
+                  <Link to="/trang-chu"> TRANG CHỦ </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/san-pham"
+                    onClick={() => GetAllProduct(0, "Sản Phẩm")}
+                  >
+                    <span>SẢN PHẨM</span>
+                    <BiChevronDown
+                      size="1rem"
+                      style={{ marginTop: "-2px", paddingLeft: "5px" }}
+                    />
+                  </Link>
 
-  render() {
-    const { activeLink } = this.props;
-    return (
-      <div className="consumersMenu">
-        <div className="consumersMenu__Menu">
-          <div className="consumersMenu__Menu__Nav screen__Wep">
-            <div className="consumersMenu__MenuHeader">
-              <Link to="/home/">
-                <span>
-                  <img
-                    className="consumersMenu__MenuHeaderLogo"
-                    src="/img/home/logo_responsive.png"
-                    width="152px"
-                    alt=""
-                  />
-                  <img
-                    className="consumersMenu__MenuHeaderLogoResponsive"
-                    src="/img/home/logo_responsive.png"
-                    width="152px"
-                    alt=""
-                  />
-                </span>
-              </Link>
-              <div className="consumersMenu__MenuHeaderLink">
-                <ul>
-                  <li
-                    className={` ${
-                      activeLink === "Home"
-                        ? "consumersMenu__MenuHeaderLinkActive"
-                        : "consumersMenu__MenuHeaderLinkActive"
-                    }`}
-                    style={{ marginLeft: "0px" }}
+                  <ul className="sub-menu">
+                    <Row
+                      className="screen__Wep sub-menuCategory"
+                      style={{ padding: "10px" }}
+                    >
+                      {dataCategory.map((data, index) => {
+                        return (
+                          <Col key={index} md={3}>
+                            <Link
+                              to="/san-pham"
+                              className="sub-menuCategory__Title__Link"
+                              onClick={() =>
+                                GetAllProduct(data._id, data.category_title)}
+                            >
+                              <div className="sub-menuCategory__Title">
+                                <AiOutlineCaretRight />
+                                {data.category_title}
+                              </div>
+                            </Link>
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  </ul>
+                </li>
+                <li>
+                  <Link to="/san-pham-moi">SẢN PHẨM MỚI</Link>
+                </li>
+                <li>
+                  <Link
+                    to="/loc-gia-san-pham"
+                    onClick={() => GetAllScreeningPrice(0)}
                   >
-                    <Link to="/home/"> Trang Chủ </Link>
+                    <span>Lọc Giá Sản Phẩm</span>
+                    <BiChevronDown
+                      size="1rem"
+                      style={{ marginTop: "-2px", paddingLeft: "5px" }}
+                    />
+                  </Link>
+                  <ul className="sub-menu">
+                    <Row
+                      className="screen__Wep sub-menuCategory"
+                      style={{ padding: "10px" }}
+                    >
+                      <Col md={3}>
+                        <div className="sub-menuCategory__Title ">
+                          <AiOutlineCaretRight />
+                          <Link
+                            to="/loc-gia-san-pham"
+                            className="sub-menuCategory__Title__Link"
+                            onClick={() => GetAllScreeningPrice(5000001)}
+                          >
+                            Dưới 5 Triệu
+                          </Link>
+                        </div>
+                      </Col>
+
+                      <Col md={3}>
+                        <div className="sub-menuCategory__Title">
+                          <AiOutlineCaretRight />
+                          <Link
+                            to="/loc-gia-san-pham"
+                            className="sub-menuCategory__Title__Link"
+                            onClick={() => GetAllScreeningPrice(10000001)}
+                          >
+                            Dưới 10 Triệu
+                          </Link>
+                        </div>
+                      </Col>
+                      <Col md={3}>
+                        <div className="sub-menuCategory__Title">
+                          <AiOutlineCaretRight />
+                          <Link
+                            to="/loc-gia-san-pham"
+                            className="sub-menuCategory__Title__Link"
+                            onClick={() => GetAllScreeningPrice(15000001)}
+                          >
+                            Dưới 15 Triệu
+                          </Link>
+                        </div>
+                      </Col>
+                    </Row>
+                  </ul>
+                </li>
+                <li>
+                  <Link to="/khuyen-mai">KHUYẾN MÃI</Link>
+                </li>
+                {loginUser && loginUser.accessToken ? (
+                  <li>
+                    <Link to="/don-hang-cua-ban">kiểm tra đơn hàng</Link>
                   </li>
-                  <li
-                    className={` ${
-                      activeLink === "About"
-                        ? "consumersMenu__MenuHeaderLinkActive"
-                        : ""
-                    }`}
-                  >
-                    <Link to="/home/"> Giới Thiệu </Link>
-                  </li>
-                  <li
-                    className={` ${
-                      activeLink === "Educational"
-                        ? "consumersMenu__MenuHeaderLinkActive"
-                        : ""
-                    }`}
-                  >
-                    <Link to="/home/educational/">Sản Phẩm</Link>
-                  </li>
-                  <li
-                    className={` ${
-                      activeLink === "Educational"
-                        ? "consumersMenu__MenuHeaderLinkActive"
-                        : ""
-                    }`}
-                  >
-                    <Link to="/home/educational/">Khuyến Mãi</Link>
-                  </li>
-                  <li
-                    className={` ${
-                      activeLink === "Contact"
-                        ? "consumersMenu__MenuHeaderLinkActive"
-                        : ""
-                    }`}
-                  >
-                    <Link to="/home/contact">Liên Hệ</Link>
-                  </li>
-                </ul>
-                <div className="consumersMenu__SiguploginMobile">
-                  <Link to="/auth/register">SIGN UP</Link>
-                  <span> | </span>
-                  <Link to="/auth/login">LOGIN</Link>
-                </div>
+                ) : (
+                  ""
+                )}
+
+                <li>
+                  <Link to="/lien-he">LIÊN HỆ</Link>
+                </li>
+              </ul>
+              <div className="consumersMenu__SiguploginMobile">
+                <Link to="/auth/register">SIGN UP</Link>
+                <span> | </span>
+                <Link to="/auth/login">LOGIN</Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
-  }
-}
-
-HomeMenu.propTypes = {
-  activeLink: PropTypes.string,
+    </div>
+  );
 };
-HomeMenu.defaultProps = {
-  activeLink: "",
-};
-
-const mapStateToProps = () => {
-  return {};
-};
-const mapActionsToProps = {};
-export default connect(mapStateToProps, mapActionsToProps)(HomeMenu);
+export default MenuConsumer;

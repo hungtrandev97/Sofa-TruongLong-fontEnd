@@ -35,7 +35,7 @@ html {
   direction: ltr;
   height: 100%; // http://updates.html5rocks.com/2013/12/300ms-tap-delay-gone-away
   -ms-touch-action: manipulation;
-  touch-action: manipulation;
+  // touch-action: manipulation;
   font-size: 18px; // force same font size acrros all device
   scroll-behavior: smooth;
 }
@@ -46,6 +46,9 @@ body,
   // overflow-x: hidden;
   height: 100%;
   padding-right: 0px !important;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // Main wrapper
@@ -512,6 +515,7 @@ _:-ms-lang(x),
   } // max size for large devices
   @include media-breakpoint-up(xl) {
     .wrapper {
+      background: #fff;
       &,
       & .topnavbar-wrapper {
         width: $boxed-max-width;

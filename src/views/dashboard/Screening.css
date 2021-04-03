@@ -1,0 +1,20 @@
+.FromScreening {
+  padding-top: 50px;
+  min-height: 70vh;
+}
+.Screening__title {
+  background-color: white;
+  border-bottom: 2px solid rgb(250, 62, 63);
+}
+.Screening__title > span {
+  background-color: rgb(250, 62, 63);
+  color: white;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 20px 5px;
+  font-weight: bold;
+}
+.Screening__Row {
+  padding: 50px 0px 50px 20px;
+}

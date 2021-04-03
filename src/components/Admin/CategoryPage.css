@@ -1,0 +1,59 @@
+.Category__Header {
+  padding-top: 10px;
+  background: #80808026;
+  font-size: 15px;
+}
+.Category_Add {
+  float: right;
+  padding-right: 10px;
+}
+.data-table-extensions {
+  padding: 0px;
+}
+.data-table-extensions > .data-table-extensions-filter {
+  display: flex;
+  align-items: center;
+  border: 1px solid #8080803d;
+  border-radius: 10px;
+  padding-left: 15px;
+}
+
+.data-table-extensions > .data-table-extensions-filter > .filter-text {
+  border: none;
+}
+
+.Button__add > button {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  float: right;
+  width: 104px;
+  font-size: 13px;
+  border-radius: 2px;
+  height: 40px;
+}
+.Button__add > button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.Delete__Category__Modal__Body > button {
+  font-size: 15px;
+  float: right;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}
+
+/* categorypage */
+.EditCategoryForm {
+  padding: 30px 130px 30px 130px;
+}
+@media (max-width: 768px) {
+  .EditCategoryForm {
+    padding: 10px;
+  }
+}

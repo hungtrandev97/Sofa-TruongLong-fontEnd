@@ -14,10 +14,10 @@
 }
 .BackToHome__Link:hover {
   text-decoration: none;
+  width: ;
 }
-
-@media (max-width: 425px) {
-  .BackToHome__styledText {
-    display: none;
+@media (max-width: 768) {
+  .BackToHome {
+    padding: 20px;
   }
 }

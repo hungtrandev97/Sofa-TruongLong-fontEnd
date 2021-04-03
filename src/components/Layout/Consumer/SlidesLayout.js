@@ -54,7 +54,6 @@ ItemSwiper.defaultProps = {
   isLongText: false,
   titleStyles: {},
 };
-
 function LoginSwiper({ slides, titleStyles }) {
   return (
     <div className="LoginSwiper__container">

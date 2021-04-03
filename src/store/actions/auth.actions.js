@@ -1,17 +1,27 @@
+export const RELOAD_LOGIN = "RELOAD_LOGIN";
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAILED = "LOGIN_USER_FAILED";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS";
 export const LOGOUT_USER_FAILED = "LOGOUT_USER_FAILED";
-export const AUTH_REGISTER_SUCCESS = "AUTH_REGISTER_SUCCESS";
-export const AUTH_RESET_STATUS_LOGIN = "AUTH_RESET_STATUS_LOGIN";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 
-export const loginUser = (user) => ({
-  type: LOGIN_USER,
-  payload: { user },
+export const ACOUNT_ADMIN_SUCCESS = "ACOUNT_ADMIN_SUCCESS";
+export const ACOUNT_CONSUMER_SUCCESS = "ACOUNT_CONSUMER_SUCCESS";
+export const NUMBER_ONLINE = "NUMBER_ONLINE";
+export const COUNT_NUMBER_ONLINE = "COUNT_NUMBER_ONLINE";
+
+export const reloadLogin = () => ({
+  type: RELOAD_LOGIN,
+  payload: {},
 });
 
+// page Login Index
+export const login = ({ userName, password }) => ({
+  type: LOGIN_USER,
+  payload: { userName, password },
+});
 export const loginUserSuccess = (user, token) => ({
   type: LOGIN_USER_SUCCESS,
   payload: { user, token },
@@ -37,12 +47,30 @@ export const logoutUserFailed = () => ({
   payload: {},
 });
 
-export const authRegisterSuccess = ({ user, token }) => ({
-  type: AUTH_REGISTER_SUCCESS,
+export const registerSuccess = ({ user, token }) => ({
+  type: REGISTER_SUCCESS,
   payload: { user, token },
 });
+// End
 
-export const authResetStatusLogin = () => ({
-  type: AUTH_RESET_STATUS_LOGIN,
-  payload: {},
+// return
+export const acountAdminSuccess = ({ data }) => ({
+  type: ACOUNT_ADMIN_SUCCESS,
+  payload: { data },
 });
+
+export const acountConsumerSuccess = ({ data }) => ({
+  type: ACOUNT_CONSUMER_SUCCESS,
+  payload: { data },
+});
+
+export const numberOnline = (data) => ({
+  type: NUMBER_ONLINE,
+  payload: { data },
+});
+
+export const countNumberOnline = (data) => ({
+  type: COUNT_NUMBER_ONLINE,
+  payload: { data },
+});
+// end return

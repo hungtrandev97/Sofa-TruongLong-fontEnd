@@ -12,9 +12,18 @@ import history from "./history";
 import { ROLE, ACCESS_TOKEN_KEY } from "./constants/DefaultValues";
 import ErrorView from "./views/404/404";
 import AdminView from "./views/Admin/index";
-import AuthView from "./views/auth/index";
 import MainView from "./views/index";
 import DashboardView from "./views/dashboard/index";
+import ContactView from "./views/dashboard/Contact";
+import ProductPage from "./views/dashboard/ProductPage";
+import NewProductPage from "./views/dashboard/NewProductPage";
+import SalePage from "./views/dashboard/SalePage";
+import ScreeningPage from "./views/dashboard/ScreeningPage";
+import CartPage from "./views/dashboard/CartPage";
+import OderYour from "./views/dashboard/OderYour";
+import OrderDetails from "./views/dashboard/OrderDetails";
+import DetailsPage from "./views/dashboard/DetailsPage";
+import search from "./views/dashboard/search";
 
 const auth = {
   isAuthenticated: false,
@@ -64,20 +73,23 @@ const Routes = (props) => {
     <Router history={history}>
       <Switch>
         <PrivateRoute
-          path="/consumer"
-          roles={[ROLE.ADMIN]}
-          loginUser={loginUser}
-          component={DashboardView}
-        />
-        <PrivateRoute
           path="/admin"
           roles={[ROLE.ADMIN]}
           loginUser={loginUser}
           component={AdminView}
         />
         <Route path="/" exact component={MainView} />
-        <Route path="/auth" component={AuthView} />
         <Route path="/trang-chu" component={DashboardView} />
+        <Route path="/lien-he" component={ContactView} />
+        <Route path="/san-pham" component={ProductPage} />
+        <Route path="/san-pham-moi" component={NewProductPage} />
+        <Route path="/khuyen-mai" component={SalePage} />
+        <Route path="/loc-gia-san-pham" component={ScreeningPage} />
+        <Route path="/gio-hang" component={CartPage} />
+        <Route path="/don-hang-cua-ban" component={OderYour} />
+        <Route path="/chi-tiet-don-hang" component={OrderDetails} />
+        <Route path="/chi-tiet-san-pham" component={DetailsPage} />
+        <Route path="/tim-kiem-san-pham" component={search} />
         <Route path="/error" component={ErrorView} />
         <Redirect to="/error" />
       </Switch>

@@ -1,0 +1,81 @@
+.chatbox {
+  float: right;
+}
+
+.chatbox_content {
+  position: fixed;
+  bottom: 30px;
+  z-index: 998;
+  margin-left: -60px;
+}
+
+/* .Chat_Box_Phone {
+  animation: 700ms infinite Phone;
+  animation: 0.3s infinite Phone1;
+}
+@keyframes Phone {
+  100% {
+    transform: rotate(5deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes Phone1 {
+  100% {
+    transform: rotate(5deg);
+  }
+  90% {
+    transform: rotate(-15deg);
+  }
+} */
+.Chat_Box_Phone {
+  animation: app-logo-spin infinite 5s linear;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Chat__box__FB {
+  animation: app-logo-spin infinite 5s linear;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.Chatbox__Zalo {
+  animation: app-logo-spin infinite 5s linear;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.chatbox_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbox_content_link {
+  width: 40px;
+  padding: 10px 0;
+}
+
+.chatbox_content_link > img {
+  width: 100%;
+}

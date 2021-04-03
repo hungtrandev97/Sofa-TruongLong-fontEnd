@@ -1,0 +1,285 @@
+.Details__Form {
+  padding-top: 1px;
+  background-color: #ffffff;
+}
+.Details__Form__Col__Left {
+  background-color: #ffffff;
+  padding-top: 25px;
+}
+.Details__Form__ImgP__Left {
+  padding-top: 10px;
+}
+.Details__Form__ImgP__Col {
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.Details__Form__ImgP__ColOpacity {
+  opacity: 1;
+}
+.Details__Form__ImgP__Col:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.Details__Form__ImgP__Col__img {
+  width: 100%;
+  height: 85px;
+}
+.Details__Form__Customer__Left {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  height: 200px;
+}
+.Details__Form__Customer__icon > span {
+  padding-left: 5px;
+  font-size: 17px;
+  font-weight: bold;
+}
+.Details__Form__Customer__Ul {
+  height: 145px;
+  overflow: auto;
+}
+.Details__Form__Customer__Ul > ul {
+  list-style: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* ___ */
+
+.Details__Form__Col__Right {
+  padding-top: 25px;
+}
+.Details__Form__Right__Tittle {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25em;
+  border-bottom: 1px solid #e5e5e5;
+}
+.Details__Form__Right__Price {
+  display: flex;
+}
+.Details__Form__Right__Price > p {
+  color: rgb(250, 62, 63);
+  font-weight: bold;
+  padding-right: 20px;
+  font-size: 20px;
+}
+.Details__Form__Right__Price > del {
+  font-size: 14px;
+  line-height: 2.4;
+}
+.Details__Form__Right__Info {
+  display: flex;
+  line-height: 1.4;
+  font-size: 16px;
+}
+.Details__Form__Right__Info > p {
+  padding-left: 10px;
+}
+.Details__Form__Right__Info__Div {
+  display: block;
+}
+.Details__Form__Right__Info__Ul {
+  font-size: 14px;
+}
+.Details__Form__Right__Info__Ul > ul > li {
+  list-style: none;
+  display: flex;
+  line-height: 1;
+  padding-bottom: 10px;
+}
+.Details__Form__Right__Info__Ul > ul > li > span {
+  padding-left: 10px;
+}
+.Details__Form__Right__Info__Ul > ul > li > p {
+  padding-left: 10px;
+}
+.Details__Form__Right__Sale {
+  display: flex;
+  line-height: 1.4;
+  font-size: 16px;
+}
+.Details__Form__Right__Sale > p {
+  padding-left: 10px;
+}
+.Details__Form__Right__Order {
+  display: flex;
+  padding-left: 40px;
+}
+.Details__Form__Right__Order > button {
+  border: none;
+  background-color: #f57224;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 0 20px;
+  border-radius: 2%;
+  line-height: 1;
+  height: 35px;
+}
+.Details__Form__Right__Order > button > span {
+  padding-left: 5px;
+}
+.Details__Form__Right__Phone {
+  display: flex;
+  padding-left: 20px;
+  line-height: 1.5;
+}
+.Details__Form__Right__Phone > p {
+  font-size: 25px;
+  padding-left: 3px;
+}
+
+/* .Details__Form__Right__Phone__Icon {
+  animation: 700ms infinite icon;
+  animation: 0.3s infinite icon1;
+}
+@keyframes icon {
+  100% {
+    transform: rotate(5deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes icon1 {
+  100% {
+    transform: rotate(5deg);
+  }
+  90% {
+    transform: rotate(-15deg);
+  }
+} */
+.Details__Form__Right__Phone__Icon {
+  animation: app-logo-spin infinite 2s linear;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.Details__Form__Right__Address {
+  padding-top: 20px;
+}
+.Details__Form__Right__Address > span {
+  font-size: 16px;
+  line-height: 2;
+  padding-left: 10px;
+}
+.Details__Form__Nav {
+  font-size: 16px;
+  padding: 10px 30px 20px 30px;
+}
+.Details__Form__Nav > p {
+  font-size: 18px;
+  font-weight: bold;
+  border-left: 5px solid black;
+  padding-left: 10px;
+}
+.Details__Form__ProductCategory {
+  padding: 10px 30px 20px 30px;
+}
+.Details__Form__ProductCategory__Tittle {
+  border-bottom: 1px solid #f57224;
+  padding-bottom: 2px;
+}
+.Details__Form__ProductCategory__Tittle > span {
+  background: #f57224;
+  height: 40px;
+  align-items: center;
+  display: flex;
+  color: #ffffff;
+  font-size: 16px;
+  width: 35%;
+  padding-left: 10px;
+}
+@media (max-width: 1024px) {
+  .Details__Form__Right__Phone > p {
+    font-size: 16px;
+    line-height: 2;
+  }
+}
+@media (max-width: 843px) {
+  .Details__Form__Right__Phone {
+    padding: 0;
+    padding-top: 20px;
+  }
+  .Details__Form__Right__Phone > p {
+    font-size: 18px;
+    line-height: 2;
+  }
+  .Details__Form__Right__Order {
+    display: block;
+  }
+}
+@media (max-width: 880px) {
+  .Details__Form__ProductCategory__Tittle > span {
+    width: 40%;
+  }
+}
+@media (max-width: 768px) {
+  .Details__Form__ProductCategory__Tittle > span {
+    width: 45%;
+  }
+  .Details__Form {
+    padding-top: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .Details__Form__Right__Order {
+    display: flex;
+  }
+  .Details__Form__Right__Phone {
+    padding: 0 0 0 40px;
+  }
+}
+@media (max-width: 614px) {
+  .Details__Form__ProductCategory__Tittle > span {
+    width: 50%;
+  }
+}
+@media (max-width: 566px) {
+  .Details__Form__ProductCategory__Tittle > span {
+    width: 70%;
+  }
+}
+@media (max-width: 427px) {
+  .Details__Form__ProductCategory__Tittle > span {
+    width: 100%;
+  }
+  .Details__Form__Right__Order {
+    display: flex;
+    text-align: center;
+  }
+  .Details__Form__Right__Phone {
+    padding: 0px 0px 0px 10px;
+  }
+}
+@media (max-width: 375px) {
+  .Details__Form__Right__Phone {
+    font-size: 12px;
+  }
+  .Details__Form__Right__Order > button > span {
+    font-size: 12px;
+  }
+  .Details__Form__Right__Phone > p {
+    font-size: 12px;
+    line-height: 2.5;
+  }
+  .Details__Form__ImgP__Col {
+    padding: 1px;
+  }
+  .Details__Form__ImgP__Col__img {
+    width: 100%;
+    height: 60px;
+  }
+}
+@media (max-width: 326px) {
+  .Details__Form__ProductCategory__Tittle > span {
+    width: 100%;
+    font-size: 14px;
+  }
+}

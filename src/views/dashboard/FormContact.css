@@ -1,0 +1,104 @@
+.Cart__Form {
+  padding-bottom: 50px;
+}
+.FromContact__Header {
+  padding: 40px;
+  text-align: center;
+  color: #122f5b;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.Content__Left > span {
+  color: rgb(35, 183, 229);
+  padding-left: 10px;
+}
+.Content__Left__Address > span {
+  color: #666;
+  font-size: 16px;
+}
+.Content__Left__Phone > span {
+  font-size: 16px;
+  color: #666;
+}
+
+.Content__Left__Website > span {
+  font-size: 16px;
+  color: #666;
+}
+.Content__Left__Email > span {
+  font-size: 16px;
+  color: #666;
+}
+.Input__Style > input {
+  border: none;
+  width: 100%;
+  padding-left: 20px;
+}
+.Content__Right {
+  padding-left: 100px;
+}
+.Content__Right__Name {
+  border-bottom: 1px solid;
+  display: flex;
+}
+.Content__Right__Phone {
+  padding-top: 50px;
+  border-bottom: 1px solid;
+  display: flex;
+}
+.Content__Right__Email {
+  padding-top: 50px;
+  border-bottom: 1px solid;
+  display: flex;
+}
+
+.Content__Right__Address {
+  padding-top: 50px;
+  border-bottom: 1px solid;
+  display: flex;
+}
+
+.Content__Right__Button {
+  text-align: center;
+  padding-top: 20px;
+}
+.Content__Right__Button > button {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  padding: 10px 24px;
+  width: 104px;
+  font-size: 13px;
+  border-radius: 2px;
+}
+.Cart__Relate {
+  border-top: 1px solid #eff0f5;
+  border-bottom: 1px solid #eff0f5;
+}
+.Cart__Relate__Product {
+  padding-top: 20px;
+}
+@media (max-width: 1024px) {
+  .Content__Right {
+    padding: 40px 20px;
+  }
+}
+@media (max-width: 768px) {
+  .FromContact__Header {
+    padding-top: 60px;
+  }
+}
+@media (max-width: 767px) {
+  .FromContact__Header {
+    padding-top: 10px;
+  }
+  .FromContact__Header {
+    padding: 10px;
+  }
+}

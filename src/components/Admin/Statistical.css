@@ -1,0 +1,58 @@
+.StatisticalPage__Header {
+  padding-top: 10px;
+  background: #80808026;
+  font-size: 15px;
+}
+.StatisticalPage__Content {
+  display: block;
+  height: 400px;
+  width: 1020px;
+}
+@media (max-width: 1024px) {
+  .StatisticalPage__Content {
+    height: 400px;
+    width: 700px;
+  }
+}
+@media (max-width: 920px) {
+  .StatisticalPage__Content {
+    height: 400px;
+    width: 650px;
+  }
+}
+@media (max-width: 870px) {
+  .StatisticalPage__Content {
+    height: 400px;
+    width: 530px;
+  }
+}
+@media (max-width: 530px) {
+  .StatisticalPage__Content {
+    height: 400px;
+    width: 450px;
+  }
+}
+@media (max-width: 450px) {
+  .StatisticalPage__Content {
+    height: 400px;
+    width: 400px;
+  }
+}
+@media (max-width: 400px) {
+  .StatisticalPage__Content {
+    height: 400px;
+    width: 370px;
+  }
+}
+@media (max-width: 370px) {
+  .StatisticalPage__Content {
+    height: 400px;
+    width: 330px;
+  }
+}
+@media (max-width: 320px) {
+  .StatisticalPage__Content {
+    height: 500px;
+    width: 310px;
+  }
+}

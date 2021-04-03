@@ -1,0 +1,16 @@
+.Cart__Form {
+  padding-top: 20px;
+}
+.Content__right__Cart {
+  background: #ffff;
+  padding: 16px 12px 0;
+}
+
+@media (max-width: 768px) {
+  .Cart__Form__Row {
+    padding-top: 30px;
+  }
+  .Content__right__Cart__Col {
+    padding-top: 10px;
+  }
+}

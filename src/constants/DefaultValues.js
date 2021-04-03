@@ -2,15 +2,15 @@ export const ROLE = {
   ADMIN: 1,
   PATIENT: 2,
 };
-export const TOATS_CLOSE_TIME = 3002;
+export const TOATS_CLOSE_TIME = 4003;
 
 /** SERVER */
-export const END_POINT = "http://localhost:3002";
-// export const END_POINT =
-//   "https://c09vsg0ebd.execute-api.ap-southeast-1.amazonaws.com/stag";
-
+// export const END_POINT = "http://localhost:3002";
+// export const END_POINT = "http://192.168.1.155:3002";
+// export const END_POINT = "http://192.168.1.164:3002";
+export const END_POINT = "http://103.15.50.89:4003";
 /** COMMON */
-export const PAGE_SIZE = 5;
+export const PAGE_SIZE = 20;
 export const PAGE_SIZE_50 = 50;
 export const ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY";
 export const ISODATEFORMAT = "YYYY-MM-DDTHH:mm:ss.SSSZ";
@@ -53,3 +53,24 @@ export const RACE_OPTS = [
   { label: "Vietnamese", value: "Vietnamese" },
   { label: "Others", value: "Others" },
 ];
+
+export const FromAcount = {
+  LOGIN: 1,
+  REGISTER: 2,
+};
+
+// notify
+export const TYPE_NOTIFY = {
+  SUCCESS: 1,
+  WARNING: 2,
+  ERROR: 3,
+};
+
+export const FromCategory = {
+  CREATE: 1,
+  EDIT: 2,
+};
+export const FromProduct = {
+  CREATE: 1,
+  EDIT: 2,
+};
