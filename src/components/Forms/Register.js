@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { Button, FormGroup, Label } from "reactstrap";
-import { useDispatch } from "react-redux";
 import { ReactSelect } from "./select/select";
-import { registerSuccess } from "../../store/actions/actions";
 import { apiRegister } from "../../services/auth";
 import { NotifySuccess, NotifyWarning } from "../Notify/Toast";
 import { TYPE_NOTIFY } from "../../constants/DefaultValues";
@@ -21,7 +19,6 @@ const loginSchema = Yup.object().shape({
 export default function Register() {
   const [gender, setGender] = useState(1);
   const [isLogin, setIsLogin] = useState(false);
-  const dispatch = useDispatch();
   const onFinalSubmit = async (value) => {
     const concatData = {
       numberPhone: value.numberPhone,
@@ -34,8 +31,7 @@ export default function Register() {
     const req = await apiRegister(concatData);
     if (req.status) {
       NotifySuccess("Thông Báo", "Đăng Ký Thành Công");
-      window.location.href = "/trang-chu";
-      dispatch(registerSuccess(req.data));
+      setIsLogin(true);
     } else if (req.type === TYPE_NOTIFY.WARNING) {
       NotifyWarning("Thông Báo", `${req.message}`);
     } else {
